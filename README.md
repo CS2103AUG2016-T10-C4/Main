@@ -7,7 +7,7 @@
 #### Site Map
 * [User Guide](docs/UserGuide.md)
 * [Developer Guide](docs/DeveloperGuide.md) 
-* [Appendices](docs/Appendices)
+* [Appendices](docs/Appendices.md)
 * [About Us](docs/AboutUs.md)
 * [Contact Us](docs/ContactUs.md)
 
