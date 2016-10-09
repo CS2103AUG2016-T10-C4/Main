@@ -1,0 +1,16 @@
+package ruby.keyboardwarrior.common;
+
+/**
+ * Container for user visible messages.
+ */
+public class Messages {
+
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
+    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The task index provided is invalid";
+    public static final String MESSAGE_PERSON_NOT_IN_ADDRESSBOOK = "Task could not be found in todolist";
+    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d tasks listed!";
+    public static final String MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE = "Launch command format: " +
+            "java ruby.keyboardwarrior.Main [STORAGE_FILE_PATH]";
+    public static final String MESSAGE_WELCOME = "Welcome to Keyboard Warrior!";
+    public static final String MESSAGE_USING_STORAGE_FILE = "Using storage file : %1$s";
+}
