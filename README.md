@@ -6,9 +6,8 @@
      
 #### Site Map
 * [User Guide](docs/UserGuide.md)
-* [User Stories](docs/UserStories.md)
 * [Developer Guide](docs/DeveloperGuide.md) 
-* [Non-Functional Requirements](docs/NonFunctionals.md)
+* [Appendices](docs/Appendices.md)
 * [About Us](docs/AboutUs.md)
 * [Contact Us](docs/ContactUs.md)
 
