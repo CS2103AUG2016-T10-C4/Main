@@ -1,19 +1,19 @@
-package ruby.keyboardwarrior.ui;
+package seedu.addressbook.ui;
 
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-//import seedu.addressbook.commands.ExitCommand;
-import ruby.keyboardwarrior.logic.Logic;
-//import seedu.addressbook.commands.CommandResult;
-//import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.commands.ExitCommand;
+import seedu.addressbook.logic.Logic;
+import seedu.addressbook.commands.CommandResult;
+import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.util.List;
 import java.util.Optional;
 
-import static ruby.keyboardwarrior.common.Messages.*;
+import static seedu.addressbook.common.Messages.*;
 
 /**
  * Main Window of the GUI.
@@ -41,7 +41,7 @@ public class MainWindow {
     private TextField commandInput;
 
 
-/*    @FXML
+    @FXML
     void onCommand(ActionEvent event) {
         try {
             String userCommandText = commandInput.getText();
@@ -57,15 +57,15 @@ public class MainWindow {
             throw new RuntimeException(e);
         }
     }
-*/
+
     private void exitApp() throws Exception {
         mainApp.stop();
     }
 
     /** Returns true of the result given is the result of an exit command */
-//    private boolean isExitCommand(CommandResult result) {
-//        return result.feedbackToUser.equals(ExitCommand.MESSAGE_EXIT_ACKNOWEDGEMENT);
-//    }
+    private boolean isExitCommand(CommandResult result) {
+        return result.feedbackToUser.equals(ExitCommand.MESSAGE_EXIT_ACKNOWEDGEMENT);
+    }
 
     /** Clears the command input box */
     private void clearCommandInput() {
@@ -78,7 +78,7 @@ public class MainWindow {
     }
 
     /** Displays the result of a command execution to the user. */
-/*    public void displayResult(CommandResult result) {
+    public void displayResult(CommandResult result) {
         clearOutputConsole();
         final Optional<List<? extends ReadOnlyPerson>> resultPersons = result.getRelevantPersons();
         if(resultPersons.isPresent()) {
@@ -86,7 +86,7 @@ public class MainWindow {
         }
         display(result.feedbackToUser);
     }
-*/
+
     public void displayWelcomeMessage(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
         display(MESSAGE_WELCOME, version, MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE, storageFileInfo);
@@ -96,9 +96,9 @@ public class MainWindow {
      * Displays the list of persons in the output display area, formatted as an indexed list.
      * Private contact details are hidden.
      */
-//    private void display(List<? extends ReadOnlyPerson> persons) {
-//        display(new Formatter().format(persons));
-//    }
+    private void display(List<? extends ReadOnlyPerson> persons) {
+        display(new Formatter().format(persons));
+    }
 
     /**
      * Displays the given messages on the output display area, after formatting appropriately.

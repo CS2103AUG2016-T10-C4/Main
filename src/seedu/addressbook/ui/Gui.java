@@ -1,10 +1,10 @@
-package ruby.keyboardwarrior.ui;
+package seedu.addressbook.ui;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ruby.keyboardwarrior.logic.Logic;
-import ruby.keyboardwarrior.Main;
+import seedu.addressbook.logic.Logic;
+import seedu.addressbook.Main;
 
 import java.io.File;
 import java.io.IOException;

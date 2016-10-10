@@ -1,12 +1,12 @@
-package ruby.keyboardwarrior;
+package seedu.addressbook;
 
 import javafx.application.Application;
 import javafx.application.Platform;
 
 import javafx.stage.Stage;
-import ruby.keyboardwarrior.logic.Logic;
-import ruby.keyboardwarrior.ui.Gui;
-import ruby.keyboardwarrior.ui.Stoppable;
+import seedu.addressbook.logic.Logic;
+import seedu.addressbook.ui.Gui;
+import seedu.addressbook.ui.Stoppable;
 
 /**
  * Main entry point to the application.
@@ -14,7 +14,7 @@ import ruby.keyboardwarrior.ui.Stoppable;
 public class Main extends Application implements Stoppable{
 
     /** Version info of the program. */
-    public static final String VERSION = "keyboardwarrior - Version 0.1";
+    public static final String VERSION = "AddessBook Level 3 - Version 1.0";
 
     private Gui gui;
 
@@ -35,3 +35,5 @@ public class Main extends Application implements Stoppable{
         launch(args);
     }
 }
+
+

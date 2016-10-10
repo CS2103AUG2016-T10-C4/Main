@@ -1,4 +1,4 @@
-package ruby.keyboardwarrior.data.exception;
+package seedu.addressbook.data.exception;
 
 /**
  * Signals that some given data does not fulfill some constraints.
