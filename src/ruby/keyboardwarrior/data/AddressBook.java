@@ -2,9 +2,9 @@ package ruby.keyboardwarrior.data;
 
 import ruby.keyboardwarrior.data.person.*;
 import ruby.keyboardwarrior.data.person.UniquePersonList.*;
-import ruby.keyboardwarrior.data.tag.Tag;
-import ruby.keyboardwarrior.data.tag.UniqueTagList;
-import ruby.keyboardwarrior.data.tag.UniqueTagList.*;
+//import ruby.keyboardwarrior.data.tag.Tag;
+//import ruby.keyboardwarrior.data.tag.UniqueTagList;
+//import ruby.keyboardwarrior.data.tag.UniqueTagList.*;
 
 import java.util.*;
 
@@ -18,7 +18,7 @@ import java.util.*;
 public class AddressBook {
 
     private final UniquePersonList allPersons;
-    private final UniqueTagList allTags; // can contain tags not attached to any person
+//    private final UniqueTagList allTags; // can contain tags not attached to any person
 
     public static AddressBook empty() {
         return new AddressBook();
@@ -29,7 +29,7 @@ public class AddressBook {
      */
     public AddressBook() {
         allPersons = new UniquePersonList();
-        allTags = new UniqueTagList();
+//        allTags = new UniqueTagList();
     }
 
     /**
@@ -39,12 +39,12 @@ public class AddressBook {
      * @param persons external changes to this will not affect this address book
      * @param tags external changes to this will not affect this address book
      */
-    public AddressBook(UniquePersonList persons, UniqueTagList tags) {
+    public AddressBook(UniquePersonList persons/*, UniqueTagList tags*/) {
         this.allPersons = new UniquePersonList(persons);
-        this.allTags = new UniqueTagList(tags);
+/*        this.allTags = new UniqueTagList(tags);
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
-        }
+        }*/
     }
 
     /**
@@ -52,7 +52,7 @@ public class AddressBook {
      *  - exists in the master list {@link #allTags}
      *  - points to a Tag object in the master list
      */
-    private void syncTagsWithMasterList(Person person) {
+    /*private void syncTagsWithMasterList(Person person) {
         final UniqueTagList personTags = person.getTags();
         allTags.mergeFrom(personTags);
 
@@ -68,7 +68,7 @@ public class AddressBook {
             commonTagReferences.add(masterTagObjects.get(tag));
         }
         person.setTags(new UniqueTagList(commonTagReferences));
-    }
+    }*/
 
     /**
      * Adds a person to the address book.
@@ -78,7 +78,7 @@ public class AddressBook {
      * @throws DuplicatePersonException if an equivalent person already exists.
      */
     public void addPerson(Person toAdd) throws DuplicatePersonException {
-        syncTagsWithMasterList(toAdd);
+//        syncTagsWithMasterList(toAdd);
         allPersons.add(toAdd);
     }
 
@@ -87,9 +87,9 @@ public class AddressBook {
      *
      * @throws DuplicateTagException if an equivalent tag already exists.
      */
-    public void addTag(Tag toAdd) throws DuplicateTagException {
+ /*   public void addTag(Tag toAdd) throws DuplicateTagException {
         allTags.add(toAdd);
-    }
+    }*/
 
     /**
      * Checks if an equivalent person exists in the address book.
@@ -101,9 +101,9 @@ public class AddressBook {
     /**
      * Checks if an equivalent person exists in the address book.
      */
-    public boolean containsTag(Tag key) {
+    /*public boolean containsTag(Tag key) {
         return allTags.contains(key);
-    }
+    }*/
 
     /**
      * Removes the equivalent person from the address book.
@@ -119,16 +119,16 @@ public class AddressBook {
      *
      * @throws TagNotFoundException if no such Tag could be found.
      */
-    public void removeTag(Tag toRemove) throws TagNotFoundException {
+    /*public void removeTag(Tag toRemove) throws TagNotFoundException {
         allTags.remove(toRemove);
-    }
+    }*/
 
     /**
      * Clears all persons and tags from the address book.
      */
     public void clear() {
         allPersons.clear();
-        allTags.clear();
+//        allTags.clear();
     }
 
     /**
@@ -141,21 +141,21 @@ public class AddressBook {
     /**
      * Defensively copied UniqueTagList of all tags in the address book at the time of the call.
      */
-    public UniqueTagList getAllTags() {
+   /* public UniqueTagList getAllTags() {
         return new UniqueTagList(allTags);
-    }
+    }*/
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && this.allPersons.equals(((AddressBook) other).allPersons)
-                && this.allTags.equals(((AddressBook) other).allTags));
+    /*            && this.allTags.equals(((AddressBook) other).allTags)*/);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(allPersons, allTags);
+        return Objects.hash(allPersons/*, allTags*/);
     }
 }

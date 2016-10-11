@@ -1,7 +1,7 @@
 package ruby.keyboardwarrior.data.person;
 
-import ruby.keyboardwarrior.data.tag.Tag;
-import ruby.keyboardwarrior.data.tag.UniqueTagList;
+//import ruby.keyboardwarrior.data.tag.Tag;
+//import ruby.keyboardwarrior.data.tag.UniqueTagList;
 
 /**
  * A read-only immutable interface for a Person in the addressbook.
@@ -18,7 +18,7 @@ public interface ReadOnlyPerson {
      * The returned TagList is a deep copy of the internal TagList,
      * changes on the returned list will not affect the person's internal tags.
      */
-    UniqueTagList getTags();
+//    UniqueTagList getTags();
 
     /**
      * Returns true if the values inside this object is same as those of the other (Note: interfaces cannot override .equals)
@@ -55,9 +55,9 @@ public interface ReadOnlyPerson {
         }
         builder.append(getAddress())
                 .append(" Tags: ");
-        for (Tag tag : getTags()) {
+ /*       for (Tag tag : getTags()) {
             builder.append(tag);
-        }
+        }*/
         return builder.toString();
     }
 
@@ -77,9 +77,9 @@ public interface ReadOnlyPerson {
             builder.append(" Address: ").append(getAddress());
         }
         builder.append(" Tags: ");
-        for (Tag tag : getTags()) {
+        /*for (Tag tag : getTags()) {
             builder.append(tag);
-        }
+        }*/
         return builder.toString();
     }
 }
