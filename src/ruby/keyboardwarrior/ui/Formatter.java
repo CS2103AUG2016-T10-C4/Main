@@ -35,12 +35,12 @@ public class Formatter {
     }
 
     /** Formats the given list of persons for displaying to the user. */
-    public String format(List<? extends ReadOnlyTask> persons) {
-        final List<String> formattedPersons = new ArrayList<>();
-        for (ReadOnlyTask person : persons) {
-            formattedPersons.add(person.getAsTextHidePrivate());
+    public String format(List<? extends ReadOnlyTask> tasks) {
+        final List<String> formattedTasks = new ArrayList<>();
+        for (ReadOnlyTask person : tasks) {
+            formattedTasks.add(person.getAsTextHidePrivate());
         }
-        return format(asIndexedList(formattedPersons));
+        return format(asIndexedList(formattedTasks));
     }
 
     /** Formats a list of strings as an indexed list. */

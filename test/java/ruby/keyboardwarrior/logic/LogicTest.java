@@ -82,9 +82,9 @@ public class LogicTest {
 
         //Confirm the result contains the right data
         assertEquals(expectedMessage, r.feedbackToUser);
-        assertEquals(r.getRelevantPersons().isPresent(), isRelevantPersonsExpected);
+        assertEquals(r.getRelevantTasks().isPresent(), isRelevantPersonsExpected);
         if(isRelevantPersonsExpected){
-            assertEquals(lastShownList, r.getRelevantPersons().get());
+            assertEquals(lastShownList, r.getRelevantTasks().get());
         }
 
         //Confirm the state of data is as expected

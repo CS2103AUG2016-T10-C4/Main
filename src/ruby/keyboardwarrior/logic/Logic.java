@@ -93,7 +93,7 @@ public class Logic {
 
     /** Updates the {@link #lastShownList} if the result contains a list of Persons. */
     private void recordResult(CommandResult result) {
-        final Optional<List<? extends ReadOnlyTask>> personList = result.getRelevantPersons();
+        final Optional<List<? extends ReadOnlyTask>> personList = result.getRelevantTasks();
         if (personList.isPresent()) {
             lastShownList = personList.get();
         }

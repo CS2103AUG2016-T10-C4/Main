@@ -29,7 +29,7 @@ public class CommandResult {
     /**
      * Returns list of persons relevant to the command command result, if any.
      */
-    public Optional<List<? extends ReadOnlyTask>> getRelevantPersons() {
+    public Optional<List<? extends ReadOnlyTask>> getRelevantTasks() {
         return Optional.ofNullable(relevantPersons);
     }
 

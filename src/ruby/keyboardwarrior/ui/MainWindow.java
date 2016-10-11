@@ -80,9 +80,9 @@ public class MainWindow {
     /** Displays the result of a command execution to the user. */
     public void displayResult(CommandResult result) {
         clearOutputConsole();
-        final Optional<List<? extends ReadOnlyTask>> resultPersons = result.getRelevantPersons();
-        if(resultPersons.isPresent()) {
-            display(resultPersons.get());
+        final Optional<List<? extends ReadOnlyTask>> resultTasks = result.getRelevantTasks();
+        if(resultTasks.isPresent()) {
+            display(resultTasks.get());
         }
         display(result.feedbackToUser);
     }
@@ -96,8 +96,8 @@ public class MainWindow {
      * Displays the list of persons in the output display area, formatted as an indexed list.
      * Private contact details are hidden.
      */
-    private void display(List<? extends ReadOnlyTask> persons) {
-        display(new Formatter().format(persons));
+    private void display(List<? extends ReadOnlyTask> tasks) {
+        display(new Formatter().format(tasks));
     }
 
     /**
