@@ -113,9 +113,9 @@ public class LogicTest {
     @Test
     public void execute_clear() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        tasksList.addPerson(helper.generatePerson(1, true));
-        tasksList.addPerson(helper.generatePerson(2, true));
-        tasksList.addPerson(helper.generatePerson(3, true));
+        tasksList.addTask(helper.generatePerson(1, true));
+        tasksList.addTask(helper.generatePerson(2, true));
+        tasksList.addTask(helper.generatePerson(3, true));
 
         assertCommandBehavior("clear", ClearCommand.MESSAGE_SUCCESS, TasksList.empty(), false, Collections.emptyList());
     }
@@ -136,7 +136,7 @@ public class LogicTest {
     @Test
     public void execute_add_invalidPersonData() throws Exception {
         assertCommandBehavior(
-                "add []\\[;] p/12345 e/valid@e.mail a/valid, address", Name.MESSAGE_NAME_CONSTRAINTS);
+                "add []\\[;] p/12345 e/valid@e.mail a/valid, address", TaskDetails.MESSAGE_NAME_CONSTRAINTS);
         assertCommandBehavior(
                 "add Valid Name p/not_numbers e/valid@e.mail a/valid, address", Phone.MESSAGE_PHONE_CONSTRAINTS);
         assertCommandBehavior(
@@ -152,7 +152,7 @@ public class LogicTest {
         TestDataHelper helper = new TestDataHelper();
         Task toBeAdded = helper.adam();
         TasksList expectedAB = new TasksList();
-        expectedAB.addPerson(toBeAdded);
+        expectedAB.addTask(toBeAdded);
 
         // execute command and verify result
         assertCommandBehavior(helper.generateAddCommand(toBeAdded),
@@ -169,10 +169,10 @@ public class LogicTest {
         TestDataHelper helper = new TestDataHelper();
         Task toBeAdded = helper.adam();
         TasksList expectedAB = new TasksList();
-        expectedAB.addPerson(toBeAdded);
+        expectedAB.addTask(toBeAdded);
 
         // setup starting state
-        tasksList.addPerson(toBeAdded); // person already in internal address book
+        tasksList.addTask(toBeAdded); // person already in internal address book
 
         // execute command and verify result
         assertCommandBehavior(
@@ -189,7 +189,7 @@ public class LogicTest {
         // prepare expectations
         TestDataHelper helper = new TestDataHelper();
         TasksList expectedAB = helper.generateAddressBook(false, true);
-        List<? extends ReadOnlyTask> expectedList = expectedAB.getAllPersons().immutableListView();
+        List<? extends ReadOnlyTask> expectedList = expectedAB.getAllTasks().immutableListView();
 
         // prepare address book state
         helper.addToAddressBook(tasksList, false, true);
@@ -264,9 +264,9 @@ public class LogicTest {
         List<Task> lastShownList = helper.generatePersonList(p1, p2);
 
         TasksList expectedAB = new TasksList();
-        expectedAB.addPerson(p2);
+        expectedAB.addTask(p2);
 
-        tasksList.addPerson(p2);
+        tasksList.addTask(p2);
         logic.setLastShownList(lastShownList);
 
         assertCommandBehavior("view 1",
@@ -320,9 +320,9 @@ public class LogicTest {
         List<Task> lastShownList = helper.generatePersonList(p1, p2);
 
         TasksList expectedAB = new TasksList();
-        expectedAB.addPerson(p1);
+        expectedAB.addTask(p1);
 
-        tasksList.addPerson(p1);
+        tasksList.addTask(p1);
         logic.setLastShownList(lastShownList);
 
         assertCommandBehavior("viewall 2",
@@ -354,7 +354,7 @@ public class LogicTest {
         List<Task> threePersons = helper.generatePersonList(p1, p2, p3);
 
         TasksList expectedAB = helper.generateAddressBook(threePersons);
-        expectedAB.removePerson(p2);
+        expectedAB.removeTask(p2);
 
 
         helper.addToAddressBook(tasksList, threePersons);
@@ -378,10 +378,10 @@ public class LogicTest {
         List<Task> threePersons = helper.generatePersonList(p1, p2, p3);
 
         TasksList expectedAB = helper.generateAddressBook(threePersons);
-        expectedAB.removePerson(p2);
+        expectedAB.removeTask(p2);
 
         helper.addToAddressBook(tasksList, threePersons);
-        tasksList.removePerson(p2);
+        tasksList.removeTask(p2);
         logic.setLastShownList(threePersons);
 
         assertCommandBehavior("delete 2",
@@ -463,7 +463,7 @@ public class LogicTest {
     class TestDataHelper{
 
         Task adam() throws Exception {
-            Name name = new Name("Adam Brown");
+            TaskDetails name = new TaskDetails("Adam Brown");
             Phone privatePhone = new Phone("111111", true);
             Email email = new Email("adam@gmail.com", false);
             Address privateAddress = new Address("111, alpha street", true);
@@ -483,7 +483,7 @@ public class LogicTest {
          */
         Task generatePerson(int seed, boolean isAllFieldsPrivate) throws Exception {
             return new Task(
-                    new Name("Person " + seed),
+                    new TaskDetails("Person " + seed),
                     new Phone("" + Math.abs(seed), isAllFieldsPrivate),
                     new Email(seed + "@email", isAllFieldsPrivate),
                     new Address("House of " + seed, isAllFieldsPrivate),
@@ -497,7 +497,7 @@ public class LogicTest {
 
             cmd.add("add");
 
-            cmd.add(p.getName().toString());
+            cmd.add(p.getDetails().toString());
             cmd.add((p.getPhone().isPrivate() ? "pp/" : "p/") + p.getPhone());
             cmd.add((p.getEmail().isPrivate() ? "pe/" : "e/") + p.getEmail());
             cmd.add((p.getAddress().isPrivate() ? "pa/" : "a/") + p.getAddress());
@@ -545,7 +545,7 @@ public class LogicTest {
          */
         void addToAddressBook(TasksList tasksList, List<Task> personsToAdd) throws Exception{
             for(Task p: personsToAdd){
-                tasksList.addPerson(p);
+                tasksList.addTask(p);
             }
         }
 
@@ -579,7 +579,7 @@ public class LogicTest {
          */
          Task generatePersonWithName(String name) throws Exception {
             return new Task(
-                    new Name(name),
+                    new TaskDetails(name),
                     new Phone("1", false),
                     new Email("1@email", false),
                     new Address("House of 1", false),

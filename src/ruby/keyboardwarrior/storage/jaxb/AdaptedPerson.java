@@ -48,7 +48,7 @@ public class AdaptedPerson {
      * @param source future changes to this will not affect the created AdaptedPerson
      */
     public AdaptedPerson(ReadOnlyTask source) {
-        name = source.getName().fullName;
+        name = source.getDetails().details;
 
         phone = new AdaptedContactDetail();
         phone.isPrivate = source.getPhone().isPrivate();
@@ -97,7 +97,7 @@ public class AdaptedPerson {
         for (AdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }*/
-        final Name name = new Name(this.name);
+        final TaskDetails name = new TaskDetails(this.name);
         final Phone phone = new Phone(this.phone.value, this.phone.isPrivate);
         final Email email = new Email(this.email.value, this.email.isPrivate);
         final Address address = new Address(this.address.value, this.address.isPrivate);

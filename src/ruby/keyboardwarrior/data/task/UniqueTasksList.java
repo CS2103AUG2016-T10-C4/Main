@@ -16,8 +16,8 @@ public class UniqueTasksList implements Iterable<Task> {
     /**
      * Signals that an operation would have violated the 'no duplicates' property of the list.
      */
-    public static class DuplicatePersonException extends DuplicateDataException {
-        protected DuplicatePersonException() {
+    public static class DuplicateTaskException extends DuplicateDataException {
+        protected DuplicateTaskException() {
             super("Operation would result in duplicate persons");
         }
     }
@@ -26,7 +26,7 @@ public class UniqueTasksList implements Iterable<Task> {
      * Signals that an operation targeting a specified person in the list would fail because
      * there is no such matching person in the list.
      */
-    public static class PersonNotFoundException extends Exception {}
+    public static class TaskNotFoundException extends Exception {}
 
     private final List<Task> internalList = new ArrayList<>();
 
@@ -38,10 +38,10 @@ public class UniqueTasksList implements Iterable<Task> {
     /**
      * Constructs a person list with the given persons.
      */
-    public UniqueTasksList(Task... persons) throws DuplicatePersonException {
+    public UniqueTasksList(Task... persons) throws DuplicateTaskException {
         final List<Task> initialTags = Arrays.asList(persons);
         if (!Utils.elementsAreUnique(initialTags)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTaskException();
         }
         internalList.addAll(initialTags);
     }
@@ -49,11 +49,11 @@ public class UniqueTasksList implements Iterable<Task> {
     /**
      * Constructs a list from the items in the given collection.
      * @param tasks a collection of persons
-     * @throws DuplicatePersonException if the {@code persons} contains duplicate persons
+     * @throws DuplicateTaskException if the {@code persons} contains duplicate persons
      */
-    public UniqueTasksList(Collection<Task> tasks) throws DuplicatePersonException {
+    public UniqueTasksList(Collection<Task> tasks) throws DuplicateTaskException {
         if (!Utils.elementsAreUnique(tasks)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTaskException();
         }
         internalList.addAll(tasks);
     }
@@ -85,11 +85,11 @@ public class UniqueTasksList implements Iterable<Task> {
     /**
      * Adds a person to the list.
      *
-     * @throws DuplicatePersonException if the person to add is a duplicate of an existing person in the list.
+     * @throws DuplicateTaskException if the person to add is a duplicate of an existing person in the list.
      */
-    public void add(Task toAdd) throws DuplicatePersonException {
+    public void add(Task toAdd) throws DuplicateTaskException {
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTaskException();
         }
         internalList.add(toAdd);
     }
@@ -97,12 +97,12 @@ public class UniqueTasksList implements Iterable<Task> {
     /**
      * Removes the equivalent person from the list.
      *
-     * @throws PersonNotFoundException if no such person could be found in the list.
+     * @throws TaskNotFoundException if no such person could be found in the list.
      */
-    public void remove(ReadOnlyTask toRemove) throws PersonNotFoundException {
+    public void remove(ReadOnlyTask toRemove) throws TaskNotFoundException {
         final boolean personFoundAndDeleted = internalList.remove(toRemove);
         if (!personFoundAndDeleted) {
-            throw new PersonNotFoundException();
+            throw new TaskNotFoundException();
         }
     }
 

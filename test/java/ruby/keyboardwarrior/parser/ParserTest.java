@@ -186,11 +186,11 @@ public class ParserTest {
                 "add ",
                 "add wrong args format",
                 // no phone prefix
-                String.format("add $s $s e/$s a/$s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
+                String.format("add $s $s e/$s a/$s", TaskDetails.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
                 // no email prefix
-                String.format("add $s p/$s $s a/$s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
+                String.format("add $s p/$s $s a/$s", TaskDetails.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
                 // no address prefix
-                String.format("add $s p/$s e/$s $s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE)
+                String.format("add $s p/$s e/$s $s", TaskDetails.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE)
         };
         final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
@@ -199,7 +199,7 @@ public class ParserTest {
     @Test
     public void addCommand_invalidPersonDataInArgs() {
         final String invalidName = "[]\\[;]";
-        final String validName = Name.EXAMPLE;
+        final String validName = TaskDetails.EXAMPLE;
         final String invalidPhoneArg = "p/not__numbers";
         final String validPhoneArg = "p/" + Phone.EXAMPLE;
         final String invalidEmailArg = "e/notAnEmail123";
@@ -249,7 +249,7 @@ public class ParserTest {
     private static Task generateTestPerson() {
         try {
             return new Task(
-                new Name(Name.EXAMPLE),
+                new TaskDetails(TaskDetails.EXAMPLE),
                 new Phone(Phone.EXAMPLE, true),
                 new Email(Email.EXAMPLE, false),
                 new Address(Address.EXAMPLE, true),
@@ -262,7 +262,7 @@ public class ParserTest {
 
     private static String convertPersonToAddCommandString(ReadOnlyTask person) {
         String addCommand = "add "
-                + person.getName().fullName
+                + person.getDetails().details
                 + (person.getPhone().isPrivate() ? " pp/" : " p/") + person.getPhone().value
                 + (person.getEmail().isPrivate() ? " pe/" : " e/") + person.getEmail().value
                 + (person.getAddress().isPrivate() ? " pa/" : " a/") + person.getAddress().value;

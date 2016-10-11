@@ -48,8 +48,8 @@ public class FindCommand extends Command {
      */
     private List<ReadOnlyTask> getPersonsWithNameContainingAnyKeyword(Set<String> keywords) {
         final List<ReadOnlyTask> matchedPersons = new ArrayList<>();
-        for (ReadOnlyTask person : tasksList.getAllPersons()) {
-            final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
+        for (ReadOnlyTask person : tasksList.getAllTasks()) {
+            final Set<String> wordsInName = new HashSet<>(person.getDetails().getWordsInDetails());
             if (!Collections.disjoint(wordsInName, keywords)) {
                 matchedPersons.add(person);
             }

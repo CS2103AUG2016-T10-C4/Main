@@ -17,7 +17,7 @@ import java.util.*;
  */
 public class TasksList {
 
-    private final UniqueTasksList allPersons;
+    private final UniqueTasksList allTasks;
 //    private final UniqueTagList allTags; // can contain tags not attached to any person
 
     public static TasksList empty() {
@@ -28,7 +28,7 @@ public class TasksList {
      * Creates an empty address book.
      */
     public TasksList() {
-        allPersons = new UniqueTasksList();
+        allTasks = new UniqueTasksList();
 //        allTags = new UniqueTagList();
     }
 
@@ -40,7 +40,7 @@ public class TasksList {
      * @param tags external changes to this will not affect this address book
      */
     public TasksList(UniqueTasksList persons/*, UniqueTagList tags*/) {
-        this.allPersons = new UniqueTasksList(persons);
+        this.allTasks = new UniqueTasksList(persons);
 /*        this.allTags = new UniqueTagList(tags);
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
@@ -75,11 +75,11 @@ public class TasksList {
      * Also checks the new person's tags and updates {@link #allTags} with any new tags found,
      * and updates the Tag objects in the person to point to those in {@link #allTags}.
      *
-     * @throws DuplicatePersonException if an equivalent person already exists.
+     * @throws DuplicateTaskException if an equivalent person already exists.
      */
-    public void addPerson(Task toAdd) throws DuplicatePersonException {
+    public void addTask(Task toAdd) throws DuplicateTaskException {
 //        syncTagsWithMasterList(toAdd);
-        allPersons.add(toAdd);
+        allTasks.add(toAdd);
     }
 
     /**
@@ -94,8 +94,8 @@ public class TasksList {
     /**
      * Checks if an equivalent person exists in the address book.
      */
-    public boolean containsPerson(ReadOnlyTask key) {
-        return allPersons.contains(key);
+    public boolean containsTask(ReadOnlyTask key) {
+        return allTasks.contains(key);
     }
 
     /**
@@ -108,10 +108,10 @@ public class TasksList {
     /**
      * Removes the equivalent person from the address book.
      *
-     * @throws PersonNotFoundException if no such Person could be found.
+     * @throws TaskNotFoundException if no such Person could be found.
      */
-    public void removePerson(ReadOnlyTask toRemove) throws PersonNotFoundException {
-        allPersons.remove(toRemove);
+    public void removeTask(ReadOnlyTask toRemove) throws TaskNotFoundException {
+        allTasks.remove(toRemove);
     }
 
     /**
@@ -127,15 +127,15 @@ public class TasksList {
      * Clears all persons and tags from the address book.
      */
     public void clear() {
-        allPersons.clear();
+        allTasks.clear();
 //        allTags.clear();
     }
 
     /**
      * Defensively copied UniquePersonList of all persons in the address book at the time of the call.
      */
-    public UniqueTasksList getAllPersons() {
-        return new UniqueTasksList(allPersons);
+    public UniqueTasksList getAllTasks() {
+        return new UniqueTasksList(allTasks);
     }
 
     /**
@@ -149,13 +149,13 @@ public class TasksList {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TasksList // instanceof handles nulls
-                && this.allPersons.equals(((TasksList) other).allPersons)
+                && this.allTasks.equals(((TasksList) other).allTasks)
     /*            && this.allTags.equals(((AddressBook) other).allTags)*/);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(allPersons/*, allTags*/);
+        return Objects.hash(allTasks/*, allTags*/);
     }
 }

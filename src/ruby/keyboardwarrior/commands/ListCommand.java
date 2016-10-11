@@ -19,7 +19,7 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        List<ReadOnlyTask> allPersons = tasksList.getAllPersons().immutableListView();
+        List<ReadOnlyTask> allPersons = tasksList.getAllTasks().immutableListView();
         return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
     }
     

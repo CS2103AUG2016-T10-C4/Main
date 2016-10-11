@@ -9,7 +9,7 @@ package ruby.keyboardwarrior.data.task;
  */
 public interface ReadOnlyTask {
 
-    Name getName();
+    TaskDetails getDetails();
     Phone getPhone();
     Email getEmail();
     Address getAddress();
@@ -26,7 +26,7 @@ public interface ReadOnlyTask {
     default boolean isSameStateAs(ReadOnlyTask other) {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
-                && other.getName().equals(this.getName()) // state checks here onwards
+                && other.getDetails().equals(this.getDetails()) // state checks here onwards
                 && other.getPhone().equals(this.getPhone())
                 && other.getEmail().equals(this.getEmail())
                 && other.getAddress().equals(this.getAddress()));
@@ -38,7 +38,7 @@ public interface ReadOnlyTask {
     default String getAsTextShowAll() {
         final StringBuilder builder = new StringBuilder();
         final String detailIsPrivate = "(private) ";
-        builder.append(getName())
+        builder.append(getDetails())
                 .append(" Phone: ");
         if (getPhone().isPrivate()) {
             builder.append(detailIsPrivate);
@@ -66,7 +66,7 @@ public interface ReadOnlyTask {
      */
     default String getAsTextHidePrivate() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
+        builder.append(getDetails());
         if (!getPhone().isPrivate()) {
             builder.append(" Phone: ").append(getPhone());
         }

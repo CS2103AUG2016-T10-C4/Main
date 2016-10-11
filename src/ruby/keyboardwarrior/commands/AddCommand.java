@@ -41,7 +41,7 @@ public class AddCommand extends Command {
             tagSet.add(new Tag(tagName));
         }
         this.toAdd = new Task(
-                new Name(name),
+                new TaskDetails(name),
                 new Phone(phone, isPhonePrivate),
                 new Email(email, isEmailPrivate),
                 new Address(address, isAddressPrivate)/*,
@@ -60,9 +60,9 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute() throws Exception{
         try {
-            tasksList.addPerson(toAdd);
+            tasksList.addTask(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        } catch (UniqueTasksList.DuplicatePersonException dpe) {
+        } catch (UniqueTasksList.DuplicateTaskException dpe) {
             return new CommandResult(MESSAGE_DUPLICATE_PERSON);
         }
     }

@@ -2,7 +2,7 @@ package ruby.keyboardwarrior.commands;
 
 import ruby.keyboardwarrior.common.Messages;
 import ruby.keyboardwarrior.data.task.ReadOnlyTask;
-import ruby.keyboardwarrior.data.task.UniqueTasksList.PersonNotFoundException;
+import ruby.keyboardwarrior.data.task.UniqueTasksList.TaskNotFoundException;
 
 
 /**
@@ -29,12 +29,12 @@ public class DeleteCommand extends Command {
     public CommandResult execute() {
         try {
             final ReadOnlyTask target = getTargetPerson();
-            tasksList.removePerson(target);
+            tasksList.removeTask(target);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, target));
 
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        } catch (PersonNotFoundException pnfe) {
+        } catch (TaskNotFoundException pnfe) {
             return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
         }
     }

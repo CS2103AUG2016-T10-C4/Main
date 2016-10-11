@@ -29,7 +29,7 @@ public class ViewAllCommand extends Command {
     public CommandResult execute() {
         try {
             final ReadOnlyTask target = getTargetPerson();
-            if (!tasksList.containsPerson(target)) {
+            if (!tasksList.containsTask(target)) {
                 return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
             }
             return new CommandResult(String.format(MESSAGE_VIEW_PERSON_DETAILS, target.getAsTextShowAll()));
