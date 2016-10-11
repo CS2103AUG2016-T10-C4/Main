@@ -19,7 +19,8 @@ Tools expert: advance knowledge on tools used and helps with tools related probl
 
 -----
 
-### [**Marcus Yatim**](https://github.com/a0124453)
+### [**Eu Jin Marcus Yatim**](https://github.com/a0124453)
+<img src='images/EuJinMarcusYatim.jpg' width="150"><br>
 **Role**: Group member<br>
 Integration: integrate various parts of the software to create a whole.<br>
 Scheduling: in charge of assigning and tracking project tasks.
