@@ -1,7 +1,7 @@
 package ruby.keyboardwarrior.data;
 
-import ruby.keyboardwarrior.data.person.*;
-import ruby.keyboardwarrior.data.person.UniquePersonList.*;
+import ruby.keyboardwarrior.data.task.*;
+import ruby.keyboardwarrior.data.task.UniqueTasksList.*;
 //import ruby.keyboardwarrior.data.tag.Tag;
 //import ruby.keyboardwarrior.data.tag.UniqueTagList;
 //import ruby.keyboardwarrior.data.tag.UniqueTagList.*;
@@ -15,20 +15,20 @@ import java.util.*;
  *  - Every tag found in every person will also be found in the tag list.
  *  - The tags in each person point to tag objects in the master list. (== equality)
  */
-public class AddressBook {
+public class TasksList {
 
-    private final UniquePersonList allPersons;
+    private final UniqueTasksList allPersons;
 //    private final UniqueTagList allTags; // can contain tags not attached to any person
 
-    public static AddressBook empty() {
-        return new AddressBook();
+    public static TasksList empty() {
+        return new TasksList();
     }
 
     /**
      * Creates an empty address book.
      */
-    public AddressBook() {
-        allPersons = new UniquePersonList();
+    public TasksList() {
+        allPersons = new UniqueTasksList();
 //        allTags = new UniqueTagList();
     }
 
@@ -39,8 +39,8 @@ public class AddressBook {
      * @param persons external changes to this will not affect this address book
      * @param tags external changes to this will not affect this address book
      */
-    public AddressBook(UniquePersonList persons/*, UniqueTagList tags*/) {
-        this.allPersons = new UniquePersonList(persons);
+    public TasksList(UniqueTasksList persons/*, UniqueTagList tags*/) {
+        this.allPersons = new UniqueTasksList(persons);
 /*        this.allTags = new UniqueTagList(tags);
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
@@ -77,7 +77,7 @@ public class AddressBook {
      *
      * @throws DuplicatePersonException if an equivalent person already exists.
      */
-    public void addPerson(Person toAdd) throws DuplicatePersonException {
+    public void addPerson(Task toAdd) throws DuplicatePersonException {
 //        syncTagsWithMasterList(toAdd);
         allPersons.add(toAdd);
     }
@@ -94,7 +94,7 @@ public class AddressBook {
     /**
      * Checks if an equivalent person exists in the address book.
      */
-    public boolean containsPerson(ReadOnlyPerson key) {
+    public boolean containsPerson(ReadOnlyTask key) {
         return allPersons.contains(key);
     }
 
@@ -110,7 +110,7 @@ public class AddressBook {
      *
      * @throws PersonNotFoundException if no such Person could be found.
      */
-    public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
+    public void removePerson(ReadOnlyTask toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
     }
 
@@ -134,8 +134,8 @@ public class AddressBook {
     /**
      * Defensively copied UniquePersonList of all persons in the address book at the time of the call.
      */
-    public UniquePersonList getAllPersons() {
-        return new UniquePersonList(allPersons);
+    public UniqueTasksList getAllPersons() {
+        return new UniqueTasksList(allPersons);
     }
 
     /**
@@ -148,8 +148,8 @@ public class AddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && this.allPersons.equals(((AddressBook) other).allPersons)
+                || (other instanceof TasksList // instanceof handles nulls
+                && this.allPersons.equals(((TasksList) other).allPersons)
     /*            && this.allTags.equals(((AddressBook) other).allTags)*/);
     }
 

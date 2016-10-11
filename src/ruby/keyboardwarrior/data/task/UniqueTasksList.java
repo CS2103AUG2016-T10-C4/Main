@@ -1,4 +1,4 @@
-package ruby.keyboardwarrior.data.person;
+package ruby.keyboardwarrior.data.task;
 
 import ruby.keyboardwarrior.common.Utils;
 import ruby.keyboardwarrior.data.exception.DuplicateDataException;
@@ -8,10 +8,10 @@ import java.util.*;
 /**
  * A list of persons. Does not allow null elements or duplicates.
  *
- * @see Person#equals(Object)
+ * @see Task#equals(Object)
  * @see Utils#elementsAreUnique(Collection)
  */
-public class UniquePersonList implements Iterable<Person> {
+public class UniqueTasksList implements Iterable<Task> {
 
     /**
      * Signals that an operation would have violated the 'no duplicates' property of the list.
@@ -28,18 +28,18 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public static class PersonNotFoundException extends Exception {}
 
-    private final List<Person> internalList = new ArrayList<>();
+    private final List<Task> internalList = new ArrayList<>();
 
     /**
      * Constructs empty person list.
      */
-    public UniquePersonList() {}
+    public UniqueTasksList() {}
 
     /**
      * Constructs a person list with the given persons.
      */
-    public UniquePersonList(Person... persons) throws DuplicatePersonException {
-        final List<Person> initialTags = Arrays.asList(persons);
+    public UniqueTasksList(Task... persons) throws DuplicatePersonException {
+        final List<Task> initialTags = Arrays.asList(persons);
         if (!Utils.elementsAreUnique(initialTags)) {
             throw new DuplicatePersonException();
         }
@@ -48,29 +48,29 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      * Constructs a list from the items in the given collection.
-     * @param persons a collection of persons
+     * @param tasks a collection of persons
      * @throws DuplicatePersonException if the {@code persons} contains duplicate persons
      */
-    public UniquePersonList(Collection<Person> persons) throws DuplicatePersonException {
-        if (!Utils.elementsAreUnique(persons)) {
+    public UniqueTasksList(Collection<Task> tasks) throws DuplicatePersonException {
+        if (!Utils.elementsAreUnique(tasks)) {
             throw new DuplicatePersonException();
         }
-        internalList.addAll(persons);
+        internalList.addAll(tasks);
     }
 
     /**
      * Constructs a shallow copy of the list.
      */
-    public UniquePersonList(UniquePersonList source) {
+    public UniqueTasksList(UniqueTasksList source) {
         internalList.addAll(source.internalList);
     }
 
     /**
-     * Unmodifiable java List view with elements cast as immutable {@link ReadOnlyPerson}s.
+     * Unmodifiable java List view with elements cast as immutable {@link ReadOnlyTask}s.
      * For use with other methods/libraries.
      * Any changes to the internal list/elements are immediately visible in the returned list.
      */
-    public List<ReadOnlyPerson> immutableListView() {
+    public List<ReadOnlyTask> immutableListView() {
         return Collections.unmodifiableList(internalList);
     }
 
@@ -78,7 +78,7 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Checks if the list contains an equivalent person as the given argument.
      */
-    public boolean contains(ReadOnlyPerson toCheck) {
+    public boolean contains(ReadOnlyTask toCheck) {
         return internalList.contains(toCheck);
     }
 
@@ -87,7 +87,7 @@ public class UniquePersonList implements Iterable<Person> {
      *
      * @throws DuplicatePersonException if the person to add is a duplicate of an existing person in the list.
      */
-    public void add(Person toAdd) throws DuplicatePersonException {
+    public void add(Task toAdd) throws DuplicatePersonException {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
@@ -99,7 +99,7 @@ public class UniquePersonList implements Iterable<Person> {
      *
      * @throws PersonNotFoundException if no such person could be found in the list.
      */
-    public void remove(ReadOnlyPerson toRemove) throws PersonNotFoundException {
+    public void remove(ReadOnlyTask toRemove) throws PersonNotFoundException {
         final boolean personFoundAndDeleted = internalList.remove(toRemove);
         if (!personFoundAndDeleted) {
             throw new PersonNotFoundException();
@@ -114,16 +114,16 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     @Override
-    public Iterator<Person> iterator() {
+    public Iterator<Task> iterator() {
         return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
+                || (other instanceof UniqueTasksList // instanceof handles nulls
                 && this.internalList.equals(
-                        ((UniquePersonList) other).internalList));
+                        ((UniqueTasksList) other).internalList));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package ruby.keyboardwarrior.data.person;
+package ruby.keyboardwarrior.data.task;
 
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
 

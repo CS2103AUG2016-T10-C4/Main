@@ -227,7 +227,7 @@ public class ParserTest {
 
     @Test
     public void addCommand_validPersonData_parsedCorrectly() {
-        final Person testPerson = generateTestPerson();
+        final Task testPerson = generateTestPerson();
         final String input = convertPersonToAddCommandString(testPerson);
         final AddCommand result = parseAndAssertCommandType(input, AddCommand.class);
         assertEquals(result.getPerson(), testPerson);
@@ -235,7 +235,7 @@ public class ParserTest {
 
     @Test
     public void addCommand_duplicateTags_merged() throws IllegalValueException {
-        final Person testPerson = generateTestPerson();
+        final Task testPerson = generateTestPerson();
         String input = convertPersonToAddCommandString(testPerson);
         for (Tag tag : testPerson.getTags()) {
             // create duplicates by doubling each tag
@@ -246,9 +246,9 @@ public class ParserTest {
         assertEquals(result.getPerson(), testPerson);
     }
 
-    private static Person generateTestPerson() {
+    private static Task generateTestPerson() {
         try {
-            return new Person(
+            return new Task(
                 new Name(Name.EXAMPLE),
                 new Phone(Phone.EXAMPLE, true),
                 new Email(Email.EXAMPLE, false),
@@ -260,7 +260,7 @@ public class ParserTest {
         }
     }
 
-    private static String convertPersonToAddCommandString(ReadOnlyPerson person) {
+    private static String convertPersonToAddCommandString(ReadOnlyTask person) {
         String addCommand = "add "
                 + person.getName().fullName
                 + (person.getPhone().isPrivate() ? " pp/" : " p/") + person.getPhone().value

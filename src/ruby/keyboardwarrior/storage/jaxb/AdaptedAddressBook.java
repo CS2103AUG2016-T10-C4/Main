@@ -1,10 +1,10 @@
 package ruby.keyboardwarrior.storage.jaxb;
 
-import ruby.keyboardwarrior.data.AddressBook;
+import ruby.keyboardwarrior.data.TasksList;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
-import ruby.keyboardwarrior.data.person.Person;
-import ruby.keyboardwarrior.data.person.ReadOnlyPerson;
-import ruby.keyboardwarrior.data.person.UniquePersonList;
+import ruby.keyboardwarrior.data.task.Task;
+import ruby.keyboardwarrior.data.task.ReadOnlyTask;
+import ruby.keyboardwarrior.data.task.UniqueTasksList;
 import ruby.keyboardwarrior.data.tag.Tag;
 //import ruby.keyboardwarrior.data.tag.UniqueTagList;
 
@@ -34,10 +34,10 @@ public class AdaptedAddressBook {
      *
      * @param source future changes to this will not affect the created AdaptedAddressBook
      */
-    public AdaptedAddressBook(AddressBook source) {
+    public AdaptedAddressBook(TasksList source) {
         persons = new ArrayList<>();
         tags = new ArrayList<>();
-        for (ReadOnlyPerson person : source.getAllPersons()) {
+        for (ReadOnlyTask person : source.getAllPersons()) {
             persons.add(new AdaptedPerson(person));
         }
 /*       for (Tag tag : source.getAllTags()) {
@@ -73,15 +73,15 @@ public class AdaptedAddressBook {
      * Converts this jaxb-friendly {@code AdaptedAddressBook} object into the corresponding(@code AddressBook} object.
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
-    public AddressBook toModelType() throws IllegalValueException {
+    public TasksList toModelType() throws IllegalValueException {
         final List<Tag> tagList = new ArrayList<>();
-        final List<Person> personList = new ArrayList<>();
+        final List<Task> personList = new ArrayList<>();
         for (AdaptedTag tag : tags) {
             tagList.add(tag.toModelType());
         }
         for (AdaptedPerson person : persons) {
             personList.add(person.toModelType());
         }
-        return new AddressBook(new UniquePersonList(personList)/*, new UniqueTagList(tagList)*/);
+        return new TasksList(new UniqueTasksList(personList)/*, new UniqueTagList(tagList)*/);
     }
 }

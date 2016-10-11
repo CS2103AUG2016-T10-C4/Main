@@ -2,7 +2,7 @@ package ruby.keyboardwarrior.storage.jaxb;
 
 import ruby.keyboardwarrior.common.Utils;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
-import ruby.keyboardwarrior.data.person.*;
+import ruby.keyboardwarrior.data.task.*;
 //import ruby.keyboardwarrior.data.tag.Tag;
 //import ruby.keyboardwarrior.data.tag.UniqueTagList;
 
@@ -47,7 +47,7 @@ public class AdaptedPerson {
      *
      * @param source future changes to this will not affect the created AdaptedPerson
      */
-    public AdaptedPerson(ReadOnlyPerson source) {
+    public AdaptedPerson(ReadOnlyTask source) {
         name = source.getName().fullName;
 
         phone = new AdaptedContactDetail();
@@ -92,7 +92,7 @@ public class AdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
-    public Person toModelType() throws IllegalValueException {
+    public Task toModelType() throws IllegalValueException {
         /*final List<Tag> personTags = new ArrayList<>();
         for (AdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -102,6 +102,6 @@ public class AdaptedPerson {
         final Email email = new Email(this.email.value, this.email.isPrivate);
         final Address address = new Address(this.address.value, this.address.isPrivate);
 //        final UniqueTagList tags = new UniqueTagList(personTags);
-        return new Person(name, phone, email, address/*, tags*/);
+        return new Task(name, phone, email, address/*, tags*/);
     }
 }

@@ -1,7 +1,7 @@
 package ruby.keyboardwarrior.commands;
 
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
-import ruby.keyboardwarrior.data.person.*;
+import ruby.keyboardwarrior.data.task.*;
 import ruby.keyboardwarrior.data.tag.Tag;
 //import ruby.keyboardwarrior.data.tag.UniqueTagList;
 
@@ -24,7 +24,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
-    private final Person toAdd;
+    private final Task toAdd;
 
     /**
      * Convenience constructor using raw values.
@@ -40,7 +40,7 @@ public class AddCommand extends Command {
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
-        this.toAdd = new Person(
+        this.toAdd = new Task(
                 new Name(name),
                 new Phone(phone, isPhonePrivate),
                 new Email(email, isEmailPrivate),
@@ -49,20 +49,20 @@ public class AddCommand extends Command {
         );
     }
 
-    public AddCommand(Person toAdd) {
+    public AddCommand(Task toAdd) {
         this.toAdd = toAdd;
     }
 
-    public ReadOnlyPerson getPerson() {
+    public ReadOnlyTask getPerson() {
         return toAdd;
     }
 
     @Override
     public CommandResult execute() throws Exception{
         try {
-            addressBook.addPerson(toAdd);
+            tasksList.addPerson(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        } catch (UniquePersonList.DuplicatePersonException dpe) {
+        } catch (UniqueTasksList.DuplicatePersonException dpe) {
             return new CommandResult(MESSAGE_DUPLICATE_PERSON);
         }
     }

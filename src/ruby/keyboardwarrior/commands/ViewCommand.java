@@ -1,7 +1,7 @@
 package ruby.keyboardwarrior.commands;
 
 import ruby.keyboardwarrior.common.Messages;
-import ruby.keyboardwarrior.data.person.ReadOnlyPerson;
+import ruby.keyboardwarrior.data.task.ReadOnlyTask;
 
 
 /**
@@ -28,8 +28,8 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            final ReadOnlyPerson target = getTargetPerson();
-            if (!addressBook.containsPerson(target)) {
+            final ReadOnlyTask target = getTargetPerson();
+            if (!tasksList.containsPerson(target)) {
                 return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
             }
             return new CommandResult(String.format(MESSAGE_VIEW_PERSON_DETAILS, target.getAsTextHidePrivate()));

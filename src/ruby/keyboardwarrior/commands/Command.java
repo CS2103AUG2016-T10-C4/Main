@@ -1,8 +1,8 @@
 package ruby.keyboardwarrior.commands;
 
 import ruby.keyboardwarrior.common.Messages;
-import ruby.keyboardwarrior.data.AddressBook;
-import ruby.keyboardwarrior.data.person.ReadOnlyPerson;
+import ruby.keyboardwarrior.data.TasksList;
+import ruby.keyboardwarrior.data.task.ReadOnlyTask;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import static ruby.keyboardwarrior.ui.Gui.DISPLAYED_INDEX_OFFSET;
  * Represents an executable command.
  */
 public abstract class Command {
-    protected AddressBook addressBook;
-    protected List<? extends ReadOnlyPerson> relevantPersons;
+    protected TasksList tasksList;
+    protected List<? extends ReadOnlyTask> relevantPersons;
     private int targetIndex = -1;
 
     /**
@@ -32,7 +32,7 @@ public abstract class Command {
      * @param personsDisplayed used to generate summary
      * @return summary message for persons displayed
      */
-    public static String getMessageForPersonListShownSummary(List<? extends ReadOnlyPerson> personsDisplayed) {
+    public static String getMessageForPersonListShownSummary(List<? extends ReadOnlyTask> personsDisplayed) {
         return String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, personsDisplayed.size());
     }
 
@@ -46,8 +46,8 @@ public abstract class Command {
     /**
      * Supplies the data the command will operate on.
      */
-    public void setData(AddressBook addressBook, List<? extends ReadOnlyPerson> relevantPersons) {
-        this.addressBook = addressBook;
+    public void setData(TasksList tasksList, List<? extends ReadOnlyTask> relevantPersons) {
+        this.tasksList = tasksList;
         this.relevantPersons = relevantPersons;
     }
 
@@ -56,7 +56,7 @@ public abstract class Command {
      *
      * @throws IndexOutOfBoundsException if the target index is out of bounds of the last viewed listing
      */
-    protected ReadOnlyPerson getTargetPerson() throws IndexOutOfBoundsException {
+    protected ReadOnlyTask getTargetPerson() throws IndexOutOfBoundsException {
         return relevantPersons.get(getTargetIndex() - DISPLAYED_INDEX_OFFSET);
     }
 

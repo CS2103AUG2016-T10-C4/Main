@@ -2,8 +2,8 @@ package ruby.keyboardwarrior.logic;
 
 import ruby.keyboardwarrior.commands.Command;
 import ruby.keyboardwarrior.commands.CommandResult;
-import ruby.keyboardwarrior.data.AddressBook;
-import ruby.keyboardwarrior.data.person.ReadOnlyPerson;
+import ruby.keyboardwarrior.data.TasksList;
+import ruby.keyboardwarrior.data.task.ReadOnlyTask;
 import ruby.keyboardwarrior.parser.Parser;
 import ruby.keyboardwarrior.storage.StorageFile;
 
@@ -18,27 +18,27 @@ public class Logic {
 
 
     private StorageFile storage;
-    private AddressBook addressBook;
+    private TasksList tasksList;
 
     /** The list of person shown to the user most recently.  */
-    private List<? extends ReadOnlyPerson> lastShownList = Collections.emptyList();
+    private List<? extends ReadOnlyTask> lastShownList = Collections.emptyList();
 
     public Logic() throws Exception{
         setStorage(initializeStorage());
         setAddressBook(storage.load());
     }
 
-    Logic(StorageFile storageFile, AddressBook addressBook){
+    Logic(StorageFile storageFile, TasksList tasksList){
         setStorage(storageFile);
-        setAddressBook(addressBook);
+        setAddressBook(tasksList);
     }
 
     void setStorage(StorageFile storage){
         this.storage = storage;
     }
 
-    void setAddressBook(AddressBook addressBook){
-        this.addressBook = addressBook;
+    void setAddressBook(TasksList tasksList){
+        this.tasksList = tasksList;
     }
 
     /**
@@ -56,11 +56,11 @@ public class Logic {
     /**
      * Unmodifiable view of the current last shown list.
      */
-    public List<ReadOnlyPerson> getLastShownList() {
+    public List<ReadOnlyTask> getLastShownList() {
         return Collections.unmodifiableList(lastShownList);
     }
 
-    protected void setLastShownList(List<? extends ReadOnlyPerson> newList) {
+    protected void setLastShownList(List<? extends ReadOnlyTask> newList) {
         lastShownList = newList;
     }
 
@@ -83,17 +83,17 @@ public class Logic {
      * @throws Exception if there was any problem during command execution.
      */
     private CommandResult execute(Command command) throws Exception {
-        command.setData(addressBook, lastShownList);
+        command.setData(tasksList, lastShownList);
         CommandResult result = command.execute();
         if (command.isMutating()) {
-        	 storage.save(addressBook);
+        	 storage.save(tasksList);
         }
         return result;
     }
 
     /** Updates the {@link #lastShownList} if the result contains a list of Persons. */
     private void recordResult(CommandResult result) {
-        final Optional<List<? extends ReadOnlyPerson>> personList = result.getRelevantPersons();
+        final Optional<List<? extends ReadOnlyTask>> personList = result.getRelevantPersons();
         if (personList.isPresent()) {
             lastShownList = personList.get();
         }

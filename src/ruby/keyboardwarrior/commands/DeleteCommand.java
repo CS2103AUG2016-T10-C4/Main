@@ -1,8 +1,8 @@
 package ruby.keyboardwarrior.commands;
 
 import ruby.keyboardwarrior.common.Messages;
-import ruby.keyboardwarrior.data.person.ReadOnlyPerson;
-import ruby.keyboardwarrior.data.person.UniquePersonList.PersonNotFoundException;
+import ruby.keyboardwarrior.data.task.ReadOnlyTask;
+import ruby.keyboardwarrior.data.task.UniqueTasksList.PersonNotFoundException;
 
 
 /**
@@ -28,8 +28,8 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            final ReadOnlyPerson target = getTargetPerson();
-            addressBook.removePerson(target);
+            final ReadOnlyTask target = getTargetPerson();
+            tasksList.removePerson(target);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, target));
 
         } catch (IndexOutOfBoundsException ie) {

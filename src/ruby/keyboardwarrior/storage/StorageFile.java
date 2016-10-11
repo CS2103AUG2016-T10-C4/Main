@@ -1,6 +1,6 @@
 package ruby.keyboardwarrior.storage;
 
-import ruby.keyboardwarrior.data.AddressBook;
+import ruby.keyboardwarrior.data.TasksList;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.storage.jaxb.AdaptedAddressBook;
 
@@ -83,7 +83,7 @@ public class StorageFile {
      *
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
      */
-    public void save(AddressBook addressBook) throws StorageOperationException {
+    public void save(TasksList tasksList) throws StorageOperationException {
 
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
@@ -91,7 +91,7 @@ public class StorageFile {
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
 
-            final AdaptedAddressBook toSave = new AdaptedAddressBook(addressBook);
+            final AdaptedAddressBook toSave = new AdaptedAddressBook(tasksList);
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
@@ -108,7 +108,7 @@ public class StorageFile {
      *
      * @throws StorageOperationException if there were errors reading and/or converting data from file.
      */
-    public AddressBook load() throws StorageOperationException {
+    public TasksList load() throws StorageOperationException {
         try (final Reader fileReader =
                      new BufferedReader(new FileReader(path.toFile()))) {
 
@@ -127,7 +127,7 @@ public class StorageFile {
 
         // create empty file if not found
         } catch (FileNotFoundException fnfe) {
-            final AddressBook empty = new AddressBook();
+            final TasksList empty = new TasksList();
             save(empty);
             return empty;
 

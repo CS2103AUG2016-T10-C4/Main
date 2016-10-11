@@ -8,7 +8,7 @@ import org.junit.rules.TemporaryFolder;
 import ruby.keyboardwarrior.commands.CommandResult;
 import ruby.keyboardwarrior.commands.*;
 import ruby.keyboardwarrior.common.Messages;
-import ruby.keyboardwarrior.data.AddressBook;
+import ruby.keyboardwarrior.data.TasksList;
 import ruby.keyboardwarrior.data.person.*;
 import ruby.keyboardwarrior.data.tag.Tag;
 import ruby.keyboardwarrior.data.tag.UniqueTagList;
@@ -29,15 +29,15 @@ public class LogicTest {
     public TemporaryFolder saveFolder = new TemporaryFolder();
 
     private StorageFile saveFile;
-    private AddressBook addressBook;
+    private TasksList tasksList;
     private Logic logic;
 
     @Before
     public void setup() throws Exception {
         saveFile = new StorageFile(saveFolder.newFile("testSaveFile.txt").getPath());
-        addressBook = new AddressBook();
-        saveFile.save(addressBook);
-        logic = new Logic(saveFile, addressBook);
+        tasksList = new TasksList();
+        saveFile.save(tasksList);
+        logic = new Logic(saveFile, tasksList);
     }
 
     @Test
@@ -58,10 +58,10 @@ public class LogicTest {
     /**
      * Executes the command and confirms that the result message is correct.
      * Both the 'address book' and the 'last shown list' are expected to be empty.
-     * @see #assertCommandBehavior(String, String, AddressBook, boolean, List)
+     * @see #assertCommandBehavior(String, String, TasksList, boolean, List)
      */
     private void assertCommandBehavior(String inputCommand, String expectedMessage) throws Exception {
-        assertCommandBehavior(inputCommand, expectedMessage, AddressBook.empty(),false, Collections.emptyList());
+        assertCommandBehavior(inputCommand, expectedMessage, TasksList.empty(),false, Collections.emptyList());
     }
 
     /**
@@ -73,9 +73,9 @@ public class LogicTest {
      */
     private void assertCommandBehavior(String inputCommand,
                                       String expectedMessage,
-                                      AddressBook expectedAddressBook,
+                                      TasksList expectedAddressBook,
                                       boolean isRelevantPersonsExpected,
-                                      List<? extends ReadOnlyPerson> lastShownList) throws Exception {
+                                      List<? extends ReadOnlyTask> lastShownList) throws Exception {
 
         //Execute the command
         CommandResult r = logic.execute(inputCommand);
@@ -88,9 +88,9 @@ public class LogicTest {
         }
 
         //Confirm the state of data is as expected
-        assertEquals(expectedAddressBook, addressBook);
+        assertEquals(expectedAddressBook, tasksList);
         assertEquals(lastShownList, logic.getLastShownList());
-        assertEquals(addressBook, saveFile.load());
+        assertEquals(tasksList, saveFile.load());
     }
 
 
@@ -113,11 +113,11 @@ public class LogicTest {
     @Test
     public void execute_clear() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        addressBook.addPerson(helper.generatePerson(1, true));
-        addressBook.addPerson(helper.generatePerson(2, true));
-        addressBook.addPerson(helper.generatePerson(3, true));
+        tasksList.addPerson(helper.generatePerson(1, true));
+        tasksList.addPerson(helper.generatePerson(2, true));
+        tasksList.addPerson(helper.generatePerson(3, true));
 
-        assertCommandBehavior("clear", ClearCommand.MESSAGE_SUCCESS, AddressBook.empty(), false, Collections.emptyList());
+        assertCommandBehavior("clear", ClearCommand.MESSAGE_SUCCESS, TasksList.empty(), false, Collections.emptyList());
     }
 
     @Test
@@ -150,8 +150,8 @@ public class LogicTest {
     public void execute_add_successful() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
-        Person toBeAdded = helper.adam();
-        AddressBook expectedAB = new AddressBook();
+        Task toBeAdded = helper.adam();
+        TasksList expectedAB = new TasksList();
         expectedAB.addPerson(toBeAdded);
 
         // execute command and verify result
@@ -167,12 +167,12 @@ public class LogicTest {
     public void execute_addDuplicate_notAllowed() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
-        Person toBeAdded = helper.adam();
-        AddressBook expectedAB = new AddressBook();
+        Task toBeAdded = helper.adam();
+        TasksList expectedAB = new TasksList();
         expectedAB.addPerson(toBeAdded);
 
         // setup starting state
-        addressBook.addPerson(toBeAdded); // person already in internal address book
+        tasksList.addPerson(toBeAdded); // person already in internal address book
 
         // execute command and verify result
         assertCommandBehavior(
@@ -188,11 +188,11 @@ public class LogicTest {
     public void execute_list_showsAllPersons() throws Exception {
         // prepare expectations
         TestDataHelper helper = new TestDataHelper();
-        AddressBook expectedAB = helper.generateAddressBook(false, true);
-        List<? extends ReadOnlyPerson> expectedList = expectedAB.getAllPersons().immutableListView();
+        TasksList expectedAB = helper.generateAddressBook(false, true);
+        List<? extends ReadOnlyTask> expectedList = expectedAB.getAllPersons().immutableListView();
 
         // prepare address book state
-        helper.addToAddressBook(addressBook, false, true);
+        helper.addToAddressBook(tasksList, false, true);
 
         assertCommandBehavior("list",
                               Command.getMessageForPersonListShownSummary(expectedList),
@@ -221,13 +221,13 @@ public class LogicTest {
     private void assertInvalidIndexBehaviorForCommand(String commandWord) throws Exception {
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
         TestDataHelper helper = new TestDataHelper();
-        List<Person> lastShownList = helper.generatePersonList(false, true);
+        List<Task> lastShownList = helper.generatePersonList(false, true);
 
         logic.setLastShownList(lastShownList);
 
-        assertCommandBehavior(commandWord + " -1", expectedMessage, AddressBook.empty(), false, lastShownList);
-        assertCommandBehavior(commandWord + " 0", expectedMessage, AddressBook.empty(), false, lastShownList);
-        assertCommandBehavior(commandWord + " 3", expectedMessage, AddressBook.empty(), false, lastShownList);
+        assertCommandBehavior(commandWord + " -1", expectedMessage, TasksList.empty(), false, lastShownList);
+        assertCommandBehavior(commandWord + " 0", expectedMessage, TasksList.empty(), false, lastShownList);
+        assertCommandBehavior(commandWord + " 3", expectedMessage, TasksList.empty(), false, lastShownList);
 
     }
 
@@ -235,11 +235,11 @@ public class LogicTest {
     public void execute_view_onlyShowsNonPrivate() throws Exception {
 
         TestDataHelper helper = new TestDataHelper();
-        Person p1 = helper.generatePerson(1, true);
-        Person p2 = helper.generatePerson(2, false);
-        List<Person> lastShownList = helper.generatePersonList(p1, p2);
-        AddressBook expectedAB = helper.generateAddressBook(lastShownList);
-        helper.addToAddressBook(addressBook, lastShownList);
+        Task p1 = helper.generatePerson(1, true);
+        Task p2 = helper.generatePerson(2, false);
+        List<Task> lastShownList = helper.generatePersonList(p1, p2);
+        TasksList expectedAB = helper.generateAddressBook(lastShownList);
+        helper.addToAddressBook(tasksList, lastShownList);
 
         logic.setLastShownList(lastShownList);
 
@@ -259,14 +259,14 @@ public class LogicTest {
     @Test
     public void execute_tryToViewMissingPerson_errorMessage() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Person p1 = helper.generatePerson(1, false);
-        Person p2 = helper.generatePerson(2, false);
-        List<Person> lastShownList = helper.generatePersonList(p1, p2);
+        Task p1 = helper.generatePerson(1, false);
+        Task p2 = helper.generatePerson(2, false);
+        List<Task> lastShownList = helper.generatePersonList(p1, p2);
 
-        AddressBook expectedAB = new AddressBook();
+        TasksList expectedAB = new TasksList();
         expectedAB.addPerson(p2);
 
-        addressBook.addPerson(p2);
+        tasksList.addPerson(p2);
         logic.setLastShownList(lastShownList);
 
         assertCommandBehavior("view 1",
@@ -291,11 +291,11 @@ public class LogicTest {
     @Test
     public void execute_viewAll_alsoShowsPrivate() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Person p1 = helper.generatePerson(1, true);
-        Person p2 = helper.generatePerson(2, false);
-        List<Person> lastShownList = helper.generatePersonList(p1, p2);
-        AddressBook expectedAB = helper.generateAddressBook(lastShownList);
-        helper.addToAddressBook(addressBook, lastShownList);
+        Task p1 = helper.generatePerson(1, true);
+        Task p2 = helper.generatePerson(2, false);
+        List<Task> lastShownList = helper.generatePersonList(p1, p2);
+        TasksList expectedAB = helper.generateAddressBook(lastShownList);
+        helper.addToAddressBook(tasksList, lastShownList);
 
         logic.setLastShownList(lastShownList);
 
@@ -315,14 +315,14 @@ public class LogicTest {
     @Test
     public void execute_tryToViewAllPersonMissingInAddressBook_errorMessage() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Person p1 = helper.generatePerson(1, false);
-        Person p2 = helper.generatePerson(2, false);
-        List<Person> lastShownList = helper.generatePersonList(p1, p2);
+        Task p1 = helper.generatePerson(1, false);
+        Task p2 = helper.generatePerson(2, false);
+        List<Task> lastShownList = helper.generatePersonList(p1, p2);
 
-        AddressBook expectedAB = new AddressBook();
+        TasksList expectedAB = new TasksList();
         expectedAB.addPerson(p1);
 
-        addressBook.addPerson(p1);
+        tasksList.addPerson(p1);
         logic.setLastShownList(lastShownList);
 
         assertCommandBehavior("viewall 2",
@@ -347,17 +347,17 @@ public class LogicTest {
     @Test
     public void execute_delete_removesCorrectPerson() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Person p1 = helper.generatePerson(1, false);
-        Person p2 = helper.generatePerson(2, true);
-        Person p3 = helper.generatePerson(3, true);
+        Task p1 = helper.generatePerson(1, false);
+        Task p2 = helper.generatePerson(2, true);
+        Task p3 = helper.generatePerson(3, true);
 
-        List<Person> threePersons = helper.generatePersonList(p1, p2, p3);
+        List<Task> threePersons = helper.generatePersonList(p1, p2, p3);
 
-        AddressBook expectedAB = helper.generateAddressBook(threePersons);
+        TasksList expectedAB = helper.generateAddressBook(threePersons);
         expectedAB.removePerson(p2);
 
 
-        helper.addToAddressBook(addressBook, threePersons);
+        helper.addToAddressBook(tasksList, threePersons);
         logic.setLastShownList(threePersons);
 
         assertCommandBehavior("delete 2",
@@ -371,17 +371,17 @@ public class LogicTest {
     public void execute_delete_missingInAddressBook() throws Exception {
 
         TestDataHelper helper = new TestDataHelper();
-        Person p1 = helper.generatePerson(1, false);
-        Person p2 = helper.generatePerson(2, true);
-        Person p3 = helper.generatePerson(3, true);
+        Task p1 = helper.generatePerson(1, false);
+        Task p2 = helper.generatePerson(2, true);
+        Task p3 = helper.generatePerson(3, true);
 
-        List<Person> threePersons = helper.generatePersonList(p1, p2, p3);
+        List<Task> threePersons = helper.generatePersonList(p1, p2, p3);
 
-        AddressBook expectedAB = helper.generateAddressBook(threePersons);
+        TasksList expectedAB = helper.generateAddressBook(threePersons);
         expectedAB.removePerson(p2);
 
-        helper.addToAddressBook(addressBook, threePersons);
-        addressBook.removePerson(p2);
+        helper.addToAddressBook(tasksList, threePersons);
+        tasksList.removePerson(p2);
         logic.setLastShownList(threePersons);
 
         assertCommandBehavior("delete 2",
@@ -400,15 +400,15 @@ public class LogicTest {
     @Test
     public void execute_find_onlyMatchesFullWordsInNames() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Person pTarget1 = helper.generatePersonWithName("bla bla KEY bla");
-        Person pTarget2 = helper.generatePersonWithName("bla KEY bla bceofeia");
-        Person p1 = helper.generatePersonWithName("KE Y");
-        Person p2 = helper.generatePersonWithName("KEYKEYKEY sduauo");
+        Task pTarget1 = helper.generatePersonWithName("bla bla KEY bla");
+        Task pTarget2 = helper.generatePersonWithName("bla KEY bla bceofeia");
+        Task p1 = helper.generatePersonWithName("KE Y");
+        Task p2 = helper.generatePersonWithName("KEYKEYKEY sduauo");
 
-        List<Person> fourPersons = helper.generatePersonList(p1, pTarget1, p2, pTarget2);
-        AddressBook expectedAB = helper.generateAddressBook(fourPersons);
-        List<Person> expectedList = helper.generatePersonList(pTarget1, pTarget2);
-        helper.addToAddressBook(addressBook, fourPersons);
+        List<Task> fourPersons = helper.generatePersonList(p1, pTarget1, p2, pTarget2);
+        TasksList expectedAB = helper.generateAddressBook(fourPersons);
+        List<Task> expectedList = helper.generatePersonList(pTarget1, pTarget2);
+        helper.addToAddressBook(tasksList, fourPersons);
 
         assertCommandBehavior("find KEY",
                                 Command.getMessageForPersonListShownSummary(expectedList),
@@ -420,15 +420,15 @@ public class LogicTest {
     @Test
     public void execute_find_isCaseSensitive() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Person pTarget1 = helper.generatePersonWithName("bla bla KEY bla");
-        Person pTarget2 = helper.generatePersonWithName("bla KEY bla bceofeia");
-        Person p1 = helper.generatePersonWithName("key key");
-        Person p2 = helper.generatePersonWithName("KEy sduauo");
+        Task pTarget1 = helper.generatePersonWithName("bla bla KEY bla");
+        Task pTarget2 = helper.generatePersonWithName("bla KEY bla bceofeia");
+        Task p1 = helper.generatePersonWithName("key key");
+        Task p2 = helper.generatePersonWithName("KEy sduauo");
 
-        List<Person> fourPersons = helper.generatePersonList(p1, pTarget1, p2, pTarget2);
-        AddressBook expectedAB = helper.generateAddressBook(fourPersons);
-        List<Person> expectedList = helper.generatePersonList(pTarget1, pTarget2);
-        helper.addToAddressBook(addressBook, fourPersons);
+        List<Task> fourPersons = helper.generatePersonList(p1, pTarget1, p2, pTarget2);
+        TasksList expectedAB = helper.generateAddressBook(fourPersons);
+        List<Task> expectedList = helper.generatePersonList(pTarget1, pTarget2);
+        helper.addToAddressBook(tasksList, fourPersons);
 
         assertCommandBehavior("find KEY",
                                 Command.getMessageForPersonListShownSummary(expectedList),
@@ -440,15 +440,15 @@ public class LogicTest {
     @Test
     public void execute_find_matchesIfAnyKeywordPresent() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Person pTarget1 = helper.generatePersonWithName("bla bla KEY bla");
-        Person pTarget2 = helper.generatePersonWithName("bla rAnDoM bla bceofeia");
-        Person p1 = helper.generatePersonWithName("key key");
-        Person p2 = helper.generatePersonWithName("KEy sduauo");
+        Task pTarget1 = helper.generatePersonWithName("bla bla KEY bla");
+        Task pTarget2 = helper.generatePersonWithName("bla rAnDoM bla bceofeia");
+        Task p1 = helper.generatePersonWithName("key key");
+        Task p2 = helper.generatePersonWithName("KEy sduauo");
 
-        List<Person> fourPersons = helper.generatePersonList(p1, pTarget1, p2, pTarget2);
-        AddressBook expectedAB = helper.generateAddressBook(fourPersons);
-        List<Person> expectedList = helper.generatePersonList(pTarget1, pTarget2);
-        helper.addToAddressBook(addressBook, fourPersons);
+        List<Task> fourPersons = helper.generatePersonList(p1, pTarget1, p2, pTarget2);
+        TasksList expectedAB = helper.generateAddressBook(fourPersons);
+        List<Task> expectedList = helper.generatePersonList(pTarget1, pTarget2);
+        helper.addToAddressBook(tasksList, fourPersons);
 
         assertCommandBehavior("find KEY rAnDoM",
                                 Command.getMessageForPersonListShownSummary(expectedList),
@@ -462,7 +462,7 @@ public class LogicTest {
      */
     class TestDataHelper{
 
-        Person adam() throws Exception {
+        Task adam() throws Exception {
             Name name = new Name("Adam Brown");
             Phone privatePhone = new Phone("111111", true);
             Email email = new Email("adam@gmail.com", false);
@@ -470,7 +470,7 @@ public class LogicTest {
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Person(name, privatePhone, email, privateAddress, tags);
+            return new Task(name, privatePhone, email, privateAddress, tags);
         }
 
         /**
@@ -481,8 +481,8 @@ public class LogicTest {
          * @param seed used to generate the person data field values
          * @param isAllFieldsPrivate determines if private-able fields (phone, email, address) will be private
          */
-        Person generatePerson(int seed, boolean isAllFieldsPrivate) throws Exception {
-            return new Person(
+        Task generatePerson(int seed, boolean isAllFieldsPrivate) throws Exception {
+            return new Task(
                     new Name("Person " + seed),
                     new Phone("" + Math.abs(seed), isAllFieldsPrivate),
                     new Email(seed + "@email", isAllFieldsPrivate),
@@ -492,7 +492,7 @@ public class LogicTest {
         }
 
         /** Generates the correct add command based on the person given */
-        String generateAddCommand(Person p) {
+        String generateAddCommand(Task p) {
             StringJoiner cmd = new StringJoiner(" ");
 
             cmd.add("add");
@@ -515,46 +515,46 @@ public class LogicTest {
          * @param isPrivateStatuses flags to indicate if all contact details of respective persons should be set to
          *                          private.
          */
-        AddressBook generateAddressBook(Boolean... isPrivateStatuses) throws Exception{
-            AddressBook addressBook = new AddressBook();
-            addToAddressBook(addressBook, isPrivateStatuses);
-            return addressBook;
+        TasksList generateAddressBook(Boolean... isPrivateStatuses) throws Exception{
+            TasksList tasksList = new TasksList();
+            addToAddressBook(tasksList, isPrivateStatuses);
+            return tasksList;
         }
 
         /**
          * Generates an AddressBook based on the list of Persons given.
          */
-        AddressBook generateAddressBook(List<Person> persons) throws Exception{
-            AddressBook addressBook = new AddressBook();
-            addToAddressBook(addressBook, persons);
-            return addressBook;
+        TasksList generateAddressBook(List<Task> tasks) throws Exception{
+            TasksList tasksList = new TasksList();
+            addToAddressBook(tasksList, tasks);
+            return tasksList;
         }
 
         /**
          * Adds auto-generated Person objects to the given AddressBook
-         * @param addressBook The AddressBook to which the Persons will be added
+         * @param tasksList The AddressBook to which the Persons will be added
          * @param isPrivateStatuses flags to indicate if all contact details of generated persons should be set to
          *                          private.
          */
-        void addToAddressBook(AddressBook addressBook, Boolean... isPrivateStatuses) throws Exception{
-            addToAddressBook(addressBook, generatePersonList(isPrivateStatuses));
+        void addToAddressBook(TasksList tasksList, Boolean... isPrivateStatuses) throws Exception{
+            addToAddressBook(tasksList, generatePersonList(isPrivateStatuses));
         }
 
         /**
          * Adds the given list of Persons to the given AddressBook
          */
-        void addToAddressBook(AddressBook addressBook, List<Person> personsToAdd) throws Exception{
-            for(Person p: personsToAdd){
-                addressBook.addPerson(p);
+        void addToAddressBook(TasksList tasksList, List<Task> personsToAdd) throws Exception{
+            for(Task p: personsToAdd){
+                tasksList.addPerson(p);
             }
         }
 
         /**
          * Creates a list of Persons based on the give Person objects.
          */
-        List<Person> generatePersonList(Person... persons) throws Exception{
-            List<Person> personList = new ArrayList<>();
-            for(Person p: persons){
+        List<Task> generatePersonList(Task... persons) throws Exception{
+            List<Task> personList = new ArrayList<>();
+            for(Task p: persons){
                 personList.add(p);
             }
             return personList;
@@ -565,20 +565,20 @@ public class LogicTest {
          * @param isPrivateStatuses flags to indicate if all contact details of respective persons should be set to
          *                          private.
          */
-        List<Person> generatePersonList(Boolean... isPrivateStatuses) throws Exception{
-            List<Person> persons = new ArrayList<>();
+        List<Task> generatePersonList(Boolean... isPrivateStatuses) throws Exception{
+            List<Task> tasks = new ArrayList<>();
             int i = 1;
             for(Boolean p: isPrivateStatuses){
-                persons.add(generatePerson(i++, p));
+                tasks.add(generatePerson(i++, p));
             }
-            return persons;
+            return tasks;
         }
 
         /**
          * Generates a Person object with given name. Other fields will have some dummy values.
          */
-         Person generatePersonWithName(String name) throws Exception {
-            return new Person(
+         Task generatePersonWithName(String name) throws Exception {
+            return new Task(
                     new Name(name),
                     new Phone("1", false),
                     new Email("1@email", false),
