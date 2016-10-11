@@ -12,16 +12,16 @@
    This app will not work with earlier versions of Java 8.
    
 1. Download the latest `KeyboardWarrior.jar` from the [releases](../../../releases) tab.
-2. Copy the file to the folder you want to use as the home folder for your KeyboardWarrior.
-3. Double-click the file to start the app. The GUI should appear in a few seconds.
-   > <img src="images/Keyboard Warrior UI.jpg" width="600" height="350">
+2. Copy the file to the folder you want to use as the home folder for your KeyboardWarrior. <br>
+3. Double-click the file to start the app. The GUI should appear in a few seconds. <br>
+   <img src='images/Keyboard Warrior UI.jpg' width="600" height="350"> <br>
 4. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br>
-   e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
+        e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
 5. Some example commands you can try:
    * **`add`**` Do CS2103 Tutorial` : 
-     adds a todo task `Do CS2103 Tutorial` KeyboardWarrior.
-   * **`remove`**` 3` : deletes the 3rd task shown
-   * **`exit`** : exits the app
+     Adds a todo task `Do CS2103 Tutorial` KeyboardWarrior.
+   * **`remove`**` 3` : Deletes the 3rd task shown.
+   * **`exit`** : Exits the app. <br>
 6. Refer to the [Features](#features) section below for details of each command.<br>
 
 
