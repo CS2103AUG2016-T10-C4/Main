@@ -1,23 +1,23 @@
-package seedu.addressbook.logic;
+package ruby.keyboardwarrior.logic;
 
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-import seedu.addressbook.commands.CommandResult;
-import seedu.addressbook.commands.*;
-import seedu.addressbook.common.Messages;
-import seedu.addressbook.data.AddressBook;
-import seedu.addressbook.data.person.*;
-import seedu.addressbook.data.tag.Tag;
-import seedu.addressbook.data.tag.UniqueTagList;
-import seedu.addressbook.storage.StorageFile;
+import ruby.keyboardwarrior.commands.CommandResult;
+import ruby.keyboardwarrior.commands.*;
+import ruby.keyboardwarrior.common.Messages;
+import ruby.keyboardwarrior.data.AddressBook;
+import ruby.keyboardwarrior.data.person.*;
+import ruby.keyboardwarrior.data.tag.Tag;
+import ruby.keyboardwarrior.data.tag.UniqueTagList;
+import ruby.keyboardwarrior.storage.StorageFile;
 
 import java.util.*;
 
 import static junit.framework.TestCase.assertEquals;
-import static seedu.addressbook.common.Messages.*;
+import static ruby.keyboardwarrior.common.Messages.*;
 
 
 public class LogicTest {

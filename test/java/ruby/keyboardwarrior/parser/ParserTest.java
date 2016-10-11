@@ -1,19 +1,19 @@
-package seedu.addressbook.parser;
+package ruby.keyboardwarrior.parser;
 
 import org.junit.Before;
 import org.junit.Test;
-import seedu.addressbook.commands.*;
-import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.tag.Tag;
-import seedu.addressbook.data.tag.UniqueTagList;
-import seedu.addressbook.data.person.*;
+import ruby.keyboardwarrior.commands.*;
+import ruby.keyboardwarrior.data.exception.IllegalValueException;
+import ruby.keyboardwarrior.data.tag.Tag;
+import ruby.keyboardwarrior.data.tag.UniqueTagList;
+import ruby.keyboardwarrior.data.person.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.*;
-import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ruby.keyboardwarrior.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class ParserTest {
 
