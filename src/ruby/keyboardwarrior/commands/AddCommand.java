@@ -3,7 +3,7 @@ package ruby.keyboardwarrior.commands;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.data.person.*;
 import ruby.keyboardwarrior.data.tag.Tag;
-import ruby.keyboardwarrior.data.tag.UniqueTagList;
+//import ruby.keyboardwarrior.data.tag.UniqueTagList;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -44,8 +44,8 @@ public class AddCommand extends Command {
                 new Name(name),
                 new Phone(phone, isPhonePrivate),
                 new Email(email, isEmailPrivate),
-                new Address(address, isAddressPrivate),
-                new UniqueTagList(tagSet)
+                new Address(address, isAddressPrivate)/*,
+                new UniqueTagList(tagSet)*/
         );
     }
 

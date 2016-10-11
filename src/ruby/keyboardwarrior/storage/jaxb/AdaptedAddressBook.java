@@ -6,7 +6,7 @@ import ruby.keyboardwarrior.data.person.Person;
 import ruby.keyboardwarrior.data.person.ReadOnlyPerson;
 import ruby.keyboardwarrior.data.person.UniquePersonList;
 import ruby.keyboardwarrior.data.tag.Tag;
-import ruby.keyboardwarrior.data.tag.UniqueTagList;
+//import ruby.keyboardwarrior.data.tag.UniqueTagList;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -40,9 +40,9 @@ public class AdaptedAddressBook {
         for (ReadOnlyPerson person : source.getAllPersons()) {
             persons.add(new AdaptedPerson(person));
         }
-        for (Tag tag : source.getAllTags()) {
+/*       for (Tag tag : source.getAllTags()) {
             tags.add(new AdaptedTag(tag));
-        }
+        }*/
     }
 
 
@@ -82,6 +82,6 @@ public class AdaptedAddressBook {
         for (AdaptedPerson person : persons) {
             personList.add(person.toModelType());
         }
-        return new AddressBook(new UniquePersonList(personList), new UniqueTagList(tagList));
+        return new AddressBook(new UniquePersonList(personList)/*, new UniqueTagList(tagList)*/);
     }
 }
