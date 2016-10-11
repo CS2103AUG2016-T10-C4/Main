@@ -30,11 +30,11 @@ public class ViewCommand extends Command {
         try {
             final ReadOnlyTask target = getTargetPerson();
             if (!tasksList.containsTask(target)) {
-                return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
+                return new CommandResult(Messages.MESSAGE_TASK_NOT_IN_TASKSLIST);
             }
             return new CommandResult(String.format(MESSAGE_VIEW_PERSON_DETAILS, target.getAsTextHidePrivate()));
         } catch (IndexOutOfBoundsException ie) {
-            return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
     }
 

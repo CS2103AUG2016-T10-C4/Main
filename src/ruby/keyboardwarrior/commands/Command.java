@@ -33,7 +33,7 @@ public abstract class Command {
      * @return summary message for persons displayed
      */
     public static String getMessageForPersonListShownSummary(List<? extends ReadOnlyTask> personsDisplayed) {
-        return String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, personsDisplayed.size());
+        return String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, personsDisplayed.size());
     }
 
     /**
