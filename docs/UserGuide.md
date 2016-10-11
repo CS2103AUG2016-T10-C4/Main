@@ -11,10 +11,10 @@
    > Having any Java 8 version is not enough. <br>
    This app will not work with earlier versions of Java 8.
    
-1. Download the latest `KeyboardWarrior.jar` from the [releases](../../../releases) tab.
+1. Download the latest `KeyboardWarrior.jar` from the [releases](../../../releases) tab. <br>
 2. Copy the file to the folder you want to use as the home folder for your KeyboardWarrior. <br>
-3. Double-click the file to start the app. The GUI should appear in a few seconds. <br>
-   <img src='images/Keyboard Warrior UI.jpg' width="600" height="350"> <br>
+3. Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
+   <img src='images/Keyboard Warrior UI.jpg' width="600" height="350"> <br><br>
 4. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br>
         e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
 5. Some example commands you can try:
