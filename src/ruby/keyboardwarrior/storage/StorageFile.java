@@ -2,7 +2,7 @@ package ruby.keyboardwarrior.storage;
 
 import ruby.keyboardwarrior.data.TasksList;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
-import ruby.keyboardwarrior.storage.jaxb.AdaptedAddressBook;
+import ruby.keyboardwarrior.storage.jaxb.AdaptedTasksList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -59,7 +59,7 @@ public class StorageFile {
      */
     public StorageFile(String filePath) throws InvalidStorageFilePathException {
         try {
-            jaxbContext = JAXBContext.newInstance(AdaptedAddressBook.class);
+            jaxbContext = JAXBContext.newInstance(AdaptedTasksList.class);
         } catch (JAXBException jaxbe) {
             throw new RuntimeException("jaxb initialisation error");
         }
@@ -91,7 +91,7 @@ public class StorageFile {
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
 
-            final AdaptedAddressBook toSave = new AdaptedAddressBook(tasksList);
+            final AdaptedTasksList toSave = new AdaptedTasksList(tasksList);
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
@@ -113,7 +113,7 @@ public class StorageFile {
                      new BufferedReader(new FileReader(path.toFile()))) {
 
             final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            final AdaptedAddressBook loaded = (AdaptedAddressBook) unmarshaller.unmarshal(fileReader);
+            final AdaptedTasksList loaded = (AdaptedTasksList) unmarshaller.unmarshal(fileReader);
             // manual check for missing elements
             if (loaded.isAnyRequiredFieldMissing()) {
                 throw new StorageOperationException("File data missing some elements");

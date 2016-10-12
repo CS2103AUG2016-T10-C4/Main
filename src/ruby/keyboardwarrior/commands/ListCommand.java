@@ -1,6 +1,6 @@
 package ruby.keyboardwarrior.commands;
 
-import ruby.keyboardwarrior.data.task.ReadOnlyTask;
+import ruby.keyboardwarrior.data.task.Task;
 
 import java.util.List;
 
@@ -19,8 +19,8 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        List<ReadOnlyTask> allPersons = tasksList.getAllTasks().immutableListView();
-        return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
+        List<Task> allTasks = tasksList.getAllTasks();
+        return new CommandResult(getMessageForPersonListShownSummary(allTasks), allTasks);
     }
     
     @Override

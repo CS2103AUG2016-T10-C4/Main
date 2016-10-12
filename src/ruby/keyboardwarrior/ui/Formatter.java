@@ -1,6 +1,6 @@
 package ruby.keyboardwarrior.ui;
 
-import ruby.keyboardwarrior.data.task.ReadOnlyTask;
+import ruby.keyboardwarrior.data.task.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +35,10 @@ public class Formatter {
     }
 
     /** Formats the given list of persons for displaying to the user. */
-    public String format(List<? extends ReadOnlyTask> tasks) {
+    public String format(List<Task> tasks) {
         final List<String> formattedTasks = new ArrayList<>();
-        for (ReadOnlyTask person : tasks) {
-            formattedTasks.add(person.getAsTextHidePrivate());
+        for (Task task : tasks) {
+            formattedTasks.add(task.toString());
         }
         return format(asIndexedList(formattedTasks));
     }

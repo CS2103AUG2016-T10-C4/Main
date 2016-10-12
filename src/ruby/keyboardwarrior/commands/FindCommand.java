@@ -1,6 +1,6 @@
 package ruby.keyboardwarrior.commands;
 
-import ruby.keyboardwarrior.data.task.ReadOnlyTask;
+import ruby.keyboardwarrior.data.task.Task;
 
 import java.util.*;
 
@@ -32,7 +32,7 @@ public class FindCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        final List<ReadOnlyTask> personsFound = getPersonsWithNameContainingAnyKeyword(keywords);
+        final List<Task> personsFound = getPersonsWithNameContainingAnyKeyword(keywords);
         return new CommandResult(getMessageForPersonListShownSummary(personsFound), personsFound);
     }
 
@@ -46,12 +46,12 @@ public class FindCommand extends Command {
      * @param keywords for searching
      * @return list of persons found
      */
-    private List<ReadOnlyTask> getPersonsWithNameContainingAnyKeyword(Set<String> keywords) {
-        final List<ReadOnlyTask> matchedPersons = new ArrayList<>();
-        for (ReadOnlyTask person : tasksList.getAllTasks()) {
-            final Set<String> wordsInName = new HashSet<>(person.getDetails().getWordsInDetails());
+    private List<Task> getPersonsWithNameContainingAnyKeyword(Set<String> keywords) {
+        final List<Task> matchedPersons = new ArrayList<>();
+        for (Task task : tasksList.getAllTasks()) {
+            final Set<String> wordsInName = new HashSet<>(task.getDetails().getWordsInDetails());
             if (!Collections.disjoint(wordsInName, keywords)) {
-                matchedPersons.add(person);
+                matchedPersons.add(task);
             }
         }
         return matchedPersons;

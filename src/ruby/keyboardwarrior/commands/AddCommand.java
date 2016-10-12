@@ -1,12 +1,8 @@
 package ruby.keyboardwarrior.commands;
 
+import ruby.keyboardwarrior.data.TasksList;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.data.task.*;
-import ruby.keyboardwarrior.data.tag.Tag;
-//import ruby.keyboardwarrior.data.tag.UniqueTagList;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Adds a person to the address book.
@@ -15,19 +11,13 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" + "Adds a task into the Keyboard Warrior.\n"
-            + "Parameters for Read Only Task: TASK \n\t"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" + "Adds a task to the keyboard warrior. "
+            + "Only supports task details, can be enter after the command word seperated by a space. \n\t"
             + "Example: " + COMMAND_WORD
-            + "add do the dishes\n"
-		    + "Parameters for Deadlines: TASK by [DATE] [TIME] \n\t"
-		    + "Example: " + COMMAND_WORD
-		    + "add do CS2103 Tutorial by Wednesday\n"
-            + "Parameters for Specific Task: DATE TIME [to TIME] TASK [@VENUE] \n\t"
-            + "Example: " + COMMAND_WORD
-            + "add 010616 1800 to 2000 Go to the Mall @Clementi Mall\n";
+            + " do something";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in the Keyboard Warrior.\n";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the keyboard warrior";
 
     private final Task toAdd;
 
@@ -36,32 +26,13 @@ public class AddCommand extends Command {
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
-    public AddCommand(String name,
-                      String phone, boolean isPhonePrivate,
-                      String email, boolean isEmailPrivate,
-                      String address, boolean isAddressPrivate,
-                      Set<String> tags) throws IllegalValueException {
-     
-    	final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(new Tag(tagName));
-        }
-        
-        this.toAdd = new Task(
-                new TaskDetails(name),
-                new Phone(phone, isPhonePrivate),
-                new Email(email, isEmailPrivate),
-                new Address(address, isAddressPrivate)/*,
-                new UniqueTagList(tagSet)*/
-        );
+
+    public AddCommand(String taskdetails) throws IllegalValueException {
+        this.toAdd = new Task(new TaskDetails(taskdetails));
     }
 
     public AddCommand(Task toAdd) {
         this.toAdd = toAdd;
-    }
-
-    public ReadOnlyTask getPerson() {
-        return toAdd;
     }
 
     @Override
@@ -69,8 +40,8 @@ public class AddCommand extends Command {
         try {
             tasksList.addTask(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        } catch (UniqueTasksList.DuplicateTaskException dpe) {
-            return new CommandResult(MESSAGE_DUPLICATE_PERSON);
+        } catch (TasksList.DuplicateTaskException dpe) {
+            return new CommandResult(MESSAGE_DUPLICATE_TASK);
         }
     }
     

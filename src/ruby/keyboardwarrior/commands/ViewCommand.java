@@ -1,7 +1,7 @@
 package ruby.keyboardwarrior.commands;
 
 import ruby.keyboardwarrior.common.Messages;
-import ruby.keyboardwarrior.data.task.ReadOnlyTask;
+import ruby.keyboardwarrior.data.task.Task;
 
 
 /**
@@ -28,11 +28,11 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            final ReadOnlyTask target = getTargetPerson();
+            final Task target = getTargetTask();
             if (!tasksList.containsTask(target)) {
                 return new CommandResult(Messages.MESSAGE_TASK_NOT_IN_TASKSLIST);
             }
-            return new CommandResult(String.format(MESSAGE_VIEW_PERSON_DETAILS, target.getAsTextHidePrivate()));
+            return new CommandResult(String.format(MESSAGE_VIEW_PERSON_DETAILS, target.toString()));
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }

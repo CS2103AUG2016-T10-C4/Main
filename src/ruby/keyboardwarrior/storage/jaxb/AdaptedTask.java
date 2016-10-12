@@ -3,43 +3,23 @@ package ruby.keyboardwarrior.storage.jaxb;
 import ruby.keyboardwarrior.common.Utils;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.data.task.*;
-//import ruby.keyboardwarrior.data.tag.Tag;
-//import ruby.keyboardwarrior.data.tag.UniqueTagList;
 
-import javax.xml.bind.annotation.XmlAttribute;
+//import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlValue;
-//import java.util.ArrayList;
-//import java.util.List;
+//import javax.xml.bind.annotation.XmlValue;
 
 /**
  * JAXB-friendly adapted person data holder class.
  */
-public class AdaptedPerson {
-
-    private static class AdaptedContactDetail {
-        @XmlValue
-        public String value;
-        @XmlAttribute(required = true)
-        public boolean isPrivate;
-    }
+public class AdaptedTask {
 
     @XmlElement(required = true)
-    private String name;
-    @XmlElement(required = true)
-    private AdaptedContactDetail phone;
-    @XmlElement(required = true)
-    private AdaptedContactDetail email;
-    @XmlElement(required = true)
-    private AdaptedContactDetail address;
-
-//    @XmlElement
-//    private List<AdaptedTag> tagged = new ArrayList<>();
-
+    private String taskdetails;
+ 
     /**
      * No-arg constructor for JAXB use.
      */
-    public AdaptedPerson() {}
+    public AdaptedTask() {}
 
 
     /**
@@ -47,25 +27,8 @@ public class AdaptedPerson {
      *
      * @param source future changes to this will not affect the created AdaptedPerson
      */
-    public AdaptedPerson(ReadOnlyTask source) {
-        name = source.getDetails().details;
-
-        phone = new AdaptedContactDetail();
-        phone.isPrivate = source.getPhone().isPrivate();
-        phone.value = source.getPhone().value;
-
-        email = new AdaptedContactDetail();
-        email.isPrivate = source.getEmail().isPrivate();
-        email.value = source.getEmail().value;
-
-        address = new AdaptedContactDetail();
-        address.isPrivate = source.getAddress().isPrivate();
-        address.value = source.getAddress().value;
-
-//        tagged = new ArrayList<>();
-        /*for (Tag tag : source.getTags()) {
-            tagged.add(new AdaptedTag(tag));
-        }*/
+    public AdaptedTask(Task source) {
+        taskdetails = source.getDetails().details;
     }
 
     /**
@@ -77,14 +40,7 @@ public class AdaptedPerson {
      * so we check for that.
      */
     public boolean isAnyRequiredFieldMissing() {
-       /* for (AdaptedTag tag : tagged) {
-            if (tag.isAnyRequiredFieldMissing()) {
-                return true;
-            }
-        }*/
-        // second call only happens if phone/email/address are all not null
-        return Utils.isAnyNull(name, phone, email, address)
-                || Utils.isAnyNull(phone.value, email.value, address.value);
+        return Utils.isAnyNull(taskdetails);
     }
 
     /**
@@ -93,15 +49,7 @@ public class AdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
     public Task toModelType() throws IllegalValueException {
-        /*final List<Tag> personTags = new ArrayList<>();
-        for (AdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
-        }*/
-        final TaskDetails name = new TaskDetails(this.name);
-        final Phone phone = new Phone(this.phone.value, this.phone.isPrivate);
-        final Email email = new Email(this.email.value, this.email.isPrivate);
-        final Address address = new Address(this.address.value, this.address.isPrivate);
-//        final UniqueTagList tags = new UniqueTagList(personTags);
-        return new Task(name, phone, email, address/*, tags*/);
+        final TaskDetails task = new TaskDetails(this.taskdetails);
+        return new Task(task);
     }
 }

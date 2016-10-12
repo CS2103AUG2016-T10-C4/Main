@@ -2,7 +2,7 @@ package ruby.keyboardwarrior.commands;
 
 import ruby.keyboardwarrior.common.Messages;
 import ruby.keyboardwarrior.data.TasksList;
-import ruby.keyboardwarrior.data.task.ReadOnlyTask;
+import ruby.keyboardwarrior.data.task.Task;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import static ruby.keyboardwarrior.ui.Gui.DISPLAYED_INDEX_OFFSET;
  */
 public abstract class Command {
     protected TasksList tasksList;
-    protected List<? extends ReadOnlyTask> relevantPersons;
+    protected List<Task> relevantTasks;
     private int targetIndex = -1;
 
     /**
@@ -29,11 +29,11 @@ public abstract class Command {
     /**
      * Constructs a feedback message to summarise an operation that displayed a listing of persons.
      *
-     * @param personsDisplayed used to generate summary
+     * @param tasksDisplayed used to generate summary
      * @return summary message for persons displayed
      */
-    public static String getMessageForPersonListShownSummary(List<? extends ReadOnlyTask> personsDisplayed) {
-        return String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, personsDisplayed.size());
+    public static String getMessageForPersonListShownSummary(List<Task> tasksDisplayed) {
+        return String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, tasksDisplayed.size());
     }
 
     /**
@@ -46,9 +46,9 @@ public abstract class Command {
     /**
      * Supplies the data the command will operate on.
      */
-    public void setData(TasksList tasksList, List<? extends ReadOnlyTask> relevantPersons) {
+    public void setData(TasksList tasksList, List<Task> relevantTasks) {
         this.tasksList = tasksList;
-        this.relevantPersons = relevantPersons;
+        this.relevantTasks = relevantTasks;
     }
 
     /**
@@ -56,8 +56,8 @@ public abstract class Command {
      *
      * @throws IndexOutOfBoundsException if the target index is out of bounds of the last viewed listing
      */
-    protected ReadOnlyTask getTargetPerson() throws IndexOutOfBoundsException {
-        return relevantPersons.get(getTargetIndex() - DISPLAYED_INDEX_OFFSET);
+    protected Task getTargetTask() throws IndexOutOfBoundsException {
+        return relevantTasks.get(getTargetIndex() - DISPLAYED_INDEX_OFFSET);
     }
 
     public int getTargetIndex() {

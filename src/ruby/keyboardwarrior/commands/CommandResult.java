@@ -1,9 +1,9 @@
 package ruby.keyboardwarrior.commands;
 
-import ruby.keyboardwarrior.data.task.ReadOnlyTask;
-
 import java.util.List;
 import java.util.Optional;
+
+import ruby.keyboardwarrior.data.task.Task;
 
 /**
  * Represents the result of a command execution.
@@ -14,23 +14,23 @@ public class CommandResult {
     public final String feedbackToUser;
 
     /** The list of persons that was produced by the command */
-    private final List<? extends ReadOnlyTask> relevantPersons;
+    private final List<Task> relevantTasks;
 
     public CommandResult(String feedbackToUser) {
         this.feedbackToUser = feedbackToUser;
-        relevantPersons = null;
+        relevantTasks = null;
     }
 
-    public CommandResult(String feedbackToUser, List<? extends ReadOnlyTask> relevantPersons) {
+    public CommandResult(String feedbackToUser, List<Task> relevantTasks) {
         this.feedbackToUser = feedbackToUser;
-        this.relevantPersons = relevantPersons;
+        this.relevantTasks = relevantTasks;
     }
 
     /**
      * Returns list of persons relevant to the command command result, if any.
      */
-    public Optional<List<? extends ReadOnlyTask>> getRelevantTasks() {
-        return Optional.ofNullable(relevantPersons);
+    public Optional<List<Task>> getRelevantTasks() {
+        return Optional.ofNullable(relevantTasks);
     }
 
 }

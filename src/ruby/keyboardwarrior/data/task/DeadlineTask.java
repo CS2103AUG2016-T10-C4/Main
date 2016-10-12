@@ -1,7 +1,5 @@
 package ruby.keyboardwarrior.data.task;
 
-//import ruby.keyboardwarrior.data.tag.UniqueTagList;
-
 import java.util.Objects;
 
 /**

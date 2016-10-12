@@ -1,9 +1,8 @@
 package ruby.keyboardwarrior.commands;
 
 import ruby.keyboardwarrior.common.Messages;
-import ruby.keyboardwarrior.data.task.ReadOnlyTask;
-import ruby.keyboardwarrior.data.task.UniqueTasksList.TaskNotFoundException;
-
+import ruby.keyboardwarrior.data.task.Task;
+import ruby.keyboardwarrior.data.task.Task.TaskNotFoundException;
 
 /**
  * Deletes a person identified using it's last displayed index from the address book.
@@ -28,7 +27,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            final ReadOnlyTask target = getTargetPerson();
+            final Task target = getTargetTask();
             tasksList.removeTask(target);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, target));
 
