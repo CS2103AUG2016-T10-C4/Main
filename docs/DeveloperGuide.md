@@ -34,9 +34,9 @@ You will have to:
 
 ## Architecture
 
-<img src="images/Architecture.jpg" width="700"> <br><br>
+<img src="images/Architecture.jpg" width="700"> <br>
 
-> Figure: The **_Architecture Diagram_** given above explains the high-level design of the App.
+> Figure: The **_Architecture Diagram_** given above explains the high-level design of the App. <br><br>
 
 Given below is a quick overview of each component.
 
