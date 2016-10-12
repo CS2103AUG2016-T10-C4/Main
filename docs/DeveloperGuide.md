@@ -34,7 +34,7 @@ You will have to:
 
 ## Architecture
 
-{TODO: Insert Architecture Diagram} <br><br>
+<img src="images/Architecture.jpg" width="700"> <br><br>
 
 > Figure: The **_Architecture Diagram_** given above explains the high-level design of the App.
 
