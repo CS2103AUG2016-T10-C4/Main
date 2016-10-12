@@ -16,7 +16,8 @@
 4. Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
    <img src='images/Keyboard Warrior UI.jpg' width="600" height="350"> <br><br>
 5. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br> 
-> 	e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
+> 	e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.
+
 6. Some example commands you can try:
    * **`add`**` Do CS2103 Tutorial` : 
      Adds a todo task `Do CS2103 Tutorial` KeyboardWarrior.
@@ -32,13 +33,13 @@
 > * Items in `SQUARE_BRACKETS` are optional.
 > * Items with `...` after them can have multiple instances.
 > * The order of parameters is fixed.
-> * DATE parameter can be written in ddmmyy format OR giving the name of the day in full (e.g. Sunday) OR the name of the day in abbreviated form (e.g. Sun).
+> * DATE parameter can be written in ddmmyy format, OR, giving the name of the day in full (e.g. Sunday), OR, the name of the day in abbreviated form (e.g. Sun).
 > * TIME parameter must be written in 24hr-clock format.
 
 #### Viewing help : `help`
 Format: `help`
 
-> Help is also shown if you enter an incorrect command e.g. `abcd`
+> Help is also shown if you enter an incorrect command, e.g. `abcd`
  
 #### Adding a todo: `add`
 Adds a todo task to the KeyboardWarrior<br>
@@ -80,11 +81,11 @@ Shows a calendar in the KeyboardWarrior.<br>
 Format: `show [TIMEFRAME]`
 
 > TIMEFRAME parameter accepts the following:
-> 1. A specific date written in ddmm format e.g. 0102 (Jan 1st).
-> 2. A specific day spelt in full e.g. Monday OR in abbreviated form e.g Mon.
-> 3. The current week.
-> 4. The current month.
-> 5. A specific month of the year spelt in full e.g. August OR in abbreviated form e.g. Aug. 
+> * A specific date written in ddmm format (e.g. 0102. That is, 1st Feb.).
+> * A specific day spelt in full (e.g. Monday), OR, in abbreviated form (e.g. Mon).
+> * The current week.
+> * The current month.
+> * A specific month of the year spelt in full (e.g. August), OR, in abbreviated form (e.g. Aug). 
 
 Examples: 
 * `show week`
