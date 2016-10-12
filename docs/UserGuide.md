@@ -82,7 +82,7 @@ Format: `show [TIMEFRAME]`
 
 > TIMEFRAME parameter accepts the following:
 > * A specific date written in ddmm format (e.g. 0102. That is, 1st Feb.).
-> * A specific day spelt in full (e.g. Monday), OR, in abbreviated form (e.g. Mon).
+> * A specific day of the current week spelt in full (e.g. Monday), OR, in abbreviated form (e.g. Mon).
 > * The current week.
 > * The current month.
 > * A specific month of the year spelt in full (e.g. August), OR, in abbreviated form (e.g. Aug). 
