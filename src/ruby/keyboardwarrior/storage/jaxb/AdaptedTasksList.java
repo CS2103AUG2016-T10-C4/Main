@@ -55,7 +55,7 @@ public class AdaptedTasksList {
 
 
     /**
-     * Converts this jaxb-friendly {@code AdaptedAddressBook} object into the corresponding(@code AddressBook} object.
+     * Converts this jaxb-friendly {@code AdaptedTasksList} object into the corresponding(@code TasksList} object.
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
     public TasksList toModelType() throws IllegalValueException {

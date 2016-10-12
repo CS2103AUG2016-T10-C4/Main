@@ -32,7 +32,7 @@ public abstract class Command {
      * @param tasksDisplayed used to generate summary
      * @return summary message for persons displayed
      */
-    public static String getMessageForPersonListShownSummary(List<Task> tasksDisplayed) {
+    public static String getMessageForTasksListShownSummary(List<Task> tasksDisplayed) {
         return String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, tasksDisplayed.size());
     }
 

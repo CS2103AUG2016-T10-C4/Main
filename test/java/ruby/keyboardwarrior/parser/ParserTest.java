@@ -4,9 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ruby.keyboardwarrior.commands.*;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
-import ruby.keyboardwarrior.data.tag.Tag;
-import ruby.keyboardwarrior.data.tag.UniqueTagList;
-import ruby.keyboardwarrior.data.person.*;
+import ruby.keyboardwarrior.data.task.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -26,7 +24,7 @@ public class ParserTest {
 
     @Test
     public void emptyInput_returnsIncorrect() {
-        final String[] emptyInputs = { "", "  ", "\n  \n" };
+        final String[] emptyInputs = { ""};
         final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE);
         parseAndAssertIncorrectWithMessage(resultMessage, emptyInputs);
     }
@@ -66,7 +64,7 @@ public class ParserTest {
     }
 
     /**
-     * Test ingle index argument commands
+     * Test single index argument commands
      */
     
     @Test
@@ -186,39 +184,27 @@ public class ParserTest {
                 "add ",
                 "add wrong args format",
                 // no phone prefix
-                String.format("add $s $s e/$s a/$s", TaskDetails.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
+                String.format("add $s $s e/$s a/$s", TaskDetails.EXAMPLE),
                 // no email prefix
-                String.format("add $s p/$s $s a/$s", TaskDetails.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
+                String.format("add $s p/$s $s a/$s", TaskDetails.EXAMPLE),
                 // no address prefix
-                String.format("add $s p/$s e/$s $s", TaskDetails.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE)
+                String.format("add $s p/$s e/$s $s", TaskDetails.EXAMPLE)
         };
         final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
     @Test
-    public void addCommand_invalidPersonDataInArgs() {
-        final String invalidName = "[]\\[;]";
-        final String validName = TaskDetails.EXAMPLE;
-        final String invalidPhoneArg = "p/not__numbers";
-        final String validPhoneArg = "p/" + Phone.EXAMPLE;
-        final String invalidEmailArg = "e/notAnEmail123";
-        final String validEmailArg = "e/" + Email.EXAMPLE;
-        final String invalidTagArg = "t/invalid_-[.tag";
-
+    public void addCommand_invalidTaskDataInArgs() {
+        final String invalidTaskDetails = "[]\\[;]";
+       
         // address can be any string, so no invalid address
-        final String addCommandFormatString = "add $s $s $s a/" + Address.EXAMPLE;
+        final String addCommandFormatString = "add $s $s $s a/";
 
         // test each incorrect person data field argument individually
         final String[] inputs = {
-                // invalid name
-                String.format(addCommandFormatString, invalidName, validPhoneArg, validEmailArg),
-                // invalid phone
-                String.format(addCommandFormatString, validName, invalidPhoneArg, validEmailArg),
-                // invalid email
-                String.format(addCommandFormatString, validName, validPhoneArg, invalidEmailArg),
-                // invalid tag
-                String.format(addCommandFormatString, validName, validPhoneArg, validEmailArg) + " " + invalidTagArg
+                // invalid taskdetails
+                String.format(addCommandFormatString, invalidTaskDetails),
         };
         for (String input : inputs) {
             parseAndAssertCommandType(input, IncorrectCommand.class);
@@ -226,49 +212,23 @@ public class ParserTest {
     }
 
     @Test
-    public void addCommand_validPersonData_parsedCorrectly() {
-        final Task testPerson = generateTestPerson();
-        final String input = convertPersonToAddCommandString(testPerson);
+    public void addCommand_validTaskData_parsedCorrectly() {
+        final Task testTask = generateTestTask();
+        final String input = convertTaskToAddCommandString(testTask);
         final AddCommand result = parseAndAssertCommandType(input, AddCommand.class);
-        assertEquals(result.getPerson(), testPerson);
+        assertEquals(result.getTask(), testTask);
     }
 
-    @Test
-    public void addCommand_duplicateTags_merged() throws IllegalValueException {
-        final Task testPerson = generateTestPerson();
-        String input = convertPersonToAddCommandString(testPerson);
-        for (Tag tag : testPerson.getTags()) {
-            // create duplicates by doubling each tag
-            input += " t/" + tag.tagName;
-        }
-
-        final AddCommand result = parseAndAssertCommandType(input, AddCommand.class);
-        assertEquals(result.getPerson(), testPerson);
-    }
-
-    private static Task generateTestPerson() {
+    private static Task generateTestTask() {
         try {
-            return new Task(
-                new TaskDetails(TaskDetails.EXAMPLE),
-                new Phone(Phone.EXAMPLE, true),
-                new Email(Email.EXAMPLE, false),
-                new Address(Address.EXAMPLE, true),
-                new UniqueTagList(new Tag("tag1"), new Tag("tag2"), new Tag("tag3"))
-            );
+            return new Task(new TaskDetails(TaskDetails.EXAMPLE));
         } catch (IllegalValueException ive) {
             throw new RuntimeException("test person data should be valid by definition");
         }
     }
 
-    private static String convertPersonToAddCommandString(ReadOnlyTask person) {
-        String addCommand = "add "
-                + person.getDetails().details
-                + (person.getPhone().isPrivate() ? " pp/" : " p/") + person.getPhone().value
-                + (person.getEmail().isPrivate() ? " pe/" : " e/") + person.getEmail().value
-                + (person.getAddress().isPrivate() ? " pa/" : " a/") + person.getAddress().value;
-        for (Tag tag : person.getTags()) {
-            addCommand += " t/" + tag.tagName;
-        }
+    private static String convertTaskToAddCommandString(Task task) {
+        String addCommand = "add " + task.getDetails().details;
         return addCommand;
     }
 
