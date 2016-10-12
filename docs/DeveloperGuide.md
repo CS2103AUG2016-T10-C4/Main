@@ -5,7 +5,7 @@
 * [Introduction] (#introduction)
 * [Setting Up](#setting-up)
 * [Architecture](#architecture)
-* [GUI Component](#gui-component)
+* [UI Component](#ui-component)
 * [Backend Component](#backend-component)
 * [Data Component](#data-component)
 * [Implementation](#implementation)
@@ -38,22 +38,29 @@ You will have to:
 
 ## Architecture
 
+<img src="images/Architecture.jpg" width="700"> <br>
 > Figure: The **_Architecture Diagram_** given above explains the high-level design of the App. 
-Given below is a quick overview of each component.
 
-{TODO: Add overview of main components}
+**KeyboardWarrior** is made up of four main components. You can interact with the app primarily through the command line interface (CLI).
+
+The UI component consists of JavaFX's FXML files which define the layout that is displayed to you, how you interact with it through CLI and the Java files which control these FXML files. 
+
+The Backend component contains all the logic needed to parse your commands, store collated data into individual files, etc.
+
+The Data component represents objects involved in the collation of source files such as the authors of the project and code snippets that were written.
+
+The Test Driver component tests the UI, Backend and Data components. It utilises JUnit for unit testing.
 
 The sections below give more details of each component.
 
-{TODO: Add outline of each components}
 
-## GUI Component
+## UI Component
 
-{TODO: Insert GUI image}
+{TODO: Insert UI image}
 
-> Figure: Structure of the **GUI Component**.
+> Figure: Structure of the **UI Component**.
 
-{TODO: Add GUI Component outline}
+{TODO: Add UI Component outline}
 
 ## Backend Component
 
