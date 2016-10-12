@@ -7,22 +7,22 @@
 
 ## Quick Start
 
-0. Ensure you have Java version `1.8.0_60` or later installed in your Computer.<br>
+1. Ensure you have Java version `1.8.0_60` or later installed in your Computer.<br>
    > Having any Java 8 version is not enough. <br>
    This app will not work with earlier versions of Java 8.
    
-1. Download the latest `KeyboardWarrior.jar` from the [releases](../../../releases) tab. <br>
-2. Copy the file to the folder you want to use as the home folder for your KeyboardWarrior. <br>
-3. Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
+2. Download the latest `KeyboardWarrior.jar` from the [releases](../../../releases) tab. <br>
+3. Copy the file to the folder you want to use as the home folder for your KeyboardWarrior. <br>
+4. Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
    <img src='images/Keyboard Warrior UI.jpg' width="600" height="350"> <br><br>
-4. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br>
-        e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
-5. Some example commands you can try:
+5. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br> 
+> 	e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
+6. Some example commands you can try:
    * **`add`**` Do CS2103 Tutorial` : 
      Adds a todo task `Do CS2103 Tutorial` KeyboardWarrior.
    * **`remove`**` 3` : Deletes the 3rd task shown.
    * **`exit`** : Exits the app. <br>
-6. Refer to the [Features](#features) section below for details of each command.<br>
+7. Refer to the [Features](#features) section below for details of each command.<br>
 
 
 ## Features
@@ -32,15 +32,17 @@
 > * Items in `SQUARE_BRACKETS` are optional.
 > * Items with `...` after them can have multiple instances.
 > * The order of parameters is fixed.
+> * DATE parameter can be written in ddmmyy format OR giving the name of the day in full (e.g. Sunday) OR the name of the day in abbreviated form (e.g. Sun).
+> * TIME parameter must be written in 24hr-clock format.
 
 #### Viewing help : `help`
-Format: `help`
+Format: `*help*`
 
 > Help is also shown if you enter an incorrect command e.g. `abcd`
  
 #### Adding a todo: `add`
 Adds a todo task to the KeyboardWarrior<br>
-Format: `TASK`
+Format: `*add* TASK`
 
 Examples: 
 * `add Buy Chocolate`
@@ -49,7 +51,7 @@ Examples:
 
 #### Adding a Deadline: `add`
 Adds a deadline to the KeyboardWarrior<br>
-Format: `TASK by [DATE] [TIME]`
+Format: `*add* TASK by [DATE] [TIME]`
 
 Examples: 
 * `add Do CS2103 Tutorial by Thursday`
@@ -58,7 +60,7 @@ Examples:
 #### Adding a calendar task: `add`
 Adds a specific task to the KeyboardWarrior that will be able to show any combinations of the following parameters:<br>
 
-Format: `add DATE TIME [to TIME] TASK [@VENUE]`
+Format: `*add* DATE TIME [to TIME] TASK [@VENUE]`
 
 Examples: 
 * `add 010116 1810 Go to the mall`
@@ -67,7 +69,7 @@ Examples:
 
 #### Find a task: `find`
 Find all task in the KeyboardWarrior that contains a phrase, time, date or venue<br>
-Format: `find [KEYWORD] [@VENUE]`
+Format: `*find* [KEYWORD] [@VENUE]`
 
 Examples: 
 * `find baskebtall`
@@ -75,7 +77,14 @@ Examples:
 
 #### Show Calendar : `show`
 Shows a calendar in the KeyboardWarrior.<br>
-Format: `show [TIMEFRAME]`
+Format: `*show* [TIMEFRAME]`
+
+> TIMEFRAME parameter accepts the following:
+> 1. A specific date written in ddmm format e.g. 0102 (Jan 1st).
+> 2. A specific day spelt in full e.g. Monday OR in abbreviated form e.g Mon.
+> 3. The current week.
+> 4. The current month.
+> 5. A specific month of the year spelt in full e.g. August OR in abbreviated form e.g. Aug. 
 
 Examples: 
 * `show week`
@@ -85,8 +94,8 @@ Examples:
 * `show Feb`
 
 #### Complete a Todo or Deadline : `complete`
-Mark a todo as complete and delete it from the KeyboardWarrior. Irreversible.<br>
-Format: `complete INDEX`
+Mark a todo as complete and delete it from the KeyboardWarrior. Action is irreversible.<br>
+Format: `*complete* INDEX`
 
 > Complete the calendar task at the specified `INDEX`
   The index refers to the index number shown on the calendar<br>
@@ -101,8 +110,8 @@ Example:
    Mark task 3 as complete and delete it from the todo.
 
 #### Remove a task from the calendar : `remove`
-Remove a specified calendar task from the KeyboardWarrior. Irreversible.<br>
-Format: `remove INDEX`
+Remove a specified calendar task from the KeyboardWarrior. Action is irreversible.<br>
+Format: `*remove* INDEX`
 
 > Complete the calendar task at the specified `INDEX`
   The index refers to the index number shown on the calendar<br>
@@ -118,7 +127,7 @@ Example:
 
 #### Exiting the program : `exit`
 Exits the program.<br>
-Format: `exit`  
+Format: `*exit*`  
 
 #### Saving the data 
 Address book data are saved in the hard disk automatically after any command that changes the data.<br>
@@ -135,11 +144,11 @@ There is no need to save manually.
 Command | Format  
 -------- | :-------- 
 Help | `help`
-(Todo)| `TASK`
-(Deadline)| `TASK by [DATE] [TIME]`
+(Todo)| `add TASK`
+(Deadline)| `add TASK by [DATE] [TIME]`
 Add | `add DATE TIME to [TIME] TASK @ [VENUE]`
 Complete | `complete INDEX`
 Remove | `remove INDEX`
 Find | `find [DATE] [TIME] [KEYWORD] @[VENUE]`
-Show | `show`
+Show | `show [TIMEFRAME]`
 Exit | `exit`
