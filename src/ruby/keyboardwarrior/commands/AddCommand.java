@@ -45,6 +45,10 @@ public class AddCommand extends Command {
         }
     }
     
+    public Task getTask(){
+        return toAdd;
+    }
+    
     @Override
     public boolean isMutating() {
     	return true;

@@ -17,7 +17,7 @@ public class ViewCommand extends Command {
             + "Parameters: INDEX\n\t"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_PERSON_DETAILS = "Viewing person: %1$s";
+    public static final String MESSAGE_VIEW_TASK_DETAILS = "Viewing task: %1$s";
 
 
     public ViewCommand(int targetVisibleIndex) {
@@ -32,7 +32,7 @@ public class ViewCommand extends Command {
             if (!tasksList.containsTask(target)) {
                 return new CommandResult(Messages.MESSAGE_TASK_NOT_IN_TASKSLIST);
             }
-            return new CommandResult(String.format(MESSAGE_VIEW_PERSON_DETAILS, target.toString()));
+            return new CommandResult(String.format(MESSAGE_VIEW_TASK_DETAILS, target.toString()));
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
