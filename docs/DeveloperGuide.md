@@ -18,9 +18,9 @@ This guide describes the design and implementation of KeyboardWarrior. It will h
 
 #### Prerequisites
 
-You will have to have:
+You will have to:
 
-1. **JDK `1.8.0_60`**  or later. <br>
+1. Have **JDK `1.8.0_60`**  or later. <br>
 
     > Having any Java 8 version is not enough. <br>
     This app will not work with earlier versions of Java 8.
