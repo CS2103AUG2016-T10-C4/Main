@@ -19,7 +19,7 @@ public class TasksList {
     
     public static class DuplicateTaskException extends DuplicateDataException {
         protected DuplicateTaskException() {
-            super("Operation would result in duplicate persons");
+            super("Operation would result in duplicate task");
         }
     }
 
@@ -76,6 +76,18 @@ public class TasksList {
             throw new TaskNotFoundException();
         }
         allTasks.remove(toRemove);
+    }
+    
+    /**
+     * Sets the equivalent Task from the Task Manager.
+     *
+     * @throws TaskNotFoundException if no such Task could be found.
+     */
+    public void setTask(Task toChange, Task editTask) throws TaskNotFoundException{
+        if (!containsTask(toChange)) {
+            throw new TaskNotFoundException();
+        }
+        allTasks.set(allTasks.indexOf(toChange), editTask);
     }
     
     public ArrayList<Task> getAllTasks(){

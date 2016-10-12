@@ -99,7 +99,7 @@ public class StorageFile {
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path + " error: " + ioe.getMessage());
         } catch (JAXBException jaxbe) {
-            throw new StorageOperationException("Error converting address book into storage format");
+            throw new StorageOperationException("Error converting Keyboard Warrior into storage format");
         }
     }
 

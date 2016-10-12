@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * JAXB-friendly adapted address book data holder class.
  */
-@XmlRootElement(name = "KeyboardWarrior")
+@XmlRootElement(name = "keyboardwarrior")
 public class AdaptedTasksList {
 
     @XmlElement
@@ -24,7 +24,7 @@ public class AdaptedTasksList {
     public AdaptedTasksList() {}
 
     /**
-     * Converts a given AddressBook into this class for JAXB use.
+     * Converts a given Keyboard Warrior into this class for JAXB use.
      *
      * @param source future changes to this will not affect the created AdaptedAddressBook
      */

@@ -2,6 +2,8 @@ package ruby.keyboardwarrior.parser;
 
 import ruby.keyboardwarrior.commands.*;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
+import ruby.keyboardwarrior.data.task.Task;
+import ruby.keyboardwarrior.data.task.TaskDetails;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -44,8 +46,9 @@ public class Parser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
+     * @throws IllegalValueException 
      */
-    public Command parseCommand(String userInput) {
+    public Command parseCommand(String userInput) throws IllegalValueException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -60,7 +63,10 @@ public class Parser {
 
             case DeleteCommand.COMMAND_WORD:
                 return prepareDelete(arguments);
-
+                
+            case EditCommand.COMMAND_WORD:
+                return prepareEdit(arguments);
+                
             case ClearCommand.COMMAND_WORD:
                 return new ClearCommand();
 
@@ -85,7 +91,7 @@ public class Parser {
         }
     }
 
-    /**
+	/**
      * Parses arguments in the context of the add person command.
      *
      * @param args full command args string
@@ -118,6 +124,26 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
     }
+    
+    /**
+     * Parses arguments in the context of the edit task command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     * @throws IllegalValueException 
+     */
+    private Command prepareEdit(String args) throws IllegalValueException {
+        try {
+        	args = args.trim();
+        	String index = args.substring(0,args.indexOf(' '));
+        	String editTask = args.substring(args.indexOf(' '));
+        	
+            final int targetIndex = parseArgsAsDisplayedIndex(index);
+            return new EditCommand(targetIndex, new Task(new TaskDetails(editTask)));
+        } catch (ParseException | NumberFormatException e) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+	}
 
     /**
      * Parses arguments in the context of the view command.
