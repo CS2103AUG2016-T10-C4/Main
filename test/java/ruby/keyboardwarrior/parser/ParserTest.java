@@ -238,8 +238,9 @@ public class ParserTest {
 
     /**
      * Asserts that parsing the given inputs will return IncorrectCommand with the given feedback message.
+     * @throws IllegalValueException 
      */
-    private void parseAndAssertIncorrectWithMessage(String feedbackMessage, String... inputs) {
+    private void parseAndAssertIncorrectWithMessage(String feedbackMessage, String... inputs){
         for (String input : inputs) {
             final IncorrectCommand result = parseAndAssertCommandType(input, IncorrectCommand.class);
             assertEquals(result.feedbackToUser, feedbackMessage);
@@ -252,9 +253,16 @@ public class ParserTest {
      * @param input to be parsed
      * @param expectedCommandClass expected class of returned command
      * @return the parsed command object
+     * @throws IllegalValueException 
      */
-    private <T extends Command> T parseAndAssertCommandType(String input, Class<T> expectedCommandClass) {
-        final Command result = parser.parseCommand(input);
+    private <T extends Command> T parseAndAssertCommandType(String input, Class<T> expectedCommandClass){
+        Command result = null;
+        try {
+            result = parser.parseCommand(input);
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         assertTrue(result.getClass().isAssignableFrom(expectedCommandClass));
         return (T) result;
     }

@@ -25,19 +25,19 @@ public class Logic {
 
     public Logic() throws Exception{
         setStorage(initializeStorage());
-        setAddressBook(storage.load());
+        setTasksList(storage.load());
     }
 
     Logic(StorageFile storageFile, TasksList tasksList){
         setStorage(storageFile);
-        setAddressBook(tasksList);
+        setTasksList(tasksList);
     }
 
     void setStorage(StorageFile storage){
         this.storage = storage;
     }
 
-    void setAddressBook(TasksList tasksList){
+    void setTasksList(TasksList tasksList){
         this.tasksList = tasksList;
     }
 
