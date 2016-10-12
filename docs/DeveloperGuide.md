@@ -93,7 +93,7 @@ We have two types of tests:
 
 1. **Logic Tests** - {TODO: Add description}
   
-2. **Parser Tests** - {TODO: Addd description}
+2. **Parser Tests** - {TODO: Add description}
   
  
 #### Troubleshooting tests
