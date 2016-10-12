@@ -1,9 +1,13 @@
 # Developer Guide 
 
+## Table of Contents
+
 * [Introduction] (#introduction)
 * [Setting Up](#setting-up)
 * [Architecture](#architecture)
 * [GUI Component](#gui-component)
+* [Backend Component](#backend-component)
+* [Data Component](#data-component)
 * [Implementation](#implementation)
 * [Testing](#testing)
 * [Future Development](#future-development)
@@ -46,11 +50,28 @@ The sections below give more details of each component.
 
 ## GUI Component
 
-{TODO: Insert GUI image}<br><br>
+{TODO: Insert GUI image}
 
 > Figure: Structure of the **GUI Component**.
 
 {TODO: Add GUI Component outline}
+
+## Backend Component
+
+{TODO: Insert Backend image}
+
+> Figure: Structure of the **Backend Component**.
+
+{TODO: Add Backend Component outline}
+
+## Data Component
+
+{TODO: Insert Data image}
+
+> Figure: Structure of the **Data Component**.
+
+{TODO: Add Data Component outline}
+
 
 ## Implementation
 
