@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Represents a given task in the Keyboard Warrior.
+ * Represents the Task Details in the Keyboard Warrior.
  * Guarantees: immutable; is valid as declared in {@link #isValidDetails(String)}
  */
 public class TaskDetails {
@@ -18,9 +18,9 @@ public class TaskDetails {
     public final String details;
 
     /**
-     * Validates a task.
+     * Validates given details.
      *
-     * @throws IllegalValueException if given task string is invalid.
+     * @throws IllegalValueException if given name string is invalid.
      */
     public TaskDetails(String taskdetails) throws IllegalValueException {
         taskdetails = taskdetails.trim();
@@ -31,14 +31,14 @@ public class TaskDetails {
     }
 
     /**
-     * Returns true if a given string is a valid task.
+     * Returns true if a given string is a valid detail.
      */
     public static boolean isValidDetails(String test) {
         return test.matches(DETAILS_VALIDATION_REGEX);
     }
 
     /**
-     * Retrieves a listing of every word in the task, in order.
+     * Retrieves a listing of every word in the details, in order.
      */
     public List<String> getWordsInDetails() {
         return Arrays.asList(details.split("\\s+"));
