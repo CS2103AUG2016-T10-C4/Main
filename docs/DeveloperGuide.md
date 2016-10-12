@@ -14,9 +14,9 @@
 
 ## Introduction
 
-KeyboardWarrior is an intuitive task manager that will help you manage your schedule and todo tasks. This advance tool is a Java desktop application that has a GUI and can accept natural language commands via keyboard.  
+**KeyboardWarrior** is an intuitive task manager that will help you manage your schedule and todo tasks. This advance tool is a Java desktop application that has a UI and can accept natural language commands via keyboard.  
 
-This guide describes the design and implementation of KeyboardWarrior. It will help you understand how KeyboardWarrior works and how you can further contribute to its development. We have organised this guide in a top-down manner so that you can understand the big picture before moving on to the more detailed sections.
+This guide describes the design and implementation of **KeyboardWarrior**. It will help you understand how **KeyboardWarrior** works and how you can further contribute to its development. We have organised this guide in a top-down manner so that you can understand the big picture before moving on to the more detailed sections.
 
 ## Setting up
 
@@ -43,13 +43,13 @@ You will have to:
 
 **KeyboardWarrior** is made up of four main components. You can interact with the app primarily through the command line interface (CLI).
 
-The UI component consists of JavaFX's FXML files which define the layout that is displayed to you, how you interact with it through CLI and the Java files which control these FXML files. 
+The **`UI`** component consists of JavaFX's FXML files which define the layout that is displayed to you, how you interact with it through CLI and the Java files which control these FXML files. 
 
-The Backend component contains all the logic needed to parse your commands, store collated data into individual files, etc.
+The **`Backend`** component contains all the logic needed to parse your commands, store collated data into individual files, etc.
 
-The Data component represents objects involved in the collation of source files such as the authors of the project and code snippets that were written.
+The **`Data`** component represents objects involved in the collation of source files such as the authors of the project and code snippets that were written.
 
-The Test Driver component tests the UI, Backend and Data components. It utilises JUnit for unit testing.
+The **`Test Driver`** component tests the `UI`, `Backend` and `Data` components. It utilises `JUnit` for unit testing.
 
 The sections below give more details of each component.
 
@@ -58,7 +58,7 @@ The sections below give more details of each component.
 
 {TODO: Insert UI image}
 
-> Figure: Structure of the **UI Component**.
+> Figure: Structure of the `UI` Component.
 
 {TODO: Add UI Component outline}
 
@@ -66,7 +66,7 @@ The sections below give more details of each component.
 
 {TODO: Insert Backend image}
 
-> Figure: Structure of the **Backend Component**.
+> Figure: Structure of the `Backend` Component.
 
 {TODO: Add Backend Component outline}
 
@@ -74,7 +74,7 @@ The sections below give more details of each component.
 
 {TODO: Insert Data image}
 
-> Figure: Structure of the **Data Component**.
+> Figure: Structure of the `Data` Component.
 
 {TODO: Add Data Component outline}
 
@@ -85,7 +85,7 @@ The sections below give more details of each component.
 
 ## Testing
 
-**KeyboardWarrior** uses JUnit to perform unit tests on the Backend, Data and GUI components. Every method is unit tested to ensure everything works as intended.
+**KeyboardWarrior** uses `JUnit` to perform unit tests on the `UI`, `Backend` and `Data` components. Every method is unit tested to ensure everything works as intended.
 
 You can find the tests in the `./test/java/ruby/keyboardwarrior` folder.
 
@@ -98,9 +98,9 @@ We have two types of tests:
  
 #### Troubleshooting tests
  **Problem: Tests fail because NullPointException when AssertionError is expected**
- * Reason: Assertions are not enabled for JUnit tests. 
+ * Reason: Assertions are not enabled for `JUnit` tests. 
    This can happen if you are not using a recent Eclipse version (i.e. _Neon_ or later)
- * Solution: Enable assertions in JUnit tests as described 
+ * Solution: Enable assertions in `JUnit` tests as described 
    [here](http://stackoverflow.com/questions/2522897/eclipse-junit-ea-vm-option). <br>
    Delete run configurations created when you ran tests earlier.
   
