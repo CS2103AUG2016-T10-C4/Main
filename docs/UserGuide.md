@@ -36,13 +36,13 @@
 > * TIME parameter must be written in 24hr-clock format.
 
 #### Viewing help : `help`
-Format: `*help*`
+Format: `help`
 
 > Help is also shown if you enter an incorrect command e.g. `abcd`
  
 #### Adding a todo: `add`
 Adds a todo task to the KeyboardWarrior<br>
-Format: `*add* TASK`
+Format: `add TASK`
 
 Examples: 
 * `add Buy Chocolate`
@@ -51,7 +51,7 @@ Examples:
 
 #### Adding a Deadline: `add`
 Adds a deadline to the KeyboardWarrior<br>
-Format: `*add* TASK by [DATE] [TIME]`
+Format: `add TASK by [DATE] [TIME]`
 
 Examples: 
 * `add Do CS2103 Tutorial by Thursday`
@@ -60,7 +60,7 @@ Examples:
 #### Adding a calendar task: `add`
 Adds a specific task to the KeyboardWarrior that will be able to show any combinations of the following parameters:<br>
 
-Format: `*add* DATE TIME [to TIME] TASK [@VENUE]`
+Format: `add DATE TIME [to TIME] TASK [@VENUE]`
 
 Examples: 
 * `add 010116 1810 Go to the mall`
@@ -69,7 +69,7 @@ Examples:
 
 #### Find a task: `find`
 Find all task in the KeyboardWarrior that contains a phrase, time, date or venue<br>
-Format: `*find* [KEYWORD] [@VENUE]`
+Format: `find [KEYWORD] [@VENUE]`
 
 Examples: 
 * `find baskebtall`
@@ -77,7 +77,7 @@ Examples:
 
 #### Show Calendar : `show`
 Shows a calendar in the KeyboardWarrior.<br>
-Format: `*show* [TIMEFRAME]`
+Format: `show [TIMEFRAME]`
 
 > TIMEFRAME parameter accepts the following:
 > 1. A specific date written in ddmm format e.g. 0102 (Jan 1st).
@@ -95,7 +95,7 @@ Examples:
 
 #### Complete a Todo or Deadline : `complete`
 Mark a todo as complete and delete it from the KeyboardWarrior. Action is irreversible.<br>
-Format: `*complete* INDEX`
+Format: `complete INDEX`
 
 > Complete the calendar task at the specified `INDEX`
   The index refers to the index number shown on the calendar<br>
@@ -111,7 +111,7 @@ Example:
 
 #### Remove a task from the calendar : `remove`
 Remove a specified calendar task from the KeyboardWarrior. Action is irreversible.<br>
-Format: `*remove* INDEX`
+Format: `remove INDEX`
 
 > Complete the calendar task at the specified `INDEX`
   The index refers to the index number shown on the calendar<br>
@@ -127,7 +127,7 @@ Example:
 
 #### Exiting the program : `exit`
 Exits the program.<br>
-Format: `*exit*`  
+Format: `exit`  
 
 #### Saving the data 
 Address book data are saved in the hard disk automatically after any command that changes the data.<br>
