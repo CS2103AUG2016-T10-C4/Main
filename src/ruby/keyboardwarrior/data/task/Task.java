@@ -24,9 +24,12 @@ public class Task{
     }
 
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Task // instanceof handles nulls
-                && this.equals((Task) other));
+        if (other instanceof Task){
+            Task task = (Task) other;
+            return this.getDetails().equals(task.getDetails());
+        }
+        else
+            return false;
     }
 
     public int hashCode() {
