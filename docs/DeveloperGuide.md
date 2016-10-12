@@ -18,12 +18,14 @@ This guide describes the design and implementation of KeyboardWarrior. It will h
 
 #### Prerequisites
 
+You will have to have:
+
 1. **JDK `1.8.0_60`**  or later. <br>
 
     > Having any Java 8 version is not enough. <br>
     This app will not work with earlier versions of Java 8.
     
-2. Latest version of **KeyboardWarrior** downloaded. <br>
+2. Have the latest version of **KeyboardWarrior** downloaded. <br>
 
 #### Running KeyboardWarrior
 
@@ -32,7 +34,7 @@ This guide describes the design and implementation of KeyboardWarrior. It will h
 
 ## Architecture
 
-{TODO: Insert Architecture Diagram here} <br><br>
+{TODO: Insert Architecture Diagram} <br><br>
 
 > Figure: The **_Architecture Diagram_** given above explains the high-level design of the App.
 
@@ -58,9 +60,9 @@ The sections below give more details of each component.
 
 ## Testing
 
-**KeyboardWarrior** uses JUnit to perform unit tests on the Backend, Data and TUI components. Every method is unit tested to ensure everything works as intended.
+**KeyboardWarrior** uses JUnit to perform unit tests on the Backend, Data and GUI components. Every method is unit tested to ensure everything works as intended.
 
-Tests can be found in the `./test/java/ruby/keyboardwarrior` folder.
+You can find the tests in the `./test/java/ruby/keyboardwarrior` folder.
 
 We have two types of tests:
 
@@ -79,6 +81,6 @@ We have two types of tests:
   
 ## Future Development	
 
-There are several additions that can be made to **KeyboardWarrior**	 to further increase its usefulness and usability.
+These are several additions that can be made to **KeyboardWarrior**	 to further increase its usefulness and usability.
 
 {TODO: Add future development plans}
