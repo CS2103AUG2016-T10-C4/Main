@@ -16,7 +16,7 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" + "Adds a task into the Keyboard Warrior.\n"
-            + "Parameters for Floating Task: TASK \n\t"
+            + "Parameters for Read Only Task: TASK \n\t"
             + "Example: " + COMMAND_WORD
             + "add do the dishes\n"
 		    + "Parameters for Deadlines: TASK by [DATE] [TIME] \n\t"
@@ -27,7 +27,7 @@ public class AddCommand extends Command {
             + "add 010616 1800 to 2000 Go to the Mall @Clementi Mall\n";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the Keyboard Warrior.\n";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in the Keyboard Warrior.\n";
 
     private final Task toAdd;
 
@@ -41,10 +41,12 @@ public class AddCommand extends Command {
                       String email, boolean isEmailPrivate,
                       String address, boolean isAddressPrivate,
                       Set<String> tags) throws IllegalValueException {
-        final Set<Tag> tagSet = new HashSet<>();
+     
+    	final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
+        
         this.toAdd = new Task(
                 new TaskDetails(name),
                 new Phone(phone, isPhonePrivate),

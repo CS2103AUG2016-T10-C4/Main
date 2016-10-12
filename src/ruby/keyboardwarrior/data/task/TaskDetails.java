@@ -6,21 +6,21 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Represents a Person's name in the address book.
+ * Represents a given task in the Keyboard Warrior.
  * Guarantees: immutable; is valid as declared in {@link #isValidDetails(String)}
  */
 public class TaskDetails {
 
     public static final String EXAMPLE = "Do something";
     public static final String MESSAGE_DETAILS_CONSTRAINTS = "Details should be spaces or alphanumeric characters";
-    public static final String DETAILS_VALIDATION_REGEX = "[\\p{Alnum} ]+";
+    public static final String DETAILS_VALIDATION_REGEX = "[ {Alnum} ]+";
 
     public final String details;
 
     /**
-     * Validates given name.
+     * Validates a task.
      *
-     * @throws IllegalValueException if given name string is invalid.
+     * @throws IllegalValueException if given task string is invalid.
      */
     public TaskDetails(String taskdetails) throws IllegalValueException {
         taskdetails = taskdetails.trim();
@@ -31,14 +31,14 @@ public class TaskDetails {
     }
 
     /**
-     * Returns true if a given string is a valid person name.
+     * Returns true if a given string is a valid task.
      */
     public static boolean isValidDetails(String test) {
         return test.matches(DETAILS_VALIDATION_REGEX);
     }
 
     /**
-     * Retrieves a listing of every word in the name, in order.
+     * Retrieves a listing of every word in the task, in order.
      */
     public List<String> getWordsInDetails() {
         return Arrays.asList(details.split("\\s+"));
