@@ -39,7 +39,7 @@
 #### Viewing help : `help`
 Format: `help`
 
-> Help is also shown if you enter an incorrect command, e.g. `abcd`
+> Help is also shown if you enter an incorrect command (e.g. `abcd`).
  
 #### Adding a todo: `add`
 Adds a todo task to the KeyboardWarrior<br>
