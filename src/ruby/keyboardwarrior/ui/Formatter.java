@@ -29,7 +29,8 @@ public class Formatter {
     public String format(String... messages) {
         StringBuilder sb = new StringBuilder();
         for (String m : messages) {
-            sb.append(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX) + LS);
+            //sb.append(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX) + LS);
+        	sb.append(m + "\n");
         }
         return sb.toString();
     }

@@ -64,19 +64,21 @@ public class StorageFile {
      * Initialises the in-memory data using the storage file.
      * Assumption: The file exists.
      */
-    /*private static void loadDataFromStorage() {
+    private static void loadDataFromStorage() {
         initialiseKeyboardWarriorModel(loadLinesFromFile(storageFilePath));
-    }*/
+    }
     
     /**
      * Resets the internal model with the given data. Does not save to file.
      *
      * @param persons list of persons to initialise the model with
      */
-    /*private static void initialiseKeyboardWarriorModel(ArrayList<String> tasks) {
+    private static void initialiseKeyboardWarriorModel(ArrayList<String> tasks) {
         allTasks.clear();
-        allTasks = tasks;
-    }*/
+        for (String line : tasks){
+            allTasks.add(new Task(new TaskDetails(line)));
+        }
+    }
     
     /**
      * Converts contents of a file into a list of persons.
@@ -110,9 +112,9 @@ public class StorageFile {
     }
     
     public void save(TasksList taskslist){
-        ArrayList<String> linesinlist = null;
+        ArrayList<String> linesinlist = new ArrayList<String>();
         for (Task task : taskslist.getAllTasks()){
-            linesinlist.add(task.getDetails().details);
+            linesinlist.add(task.getDetails().toString());
         }
     }
     /**
