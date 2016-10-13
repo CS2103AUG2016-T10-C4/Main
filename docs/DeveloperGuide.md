@@ -14,7 +14,7 @@
 
 ## Introduction
 
-**KeyboardWarrior** is an intuitive task manager that will help users manage their schedule and to-do tasks. This advance tool is a Java desktop application that has a UI and can accept natural language commands via keyboard.  
+**KeyboardWarrior** is an intuitive task manager that will help users manage their schedule and To-do tasks. This advance tool is a Java desktop application that has a UI and can accept natural language commands via keyboard.  
 
 This guide describes the design and implementation of **KeyboardWarrior**. It will help you understand how **KeyboardWarrior** works and how you can further contribute to its development. We have organised this guide in a top-down manner so that you can understand the big picture before moving on to the more detailed sections.
 
@@ -41,7 +41,7 @@ You will have to:
 <img src="images/Architecture.jpg" width="700"> <br>
 > Figure: The **_Architecture Diagram_** given above explains the high-level design of the App. 
 
-**KeyboardWarrior** is made up of four main components. You can interact with the app primarily through the command line interface (CLI).
+**KeyboardWarrior** is made up of four main components. You can interact with the app primarily through the command line interface (CLI). Actions initiated here by the user are then sent as commands by the UI to the Backend and Data component. The Backend component contains the Logic component which parses the command and then runs the corresponding action. The action done would also go through Storage and into the Collated Files. A response would then by reflected to the user. 
 
 The **`UI`** component consists of JavaFX's FXML files which define the layout that is displayed to you, how you interact with it through CLI and the Java files which control these FXML files. 
 
