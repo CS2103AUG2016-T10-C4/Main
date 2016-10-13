@@ -25,6 +25,13 @@ public class StorageFile {
         allTasks = new ArrayList<Task>();
     }
     
+    /**
+     * @throws InvalidStorageFilePathException if the given file path is invalid
+     */
+    public StorageFile(String filePath) {
+    	initialiseKeyboardWarriorModel(loadLinesFromFile(filePath));
+    }
+    
     public TasksList load(){
         ArrayList<String> fileLines = loadLinesFromFile(storageFilePath);
         for (String line : fileLines){

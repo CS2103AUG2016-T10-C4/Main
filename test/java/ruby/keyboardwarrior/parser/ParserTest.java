@@ -177,22 +177,22 @@ public class ParserTest {
      * Test add person command
      */
     
-    @Test
+    /*@Test
     public void addCommand_invalidArgs() {
         final String[] inputs = {
                 "add",
                 "add ",
                 "add wrong args format",
                 // no phone prefix
-                String.format("add $s $s e/$s a/$s", TaskDetails.EXAMPLE),
+                String.format("add $s $s e/$s a/$s", TaskDetails.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
                 // no email prefix
-                String.format("add $s p/$s $s a/$s", TaskDetails.EXAMPLE),
+                String.format("add $s p/$s $s a/$s", TaskDetails.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
                 // no address prefix
-                String.format("add $s p/$s e/$s $s", TaskDetails.EXAMPLE)
+                String.format("add $s p/$s e/$s $s", TaskDetails.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE)
         };
         final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
-    }
+    }*/
 
     @Test
     public void addCommand_invalidTaskDataInArgs() {
@@ -212,19 +212,15 @@ public class ParserTest {
     }
 
     @Test
-    public void addCommand_validTaskData_parsedCorrectly() {
+    public void addCommand_validTaskData_parsedCorrectly() throws IllegalValueException {
         final Task testTask = generateTestTask();
         final String input = convertTaskToAddCommandString(testTask);
         final AddCommand result = parseAndAssertCommandType(input, AddCommand.class);
         assertEquals(result.getTask(), testTask);
     }
 
-    private static Task generateTestTask() {
-        try {
-            return new Task(new TaskDetails(TaskDetails.EXAMPLE));
-        } catch (IllegalValueException ive) {
-            throw new RuntimeException("test person data should be valid by definition");
-        }
+    private static Task generateTestTask() throws IllegalValueException {
+        return new Task(new TaskDetails(TaskDetails.EXAMPLE));
     }
 
     private static String convertTaskToAddCommandString(Task task) {
