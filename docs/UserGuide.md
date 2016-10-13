@@ -20,7 +20,7 @@
 
 6. Some example commands you can try:
    * **`add`**` Do CS2103 Tutorial` : 
-     Adds a todo task `Do CS2103 Tutorial` KeyboardWarrior.
+     Adds a To-do task `Do CS2103 Tutorial` KeyboardWarrior.
    * **`remove`**` 3` : Deletes the 3rd task shown.
    * **`exit`** : Exits the app. <br>
 7. Refer to the [Features](#features) section below for details of each command.<br>
