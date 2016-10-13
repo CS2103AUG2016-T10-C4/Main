@@ -41,7 +41,7 @@ Format: `help`
 
 > Help is also shown if you enter an incorrect command (e.g. `abcd`).
  
-#### Adding a todo: `add`
+#### Adding a To-do: `add`
 Adds a To-do task to the KeyboardWarrior<br>
 Format: `add TASK`
 
@@ -112,8 +112,8 @@ Example:
 * `complete 3`<br>
    Mark task 3 as complete and delete it from the todo.
 
-#### Remove a task from the calendar : `remove`
-Remove a specified calendar task from the KeyboardWarrior. Action is irreversible.<br>
+#### Delete a task from the calendar : `remove`
+Delete a specified calendar task from the KeyboardWarrior. Action is irreversible.<br>
 Format: `remove INDEX`
 
 > Complete the calendar task at the specified `INDEX`
@@ -121,12 +121,12 @@ Format: `remove INDEX`
   The index **must be a positive integer or a letter followed by a number** 1, D2, T3, ...
 
 Example: 
-* `remove T1`<br>
-   remove todo 1 from the keep in viewfinder.
-* `remove D2`<br>
-   remove deadline 2 from the keep in viewfinder.
-* `remove 3`<br>
-   remove task 3 it from the viewfinder.
+* `delete T1`<br>
+   delete To-do 1 from the keep in viewfinder.
+* `delete D2`<br>
+   delete Deadline 2 from the keep in viewfinder.
+* `delete 3`<br>
+   delete task 3 it from the viewfinder.
 
 #### Exiting the program : `exit`
 Exits the program.<br>
