@@ -42,7 +42,7 @@ Format: `help`
 > Help is also shown if you enter an incorrect command (e.g. `abcd`).
  
 #### Adding a todo: `add`
-Adds a todo task to the KeyboardWarrior<br>
+Adds a To-do task to the KeyboardWarrior<br>
 Format: `add TASK`
 
 Examples: 
@@ -51,7 +51,7 @@ Examples:
 * `add Download Eclipse`
 
 #### Adding a Deadline: `add`
-Adds a deadline to the KeyboardWarrior<br>
+Adds a Deadline to the KeyboardWarrior<br>
 Format: `add TASK by [DATE] [TIME]`
 
 Examples: 
@@ -81,11 +81,13 @@ Shows a calendar in the KeyboardWarrior.<br>
 Format: `show [TIMEFRAME]`
 
 > TIMEFRAME parameter accepts the following:
-> * A specific date written in ddmm format (e.g. 0102. That is, 1st Feb.).
-> * A specific day of the current week spelt in full (e.g. Monday), OR, in abbreviated form (e.g. Mon).
+> * A specific date written in DDMM format (e.g. 0102).
+> * A specific day of the current week spelt in full (e.g. Monday).
+> * A specific day of the current week in abbreviated form (e.g. Mon).
 > * The current week.
 > * The current month.
-> * A specific month of the year spelt in full (e.g. August), OR, in abbreviated form (e.g. Aug). 
+> * A specific month of the year spelt in full (e.g. August).
+> * A specific month of the year in abbreviated form (e.g. Aug). 
 
 Examples: 
 * `show week`
@@ -94,8 +96,8 @@ Examples:
 * `show 0405`
 * `show Feb`
 
-#### Complete a Todo or Deadline : `complete`
-Mark a todo as complete and delete it from the KeyboardWarrior. Action is irreversible.<br>
+#### Complete a To-do or Deadline : `complete`
+Mark a To-do as complete and delete it from the KeyboardWarrior. Action is irreversible.<br>
 Format: `complete INDEX`
 
 > Complete the calendar task at the specified `INDEX`
@@ -104,7 +106,7 @@ Format: `complete INDEX`
 
 Example: 
 * `complete T1`<br>
-   Mark todo 1 as complete and delete it from the keep in viewfinder.
+   Mark To-do 1 as complete and delete it from the keep in viewfinder.
 * `complete D2`<br>
    Mark deadline 2 as complete and delete it from the keep in viewfinder.
 * `complete 3`<br>
