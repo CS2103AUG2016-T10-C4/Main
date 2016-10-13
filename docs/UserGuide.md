@@ -1,9 +1,19 @@
 # User Guide
 
+* [About](#about)
 * [Quick Start](#quick-start)
 * [Features](#features)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
+
+## ABOUT
+
+KeyboardWarrior is a scheduler and task manager application that accepts flexible command formats via the keyboard. Our application allows you to track their tasks and deadlines in a systematic way. 
+
+This application is suitable especially for those who receives tasks that cannot be done at the moment which can then be scheduled for a later date using our application. This product is for those who require referring to tasks to be done, rescheduling and updating tasks, and discarding completed tasks or those that are unable to be done. If you prefer to type on your keyboard over using a mouse, then this product is more suitable for you as it wholly accepts keyboard inputs.
+
+Our product provides a convenient and quick way to manage tasks as everything can be done using just the keyboard. Commands are short and intuitive and require just one or a few to complete an action. You will not have to rely on memory, which can be unreliable, to manage your schedule anymore.
+
 
 ## Quick Start
 
