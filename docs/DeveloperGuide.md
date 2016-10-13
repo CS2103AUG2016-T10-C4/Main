@@ -14,7 +14,7 @@
 
 ## Introduction
 
-**KeyboardWarrior** is an intuitive task manager that will help you manage your schedule and todo tasks. This advance tool is a Java desktop application that has a UI and can accept natural language commands via keyboard.  
+**KeyboardWarrior** is an intuitive task manager that will help users manage their schedule and to-do tasks. This advance tool is a Java desktop application that has a UI and can accept natural language commands via keyboard.  
 
 This guide describes the design and implementation of **KeyboardWarrior**. It will help you understand how **KeyboardWarrior** works and how you can further contribute to its development. We have organised this guide in a top-down manner so that you can understand the big picture before moving on to the more detailed sections.
 
