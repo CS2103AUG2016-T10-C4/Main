@@ -39,14 +39,6 @@ public class LogicTest {
     }
 
     @Test
-    public void constructor() {
-        //Constructor is called in the setup() method which executes before every test, no need to call it here again.
-
-        //Confirm the last shown list is empty
-        assertEquals(Collections.emptyList(), logic.getLastShownList());
-    }
-
-    @Test
     public void execute_invalid() throws Exception {
         String invalidCommand = "       ";
         assertCommandBehavior(invalidCommand,
@@ -154,38 +146,17 @@ public class LogicTest {
 
     }
 
-    @Test
-    public void execute_addDuplicate_notAllowed() throws Exception {
-        // setup expectations
-        TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.adam();
-        TasksList expectedAB = new TasksList();
-        expectedAB.addTask(toBeAdded);
-
-        // setup starting state
-        tasksList.addTask(toBeAdded); // person already in internal address book
-
-        // execute command and verify result
-        assertCommandBehavior(
-                helper.generateAddCommand(toBeAdded),
-                AddCommand.MESSAGE_DUPLICATE_TASK,
-                expectedAB,
-                false,
-                Collections.emptyList());
-
-    }
-
-    @Test
+    /*@Test
     public void execute_view_invalidArgsFormat() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE);
         assertCommandBehavior("view ", expectedMessage);
         assertCommandBehavior("view arg not number", expectedMessage);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void execute_view_invalidIndex() throws Exception {
         assertInvalidIndexBehaviorForCommand("view");
-    }
+    }*/
 
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command
@@ -207,7 +178,7 @@ public class LogicTest {
 
     }
 
-    @Test
+    /*@Test
     public void execute_view_onlyShowsNonPrivate() throws Exception {
 
         TestDataHelper helper = new TestDataHelper();
@@ -230,9 +201,9 @@ public class LogicTest {
                               expectedAB,
                               false,
                               lastShownList);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void execute_tryToViewMissingTask_errorMessage() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         Task p1 = helper.generateTask(1);
@@ -250,21 +221,21 @@ public class LogicTest {
                               expectedAB,
                               false,
                               lastShownList);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void execute_viewAll_invalidArgsFormat() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewAllCommand.MESSAGE_USAGE);
         assertCommandBehavior("viewall ", expectedMessage);
         assertCommandBehavior("viewall arg not number", expectedMessage);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void execute_viewAll_invalidIndex() throws Exception {
         assertInvalidIndexBehaviorForCommand("viewall");
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void execute_viewAll() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         Task p1 = helper.generateTask(1);
@@ -286,9 +257,9 @@ public class LogicTest {
                             expectedAB,
                             false,
                             lastShownList);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void execute_tryToViewAllTaskMissingInTasksList_errorMessage() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         Task p1 = helper.generateTask(1);
@@ -306,7 +277,7 @@ public class LogicTest {
                                 expectedAB,
                                 false,
                                 lastShownList);
-    }
+    }*/
 
     @Test
     public void execute_delete_invalidArgsFormat() throws Exception {

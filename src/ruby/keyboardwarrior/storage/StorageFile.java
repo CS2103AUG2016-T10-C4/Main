@@ -29,7 +29,8 @@ public class StorageFile {
      * @throws InvalidStorageFilePathException if the given file path is invalid
      */
     public StorageFile(String filePath) {
-    	initialiseKeyboardWarriorModel(loadLinesFromFile(filePath));
+    	storageFilePath = filePath;
+    	createFileIfMissing(storageFilePath);
     }
     
     public TasksList load(){
