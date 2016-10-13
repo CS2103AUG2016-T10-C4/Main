@@ -6,7 +6,7 @@
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
-## ABOUT
+## About
 
 KeyboardWarrior is a scheduler and task manager application that accepts flexible command formats via the keyboard. Our application allows you to track their tasks and deadlines in a systematic way. 
 
