@@ -33,8 +33,10 @@
 > * Items in `SQUARE_BRACKETS` are optional.
 > * Items with `...` after them can have multiple instances.
 > * The order of parameters is fixed.
-> * DATE parameter can be written in ddmmyy format, OR, giving the name of the day in full (e.g. Sunday), OR, the name of the day in abbreviated form (e.g. Sun).
-> * TIME parameter must be written in 24hr-clock format.
+> * DATE parameter can be written in DDMMYY format.
+> * DATE parameter can be the name of the day in full (e.g. Sunday).
+> * Date parameter can be the name of the day in abbreviated form (e.g. Sun).
+> * TIME parameter must be written in 24-hour clock format.
 
 #### Viewing help : `help`
 Format: `help`
