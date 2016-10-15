@@ -90,7 +90,7 @@ Examples:
 
 #### Show Calendar : `show`
 Shows a calendar in the KeyboardWarrior.<br>
-Format: `show [TIMEFRAME]`
+Format: `show TIMEFRAME`
 
 > TIMEFRAME parameter accepts the following:
 > * A specific date written in DDMM format (e.g. 0102).
