@@ -5,18 +5,18 @@ import ruby.keyboardwarrior.data.task.Task;
 import ruby.keyboardwarrior.data.task.Task.TaskNotFoundException;
 
 /**
- * Edit a Task identified using it's last displayed index from the address book.
+ * Edit an item identified using it's last displayed index from the task manager.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" 
-            + "Edit the person identified by the index number used in the last task listing.\n\t"
+            + "Edit the item identified by the index number used in the last item listing.\n\t"
             + "Parameters: INDEX\n\t"
             + "Example: " + COMMAND_WORD + " 1 I am going to change to this";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edit Task: %1$s";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edit Item: %1$s";
 
     private Task editTask;
     

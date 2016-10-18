@@ -5,19 +5,19 @@ import ruby.keyboardwarrior.data.task.Task;
 
 
 /**
- * Shows all details of the person identified using the last displayed index.
+ * Shows all details of the item identified using the last displayed index.
  * Private contact details are shown.
  */
 public class ViewAllCommand extends Command {
 
     public static final String COMMAND_WORD = "viewall";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" + "Shows all details of the person "
-            + "identified by the index number in the last shown person listing.\n\t"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" + "Shows all details of the item "
+            + "identified by the index number in the last shown item listing.\n\t"
             + "Parameters: INDEX\n\t"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_PERSON_DETAILS = "Viewing person: %1$s";
+    public static final String MESSAGE_VIEW_PERSON_DETAILS = "Viewing Item: %1$s";
 
 
     public ViewAllCommand(int targetVisibleIndex) {

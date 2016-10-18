@@ -5,7 +5,7 @@ import ruby.keyboardwarrior.data.task.Task;
 
 
 /**
- * Shows details of the person identified using the last displayed index.
+ * Shows details of the item identified using the last displayed index.
  * Private contact details are not shown.
  */
 public class ViewCommand extends Command {
@@ -13,11 +13,11 @@ public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" + "Shows the non-private details of the person "
-            + "identified by the index number in the last shown person listing.\n\t"
+            + "identified by the index number in the last shown item listing.\n\t"
             + "Parameters: INDEX\n\t"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_TASK_DETAILS = "Viewing task: %1$s";
+    public static final String MESSAGE_VIEW_TASK_DETAILS = "Viewing Item: %1$s";
 
 
     public ViewCommand(int targetVisibleIndex) {

@@ -5,19 +5,19 @@ import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.data.task.*;
 
 /**
- * Adds a person to the address book.
+ * Adds a task to Keyboard Warrior.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" + "Adds a task to the keyboard warrior. "
-            + "Only supports task details, can be enter after the command word seperated by a space. \n\t"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" + "Adds a task to the Keyboard Warrior. "
+            + "Only supports task details which can be enter after the command word seperated by a space. \n\t"
             + "Example: " + COMMAND_WORD
             + " do something";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the keyboard warrior";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Keyboard Warrior";
 
     private final Task toAdd;
 

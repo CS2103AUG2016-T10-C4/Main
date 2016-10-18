@@ -13,7 +13,7 @@ public class CommandResult {
     /** The feedback message to be shown to the user. Contains a description of the execution result */
     public final String feedbackToUser;
 
-    /** The list of persons that was produced by the command */
+    /** The list of items that was produced by the command */
     private final List<Task> relevantTasks;
 
     public CommandResult(String feedbackToUser) {
@@ -27,7 +27,7 @@ public class CommandResult {
     }
 
     /**
-     * Returns list of persons relevant to the command command result, if any.
+     * Returns list of items relevant to the command command result, if any.
      */
     public Optional<List<Task>> getRelevantTasks() {
         return Optional.ofNullable(relevantTasks);

@@ -3,7 +3,7 @@ package ruby.keyboardwarrior.data.task;
 import java.util.Objects;
 
 /**
- * Represents a deadline in the Keyboard Warrior.
+ * Represents a Deadline in the Keyboard Warrior.
  * Guarantees: field values are validated.
  */
 public class DeadlineTask {
