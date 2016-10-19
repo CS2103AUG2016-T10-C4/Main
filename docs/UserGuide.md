@@ -1,11 +1,11 @@
 # User Guide
 
-* [About Our Product](#about-our-product)
-* [Getting Started](#getting-started)
-* [Features](#features)
-* [Command Summary](#command-summary)
-* [FAQ](#faq)
-* [Glossary](#glossary)
+* [About Our Product](#1-about-our-product)
+* [Getting Started](#2-getting-started)
+* [Features](#3-features)
+* [Command Summary](#4-command-summary)
+* [Frequently Asked Questions (FAQ)](#5-frequently-asked-questions-faq)
+* [Glossary](#6-glossary)
 
 
 ## 1. About Our Product
@@ -43,14 +43,14 @@ Some example commands you can try:
    * **`delete`** `1` : Deletes the 1st task shown.
    * **`exit`** : Exits the app.
    
-Refer to the [Features](#features) section below for details of each command.<br>
-
+Refer to the [Features](#3-features) section below for details of each command.
 
 ## 3. Features
 
 To understand the following command formats, you can refer to these rules below:
 
-> 1) Words that are **bolded** are commands.
+<br>
+> 1) Words that are within ** ** are commands.
 > 
 >     E.g. Format for adding Deadline: **add** TASK by DATE [TIME]
 > 
@@ -82,20 +82,21 @@ To understand the following command formats, you can refer to these rules below:
 > 
 > 6) The order of the format must be strictly adhered to.
 
-
-
+<br>
 #### 3.1.1. Viewing help 
 
 Format: `**help**`
 
 This will load the help window which will show all the available commands that can be used in **KeyboardWarrior**. It will help you learn about the commands if you are a new user or you can refer to a command’s exact function and format when needed.
 
+<br>
 Example:
 
-`help`
+`**help**`
 
 > Displays a pop-up menu that gives the command summary. 
 
+<br>
 #### 3.1.2. Add a To-do task
 
 Format: `**add** TASK`
@@ -104,20 +105,21 @@ This adds a To-do to the schedule in **KeyboardWarrior**. A To-do is a kind of t
 
 It is useful for things that you might want to do in the near future but do not have a strict deadline for completion, e.g. reading a book for leisure.
 
+<br>
 > Parameter usage:
 > 
 > **TASK**
 > 
 > The TASK parameter should be the name or a short description of the To-do to be created.	
 
-
+<br>
 Examples: 
 
-`add buy chocolate`
+`**add** buy chocolate milk`
 
 > Creates a new To-do with the description “Buy Chocolate”.
 
-
+<br>
 #### 3.1.3. Add a Deadline task
 
 Format: `**add** TASK by DATE [TIME]`
@@ -126,6 +128,7 @@ This adds a Deadline to the schedule in **KeyboardWarrior**. A Deadline is a kin
 
 This is suitable for most work-related tasks as they are usually scheduled within a certain timeframe to meet clients’ demands, e.g. proposal submissions. 
 
+<br> 
 > Parameter usage:
 > 
 > **TASK**
@@ -194,7 +197,7 @@ This is suitable for most work-related tasks as they are usually scheduled withi
 > 
 > >     E.g. 2030 represents the time 8:30 p.m.
 
-
+<br>
 Examples: 
 
 `**add** complete keynote presentation by Wednesday`
@@ -205,7 +208,7 @@ Examples:
 
 > Creates a new Deadline with the description “Submit Invoice” and a deadline of the coming Wednesday, 5:00 p.m.
 
-
+<br>
 #### 3.1.4. Add Event
 
 Format: `**add** DATE [STARTTIME [to ENDTIME]] EVENT [@VENUE]`
@@ -216,6 +219,7 @@ This adds an Event to the schedule in **KeyboardWarrior**. An Event is an activi
 
 This is suitable for things you might have to attend at a particular time with specific end times, e.g. meetings, or without, e.g. birthday parties. It can also be used to record down an activity that you have not decided a start time for.
 
+<br>
 > Parameter usage:
 > 
 > **STARTTIME** and **ENDTIME**
@@ -243,13 +247,14 @@ This is suitable for things you might have to attend at a particular time with s
 > 
 > The VENUE parameter should be the name of the venue of the Event. It has to be preceded by the @ symbol.
 
-
+<br>
 Examples: 
 
 `**add** Fri 1410 to 1600 Group Meeting @I3 MR9`
 
 > Creates a new Event with the time period as Friday, 2:10 p.m. to 4:00 p.m., the description as “Group Meeting” and the venue as “I3 MR9”.
 
+<br>
 #### 3.1.5. Find item
 
 Format: `**find** (KEYWORD | @VENUE`
@@ -258,6 +263,7 @@ This allows you to find all items in **KeyboardWarrior** that contains the phras
 
 It is important to note that the `KEYWORD` will also be searched in the venue details of the items. In addition, a combined search is also allowed, hence both parameters can be entered together, where the result returned would have the keyword in the item’s description and the `VENUE` parameter in the item’s venue. 
 
+<br>
 > Parameter usage:
 > 
 > **KEYWORD**
@@ -268,7 +274,7 @@ It is important to note that the `KEYWORD` will also be searched in the venue de
 > 
 > The VENUE parameter indicates the word to be searched only in the venues of items on **KeyboardWarrior**. It has to be preceded by the @ symbol.
 
-
+<br>
 Examples: 
 
 `**find** basketball`
@@ -279,16 +285,17 @@ Examples:
 
 > Displays all items that has both the keyword “basketball” found in its description and its venue set as “UTSH 1”.
 
-
+<br>
 #### 3.1.6. Show Calendar
 
 Format: `**show** PERIOD [to ENDDATE]`
 
 This displays a calendar of the items within the timeframe entered. This is useful for seeing how busy you might be during a certain period which would allow to better plan your time.
 
+<br>
 > Parameter Usage:
 > 
-> `**PERIOD**
+> **PERIOD**
 > 
 > The PERIOD parameter represents the time period of the calendar to be displayed.
 > 
@@ -352,6 +359,7 @@ This displays a calendar of the items within the timeframe entered. This is usef
 > 
 > If PERIOD is the current day, week or month, the calendar will start from the current day.
 
+<br>
 Examples:
 
 `**show** week`
@@ -362,7 +370,7 @@ Examples:
 
 > This will show you all your events on December 25 of the current year.
 
-
+<br>
 #### 3.1.7. Complete a To-do or Deadline 
 
 Format: `**complete** INDEX...`
@@ -372,7 +380,7 @@ This marks a To-do or Deadline of the specified index as completed and in so doi
 A list of items must be displayed before using this command.
 It is possible to mark multiple tasks as completed in a single command by entering more than one `INDEX`.
 
-
+<br>
 > Parameter Usage:
 > 
 > **INDEX**
@@ -382,7 +390,7 @@ It is possible to mark multiple tasks as completed in a single command by enteri
 > The INDEX must be a letter followed by an integer, <br>
 > E.g. D2, T2
 
-
+<br>
 Examples: 
 
 `**complete** D1`
@@ -393,7 +401,7 @@ Examples:
 
 > Mark To-do 1 and Dealine 2 as complete and delete it from the keep in viewfinder.
 
-
+<br>
 #### 3.1.8. Delete Items from Calendar
 
 Format: `**delete** INDEX`
@@ -403,6 +411,7 @@ This command will delete the item of the specified index from **KeyboardWarrior*
 A list of items must be displayed before using this command.
 It is possible to delete multiple items in a single command by entering more than one `INDEX`.
 
+<br>
 > Parameter Usage:
 > 
 > **INDEX**
@@ -412,18 +421,20 @@ It is possible to delete multiple items in a single command by entering more tha
 > The INDEX must be a letter followed by an integer or just an integer, <br>
 > E.g. D2, 3, T2
 
+<br>
 Examples: 
 
 `**delete** 4 5` 
 
 > The events with index number 4 and 5 are removed from the list. 
 
+<br>
 #### 3.1.9. Exiting the program 
 Format: `**exit**`  
 
 This command exits the program, all your events and task inside your calendar will be saved.
 
-
+<br>
 ### 3.2 Saving the data 
 Calendar data in **KeyboardWarrior** are saved in the hard disk automatically after any command that changes the data.
 
@@ -444,7 +455,7 @@ Show | `**show ** PERIOD [to ENDDATE]`
 Exit | `**exit**`
 
 
-## 5. Frequently Asked Questions FAQ
+## 5. Frequently Asked Questions (FAQ)
 
 **Q**: How do I transfer my data to another Computer?
 
