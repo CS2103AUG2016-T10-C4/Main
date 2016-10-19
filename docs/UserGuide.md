@@ -1,173 +1,475 @@
 # User Guide
 
-* [About](#about)
-* [Quick Start](#quick-start)
+* [About Our Product](#about-our-product)
+* [Getting Started](#getting-started)
 * [Features](#features)
-* [FAQ](#faq)
 * [Command Summary](#command-summary)
+* [FAQ](#faq)
+* [Glossary](#glossary)
 
-## About
+
+## 1. About Our Product
 
 KeyboardWarrior is a scheduler and task manager application that accepts short and intuitive commands to provide a quick and convenient way to manage tasks using only the keyboard.
 
 It allows you to schedule, reschedule, update, and delete tasks with just a single command. You will no longer have to rely on your fallible memory to manage your schedule.
 
-## Quick Start
+## 2. Getting Started
 
-1. Ensure you have Java version `1.8.0_60` or later installed in your Computer.<br>
+### 2.1. Before Using the Application
+
+1. Ensure you have Java version `1.8.0_60` or later installed in your Computer.
    > Having any Java 8 version is not enough. <br>
    This app will not work with earlier versions of Java 8.
    
-2. Download the latest `KeyboardWarrior.jar` from the [releases](../../../releases) tab. <br>
-3. Copy the file to the folder you want to use as the home folder for your KeyboardWarrior. <br>
-4. Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
+2. Download the latest `KeyboardWarrior.jar` from the [releases](../../../releases) tab.
+
+3. Copy the file to the folder you want to use as the home folder for your **KeyboardWarrior**.
+
+### 2.2. Launching the Application
+
+Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
    <img src='images/GUI 19th Oct.jpg' width="600" height="350"> <br><br>
-5. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br> 
-6. Some example commands you can try:
+   
+### 2.3. Entering Commands
+
+Type the command in the command box and press <kbd>Enter</kbd> to execute it.
+
+Some example commands you can try:
+
    * **`help`** : Opens the help window.
    * **`add`**` Do CS2103 Tutorial` : 
      Adds a To-do task `Do CS2103 Tutorial` KeyboardWarrior.
-   * **`delete`**` 1` : Deletes the 1st task shown.
-   * **`exit`** : Exits the app. <br>
-7. Refer to the [Features](#features) section below for details of each command.<br>
+   * **`delete`** `1` : Deletes the 1st task shown.
+   * **`exit`** : Exits the app.
+   
+Refer to the [Features](#features) section below for details of each command.<br>
 
 
-## Features
+## 3. Features
 
-> **Command Format**
-> * Words that are `**bolded**` are commands.
-> * Words in `UPPER_CASE` are the parameters.
-> * Items in `[Square Brackets]` are optional.
-> * Items with `...` after them can have multiple instances.
-> * Items within `(Parentheses)` with `|` between them need to have at least one of them used as the parameter.
-> * The order of the format must be strictly adhered to.
+To understand the following command formats, you can refer to these rules below:
+
+> 1) Words that are **bolded** are commands.
+> 
+>     E.g. Format for adding Deadline: **add** TASK by DATE [TIME]
+> 
+> The word `**add**` here is the command that determines the action to be done.
+> 
+> 2) Words in UPPERCASE are the parameters.
+>
+>     E.g. Format for adding Deadline: **add** TASK by DATE [TIME]
+> 
+> The words `TASK`, `DATE` and `TIME` here are the parameters that represents the details of the Deadline item to be created. They should be replaced by what you want the details to be. For example, `DATE` should be replaced by a specific date of the Deadline.  
+> 
+> 3) Items in [square brackets] are optional.
+> 
+>     E.g. Format for adding Deadline: **add** TASK by DATE [TIME]
+> 
+> The `TIME` parameter in this case is optional. The command will still be valid even if no specific time for the `TIME` parameter is indicated.
+> 
+> 4) Items with ... after them can have multiple instances.
+> 
+>     E.g. Format for marking completed items: **complete** INDEX…
+> 			
+> The `...` means that the command can accept more than one `INDEX` parameter after the command word `complete`. For example, a valid command would be “complete INDEX1 INDEX2 INDEX3”, assuming INDEX1, INDEX2 and INDEX3 follow the proper conventions for `INDEX` parameters.
+> 
+> 5) Items within (parentheses) with `|` between them need to have at least one of them used as the parameter.
+> 
+>     E.g. Format for finding items: **find** (KEYWORD | @VENUE)
+> 
+> There needs to be either an input as the `KEYWORD` parameter or the `VENUE` parameter or two inputs for both. Valid commands would be “find KEYWORD”, “find @VENUE” or “find KEYWORD @VENUE”.
+> 
+> 6) The order of the format must be strictly adhered to.
 
 
-#### Viewing help 
-Format: `help`
 
-> Help is also shown if you enter an incorrect command (e.g. `abcd`).
- 
-#### Add a To-do task
-Adds a To-do task to the KeyboardWarrior<br>
-Format: `add TASK`
+#### 3.1.1. Viewing help 
+
+Format: `**help**`
+
+This will load the help window which will show all the available commands that can be used in **KeyboardWarrior**. It will help you learn about the commands if you are a new user or you can refer to a command’s exact function and format when needed.
+
+Example:
+
+`help`
+
+> Displays a pop-up menu that gives the command summary. 
+
+#### 3.1.2. Add a To-do task
+
+Format: `**add** TASK`
+
+This adds a To-do to the schedule in **KeyboardWarrior**. A To-do is a kind of task that needs to be done by no specific deadline. It only contains a description of the task. 
+
+It is useful for things that you might want to do in the near future but do not have a strict deadline for completion, e.g. reading a book for leisure.
+
+> Parameter usage:
+> 
+> **TASK**
+> 
+> The TASK parameter should be the name or a short description of the To-do to be created.	
+
 
 Examples: 
-* `add Buy Chocolate`
-* `add Download Github`
-* `add Download Eclipse`
 
-#### Add a Deadline task
-Adds a Deadline to the KeyboardWarrior<br>
-Format: `add TASK by DATE [TIME]`
+`add buy chocolate`
+
+> Creates a new To-do with the description “Buy Chocolate”.
+
+
+#### 3.1.3. Add a Deadline task
+
+Format: `**add** TASK by DATE [TIME]`
+
+This adds a Deadline to the schedule in **KeyboardWarrior**. A Deadline is a kind of task that has to be completed by a specific deadline. Hence the date of the deadline should be specified in the command in addition to its description. A specific time here is optional.
+
+This is suitable for most work-related tasks as they are usually scheduled within a certain timeframe to meet clients’ demands, e.g. proposal submissions. 
+
+> Parameter usage:
+> 
+> **TASK**
+> 
+> The TASK parameter should be the name or a short description of the Deadline to be created.
+>  
+> **DATE**
+> 
+> The DATE parameter represents the specific day of the deadline.
+> 
+> Acceptable formats:
+> 
+> > 1) DDMMYY format.
+> > 
+>     E.g. 160417 represents the date April 16, 2017.
+> 
+> > 2) DDMM format.
+> > 
+> The year would be automatically set as the current year.
+> 
+> >     E.g. 0302 represents the date February 03 of the current year. 
+> 
+> > 3) Today.
+> >
+> The deadline would be set as the current day.
+> 
+> >		E.g. today represents the current day.
+> 
+> > 4) Tomorrow.
+> >
+> The deadline would be set as the day after the current day.
+> 
+> >The following forms are accepted: tomorrow, tmr and tmrw.
+> 
+> >	    E.g. tmr represents the day after the current day.
+> 
+> > 5) A specific day spelt out in full.
+> > 
+> The resulting deadline would be the coming indicated day.
+> 
+> >If the day indicated is the same as the current day, the resulting deadline would be the same day next week.
+> >
+>     E.g. Sunday represents the coming Sunday.
+> 
+> > 6) A specific day in its accepted abbreviated form as shown below
+> > 
+		Sunday:		Sun
+	 	Monday:	    Mon
+	 	Tuesday:	Tu, Tue or Tues
+	 	Wednesday:	Wed
+	 	Thursday:	Th, Thu, Thur or Thurs
+	 	Friday:		Fri
+	 	Saturday:	Sat
+> 	
+>> 	The resulting deadline would be the coming indicated day.
+>> 
+>     E.g. Thur represents the coming Thursday
+> 
+> **TIME**
+> 
+> The TIME parameter represents the specific time of deadline.
+> 
+> Acceptable format:
+> > 
+> 24-hour clock format
+> 
+> >     E.g. 2030 represents the time 8:30 p.m.
+
 
 Examples: 
-* `add Do CS2103 Tutorial by Thursday`
-* `add Submit Lab report by 020314 2030`
 
-> Acceptable `TIME` parameter format:
-> * 24-hour clock format
-> Acceptable `DATE` parameter format:
-> * DDMMYY
-> * DDMM
-> * Today
-> * Tomorrow
-> * A specific day spelt in full
-> * A specific day in abbreviated form
+`**add** complete keynote presentation by Wednesday`
 
-#### Add Event
-Adds a specific task to the KeyboardWarrior that will be able to show any combinations of the following parameters:<br>
+> Creates a new Deadline with the description “Complete Keynote Presentation” and a deadline of the coming Tuesday.
 
-Format: `add DATE [STARTTIME [to ENDTIME]] EVENT [@VENUE]`
+`**add** submit invoice by 171016 1700`
+
+> Creates a new Deadline with the description “Submit Invoice” and a deadline of the coming Wednesday, 5:00 p.m.
+
+
+#### 3.1.4. Add Event
+
+Format: `**add** DATE [STARTTIME [to ENDTIME]] EVENT [@VENUE]`
+
+This adds an Event to the schedule in **KeyboardWarrior**. An Event is an activity that occurs at a specific date or time.  You have the option to indicate either a time period which includes a starting and ending time or just a start time of the event. If there is no specific start time, just the day it occurs needs to be specified. The venue is also an optional parameter.
+
+(Note: The start time needs to be indicated if an end time is indicated.) 
+
+This is suitable for things you might have to attend at a particular time with specific end times, e.g. meetings, or without, e.g. birthday parties. It can also be used to record down an activity that you have not decided a start time for.
+
+> Parameter usage:
+> 
+> **STARTTIME** and **ENDTIME**
+> 
+> The STARTTIME parameter represents the start time of the Event.
+> 
+> 
+> The ENDTIME parameter represents the end time of the Event. It has to be preceded by 'to'.
+> 
+> Both the STARTTIME and ENDTIME parameters follows the same format as the TIME parameter specified in 3.1.3. Add Deadline Task.
+> 
+> **DATE**
+> 
+> The DATE parameter represents the day the Event is on.
+> 
+> The DATE parameter follows the same format as the DATE parameter specified in 3.1.3. Add Deadline Task.
+> 
+> **EVENT**
+> 
+> The EVENT parameter should be the name or a short description of the Event to be created.
+> 
+> **VENUE**
+> 
+> The VENUE parameter represents where the Event will be held.
+> 
+> The VENUE parameter should be the name of the venue of the Event. It has to be preceded by the @ symbol.
+
 
 Examples: 
-* `add 010116 1810 Go to the mall`
-* `add Sunday 0210 to 0300 Group Meeting @I3 MR9`
-* `add Fri 1410 to 1600 Basketball Tryouts @13 Computing Dr 117417`
 
-#### Find item
-Find all items in the **KeyboardWarrior** that contains the phrase or venue indicated<br>
-Format: `find (KEYWORD | @VENUE`
+`**add** Fri 1410 to 1600 Group Meeting @I3 MR9`
+
+> Creates a new Event with the time period as Friday, 2:10 p.m. to 4:00 p.m., the description as “Group Meeting” and the venue as “I3 MR9”.
+
+#### 3.1.5. Find item
+
+Format: `**find** (KEYWORD | @VENUE`
+
+This allows you to find all items in **KeyboardWarrior** that contains the phrase or venue that is indicated.
+
+It is important to note that the `KEYWORD` will also be searched in the venue details of the items. In addition, a combined search is also allowed, hence both parameters can be entered together, where the result returned would have the keyword in the item’s description and the `VENUE` parameter in the item’s venue. 
+
+> Parameter usage:
+> 
+> **KEYWORD**
+> 
+> The KEYWORD parameter indicates the word to be searched for in the descriptions and venues of items on **KeyboardWarrior**.
+> 
+> **VENUE**
+> 
+> The VENUE parameter indicates the word to be searched only in the venues of items on **KeyboardWarrior**. It has to be preceded by the @ symbol.
+
 
 Examples: 
-* `find baskebtall`
-* `find @I3`
 
-#### Show Calendar
-This displays a calendar of the items within the timeframe entered.<br>
-Format: `show PERIOD [to ENDDATE]`
+`**find** basketball`
 
-> Acceptable `PERIOD` parameter format:
-> * Follows the same format as the `DATE` parameter specified earlier, as well as the following
-> * **week**
-> * **month**
-> * A specific month spelt out in full
-> * A specific month in abbreviated form
-> * MONTH YYYY 
+> Displays all items with the keyword "basketball" found in the description. 
+
+`**find** basketball @UTSH1`
+
+> Displays all items that has both the keyword “basketball” found in its description and its venue set as “UTSH 1”.
+
+
+#### 3.1.6. Show Calendar
+
+Format: `**show** PERIOD [to ENDDATE]`
+
+This displays a calendar of the items within the timeframe entered. This is useful for seeing how busy you might be during a certain period which would allow to better plan your time.
+
+> Parameter Usage:
+> 
+> `**PERIOD**
+> 
+> The PERIOD parameter represents the time period of the calendar to be displayed.
+> 
+> Formats for displaying all items within a particular day: <br>
+> >The PERIOD parameter follows the same format as the DATE parameter specified in 3.1.3. Add Deadline Task.
+> 
+> Formats for displaying all items within a particular week: <br>
+> >The current week. 
+> >
+>     E.g. week represents the current week from the current day to the same day next week.
+> 
+> Formats for displaying all items within a particular month: <br>
+> >1) The current month.
+> >
+>     E.g. month represents the current month from the current day to the end of the month.
+> 
+> > 2) A specific month spelt out in full
+
+> >  The resulting period would be the coming indicated month. <br>
+>  If the indicated month is the current month, the resulting period would be the same month next year. 
+>>
+>     E.g. August represents the coming August.
+> 
+> > 3) A specific month in its accepted abbreviated form as shown below
+> > 
+> 				January:	Jan
+> 				February:	Feb
+> 				March:		Mar
+> 				April:		Apr
+> 				May:		-
+> 				June:		Jun
+> 				July:		Jul
+> 				August:		Aug
+> 				September:	Sep or Sept
+> 				October:	Oct
+> 				November:	Nov
+> 				December:	Dec
+> 
+> >The resulting period would be the coming indicated month.
+> >
+>     E.g. Sept represents the coming September.
+> 
+> > 4) MONTH YYYY format.
+> > 
+> The resulting period would be the indicated month of the specified year.
+> Either the full form or the abbreviated form can be used for the month.
+> 
+> >  	E.g. Sept 2017 represents September of 2017
+
+> **ENDDATE**
+> 
+> The ENDDATE parameter represents the ending period of the calendar to be displayed. It must be preceded by 'to'.
+> 
+> If ENDDATE is a specific day, the calendar will be shown until that day inclusive.
+> 
+> If ENDDATE is a specific month, the calendar will be shown until the end of that month. 
+> 
+> If PERIOD is a specific day, the calendar will be shown from that day inclusive.
+> 
+> If PERIOD is a specific month, the calendar will be shown from the start of that month.
+> 
+> If PERIOD is the current day, week or month, the calendar will start from the current day.
+
+Examples:
+
+`**show** week`
+
+> This will show all your events within the current week.
+
+`**show** 2512`
+
+> This will show you all your events on December 25 of the current year.
+
+
+#### 3.1.7. Complete a To-do or Deadline 
+
+Format: `**complete** INDEX...`
+
+This marks a To-do or Deadline of the specified index as completed and in so doing, deletes the item from **KeyboardWarrior**. This action is irreversible. This should be used for tasks that have been completed and do not need to be dealt with nor remembered anymore. You can complete To-dos and Deadlines but not Events.
+
+A list of items must be displayed before using this command.
+It is possible to mark multiple tasks as completed in a single command by entering more than one `INDEX`.
+
+
+> Parameter Usage:
+> 
+> **INDEX**
+> 
+> The INDEX refers to the index number corresponding to the listed item shown on the calendar.
+>
+> The INDEX must be a letter followed by an integer, <br>
+> E.g. D2, T2
+
 
 Examples: 
-* `show week`
-* `show month`
-* `show Saturday`
-* `show 0405`
-* `show Feb`
 
-#### Complete a To-do or Deadline 
-Mark a To-do as complete and delete it from the KeyboardWarrior. Action is irreversible.<br>
-Format: `complete INDEX...`
+`**complete** D1`
 
-> Complete the calendar task at the specified `INDEX`
-  The index refers to the index number shown on the calendar<br>
-  The index **must be a positive integer or a letter followed by a number** 1, D2, T3, ...
+> Mark Deadline 1 as complete and delete it from the keep in viewfinder.
+   
+`**complete** T1 D2`
 
-Example: 
-* `complete T1`<br>
-   Mark To-do 1 as complete and delete it from the keep in viewfinder.
-* `complete D2`<br>
-   Mark deadline 2 as complete and delete it from the keep in viewfinder.
-* `complete 3`<br>
-   Mark task 3 as complete and delete it from the todo.
+> Mark To-do 1 and Dealine 2 as complete and delete it from the keep in viewfinder.
 
-#### Delete Items from Calenda
-Delete a specified calendar task from the KeyboardWarrior. Action is irreversible.<br>
-Format: `remove INDEX`
 
-> Complete the calendar task at the specified `INDEX`
-  The index refers to the index number shown on the calendar<br>
-  The index **must be a positive integer or a letter followed by a number** 1, D2, T3, ...
+#### 3.1.8. Delete Items from Calendar
 
-Example: 
-* `delete T1`<br>
-   delete To-do 1 from the keep in viewfinder.
-* `delete D2`<br>
-   delete Deadline 2 from the keep in viewfinder.
-* `delete 3`<br>
-   delete task 3 it from the viewfinder.
+Format: `**delete** INDEX`
 
-#### Exiting the program : `exit`
-Exits the program.<br>
-Format: `exit`  
+This command will delete the item of the specified index from **KeyboardWarrior**. This action is irreversible. This may be used for tasks that were mistakenly added, tasks that no longer need to be completed or Events that have passed. You can delete To-dos, Deadlines and Events.
 
-#### Saving the data 
-Calendar data in KeyboardWarrior are saved in the hard disk automatically after any command that changes the data.<br>
+A list of items must be displayed before using this command.
+It is possible to delete multiple items in a single command by entering more than one `INDEX`.
+
+> Parameter Usage:
+> 
+> **INDEX**
+> 
+> The INDEX refers to the index number corresponding to the listed item shown on the calendar.
+>
+> The INDEX must be a letter followed by an integer or just an integer, <br>
+> E.g. D2, 3, T2
+
+Examples: 
+
+`**delete** 4 5` 
+
+> The events with index number 4 and 5 are removed from the list. 
+
+#### 3.1.9. Exiting the program 
+Format: `**exit**`  
+
+This command exits the program, all your events and task inside your calendar will be saved.
+
+
+### 3.2 Saving the data 
+Calendar data in **KeyboardWarrior** are saved in the hard disk automatically after any command that changes the data.
+
 There is no need to save manually.
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with 
-       the file that contains the data of your previous KeyboardWarrior folder.
        
-## Command Summary
+## 4. Command Summary
 
 Command | Format  
 -------- | :-------- 
-Help | `help`
-(Todo)| `add TASK`
-(Deadline)| `add TASK by [DATE] [TIME]`
-Add | `add DATE TIME to [TIME] TASK @ [VENUE]`
-Complete | `complete INDEX`
-Remove | `remove INDEX`
-Find | `find [DATE] [TIME] [KEYWORD] @[VENUE]`
-Show | `show [TIMEFRAME]`
-Exit | `exit`
+Help | `**help**`
+Add (Todo)| `**add** TASK`
+Add (Deadline)| `**add** TASK by DATE [TIME]`
+Add (Event) | `**add** DATE [TIME to [TIME]] EVENT [@VENUE]`
+Complete | `**complete** INDEX...`
+Delete | `**delete** INDEX...`
+Find | `**find** (KEYWORD | @VENUE)`
+Show | `**show ** PERIOD [to ENDDATE]`
+Exit | `**exit**`
+
+
+## 5. Frequently Asked Questions FAQ
+
+**Q**: How do I transfer my data to another Computer?
+
+**A**: Install the app in the other computer and overwrite the empty data file it creates with 
+       the file that contains the data of your previous **KeyboardWarrior** folder.
+       
+## 6. Glossary
+
+**GUI (Graphical User Interface):** <br>
+> The visual elements that allow a user to interact with **KeyboardWarrior** on their computer.
+
+**Parameter:** <br>
+> A characteristic detail of the task that is input by the user.
+
+**Overwrite:** <br>
+> Replacing old data with new data.
+
+**Calendar:** <br>
+> A list of items by date within a specified timeframe.
+
+**To-do:** <br>
+> A task that requires completion by no specific deadline.
+
+**Deadline:** <br>
+> A task that requires complete by a specific deadline.
+
+**Event:** <br>
+> A significant happening or activity that occurs within a specific timeframe.
