@@ -2,93 +2,104 @@
 
 ## Table of Contents
 
-* [Introduction] (#introduction)
-* [Setting Up](#setting-up)
-* [Architecture](#architecture)
-* [UI Component](#ui-component)
-* [Backend Component](#backend-component)
-* [Data Component](#data-component)
-* [Implementation](#implementation)
-* [Testing](#testing)
-* [Future Development](#future-development)
-* [Appendix A: User Stories](#appendix-a--user-stories)
-* [Appendix B: Use Cases](#appendix-b--use-cases)
-* [Appendix C: Non Functional Requirements](#appendix-c--non-functional-requirements)
-* [Appendix D: Glossary](#appendix-d--glossary)
+* [1. About] (#1-about)
+* [2. Setting Up](#2-setting-up)
+* [3. Architecture](#3-architecture)
+* [4. UI Component](#4-ui-component)
+* [5. Backend Component](#5-backend-component)
+* [6. Data Component](#6-data-component)
+* [7. Storage Component](#7-storage-component)
+* [8. Testing](#8-testing)
+* [9. Future Development](#9-future-development)
+* [Appendix A: User Stories](#appendix-a-user-stories)
+* [Appendix B: Use Cases](#appendix-b-use-cases)
+* [Appendix C: Non Functional Requirements](#appendix-c-non-functional-requirements)
+* [Appendix D: Glossary](#appendix-d-glossary)
 * [Appendix E : Product Survey](#appendix-e-product-survey)
 
-## Introduction
+## 1. About
 
-**KeyboardWarrior** is an intuitive task manager that will help users manage their schedule and To-do tasks. This advance tool is a Java desktop application that has a UI and can accept natural language commands via keyboard.  
+**KeyboardWarrior** is a scheduler and task manager application that accepts short and intuitive commands to provide a quick and convenient way to manage tasks using only the keyboard.
+
+Our target audience are users who receives tasks that are to be scheduled at a later date. It allows the user to schedule, reschedule, update, and delete tasks with just a single command.
 
 This guide describes the design and implementation of **KeyboardWarrior**. It will help you understand how **KeyboardWarrior** works and how you can further contribute to its development. We have organised this guide in a top-down manner so that you can understand the big picture before moving on to the more detailed sections.
 
-## Setting up
 
-#### Prerequisites
+## 2. Setting up
 
-You will have to:
+### 2.1. Before Using the Application
 
-1. Have **JDK `1.8.0_60`**  or later. <br>
+1. Ensure you have Java version `1.8.0_60` or later installed in your Computer.
+   > Having any Java 8 version is not enough. <br>
+   This app will not work with earlier versions of Java 8.
+   
+2. Download the latest `KeyboardWarrior.jar` from the [releases](../../../releases) tab.
 
-    > Having any Java 8 version is not enough. <br>
-    This app will not work with earlier versions of Java 8.
-    
-2. Have the latest version of **KeyboardWarrior** downloaded. <br>
+3. Copy the file to the folder you want to use as the home folder for your **KeyboardWarrior**.
 
-#### Running KeyboardWarrior
+### 2.2. Launching the Application
 
-1. Copy the downloaded files to the folder you want to use as the Home folder for your **KeyboardWarrior**.
-2. Double-click the file to start the app.
+Double-click the file to start the app.
 
-## Architecture
+## 3. Architecture
 
 <img src="images/Architecture.jpg" width="700"> <br>
-> Figure: The **_Architecture Diagram_** given above explains the high-level design of the App. 
+> Figure 1: The **_Architecture Diagram_** given above explains the high-level design of the App. 
 
-**KeyboardWarrior** is made up of four main components. You can interact with the app primarily through the command line interface (CLI). Actions initiated here by the user are then sent as commands by the UI to the Backend and Data component. The Backend component contains the Logic component which parses the command and then runs the corresponding action. The action done would also go through Storage and into the Collated Files. A response would then by reflected to the user. 
+**KeyboardWarrior** is made up of four main components:
 
-The **`UI`** component consists of JavaFX's FXML files which define the layout that is displayed to you, how you interact with it through CLI and the Java files which control these FXML files. 
+1. The **UI** component consists of JavaFX's FXML files which defines the layout that is displayed, and how you can interact with it through the CLI and the Java files that control these FXML files.
+2. The **Backend** component contains all the logic needed to parse your commands and stores the collated data into individual files. etc.
+3. The **Data** component represents the objects involved in the collation of source files such as the authors of the project and code snippets that were written.
+4. The **Test** Driver component tests the UI, Backend and Data components. It utilises JUnit for unit testing.
 
-The **`Backend`** component contains all the logic needed to parse your commands, store collated data into individual files, etc.
+The user can interact with **KeyboardWarrior** through the Command Line Interface (CLI). The actions initiated by the user are sent as commands by the UI to the Backend and Data component. The Backend component contains the Logic component which parses the command and then runs the corresponding action. The action executed would also go through Storage and into the Collated Files. A response would then be reflected to the user.
 
-The **`Data`** component represents objects involved in the collation of source files such as the authors of the project and code snippets that were written.
-
-The **`Test Driver`** component tests the `UI`, `Backend` and `Data` components. It utilises `JUnit` for unit testing.
-
-The sections below give more details of each component.
-
-
-## UI Component
-
-{TODO: Insert UI image}
-
-> Figure: Structure of the `UI` Component.
-
-{TODO: Add UI Component outline}
-
-## Backend Component
-
-{TODO: Insert Backend image}
-
-> Figure: Structure of the `Backend` Component.
-
-{TODO: Add Backend Component outline}
-
-## Data Component
-
-{TODO: Insert Data image}
-
-> Figure: Structure of the `Data` Component.
-
-{TODO: Add Data Component outline}
+The sections below give an in depth explanation of each component.
 
 
-## Implementation
+## 4. UI Component
 
-{TODO: Add implementation outline}
+<img src="images/UI Component.jpg" width="700"> <br>
+> Figure 2: Structure of the `UI` Component.
 
-## Testing
+The UI consists of mainly “MainWindow” and “Gui”, along with other minor parts . The “MainWindow” contains “outputConsole”, “commandInput”, “displayResult” etc. The “Gui” contains the design for the graphic interface the user sees and handles the user’s input and output display. All of these will be handled by the graphic display, text boxes and text displays. 
+
+The UI component uses the JavaFX UI framework. The layout of MainWindow is defined in matching “.fxml” files that are located in “keyboardwarrior/ui/ folder”, for example “MainWindow.fxml”.
+
+The UI component executes user commands using the “Logic” component, making use of “Formatter” when needed and responds to user actions by updating the UI accordingly.
+
+
+## 5. Backend Component
+
+<img src="images/Backend Component.jpg" width="700"> <br>
+> Figure 3: Structure of the `Backend` Component.
+
+The backend component contains the “Logic” component and is the main processing unit of the program. It processes commands, data manipulation and data storage. 
+
+“Logic” uses the “Parser” class to parse the user inputs into “commands” and “arguments”. This will create a “command” object and will be executed with the appropriate “arguments”. The result of the execution will be encapsulated in a “CommandResult” object which is passed back to the UI component. 
+
+
+## 6. Data Component
+
+<img src="images/Data Component.jpg" width="700"> <br>
+> Figure 4: Structure of the `Data` Component.
+
+The data component stores the **KeyboardWarrior** data in a class “TasksList”. This class contains three types of individual tasks.
+
+It exposes a read only class “ReadOnlyTasks” that can be shown to the users and does not allow any write capabilities. 
+
+
+## 7. Storage Component
+
+<img src="images/Storage Component.jpg" width="700"> <br>
+> Figure 4: Structure of the `Storage` Component.
+
+The storage component transfers the data from the Data component to a text file using xml format. The data stored in the file is able to be read back and transferred to the Data component. This allows **KeyboardWarrior** to have saving and loading functionalities.
+
+
+## 8. Testing
 
 **KeyboardWarrior** uses `JUnit` to perform unit tests on the `UI`, `Backend` and `Data` components. Every method is unit tested to ensure everything works as intended.
 
@@ -109,7 +120,7 @@ We have two types of tests:
    [here](http://stackoverflow.com/questions/2522897/eclipse-junit-ea-vm-option). <br>
    Delete run configurations created when you ran tests earlier.
   
-## Future Development	
+## 9. Future Development	
 
 These are several additions that can be made to **KeyboardWarrior**	 to further increase its usefulness and usability.
 
