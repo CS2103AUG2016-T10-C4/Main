@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import ruby.keyboardwarrior.commands.ExitCommand;
-import ruby.keyboardwarrior.data.task.Task;
+import ruby.keyboardwarrior.data.task.TodoTask;
 import ruby.keyboardwarrior.logic.Logic;
 import ruby.keyboardwarrior.commands.CommandResult;
 
@@ -80,7 +80,7 @@ public class MainWindow {
     /** Displays the result of a command execution to the user. */
     public void displayResult(CommandResult result) {
         clearOutputConsole();
-        final Optional<List<Task>> resultTasks = result.getRelevantTasks();
+        final Optional<List<TodoTask>> resultTasks = result.getRelevantTasks();
         if(resultTasks.isPresent()) {
             display(resultTasks.get());
         }
@@ -96,7 +96,7 @@ public class MainWindow {
      * Displays the list of persons in the output display area, formatted as an indexed list.
      * Private contact details are hidden.
      */
-    private void display(List<Task> tasks) {
+    private void display(List<TodoTask> tasks) {
         display(new Formatter().format(tasks));
     }
 

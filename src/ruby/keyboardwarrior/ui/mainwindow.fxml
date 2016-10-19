@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<VBox stylesheets="@/ruby/keyboardwarrior/ui/DarkTheme.css" alignment="center" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ruby.keyboardwarrior.ui.MainWindow">
-
-    <children>
-
-        <TextField fx:id="commandInput" onAction="#onCommand" VBox.vgrow="NEVER">
-        </TextField>
-
-        <TextArea fx:id="outputConsole" editable="false" wrapText="true" VBox.vgrow="ALWAYS">
-        </TextArea>
-
-    </children>
-
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ruby.keyboardwarrior.ui.MainWindow">
+   <children>
+      <TextField fx:id="commandInput" layoutX="513.0" layoutY="561.0" onAction="#onCommand" prefHeight="25.0" prefWidth="684.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+      <SplitPane dividerPositions="0.7061769616026711" layoutX="500.0" layoutY="150.0" prefHeight="415.0" prefWidth="1200.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: white;" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="329.0" prefWidth="615.0" style="-fx-background-color: white;">
+               <children>
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" style="-fx-background-color: white;" text="Todo Tasks" textFill="#7d4427" textOverrun="CLIP" AnchorPane.bottomAnchor="370.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font name="Times New Roman Italic" size="28.0" />
+                     </font>
+                  </Label>
+                  <Line endX="100.0" layoutX="175.0" layoutY="43.0" scaleX="1.6" startX="-100.0" AnchorPane.rightAnchor="73.5" />
+                  <TextField fx:id="displayTasksList" editable="false" layoutX="100.0" layoutY="194.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="50.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <TextArea fx:id="outputConsole" editable="false" layoutX="500.0" layoutY="5.0" prefHeight="151.0" prefWidth="1200.0" AnchorPane.bottomAnchor="450.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>
