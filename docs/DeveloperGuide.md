@@ -40,7 +40,8 @@ This guide describes the design and implementation of **KeyboardWarrior**. It wi
 
 ### 2.2. Launching the Application
 
-Double-click the file to start the app.
+Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
+   <img src='images/GUI 19th Oct.jpg' width="600" height="350"> <br><br>
 
 ## 3. Architecture
 
