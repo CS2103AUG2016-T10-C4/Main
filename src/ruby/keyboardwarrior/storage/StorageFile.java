@@ -36,10 +36,14 @@ public class StorageFile {
     
     public TasksList load(){
         ArrayList<String> fileLines = loadLinesFromFile(storageFilePath);
-        for (String line : fileLines){
-            allTasks.add(new TodoTask(new TaskDetails(line)));
+        if (fileLines.isEmpty())
+            return new TasksList(new ArrayList<TodoTask>());
+        else {    
+            for (String line : fileLines){
+                allTasks.add(new TodoTask(new TaskDetails(line)));
+            }   
+            return new TasksList(allTasks);
         }
-        return new TasksList(allTasks);
     }
     /**
      * Sets up the storage based on the default file.

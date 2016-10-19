@@ -12,7 +12,7 @@ import java.util.List;
 public class TaskDetails {
 
     public static final String EXAMPLE = "Do something";
-    public static final String MESSAGE_DETAILS_CONSTRAINTS = "Details should be spaces or alphanumeric characters";
+    public static final String MESSAGE_DETAILS_CONSTRAINTS = "Invalid command format!";
     public static final String DETAILS_VALIDATION_REGEX = "[ {Alnum} ]+";
 
     public final String details;
