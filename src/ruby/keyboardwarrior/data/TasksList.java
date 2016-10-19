@@ -90,6 +90,10 @@ public class TasksList {
         allTasks.set(allTasks.indexOf(toChange), editTask);
     }
     
+    public void setTask(int toChangeIndex, TodoTask editTask){
+        allTasks.set(toChangeIndex, editTask);
+    }
+    
     public ArrayList<TodoTask> getAllTasks(){
         return allTasks;
     }

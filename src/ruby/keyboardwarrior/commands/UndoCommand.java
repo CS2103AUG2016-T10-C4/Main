@@ -35,7 +35,7 @@ public class UndoCommand extends Command {
     public CommandResult execute() throws DuplicateTaskException, ruby.keyboardwarrior.data.task.TodoTask.TaskNotFoundException {
 		int space = toUndo.indexOf(' ');
     	String command = toUndo.substring(0, space);
-    	String task = toUndo.substring(space);
+    	String task = toUndo.substring(space+1);
     	
     	if(command.equals("add")){
     		tasksList.removeTask(new TodoTask(new TaskDetails(task)));
@@ -43,6 +43,12 @@ public class UndoCommand extends Command {
     	
     	if(command.equals("delete")){
     		tasksList.addTask(deletedList.pop());
+    	}
+    	
+    	if(command.equals("edit")){
+    		int whiteSpace = task.indexOf(' ');
+        	String index = task.substring(0, whiteSpace);
+    		tasksList.setTask(Integer.parseInt(index)-1,deletedList.pop());
     	}
     	
         return new CommandResult(String.format(MESSAGE_UNDO_TASK_SUCCESS, toUndo));
