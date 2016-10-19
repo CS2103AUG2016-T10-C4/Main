@@ -30,6 +30,7 @@ public class EditCommand extends Command {
     public CommandResult execute() {
         try {
             final TodoTask target = getTargetTask();
+            deletedList.push(target);
             tasksList.setTask(target,editTask);
             return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, target));
         } catch (IndexOutOfBoundsException ie) {

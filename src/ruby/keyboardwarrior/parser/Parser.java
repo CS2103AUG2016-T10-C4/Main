@@ -24,6 +24,7 @@ public class Parser {
     public static final Pattern TASK_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<taskdetails>[^/]+)");                   
 
+    public static Stack<String> allInputs = new Stack<String>(); 
 
     /**
      * Signals that the user input could not be parsed.
@@ -53,9 +54,10 @@ public class Parser {
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
-
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
+        
+        allInputs.push(userInput);
+        String commandWord = matcher.group("commandWord");
+        String arguments = matcher.group("arguments");
         switch (commandWord) {
 
             case AddCommand.COMMAND_WORD:
@@ -84,6 +86,9 @@ public class Parser {
 
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
+                
+            case UndoCommand.COMMAND_WORD:
+            	return prepareUndo();
 
             case HelpCommand.COMMAND_WORD: // Fallthrough
             default:
@@ -214,6 +219,17 @@ public class Parser {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
-
+    
+    /**
+     * Parses arguments in the context of undoing the previous command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareUndo() {
+    	allInputs.pop();
+    	String previous = allInputs.pop();
+        return new UndoCommand(previous);
+    }
 
 }

@@ -25,16 +25,15 @@ public class DeleteCommand extends Command {
 
 
     @Override
-    public CommandResult execute() {
+    public CommandResult execute() throws TaskNotFoundException {
         try {
             final TodoTask target = getTargetTask();
             tasksList.removeTask(target);
+            deletedList.push(target);
             return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, target));
 
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        } catch (TaskNotFoundException pnfe) {
-            return new CommandResult(Messages.MESSAGE_TASK_NOT_IN_TASKSLIST);
         }
     }
     

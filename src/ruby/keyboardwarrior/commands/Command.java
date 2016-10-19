@@ -5,6 +5,8 @@ import ruby.keyboardwarrior.data.TasksList;
 import ruby.keyboardwarrior.data.task.TodoTask;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Stack;
 
 import static ruby.keyboardwarrior.ui.Gui.DISPLAYED_INDEX_OFFSET;
 
@@ -13,11 +15,12 @@ import static ruby.keyboardwarrior.ui.Gui.DISPLAYED_INDEX_OFFSET;
  */
 public abstract class Command {
     protected TasksList tasksList;
+    protected static Stack<TodoTask> deletedList = new Stack<TodoTask>();
     protected List<TodoTask> relevantTasks;
     private int targetIndex = -1;
-
+ 
     /**
-     * @param targetIndex last visible listing index of the target person
+     * @param targetIndex last visible listing index of the target task
      */
     public Command(int targetIndex) {
         this.setTargetIndex(targetIndex);
@@ -27,7 +30,7 @@ public abstract class Command {
     }
 
     /**
-     * Constructs a feedback message to summarise an operation that displayed a listing of persons.
+     * Constructs a feedback message to summarise an operation that displayed a listing of tasks.
      *
      * @param tasksDisplayed used to generate summary
      * @return summary message for persons displayed
