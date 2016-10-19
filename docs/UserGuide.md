@@ -7,17 +7,20 @@
 * [Frequently Asked Questions (FAQ)](#5-frequently-asked-questions-faq)
 * [Glossary](#6-glossary)
 
+<br>
 
 ## 1. About Our Product
-
+<br>
 KeyboardWarrior is a scheduler and task manager application that accepts short and intuitive commands to provide a quick and convenient way to manage tasks using only the keyboard.
 
 It allows you to schedule, reschedule, update, and delete tasks with just a single command. You will no longer have to rely on your fallible memory to manage your schedule.
 
+<br>
+
 ## 2. Getting Started
-
+<br>
 ### 2.1. Before Using the Application
-
+<br>
 1. Ensure you have Java version `1.8.0_60` or later installed in your Computer.
    > Having any Java 8 version is not enough. <br>
    This app will not work with earlier versions of Java 8.
@@ -26,13 +29,14 @@ It allows you to schedule, reschedule, update, and delete tasks with just a sing
 
 3. Copy the file to the folder you want to use as the home folder for your **KeyboardWarrior**.
 
+<br>
 ### 2.2. Launching the Application
-
+<br>
 Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
    <img src='images/GUI 19th Oct.jpg' width="600" height="350"> <br><br>
    
 ### 2.3. Entering Commands
-
+<br>
 Type the command in the command box and press <kbd>Enter</kbd> to execute it.
 
 Some example commands you can try:
@@ -45,8 +49,10 @@ Some example commands you can try:
    
 Refer to the [Features](#3-features) section below for details of each command.
 
-## 3. Features
+<br>
 
+## 3. Features
+<br>
 To understand the following command formats, you can refer to these rules below:
 
 <br>
@@ -84,7 +90,7 @@ To understand the following command formats, you can refer to these rules below:
 
 <br>
 #### 3.1.1. Viewing help 
-
+<br>
 Format: `**help**`
 
 This will load the help window which will show all the available commands that can be used in **KeyboardWarrior**. It will help you learn about the commands if you are a new user or you can refer to a command’s exact function and format when needed.
@@ -98,7 +104,7 @@ Example:
 
 <br>
 #### 3.1.2. Add a To-do task
-
+<br>
 Format: `**add** TASK`
 
 This adds a To-do to the schedule in **KeyboardWarrior**. A To-do is a kind of task that needs to be done by no specific deadline. It only contains a description of the task. 
@@ -121,7 +127,7 @@ Examples:
 
 <br>
 #### 3.1.3. Add a Deadline task
-
+<br>
 Format: `**add** TASK by DATE [TIME]`
 
 This adds a Deadline to the schedule in **KeyboardWarrior**. A Deadline is a kind of task that has to be completed by a specific deadline. Hence the date of the deadline should be specified in the command in addition to its description. A specific time here is optional.
@@ -210,7 +216,7 @@ Examples:
 
 <br>
 #### 3.1.4. Add Event
-
+<br>
 Format: `**add** DATE [STARTTIME [to ENDTIME]] EVENT [@VENUE]`
 
 This adds an Event to the schedule in **KeyboardWarrior**. An Event is an activity that occurs at a specific date or time.  You have the option to indicate either a time period which includes a starting and ending time or just a start time of the event. If there is no specific start time, just the day it occurs needs to be specified. The venue is also an optional parameter.
@@ -256,7 +262,7 @@ Examples:
 
 <br>
 #### 3.1.5. Find item
-
+<br>
 Format: `**find** (KEYWORD | @VENUE`
 
 This allows you to find all items in **KeyboardWarrior** that contains the phrase or venue that is indicated.
@@ -287,7 +293,7 @@ Examples:
 
 <br>
 #### 3.1.6. Show Calendar
-
+<br>
 Format: `**show** PERIOD [to ENDDATE]`
 
 This displays a calendar of the items within the timeframe entered. This is useful for seeing how busy you might be during a certain period which would allow to better plan your time.
@@ -372,7 +378,7 @@ Examples:
 
 <br>
 #### 3.1.7. Complete a To-do or Deadline 
-
+<br>
 Format: `**complete** INDEX...`
 
 This marks a To-do or Deadline of the specified index as completed and in so doing, deletes the item from **KeyboardWarrior**. This action is irreversible. This should be used for tasks that have been completed and do not need to be dealt with nor remembered anymore. You can complete To-dos and Deadlines but not Events.
@@ -403,7 +409,7 @@ Examples:
 
 <br>
 #### 3.1.8. Delete Items from Calendar
-
+<br>
 Format: `**delete** INDEX`
 
 This command will delete the item of the specified index from **KeyboardWarrior**. This action is irreversible. This may be used for tasks that were mistakenly added, tasks that no longer need to be completed or Events that have passed. You can delete To-dos, Deadlines and Events.
@@ -430,6 +436,7 @@ Examples:
 
 <br>
 #### 3.1.9. Exiting the program 
+<br>
 Format: `**exit**`  
 
 This command exits the program, all your events and task inside your calendar will be saved.
@@ -439,8 +446,11 @@ This command exits the program, all your events and task inside your calendar wi
 Calendar data in **KeyboardWarrior** are saved in the hard disk automatically after any command that changes the data.
 
 There is no need to save manually.
-       
+
+<br>     
+  
 ## 4. Command Summary
+<br>
 
 Command | Format  
 -------- | :-------- 
@@ -454,15 +464,20 @@ Find | `**find** (KEYWORD | @VENUE)`
 Show | `**show ** PERIOD [to ENDDATE]`
 Exit | `**exit**`
 
+<br>
 
 ## 5. Frequently Asked Questions (FAQ)
+<br>
 
 **Q**: How do I transfer my data to another Computer?
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with 
        the file that contains the data of your previous **KeyboardWarrior** folder.
-       
+
+<br>       
+
 ## 6. Glossary
+<br>
 
 **GUI (Graphical User Interface):** <br>
 > The visual elements that allow a user to interact with **KeyboardWarrior** on their computer.
