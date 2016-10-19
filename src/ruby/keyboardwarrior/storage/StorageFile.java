@@ -8,7 +8,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import ruby.keyboardwarrior.data.TasksList;
-import ruby.keyboardwarrior.data.task.Task;
+import ruby.keyboardwarrior.data.task.TodoTask;
+import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.data.task.TaskDetails;
 
 public class StorageFile {
@@ -18,11 +19,11 @@ public class StorageFile {
     
     private static String storageFilePath;
 
-    private static ArrayList<Task> allTasks;
+    private static ArrayList<TodoTask> allTasks;
     
     public StorageFile (){
         setupDefaultFileForStorage();
-        allTasks = new ArrayList<Task>();
+        allTasks = new ArrayList<TodoTask>();
     }
     
     /**
@@ -36,7 +37,7 @@ public class StorageFile {
     public TasksList load(){
         ArrayList<String> fileLines = loadLinesFromFile(storageFilePath);
         for (String line : fileLines){
-            allTasks.add(new Task(new TaskDetails(line)));
+            allTasks.add(new TodoTask(new TaskDetails(line)));
         }
         return new TasksList(allTasks);
     }
@@ -84,7 +85,7 @@ public class StorageFile {
     private static void initialiseKeyboardWarriorModel(ArrayList<String> tasks) {
         allTasks.clear();
         for (String line : tasks){
-            allTasks.add(new Task(new TaskDetails(line)));
+            allTasks.add(new TodoTask(new TaskDetails(line)));
         }
     }
     
@@ -121,7 +122,7 @@ public class StorageFile {
     
     public void save(TasksList taskslist){
         ArrayList<String> linesinlist = new ArrayList<String>();
-        for (Task task : taskslist.getAllTasks()){
+        for (TodoTask task : taskslist.getAllTasks()){
             linesinlist.add(task.getDetails().toString());
         }
     }
@@ -149,5 +150,11 @@ public class StorageFile {
      */
     private static void exitProgram() {
         System.exit(0);
+    }
+    
+    public static class InvalidStorageFilePathException extends IllegalValueException {
+        public InvalidStorageFilePathException(String message) {
+            super(message);
+        }
     }
 }

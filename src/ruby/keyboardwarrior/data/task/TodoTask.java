@@ -14,6 +14,9 @@ public class TodoTask {
     /**
      * Assumption: Every field must be present and not null.
      */
+    
+    public TodoTask(){}
+    
     public TodoTask(TaskDetails details) {
         this.details = details;
     }

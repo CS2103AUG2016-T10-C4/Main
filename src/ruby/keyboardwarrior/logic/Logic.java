@@ -3,9 +3,10 @@ package ruby.keyboardwarrior.logic;
 import ruby.keyboardwarrior.commands.Command;
 import ruby.keyboardwarrior.commands.CommandResult;
 import ruby.keyboardwarrior.data.TasksList;
-import ruby.keyboardwarrior.data.task.Task;
+import ruby.keyboardwarrior.data.task.TodoTask;
 import ruby.keyboardwarrior.parser.Parser;
 import ruby.keyboardwarrior.storage.StorageFile;
+import ruby.keyboardwarrior.storage.StorageFile.InvalidStorageFilePathException;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +22,7 @@ public class Logic {
     private TasksList tasksList;
 
     /** The list of person shown to the user most recently.  */
-    private List<Task> lastShownList = Collections.emptyList();
+    private List<TodoTask> lastShownList = Collections.emptyList();
 
     public Logic() throws Exception{
         setStorage(initializeStorage());
@@ -45,7 +46,7 @@ public class Logic {
      * Creates the StorageFile object based on the user specified path (if any) or the default storage path.
      * @throws StorageFile.InvalidStorageFilePathException if the target file path is incorrect.
      */
-    private StorageFile initializeStorage() {
+    private StorageFile initializeStorage() throws InvalidStorageFilePathException {
         return new StorageFile();
     }
 
@@ -56,11 +57,11 @@ public class Logic {
     /**
      * Unmodifiable view of the current last shown list.
      */
-    public List<Task> getLastShownList() {
+    public List<TodoTask> getLastShownList() {
         return Collections.unmodifiableList(lastShownList);
     }
 
-    protected void setLastShownList(List<Task> newList) {
+    protected void setLastShownList(List<TodoTask> newList) {
         lastShownList = newList;
     }
 
@@ -93,7 +94,7 @@ public class Logic {
 
     /** Updates the {@link #lastShownList} if the result contains a list of Persons. */
     private void recordResult(CommandResult result) {
-        final Optional<List<Task>> personList = result.getRelevantTasks();
+        final Optional<List<TodoTask>> personList = result.getRelevantTasks();
         if (personList.isPresent()) {
             lastShownList = personList.get();
         }
