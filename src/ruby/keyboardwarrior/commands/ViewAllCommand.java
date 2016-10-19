@@ -1,7 +1,7 @@
 package ruby.keyboardwarrior.commands;
 
 import ruby.keyboardwarrior.common.Messages;
-import ruby.keyboardwarrior.data.task.Task;
+import ruby.keyboardwarrior.data.task.TodoTask;
 
 
 /**
@@ -28,7 +28,7 @@ public class ViewAllCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            final Task target = getTargetTask();
+            final TodoTask target = getTargetTask();
             if (!tasksList.containsTask(target)) {
                 return new CommandResult(Messages.MESSAGE_TASK_NOT_IN_TASKSLIST);
             }

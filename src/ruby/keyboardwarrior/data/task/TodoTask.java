@@ -10,6 +10,7 @@ public class TodoTask {
 
     private TaskDetails details;
 
+    public static class TaskNotFoundException extends Exception {};
     /**
      * Assumption: Every field must be present and not null.
      */
@@ -19,6 +20,15 @@ public class TodoTask {
 
     public TaskDetails getDetails() {
         return details;
+    }
+    
+    public boolean equals(Object other) {
+        if (other instanceof TodoTask){
+            TodoTask todotask = (TodoTask) other;
+            return this.getDetails().equals(todotask.getDetails());
+        }
+        else
+            return false;
     }
 
     public int hashCode() {

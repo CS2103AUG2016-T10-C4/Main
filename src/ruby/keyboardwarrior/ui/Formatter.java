@@ -1,6 +1,6 @@
 package ruby.keyboardwarrior.ui;
 
-import ruby.keyboardwarrior.data.task.Task;
+import ruby.keyboardwarrior.data.task.TodoTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class Formatter {
     private static final String LINE_PREFIX = " ";
 
     /** A platform independent line separator. */
-    private static final String LS = System.lineSeparator();
+    private static final String LINE_SEPERATOR = System.lineSeparator();
 
 
     /** Format of indexed list item */
@@ -36,10 +36,10 @@ public class Formatter {
     }
 
     /** Formats the given list of persons for displaying to the user. */
-    public String format(List<Task> tasks) {
+    public String format(List<TodoTask> todoTasks) {
         final List<String> formattedTasks = new ArrayList<>();
-        for (Task task : tasks) {
-            formattedTasks.add(task.toString());
+        for (TodoTask todoTask : todoTasks) {
+            formattedTasks.add(todoTask.toString());
         }
         return format(asIndexedList(formattedTasks));
     }

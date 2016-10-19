@@ -2,7 +2,7 @@ package ruby.keyboardwarrior.parser;
 
 import ruby.keyboardwarrior.commands.*;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
-import ruby.keyboardwarrior.data.task.Task;
+import ruby.keyboardwarrior.data.task.TodoTask;
 import ruby.keyboardwarrior.data.task.TaskDetails;
 
 import java.util.*;
@@ -139,7 +139,7 @@ public class Parser {
         	String editTask = args.substring(args.indexOf(' '));
         	
             final int targetIndex = parseArgsAsDisplayedIndex(index);
-            return new EditCommand(targetIndex, new Task(new TaskDetails(editTask)));
+            return new EditCommand(targetIndex, new TodoTask(new TaskDetails(editTask)));
         } catch (ParseException | NumberFormatException e) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }

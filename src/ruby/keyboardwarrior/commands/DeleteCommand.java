@@ -1,8 +1,8 @@
 package ruby.keyboardwarrior.commands;
 
 import ruby.keyboardwarrior.common.Messages;
-import ruby.keyboardwarrior.data.task.Task;
-import ruby.keyboardwarrior.data.task.Task.TaskNotFoundException;
+import ruby.keyboardwarrior.data.task.TodoTask;
+import ruby.keyboardwarrior.data.task.TodoTask.TaskNotFoundException;
 
 /**
  * Deletes a item identified using it's last displayed index from the task manager.
@@ -27,7 +27,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            final Task target = getTargetTask();
+            final TodoTask target = getTargetTask();
             tasksList.removeTask(target);
             return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, target));
 

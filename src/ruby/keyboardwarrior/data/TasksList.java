@@ -2,7 +2,7 @@ package ruby.keyboardwarrior.data;
 
 import ruby.keyboardwarrior.data.exception.DuplicateDataException;
 import ruby.keyboardwarrior.data.task.*;
-import ruby.keyboardwarrior.data.task.Task.TaskNotFoundException;
+import ruby.keyboardwarrior.data.task.TodoTask.TaskNotFoundException;
 
 import java.util.*;
 
@@ -15,7 +15,7 @@ import java.util.*;
  */
 public class TasksList {
 
-    private final ArrayList<Task> allTasks;
+    private final ArrayList<TodoTask> allTasks;
     
     public static class DuplicateTaskException extends DuplicateDataException {
         protected DuplicateTaskException() {
@@ -31,7 +31,7 @@ public class TasksList {
      * Creates an empty address book.
      */
     public TasksList() {
-        allTasks = new ArrayList<Task>();
+        allTasks = new ArrayList<TodoTask>();
     }
 
     /**
@@ -41,8 +41,8 @@ public class TasksList {
      * @param tasks external changes to this will not affect this address book
      * @param tags external changes to this will not affect this address book
      */
-    public TasksList(ArrayList<Task> tasks) {
-        this.allTasks = new ArrayList<Task>(tasks);
+    public TasksList(ArrayList<TodoTask> tasks) {
+        this.allTasks = new ArrayList<TodoTask>(tasks);
     }
 
     /**
@@ -52,7 +52,7 @@ public class TasksList {
      *
      * @throws DuplicateTaskException if an equivalent person already exists.
      */
-    public void addTask(Task toAdd) throws DuplicateTaskException{
+    public void addTask(TodoTask toAdd) throws DuplicateTaskException{
         if (containsTask(toAdd)) {
             throw new DuplicateTaskException();
         }
@@ -62,7 +62,7 @@ public class TasksList {
     /**
      * Checks if an equivalent person exists in the address book.
      */
-    public boolean containsTask(Task key) {
+    public boolean containsTask(TodoTask key) {
         return allTasks.contains(key);
     }
 
@@ -71,7 +71,7 @@ public class TasksList {
      *
      * @throws TaskNotFoundException if no such Person could be found.
      */
-    public void removeTask(Task toRemove) throws TaskNotFoundException{
+    public void removeTask(TodoTask toRemove) throws TaskNotFoundException{
         if (!containsTask(toRemove)) {
             throw new TaskNotFoundException();
         }
@@ -83,14 +83,14 @@ public class TasksList {
      *
      * @throws TaskNotFoundException if no such Task could be found.
      */
-    public void setTask(Task toChange, Task editTask) throws TaskNotFoundException{
+    public void setTask(TodoTask toChange, TodoTask editTask) throws TaskNotFoundException{
         if (!containsTask(toChange)) {
             throw new TaskNotFoundException();
         }
         allTasks.set(allTasks.indexOf(toChange), editTask);
     }
     
-    public ArrayList<Task> getAllTasks(){
+    public ArrayList<TodoTask> getAllTasks(){
         return allTasks;
     }
 

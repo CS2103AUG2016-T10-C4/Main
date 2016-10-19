@@ -65,7 +65,7 @@ public class LogicTest {
                                       String expectedMessage,
                                       TasksList expectedTasksList,
                                       boolean isRelevantTasksExpected,
-                                      List<Task> lastShownList) throws Exception {
+                                      List<TodoTask> lastShownList) throws Exception {
 
         //Execute the command
         CommandResult r = logic.execute(inputCommand);
@@ -133,7 +133,7 @@ public class LogicTest {
     public void execute_add_successful() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.adam();
+        TodoTask toBeAdded = helper.adam();
         TasksList expectedAB = new TasksList();
         expectedAB.addTask(toBeAdded);
 
@@ -166,9 +166,9 @@ public class LogicTest {
     private void assertInvalidIndexBehaviorForCommand(String commandWord) throws Exception {
         String expectedMessage = Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
         TestDataHelper helper = new TestDataHelper();
-        Task p1 = helper.generateTask(1);
-        Task p2 = helper.generateTask(2);
-        List<Task> lastShownList = helper.generateTaskList(p1, p2);
+        TodoTask p1 = helper.generateTask(1);
+        TodoTask p2 = helper.generateTask(2);
+        List<TodoTask> lastShownList = helper.generateTaskList(p1, p2);
 
         logic.setLastShownList(lastShownList);
 
@@ -294,11 +294,11 @@ public class LogicTest {
     @Test
     public void execute_delete_removesCorrectTask() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Task p1 = helper.generateTask(1);
-        Task p2 = helper.generateTask(2);
-        Task p3 = helper.generateTask(3);
+        TodoTask p1 = helper.generateTask(1);
+        TodoTask p2 = helper.generateTask(2);
+        TodoTask p3 = helper.generateTask(3);
 
-        List<Task> threeTasks = helper.generateTaskList(p1, p2, p3);
+        List<TodoTask> threeTasks = helper.generateTaskList(p1, p2, p3);
 
         TasksList expectedAB = helper.generateTasksList(threeTasks);
         expectedAB.removeTask(p2);
@@ -308,7 +308,7 @@ public class LogicTest {
         logic.setLastShownList(threeTasks);
 
         assertCommandBehavior("delete 2",
-                                String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, p2),
+                String.format(DeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, p2),
                                 expectedAB,
                                 false,
                                 threeTasks);
@@ -318,11 +318,11 @@ public class LogicTest {
     public void execute_delete_missingInTasksList() throws Exception {
 
         TestDataHelper helper = new TestDataHelper();
-        Task p1 = helper.generateTask(1);
-        Task p2 = helper.generateTask(2);
-        Task p3 = helper.generateTask(3);
+        TodoTask p1 = helper.generateTask(1);
+        TodoTask p2 = helper.generateTask(2);
+        TodoTask p3 = helper.generateTask(3);
 
-        List<Task> threeTasks = helper.generateTaskList(p1, p2, p3);
+        List<TodoTask> threeTasks = helper.generateTaskList(p1, p2, p3);
 
         TasksList expectedAB = helper.generateTasksList(threeTasks);
         expectedAB.removeTask(p2);
@@ -347,14 +347,14 @@ public class LogicTest {
     @Test
     public void execute_find_onlyMatchesFullWordsInNames() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Task pTarget1 = helper.generateTaskWithDetails("bla bla KEY bla");
-        Task pTarget2 = helper.generateTaskWithDetails("bla KEY bla bceofeia");
-        Task p1 = helper.generateTaskWithDetails("KE Y");
-        Task p2 = helper.generateTaskWithDetails("KEYKEYKEY sduauo");
+        TodoTask pTarget1 = helper.generateTaskWithDetails("bla bla KEY bla");
+        TodoTask pTarget2 = helper.generateTaskWithDetails("bla KEY bla bceofeia");
+        TodoTask p1 = helper.generateTaskWithDetails("KE Y");
+        TodoTask p2 = helper.generateTaskWithDetails("KEYKEYKEY sduauo");
 
-        List<Task> fourTasks = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
+        List<TodoTask> fourTasks = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
         TasksList expectedAB = helper.generateTasksList(fourTasks);
-        List<Task> expectedList = helper.generateTaskList(pTarget1, pTarget2);
+        List<TodoTask> expectedList = helper.generateTaskList(pTarget1, pTarget2);
         helper.addToTasksList(tasksList, fourTasks);
 
         assertCommandBehavior("find KEY",
@@ -367,14 +367,14 @@ public class LogicTest {
     @Test
     public void execute_find_isCaseSensitive() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Task pTarget1 = helper.generateTaskWithDetails("bla bla KEY bla");
-        Task pTarget2 = helper.generateTaskWithDetails("bla KEY bla bceofeia");
-        Task p1 = helper.generateTaskWithDetails("key key");
-        Task p2 = helper.generateTaskWithDetails("KEy sduauo");
+        TodoTask pTarget1 = helper.generateTaskWithDetails("bla bla KEY bla");
+        TodoTask pTarget2 = helper.generateTaskWithDetails("bla KEY bla bceofeia");
+        TodoTask p1 = helper.generateTaskWithDetails("key key");
+        TodoTask p2 = helper.generateTaskWithDetails("KEy sduauo");
 
-        List<Task> fourTasks = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
+        List<TodoTask> fourTasks = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
         TasksList expectedAB = helper.generateTasksList(fourTasks);
-        List<Task> expectedList = helper.generateTaskList(pTarget1, pTarget2);
+        List<TodoTask> expectedList = helper.generateTaskList(pTarget1, pTarget2);
         helper.addToTasksList(tasksList, fourTasks);
 
         assertCommandBehavior("find KEY",
@@ -388,14 +388,14 @@ public class LogicTest {
     @Test
     public void execute_find_matchesIfAnyKeywordPresent() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Task pTarget1 = helper.generateTaskWithDetails("bla bla KEY bla");
-        Task pTarget2 = helper.generateTaskWithDetails("bla rAnDoM bla bceofeia");
-        Task p1 = helper.generateTaskWithDetails("key key");
-        Task p2 = helper.generateTaskWithDetails("KEy sduauo");
+        TodoTask pTarget1 = helper.generateTaskWithDetails("bla bla KEY bla");
+        TodoTask pTarget2 = helper.generateTaskWithDetails("bla rAnDoM bla bceofeia");
+        TodoTask p1 = helper.generateTaskWithDetails("key key");
+        TodoTask p2 = helper.generateTaskWithDetails("KEy sduauo");
 
-        List<Task> fourTasks = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
+        List<TodoTask> fourTasks = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
         TasksList expectedAB = helper.generateTasksList(fourTasks);
-        List<Task> expectedList = helper.generateTaskList(pTarget1, pTarget2);
+        List<TodoTask> expectedList = helper.generateTaskList(pTarget1, pTarget2);
         helper.addToTasksList(tasksList, fourTasks);
 
         assertCommandBehavior("find KEY rAnDoM",
@@ -410,9 +410,9 @@ public class LogicTest {
      */
     class TestDataHelper{
 
-        Task adam() throws Exception {
+        TodoTask adam() throws Exception {
             TaskDetails taskdetails = new TaskDetails("Adam Brown");
-            return new Task(taskdetails);
+            return new TodoTask(taskdetails);
         }
 
         /**
@@ -422,12 +422,12 @@ public class LogicTest {
          *
          * @param seed used to generate the person data field values
          */
-        Task generateTask(int seed) throws Exception {
-            return new Task(new TaskDetails("Task " + seed));
+        TodoTask generateTask(int seed) throws Exception {
+            return new TodoTask(new TaskDetails("Task " + seed));
         }
 
         /** Generates the correct add command based on the person given */
-        String generateAddCommand(Task p) {
+        String generateAddCommand(TodoTask p) {
             StringJoiner cmd = new StringJoiner(" ");
 
             cmd.add("add");
@@ -439,17 +439,17 @@ public class LogicTest {
         /**
          * Generates an AddressBook based on the list of Persons given.
          */
-        TasksList generateTasksList(List<Task> tasks) throws Exception{
+        TasksList generateTasksList(List<TodoTask> todoTasks) throws Exception{
             TasksList tasksList = new TasksList();
-            addToTasksList(tasksList, tasks);
+            addToTasksList(tasksList, todoTasks);
             return tasksList;
         }
 
         /**
          * Adds the given list of Persons to the given AddressBook
          */
-        void addToTasksList(TasksList tasksList, List<Task> tasksToAdd) throws Exception{
-            for(Task p: tasksToAdd){
+        void addToTasksList(TasksList tasksList, List<TodoTask> tasksToAdd) throws Exception{
+            for(TodoTask p: tasksToAdd){
                 tasksList.addTask(p);
             }
         }
@@ -457,9 +457,9 @@ public class LogicTest {
         /**
          * Creates a list of Persons based on the give Person objects.
          */
-        List<Task> generateTaskList(Task... tasks) throws Exception{
-            List<Task> taskList = new ArrayList<>();
-            for(Task p: tasks){
+        List<TodoTask> generateTaskList(TodoTask... tasks) throws Exception{
+            List<TodoTask> taskList = new ArrayList<>();
+            for(TodoTask p: tasks){
                 taskList.add(p);
             }
             return taskList;
@@ -468,8 +468,8 @@ public class LogicTest {
         /**
          * Generates a Person object with given name. Other fields will have some dummy values.
          */
-         Task generateTaskWithDetails(String taskdetails) throws Exception {
-            return new Task(
+         TodoTask generateTaskWithDetails(String taskdetails) throws Exception {
+            return new TodoTask(
                     new TaskDetails(taskdetails));
          }
     }
