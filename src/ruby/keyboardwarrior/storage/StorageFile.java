@@ -1,164 +1,148 @@
 package ruby.keyboardwarrior.storage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-
 import ruby.keyboardwarrior.data.TasksList;
-import ruby.keyboardwarrior.data.task.TodoTask;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
-import ruby.keyboardwarrior.data.task.TaskDetails;
+import ruby.keyboardwarrior.storage.jaxb.AdaptedTasksList;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+/**
+ * Represents the file used to store address book data.
+ */
 public class StorageFile {
-    private static final String DEFAULT_STORAGE_FILEPATH = "keyboardwarrior.txt";
 
-    private static final String MESSAGE_INVALID_STORAGE_FILE_CONTENT = null;
-    
-    private static String storageFilePath;
+    /** Default file path used if the user doesn't provide the file name. */
+    public static final String DEFAULT_STORAGE_FILEPATH = "keyboardwarrior.txt";
 
-    private static ArrayList<TodoTask> allTasks;
-    
-    public StorageFile (){
-        setupDefaultFileForStorage();
-        allTasks = new ArrayList<TodoTask>();
-    }
-    
-    /**
-     * @throws InvalidStorageFilePathException if the given file path is invalid
+    /* Note: Note the use of nested classes below.
+     * More info https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
      */
-    public StorageFile(String filePath) {
-    	storageFilePath = filePath;
-    	createFileIfMissing(storageFilePath);
-    }
-    
-    public TasksList load(){
-        ArrayList<String> fileLines = loadLinesFromFile(storageFilePath);
-        if (fileLines.isEmpty())
-            return new TasksList(new ArrayList<TodoTask>());
-        else {    
-            for (String line : fileLines){
-                allTasks.add(new TodoTask(new TaskDetails(line)));
-            }   
-            return new TasksList(allTasks);
-        }
-    }
+
     /**
-     * Sets up the storage based on the default file.
-     * Creates file if missing.
-     * Exits program if the file cannot be created.
+     * Signals that the given file path does not fulfill the storage filepath constraints.
      */
-    private static void setupDefaultFileForStorage() {
-        storageFilePath = DEFAULT_STORAGE_FILEPATH;
-        createFileIfMissing(storageFilePath);
-    }
-    
-    /**
-     * Creates storage file if it does not exist. Shows feedback to user.
-     *
-     * @param filePath file to create if not present
-     */
-    private static void createFileIfMissing(String filePath) {
-        final File storageFile = new File(filePath);
-        if (storageFile.exists()) {
-            return;
-        }
-        
-        try {
-            storageFile.createNewFile();
-        } catch (IOException ioe) {
-            exitProgram();
-        }
-    }
-    
-    /**
-     * Initialises the in-memory data using the storage file.
-     * Assumption: The file exists.
-     */
-    private static void loadDataFromStorage() {
-        initialiseKeyboardWarriorModel(loadLinesFromFile(storageFilePath));
-    }
-    
-    /**
-     * Resets the internal model with the given data. Does not save to file.
-     *
-     * @param persons list of persons to initialise the model with
-     */
-    private static void initialiseKeyboardWarriorModel(ArrayList<String> tasks) {
-        allTasks.clear();
-        for (String line : tasks){
-            allTasks.add(new TodoTask(new TaskDetails(line)));
-        }
-    }
-    
-    /**
-     * Converts contents of a file into a list of persons.
-     * Shows error messages and exits program if any errors in reading or decoding was encountered.
-     *
-     * @param filePath file to load from
-     * @return the list of decoded persons
-     */
-    private static ArrayList<String> loadLinesFromFile(String filePath) {
-        final ArrayList<String> loadedTasks = getLinesInFile(filePath);
-        if (loadedTasks == null) {
-            exitProgram();
-        }
-        return loadedTasks;
-    }
-    
-    /**
-     * Gets all lines in the specified file as a list of strings. Line separators are removed.
-     * Shows error messages and exits program if unable to read from file.
-     */
-    private static ArrayList<String> getLinesInFile(String filePath) {
-        ArrayList<String> lines = null;
-        try {
-            lines = new ArrayList(Files.readAllLines(Paths.get(filePath)));
-        } catch (FileNotFoundException fnfe) {
-            exitProgram();
-        } catch (IOException ioe) {
-            exitProgram();
-        }
-        return lines;
-    }
-    
-    public void save(TasksList taskslist){
-        ArrayList<String> linesinlist = new ArrayList<String>();
-        for (TodoTask task : taskslist.getAllTasks()){
-            linesinlist.add(task.getDetails().toString());
-        }
-    }
-    /**
-     * Saves all data to the file.
-     * Exits program if there is an error saving to file.
-     *
-     * @param filePath file for saving
-     */
-    private static void saveTasksToFile(ArrayList<String> tasks, String filePath) {
-        final ArrayList<String> linesToWrite = tasks;
-        try {
-            Files.write(Paths.get(storageFilePath), linesToWrite);
-        } catch (IOException ioe) {
-            exitProgram();
-        }
-    }
-    
-    public String getPath() {
-        return storageFilePath;
-    }
-    
-    /**
-     * Displays the goodbye message and exits the runtime.
-     */
-    private static void exitProgram() {
-        System.exit(0);
-    }
-    
     public static class InvalidStorageFilePathException extends IllegalValueException {
         public InvalidStorageFilePathException(String message) {
             super(message);
         }
     }
+
+    /**
+     * Signals that some error has occured while trying to convert and read/write data between the application
+     * and the storage file.
+     */
+    public static class StorageOperationException extends Exception {
+        public StorageOperationException(String message) {
+            super(message);
+        }
+    }
+
+    private final JAXBContext jaxbContext;
+
+    public final Path path;
+
+    /**
+     * @throws InvalidStorageFilePathException if the default path is invalid
+     */
+    public StorageFile() throws InvalidStorageFilePathException {
+        this(DEFAULT_STORAGE_FILEPATH);
+    }
+
+    /**
+     * @throws InvalidStorageFilePathException if the given file path is invalid
+     */
+    public StorageFile(String filePath) throws InvalidStorageFilePathException {
+        try {
+            jaxbContext = JAXBContext.newInstance(AdaptedTasksList.class);
+        } catch (JAXBException jaxbe) {
+            throw new RuntimeException("jaxb initialisation error");
+        }
+
+        path = Paths.get(filePath);
+        if (!isValidPath(path)) {
+            throw new InvalidStorageFilePathException("Storage file should end with '.txt'");
+        }
+    }
+
+    /**
+     * Returns true if the given path is acceptable as a storage file.
+     * The file path is considered acceptable if it ends with '.txt'
+     */
+    private static boolean isValidPath(Path filePath) {
+        return filePath.toString().endsWith(".txt");
+    }
+
+    /**
+     * Saves all data to this storage file.
+     *
+     * @throws StorageOperationException if there were errors converting and/or storing data to file.
+     */
+    public void save(TasksList tasksList) throws StorageOperationException {
+
+        /* Note: Note the 'try with resource' statement below.
+         * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
+         */
+        try (final Writer fileWriter =
+                     new BufferedWriter(new FileWriter(path.toFile()))) {
+
+            final AdaptedTasksList toSave = new AdaptedTasksList(tasksList);
+            final Marshaller marshaller = jaxbContext.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            marshaller.marshal(toSave, fileWriter);
+
+        } catch (IOException ioe) {
+            throw new StorageOperationException("Error writing to file: " + path + " error: " + ioe.getMessage());
+        } catch (JAXBException jaxbe) {
+            throw new StorageOperationException("Error converting Keyboard Warrior into storage format");
+        }
+    }
+
+    /**
+     * Loads data from this storage file.
+     *
+     * @throws StorageOperationException if there were errors reading and/or converting data from file.
+     */
+    public TasksList load() throws StorageOperationException {
+        try (final Reader fileReader =
+                     new BufferedReader(new FileReader(path.toFile()))) {
+
+            final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+            final AdaptedTasksList loaded = (AdaptedTasksList) unmarshaller.unmarshal(fileReader);
+            // manual check for missing elements
+            if (loaded.isAnyRequiredFieldMissing()) {
+                throw new StorageOperationException("File data missing some elements");
+            }
+            return loaded.toModelType();
+
+        /* Note: Here, we are using an exception to create the file if it is missing. However, we should minimize
+         * using exceptions to facilitate normal paths of execution. If we consider the missing file as a 'normal'
+         * situation (i.e. not truly exceptional) we should not use an exception to handle it.
+         */
+
+        // create empty file if not found
+        } catch (FileNotFoundException fnfe) {
+            final TasksList empty = new TasksList();
+            save(empty);
+            return empty;
+
+        // other errors
+        } catch (IOException ioe) {
+            throw new StorageOperationException("Error writing to file: " + path);
+        } catch (JAXBException jaxbe) {
+            throw new StorageOperationException("Error parsing file data format");
+        } catch (IllegalValueException ive) {
+            throw new StorageOperationException("File contains illegal data values; data type constraints not met");
+        }
+    }
+
+    public String getPath() {
+        return path.toString();
+    }
+
 }
