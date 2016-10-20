@@ -3,9 +3,7 @@ package ruby.keyboardwarrior.commands;
 import ruby.keyboardwarrior.data.TasksList.DuplicateTaskException;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.data.task.TodoTask;
-import ruby.keyboardwarrior.data.task.TodoTask.TaskNotFoundException;
 import ruby.keyboardwarrior.data.task.TaskDetails;
-import ruby.keyboardwarrior.data.task.TodoTask;
 
 /**
  * Undo the last command.
