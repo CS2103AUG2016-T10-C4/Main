@@ -4,35 +4,42 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 /**
- * Represents a Deadline Task in the Keyboard Warrior.
+ * Represents a EventTask in the Keyboard Warrior.
  * Guarantees: field values are validated.
  */
-public class DeadlineTask {
+public class EventTask{
 
     private TaskDetails details;
-    private EndTime endtime;
+    private StartTime startTime;
+    private EndTime endTime;
 
-    public DeadlineTask(TaskDetails details, EndTime endtime) {
+    public EventTask(TaskDetails details, StartTime startTime, EndTime endTime) {
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.details = details;
-        this.endtime = endtime;
     }
-
+    
     public TaskDetails getDetails() {
         return details;
     }
-
-    public EndTime getEndTime() {
-        return endtime;
+    
+    public StartTime getStartTime() {
+        return startTime;
     }
+    
+    public EndTime getEndTime() {
+        return endTime;
+    }
+
 
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(details, endtime);
+        return Objects.hash(details, startTime, endTime);
     }
 
     public String toString() {
         final StringJoiner joiner = new StringJoiner(" ");
-        joiner.add(details.toString()).add("by").add(endtime.toString());
+        joiner.add(details.toString()).add("from").add(startTime.toString()).add("to").add(endTime.toString());
         
         return joiner.toString();
     }

@@ -9,13 +9,6 @@ import java.util.Objects;
 public class TodoTask {
 
     private TaskDetails details;
-
-    public static class TaskNotFoundException extends Exception {};
-    /**
-     * Assumption: Every field must be present and not null.
-     */
-    
-    public TodoTask(){}
     
     public TodoTask(TaskDetails details) {
         this.details = details;
