@@ -60,6 +60,7 @@ public class Logic {
     public List<TodoTask> getLastShownList() {
         return Collections.unmodifiableList(lastShownList);
     }
+    
 
     protected void setLastShownList(List<TodoTask> newList) {
         lastShownList = newList;

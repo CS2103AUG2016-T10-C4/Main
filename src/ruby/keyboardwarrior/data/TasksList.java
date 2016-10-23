@@ -94,7 +94,7 @@ public class TasksList {
         allTasks.set(toChangeIndex, editTask);
     }
     
-    public ArrayList<TodoTask> getAllTasks(){
+    public List<TodoTask> getAllTasks(){
         return allTasks;
     }
 
