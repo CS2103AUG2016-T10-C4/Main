@@ -27,7 +27,7 @@ public class AdaptedTask {
      *
      * @param source future changes to this will not affect the created AdaptedPerson
      */
-    public AdaptedTask(Task source) {
+    public AdaptedTask(TodoTask source) {
         taskdetails = source.getDetails().details;
     }
 
@@ -48,8 +48,8 @@ public class AdaptedTask {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
-    public Task toModelType() throws IllegalValueException {
+    public TodoTask toModelType() throws IllegalValueException {
         final TaskDetails task = new TaskDetails(this.taskdetails);
-        return new Task(task);
+        return new TodoTask(task);
     }
 }
