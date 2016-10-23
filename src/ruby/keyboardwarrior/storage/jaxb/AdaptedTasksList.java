@@ -7,16 +7,15 @@ import ruby.keyboardwarrior.data.task.TodoTask;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * JAXB-friendly adapted address book data holder class.
  */
-@XmlRootElement(name = "keyboardwarrior")
+@XmlRootElement(name = "KeyboardWarrior")
 public class AdaptedTasksList {
 
     @XmlElement
-    private List<AdaptedTask> tasks = new ArrayList<>();
+    private ArrayList<AdaptedTask> tasks = new ArrayList<>();
 
     /**
      * No-arg constructor for JAXB use.
