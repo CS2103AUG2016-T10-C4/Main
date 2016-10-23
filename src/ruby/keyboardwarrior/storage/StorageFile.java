@@ -75,7 +75,13 @@ public class StorageFile {
      * The file path is considered acceptable if it ends with '.txt'
      */
     private static boolean isValidPath(Path filePath) {
-        return filePath.toString().endsWith(".txt");
+    	String pathName = filePath.toString();
+    	String extension = pathName.substring(pathName.lastIndexOf(".") + 1, pathName.length());
+    	
+    	if(extension.equals("txt"))
+    		return true;
+    	else
+    		return false;
     }
 
     /**
