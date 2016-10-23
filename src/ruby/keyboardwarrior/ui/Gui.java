@@ -2,6 +2,7 @@ package ruby.keyboardwarrior.ui;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import ruby.keyboardwarrior.logic.Logic;
 import ruby.keyboardwarrior.Main;
@@ -32,6 +33,7 @@ public class Gui {
     public void start(Stage stage, Stoppable mainApp) throws IOException {
         mainWindow = createMainWindow(stage, mainApp);
         mainWindow.displayWelcomeMessage(version, logic.getStorageFilePath());
+        stage.getIcons().add(new Image("file:docs/images/keyboardwarrior.jpg"));
     }
 
     private MainWindow createMainWindow(Stage stage, Stoppable mainApp) throws IOException{
