@@ -54,8 +54,14 @@ public class MainWindow {
                 exitApp();
                 return;
             }
-            displayResult(result);
-            displayAll(TasksList.getAllTasks());
+            if(userCommandText.substring(0,4).equals("find") || userCommandText.substring(0,4).equals("list")){
+            	clearOutputConsole();
+            	display(userCommandText);
+            	displayAll(result);
+            } else {
+            	displayResult(result);
+            	displayAll(logic.execute("list"));
+            }
             clearCommandInput();
         } catch (Exception e) {
             display(e.getMessage());
@@ -109,6 +115,16 @@ public class MainWindow {
      */
     private void display(String... messages) {
         outputConsole.setText(outputConsole.getText() + new Formatter().format(messages));
+    }
+    
+    /** Displays the result of a command execution to the user. */
+    public void displayAll(CommandResult result) {
+    	TasksListView.clear();
+        final Optional<List<TodoTask>> resultTasks = result.getRelevantTasks();
+        if(resultTasks.isPresent()) {
+            displayAll(resultTasks.get());
+        }
+        displayAll(result.feedbackToUser);
     }
     
     /**
