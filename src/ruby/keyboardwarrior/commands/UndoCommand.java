@@ -1,6 +1,7 @@
 package ruby.keyboardwarrior.commands;
 
 import ruby.keyboardwarrior.data.TasksList.DuplicateTaskException;
+import ruby.keyboardwarrior.data.TasksList.TaskNotFoundException;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.data.task.TodoTask;
 import ruby.keyboardwarrior.data.task.TaskDetails;
@@ -30,7 +31,7 @@ public class UndoCommand extends Command {
 
 
     @Override
-    public CommandResult execute() throws DuplicateTaskException, ruby.keyboardwarrior.data.task.TodoTask.TaskNotFoundException {
+    public CommandResult execute() throws DuplicateTaskException, TaskNotFoundException {
 		int space = toUndo.indexOf(' ');
     	String command = toUndo.substring(0, space);
     	String task = toUndo.substring(space+1);

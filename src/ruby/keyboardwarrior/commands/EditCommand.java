@@ -1,8 +1,8 @@
 package ruby.keyboardwarrior.commands;
 
 import ruby.keyboardwarrior.common.Messages;
+import ruby.keyboardwarrior.data.TasksList.TaskNotFoundException;
 import ruby.keyboardwarrior.data.task.TodoTask;
-import ruby.keyboardwarrior.data.task.TodoTask.TaskNotFoundException;
 
 /**
  * Edit an item identified using it's last displayed index from the task manager.

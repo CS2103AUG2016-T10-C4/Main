@@ -1,8 +1,8 @@
 package ruby.keyboardwarrior.data;
 
 import ruby.keyboardwarrior.data.exception.DuplicateDataException;
+import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.data.task.*;
-import ruby.keyboardwarrior.data.task.TodoTask.TaskNotFoundException;
 
 import java.util.*;
 
@@ -20,6 +20,15 @@ public class TasksList {
     public static class DuplicateTaskException extends DuplicateDataException {
         protected DuplicateTaskException() {
             super("Operation would result in duplicate task");
+        }
+    }
+    
+    /**
+     * Signals that the takse given is not found.
+     */
+    public static class TaskNotFoundException extends IllegalValueException {
+        public TaskNotFoundException() {
+            super("No such Task can be found.");
         }
     }
 
