@@ -41,7 +41,7 @@ public class UndoCommand extends Command {
     	}
     	
     	if(command.equals("delete")){
-    		tasksList.addTask(deletedList.pop());
+    		tasksList.addTask(Integer.parseInt(task)-1,deletedList.pop());
     	}
     	
     	if(command.equals("edit")){
