@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import ruby.keyboardwarrior.commands.ExitCommand;
+import ruby.keyboardwarrior.data.TasksList;
 import ruby.keyboardwarrior.data.task.TodoTask;
 import ruby.keyboardwarrior.logic.Logic;
 import ruby.keyboardwarrior.commands.CommandResult;
@@ -36,6 +37,9 @@ public class MainWindow {
 
     @FXML
     private TextArea outputConsole;
+    
+    @FXML
+    private TextArea TasksListView;
 
     @FXML
     private TextField commandInput;
@@ -51,6 +55,7 @@ public class MainWindow {
                 return;
             }
             displayResult(result);
+            displayAll(TasksList.getAllTasks());
             clearCommandInput();
         } catch (Exception e) {
             display(e.getMessage());
@@ -94,7 +99,6 @@ public class MainWindow {
 
     /**
      * Displays the list of persons in the output display area, formatted as an indexed list.
-     * Private contact details are hidden.
      */
     private void display(List<TodoTask> tasks) {
         display(new Formatter().format(tasks));
@@ -106,5 +110,16 @@ public class MainWindow {
     private void display(String... messages) {
         outputConsole.setText(outputConsole.getText() + new Formatter().format(messages));
     }
-
+    
+    /**
+     * Displays the entire list of tasks
+     */
+    private void displayAll(List<TodoTask> tasks){
+        TasksListView.clear();
+        displayAll(new Formatter().format(tasks));
+    }
+    
+    private void displayAll(String... messages){
+        TasksListView.setText(TasksListView.getText() + new Formatter().format(messages));
+    }
 }
