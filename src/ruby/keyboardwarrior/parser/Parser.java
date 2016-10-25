@@ -55,7 +55,8 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
         
-        allInputs.push(userInput);
+        if(!userInput.equals("list") && !userInput.equals("help"))
+        	allInputs.push(userInput);
         String commandWord = matcher.group("commandWord");
         String arguments = matcher.group("arguments");
         switch (commandWord) {

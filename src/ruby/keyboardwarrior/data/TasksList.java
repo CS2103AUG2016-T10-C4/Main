@@ -67,6 +67,20 @@ public class TasksList {
         }
         allTasks.add(toAdd);
     }
+    
+    /**
+     * Inserts a person to the address book.
+     * Also checks the new person's tags and updates {@link #allTags} with any new tags found,
+     * and updates the Tag objects in the person to point to those in {@link #allTags}.
+     *
+     * @throws DuplicateTaskException if an equivalent person already exists.
+     */
+    public void addTask(int index, TodoTask toAdd) throws DuplicateTaskException{
+        if (containsTask(toAdd)) {
+            throw new DuplicateTaskException();
+        }
+        allTasks.add(index, toAdd);
+    }
 
     /**
      * Checks if an equivalent person exists in the address book.
