@@ -109,8 +109,52 @@ public class Parser {
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
+        
+        Scanner scanItem = new Scanner(args);
+        StringBuilder taskDetails = new StringBuilder();
+        while(scanItem.hasNext()){
+        	String check = scanItem.next();
+        	if(check.startsWith("by")){
+        		break;
+        	}
+        	if(check.startsWith("from")){
+        		break;
+        	}
+        	else{
+        		taskDetails.append(" " + check);
+        	}
+        }
+        scanItem.close();
+        
+        String startTime = null;
+        String endTime = null;
+        
+        Scanner scanDeadline = new Scanner(args);
+        if(scanDeadline.findInLine("by") != null) {
+        	if(scanDeadline.hasNext()) {
+        		endTime = scanDeadline.next();
+        	}
+        } 
+        scanDeadline.close();
+        
+        Scanner scanEvent = new Scanner(args);
+        if(scanEvent.findInLine("from") != null) {
+        	if(scanEvent.hasNext()) {
+        		startTime = scanEvent.next();
+        		if(scanEvent.hasNext()){
+        			endTime = scanEvent.next();
+        		}
+        	}
+        } 
+        scanEvent.close();
+        
+        //checking
+        System.out.println(taskDetails.toString());
+        System.out.println(startTime);
+        System.out.println(endTime);
+        
         try {
-            return new AddCommand(matcher.group("taskdetails"));
+            return new AddCommand(taskDetails.toString().trim(), startTime, endTime);
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }

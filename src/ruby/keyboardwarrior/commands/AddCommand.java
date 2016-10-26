@@ -27,8 +27,19 @@ public class AddCommand extends Command {
      * @throws IllegalValueException if any of the raw values are invalid
      */
 
-    public AddCommand(String taskdetails) throws IllegalValueException {
-        this.toAdd = new TodoTask(new TaskDetails(taskdetails));
+    public AddCommand(String taskdetails, String startTime, String endTime) throws IllegalValueException {
+    	if((endTime == null) && (startTime == null)){
+    		this.toAdd = new TodoTask(new TaskDetails(taskdetails), new StartTime(), new EndTime());	//To-do
+    	}
+    	else if((endTime != null) && (startTime == null)){
+    		this.toAdd = new TodoTask(new TaskDetails(taskdetails), new StartTime(), new EndTime(endTime));	//Deadline
+    	}
+    	else if((endTime == null) && (startTime != null)){
+    		this.toAdd = new TodoTask(new TaskDetails(taskdetails), new StartTime(startTime), new EndTime()); //Event with no end time
+    	}
+    	else{
+    		this.toAdd = new TodoTask(new TaskDetails(taskdetails), new StartTime(startTime), new EndTime(endTime)); //Event with end time
+    	}
     }
 
     public AddCommand(TodoTask toAdd) {

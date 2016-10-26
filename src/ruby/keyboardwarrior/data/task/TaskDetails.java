@@ -22,8 +22,12 @@ public class TaskDetails {
      *
      * @throws IllegalValueException if given name string is invalid.
      */
-    public TaskDetails(String taskdetails){
-        taskdetails = taskdetails.trim();
+    public TaskDetails(String taskdetails) throws IllegalValueException{
+        assert taskdetails != null;
+    	taskdetails = taskdetails.trim();
+        if(!isValidDetails(taskdetails)) {
+        	throw new IllegalValueException(MESSAGE_DETAILS_CONSTRAINTS);	
+        }
         this.details = taskdetails;
     }
 
