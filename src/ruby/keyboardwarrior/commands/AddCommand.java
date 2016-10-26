@@ -19,7 +19,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Keyboard Warrior";
 
-    private final TodoTask toAdd;
+    private final Task toAdd;
 
     /**
      * Convenience constructor using raw values.
@@ -28,10 +28,10 @@ public class AddCommand extends Command {
      */
 
     public AddCommand(String taskdetails) throws IllegalValueException {
-        this.toAdd = new TodoTask(new TaskDetails(taskdetails));
+        this.toAdd = new Task(new TaskDetails(taskdetails));
     }
 
-    public AddCommand(TodoTask toAdd) {
+    public AddCommand(Task toAdd) {
         this.toAdd = toAdd;
     }
 
@@ -45,7 +45,7 @@ public class AddCommand extends Command {
         }
     }
     
-    public TodoTask getTask(){
+    public Task getTask(){
         return toAdd;
     }
     

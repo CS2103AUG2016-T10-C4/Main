@@ -1,6 +1,6 @@
 package ruby.keyboardwarrior.commands;
 
-import ruby.keyboardwarrior.data.task.TodoTask;
+import ruby.keyboardwarrior.data.task.Task;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        List<TodoTask> allTasks = tasksList.getAllTasks();
+        List<Task> allTasks = tasksList.getAllTasks();
         return new CommandResult(getMessageForTasksListShownSummary(allTasks), allTasks);
     }
     

@@ -2,7 +2,7 @@ package ruby.keyboardwarrior.commands;
 
 import ruby.keyboardwarrior.common.Messages;
 import ruby.keyboardwarrior.data.TasksList;
-import ruby.keyboardwarrior.data.task.TodoTask;
+import ruby.keyboardwarrior.data.task.Task;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -15,8 +15,8 @@ import static ruby.keyboardwarrior.ui.Gui.DISPLAYED_INDEX_OFFSET;
  */
 public abstract class Command {
     protected TasksList tasksList;
-    protected static Stack<TodoTask> deletedList = new Stack<TodoTask>();
-    protected List<TodoTask> relevantTasks;
+    protected static Stack<Task> deletedList = new Stack<Task>();
+    protected List<Task> relevantTasks;
     private int targetIndex = -1;
  
     /**
@@ -35,7 +35,7 @@ public abstract class Command {
      * @param tasksDisplayed used to generate summary
      * @return summary message for persons displayed
      */
-    public static String getMessageForTasksListShownSummary(List<TodoTask> tasksDisplayed) {
+    public static String getMessageForTasksListShownSummary(List<Task> tasksDisplayed) {
         return String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, tasksDisplayed.size());
     }
 
@@ -49,7 +49,7 @@ public abstract class Command {
     /**
      * Supplies the data the command will operate on.
      */
-    public void setData(TasksList tasksList, List<TodoTask> relevantTasks) {
+    public void setData(TasksList tasksList, List<Task> relevantTasks) {
         this.tasksList = tasksList;
         this.relevantTasks = relevantTasks;
     }
@@ -59,7 +59,7 @@ public abstract class Command {
      *
      * @throws IndexOutOfBoundsException if the target index is out of bounds of the last viewed listing
      */
-    protected TodoTask getTargetTask() throws IndexOutOfBoundsException {
+    protected Task getTargetTask() throws IndexOutOfBoundsException {
         return relevantTasks.get(getTargetIndex() - DISPLAYED_INDEX_OFFSET);
     }
 

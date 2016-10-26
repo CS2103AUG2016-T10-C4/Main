@@ -7,7 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import ruby.keyboardwarrior.commands.ExitCommand;
 import ruby.keyboardwarrior.data.TasksList;
-import ruby.keyboardwarrior.data.task.TodoTask;
+import ruby.keyboardwarrior.data.task.Task;
 import ruby.keyboardwarrior.logic.Logic;
 import ruby.keyboardwarrior.commands.CommandResult;
 
@@ -95,7 +95,7 @@ public class MainWindow {
     public void displayResult(CommandResult result) {
         clearOutputConsole();
         TasksListView.clear();
-        final Optional<List<TodoTask>> resultTasks = result.getRelevantTasks();
+        final Optional<List<Task>> resultTasks = result.getRelevantTasks();
         if(resultTasks.isPresent()) {
             display(resultTasks.get());
         }
@@ -116,7 +116,7 @@ public class MainWindow {
     /**
      * Displays the list of persons in the output display area, formatted as an indexed list.
      */
-    private void display(List<TodoTask> tasks) {
+    private void display(List<Task> tasks) {
         display(new Formatter().format(tasks));
     }
 
@@ -132,7 +132,7 @@ public class MainWindow {
     public void displayAll(CommandResult result) {
     	TasksListView.clear();
     	displayAll(result.feedbackToUser);
-    	final Optional<List<TodoTask>> resultTasks = result.getRelevantTasks();
+    	final Optional<List<Task>> resultTasks = result.getRelevantTasks();
     	if(resultTasks.isPresent()) {
             displayAll(resultTasks.get());
         }
@@ -141,7 +141,7 @@ public class MainWindow {
     /**
      * Displays the entire list of tasks
      */
-    private void displayAll(List<TodoTask> tasks){
+    private void displayAll(List<Task> tasks){
         displayAll(new Formatter().format(tasks));
     }
     

@@ -1,6 +1,6 @@
 package ruby.keyboardwarrior.commands;
 
-import ruby.keyboardwarrior.data.task.TodoTask;
+import ruby.keyboardwarrior.data.task.Task;
 
 import java.util.*;
 
@@ -32,7 +32,7 @@ public class FindCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        final List<TodoTask> itemsFound = getItemsWithDetailsContainingAnyKeyword(keywords);
+        final List<Task> itemsFound = getItemsWithDetailsContainingAnyKeyword(keywords);
         return new CommandResult(getMessageForTasksListShownSummary(itemsFound), itemsFound);
     }
 
@@ -46,15 +46,15 @@ public class FindCommand extends Command {
      * @param keywords for searching
      * @return list of items found
      */
-    private List<TodoTask> getItemsWithDetailsContainingAnyKeyword(Set<String> keywords) {
-        final List<TodoTask> matchedItems = new ArrayList<>();
+    private List<Task> getItemsWithDetailsContainingAnyKeyword(Set<String> keywords) {
+        final List<Task> matchedItems = new ArrayList<>();
         Set<String> lowerCaseKeywords = new HashSet<String>();
         Iterator<String> keywordsItr = keywords.iterator();
         while (keywordsItr.hasNext()){
             lowerCaseKeywords.add(keywordsItr.next().toLowerCase());	//makes it all lower case so can have non-case-sensitive searching
         }
-        for (TodoTask todoTask : tasksList.getAllTasks()) {
-            final Set<String> wordsInName = new HashSet<>(todoTask.getDetails().getWordsInDetails());
+        for (Task Task : tasksList.getAllTasks()) {
+            final Set<String> wordsInName = new HashSet<>(Task.getDetails().getWordsInDetails());
             Set<String> lowerCaseWordsInName = new HashSet<String>();
             Iterator<String> nameItr = wordsInName.iterator();
             while (nameItr.hasNext())
@@ -62,7 +62,7 @@ public class FindCommand extends Command {
                 lowerCaseWordsInName.add(nameItr.next().toLowerCase());
             }
             if (!Collections.disjoint(lowerCaseWordsInName, lowerCaseKeywords)) {
-                matchedItems.add(todoTask);
+                matchedItems.add(Task);
             }
         }
         return matchedItems;

@@ -15,7 +15,7 @@ import java.util.*;
  */
 public class TasksList {
 
-    private static ArrayList<TodoTask> allTasks = new ArrayList<TodoTask>();
+    private static ArrayList<Task> allTasks = new ArrayList<Task>();
     
     public static class DuplicateTaskException extends DuplicateDataException {
         protected DuplicateTaskException() {
@@ -24,7 +24,7 @@ public class TasksList {
     }
     
     /**
-     * Signals that the takse given is not found.
+     * Signals that the task given is not found.
      */
     public static class TaskNotFoundException extends IllegalValueException {
         public TaskNotFoundException() {
@@ -40,7 +40,7 @@ public class TasksList {
      * Creates an empty address book.
      */
     public TasksList() {
-        allTasks = new ArrayList<TodoTask>();
+        allTasks = new ArrayList<Task>();
     }
 
     /**
@@ -50,8 +50,8 @@ public class TasksList {
      * @param tasks external changes to this will not affect this address book
      * @param tags external changes to this will not affect this address book
      */
-    public TasksList(ArrayList<TodoTask> tasks) {
-        this.allTasks = new ArrayList<TodoTask>(tasks);
+    public TasksList(ArrayList<Task> tasks) {
+        this.allTasks = new ArrayList<Task>(tasks);
     }
 
     /**
@@ -61,7 +61,7 @@ public class TasksList {
      *
      * @throws DuplicateTaskException if an equivalent person already exists.
      */
-    public void addTask(TodoTask toAdd) throws DuplicateTaskException{
+    public void addTask(Task toAdd) throws DuplicateTaskException{
         if (containsTask(toAdd)) {
             throw new DuplicateTaskException();
         }
@@ -75,7 +75,7 @@ public class TasksList {
      *
      * @throws DuplicateTaskException if an equivalent person already exists.
      */
-    public void addTask(int index, TodoTask toAdd) throws DuplicateTaskException{
+    public void addTask(int index, Task toAdd) throws DuplicateTaskException{
         if (containsTask(toAdd)) {
             throw new DuplicateTaskException();
         }
@@ -85,7 +85,7 @@ public class TasksList {
     /**
      * Checks if an equivalent person exists in the address book.
      */
-    public boolean containsTask(TodoTask key) {
+    public boolean containsTask(Task key) {
         return allTasks.contains(key);
     }
 
@@ -94,7 +94,7 @@ public class TasksList {
      *
      * @throws TaskNotFoundException if no such Person could be found.
      */
-    public void removeTask(TodoTask toRemove) throws TaskNotFoundException{
+    public void removeTask(Task toRemove) throws TaskNotFoundException{
         if (!containsTask(toRemove)) {
             throw new TaskNotFoundException();
         }
@@ -106,18 +106,18 @@ public class TasksList {
      *
      * @throws TaskNotFoundException if no such Task could be found.
      */
-    public void setTask(TodoTask toChange, TodoTask editTask) throws TaskNotFoundException{
+    public void setTask(Task toChange, Task editTask) throws TaskNotFoundException{
         if (!containsTask(toChange)) {
             throw new TaskNotFoundException();
         }
         allTasks.set(allTasks.indexOf(toChange), editTask);
     }
     
-    public void setTask(int toChangeIndex, TodoTask editTask){
+    public void setTask(int toChangeIndex, Task editTask){
         allTasks.set(toChangeIndex, editTask);
     }
     
-    public static List<TodoTask> getAllTasks(){
+    public static List<Task> getAllTasks(){
         return allTasks;
     }
 

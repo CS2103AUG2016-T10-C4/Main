@@ -3,7 +3,7 @@ package ruby.keyboardwarrior.logic;
 import ruby.keyboardwarrior.commands.Command;
 import ruby.keyboardwarrior.commands.CommandResult;
 import ruby.keyboardwarrior.data.TasksList;
-import ruby.keyboardwarrior.data.task.TodoTask;
+import ruby.keyboardwarrior.data.task.Task;
 import ruby.keyboardwarrior.parser.Parser;
 import ruby.keyboardwarrior.storage.StorageFile;
 import ruby.keyboardwarrior.storage.StorageFile.InvalidStorageFilePathException;
@@ -22,7 +22,7 @@ public class Logic {
     private TasksList tasksList;
 
     /** The list of person shown to the user most recently.  */
-    private List<TodoTask> lastShownList = Collections.emptyList();
+    private List<Task> lastShownList = Collections.emptyList();
 
     public Logic() throws Exception{
         setStorage(initializeStorage());
@@ -57,12 +57,12 @@ public class Logic {
     /**
      * Unmodifiable view of the current last shown list.
      */
-    public List<TodoTask> getLastShownList() {
+    public List<Task> getLastShownList() {
         return Collections.unmodifiableList(lastShownList);
     }
     
 
-    protected void setLastShownList(List<TodoTask> newList) {
+    protected void setLastShownList(List<Task> newList) {
         lastShownList = newList;
     }
 
@@ -95,7 +95,7 @@ public class Logic {
 
     /** Updates the {@link #lastShownList} if the result contains a list of Persons. */
     private void recordResult(CommandResult result) {
-        final Optional<List<TodoTask>> personList = result.getRelevantTasks();
+        final Optional<List<Task>> personList = result.getRelevantTasks();
         if (personList.isPresent()) {
             lastShownList = personList.get();
         }

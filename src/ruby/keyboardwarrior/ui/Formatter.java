@@ -1,6 +1,6 @@
 package ruby.keyboardwarrior.ui;
 
-import ruby.keyboardwarrior.data.task.TodoTask;
+import ruby.keyboardwarrior.data.task.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +29,10 @@ public class Formatter {
     }
 
     /** Formats the given list of persons for displaying to the user. */
-    public String format(List<TodoTask> todoTasks) {
+    public String format(List<Task> Tasks) {
         final List<String> formattedTasks = new ArrayList<>();
-        for (TodoTask todoTask : todoTasks) {
-            formattedTasks.add(todoTask.toString());
+        for (Task Task : Tasks) {
+            formattedTasks.add(Task.toString());
         }
         return format(asIndexedList(formattedTasks));
     }
