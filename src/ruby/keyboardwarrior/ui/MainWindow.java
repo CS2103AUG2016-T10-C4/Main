@@ -93,6 +93,7 @@ public class MainWindow {
     /** Displays the result of a command execution to the user. */
     public void displayResult(CommandResult result) {
         clearOutputConsole();
+        TasksListView.clear();
         final Optional<List<TodoTask>> resultTasks = result.getRelevantTasks();
         if(resultTasks.isPresent()) {
             display(resultTasks.get());
@@ -144,7 +145,6 @@ public class MainWindow {
     }
     
     private void displayAll(String... messages){
-    	TasksListView.clear();
         TasksListView.setText(TasksListView.getText() + new Formatter().format(messages));
     }
 }
