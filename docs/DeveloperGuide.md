@@ -142,6 +142,8 @@ More commands can be added on to the current application. This allows for greate
 
 Data could be secured through encryption so that only users can only access their own data to ensure privacy.
 
+<!-- @@author A0139820E -->
+
 ## Appendix A : User Stories
 
 **Priorities**: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (unlikely to have) - `*`
@@ -173,6 +175,8 @@ Priority | As a ... | I want to ... | So that I can...
 `*` | advanced user | sort my tasks in a specific order ( e.g. by priority, by date, by alphabetical) | easily find tasks in sequence
 `*` | advanced user | see statistics on my tasks | know how many tasks I completed and did not complete
 `*` | advanced user | reserve slots | avoid using the slots by mistake
+
+<!-- @@author A0139820E -->
 
 ## Appendix B : Use Cases
 
@@ -222,6 +226,8 @@ Use case resumes from step 3. <br>
 2.a.1. **KeyboardWarrior** notifies user that there is no such task. <br>
 `Use case ends.` <br>
 
+<!-- @@author A0139820E -->
+
 ## Appendix C : Non Functional Requirements
 
 * Should work on computers without internet connection.
@@ -235,6 +241,8 @@ Use case resumes from step 3. <br>
 * Should work without any installer.
 *  Should be able to process task efficiently by using efficient searching algorithms.
 * Should be able to support command line interface.
+
+<!-- @@author A0139820E -->
 
 ## Appendix D : Glossary
 
