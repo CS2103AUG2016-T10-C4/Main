@@ -10,11 +10,19 @@ import ruby.keyboardwarrior.data.task.*;
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
+    public static final String DEADLINE_WORD = "by";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" + "Adds a task to the Keyboard Warrior. "
             + "Only supports task details which can be enter after the command word seperated by a space. \n\t"
-            + "Example: " + COMMAND_WORD
-            + " do something";
+            + "To add a Todo: \n\t"
+            + "Format: add TASK \n\t"
+            + "Example: " + COMMAND_WORD + " do something"
+            + "To add a Deadline: \n\t"
+            + "Format: add TASK by [DATE]|[TIME] \n\t"
+            + "Example: " + COMMAND_WORD + " do something " + DEADLINE_WORD + "120416 1800"
+            + "To add an Event: \n\t"
+            + "Format: add DATE TIME to TIME TASK\n\t"
+            + "Example: " + COMMAND_WORD + "120416 1800 to 2100 do something";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Keyboard Warrior";

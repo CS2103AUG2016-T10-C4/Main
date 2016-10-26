@@ -95,9 +95,9 @@ public class Logic {
 
     /** Updates the {@link #lastShownList} if the result contains a list of Persons. */
     private void recordResult(CommandResult result) {
-        final Optional<List<Task>> personList = result.getRelevantTasks();
-        if (personList.isPresent()) {
-            lastShownList = personList.get();
+        final Optional<List<Task>> taskList = result.getRelevantTasks();
+        if (taskList.isPresent()) {
+            lastShownList = taskList.get();
         }
     }
 }
