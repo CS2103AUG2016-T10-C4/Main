@@ -79,12 +79,6 @@ public class Parser {
             case ListCommand.COMMAND_WORD:
                 return new ListCommand();
 
-            case ViewCommand.COMMAND_WORD:
-                return prepareView(arguments);
-
-            case ViewAllCommand.COMMAND_WORD:
-                return prepareViewAll(arguments);
-
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
                 
@@ -150,40 +144,6 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 	}
-
-    /**
-     * Parses arguments in the context of the view command.
-     *
-     * @param args full command args string
-     * @return the prepared command
-     */
-    private Command prepareView(String args) {
-
-        try {
-            final int targetIndex = parseArgsAsDisplayedIndex(args);
-            return new ViewCommand(targetIndex);
-        } catch (ParseException | NumberFormatException e) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ViewCommand.MESSAGE_USAGE));
-        }
-    }
-
-    /**
-     * Parses arguments in the context of the view all command.
-     *
-     * @param args full command args string
-     * @return the prepared command
-     */
-    private Command prepareViewAll(String args) {
-
-        try {
-            final int targetIndex = parseArgsAsDisplayedIndex(args);
-            return new ViewAllCommand(targetIndex);
-        } catch (ParseException | NumberFormatException e) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ViewAllCommand.MESSAGE_USAGE));
-        }
-    }
 
     /**
      * Parses the given arguments string as a single index number.
