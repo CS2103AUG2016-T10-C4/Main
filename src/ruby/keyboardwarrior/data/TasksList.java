@@ -6,12 +6,9 @@ import ruby.keyboardwarrior.data.task.*;
 
 import java.util.*;
 
+//@@author A0139820E
 /**
- * Represents the entire address book. Contains the data of the address book.
- *
- * Guarantees:
- *  - Every tag found in every person will also be found in the tag list.
- *  - The tags in each person point to tag objects in the master list. (== equality)
+ * Represents the entire tasks list. Contains the data of the keyboard warrior.
  */
 public class TasksList {
 
@@ -44,22 +41,16 @@ public class TasksList {
     }
 
     /**
-     * Constructs an address book with the given data.
-     * Also updates the tag list with any missing tags found in any person.
-     *
-     * @param tasks external changes to this will not affect this address book
-     * @param tags external changes to this will not affect this address book
+     * Constructs a taskslist with the given data.
      */
     public TasksList(ArrayList<TodoTask> tasks) {
         this.allTasks = new ArrayList<TodoTask>(tasks);
     }
 
     /**
-     * Adds a person to the address book.
-     * Also checks the new person's tags and updates {@link #allTags} with any new tags found,
-     * and updates the Tag objects in the person to point to those in {@link #allTags}.
+     * Adds a task to the tasks list.
      *
-     * @throws DuplicateTaskException if an equivalent person already exists.
+     * @throws DuplicateTaskException if an equivalent task already exists.
      */
     public void addTask(TodoTask toAdd) throws DuplicateTaskException{
         if (containsTask(toAdd)) {
@@ -69,11 +60,9 @@ public class TasksList {
     }
     
     /**
-     * Inserts a person to the address book.
-     * Also checks the new person's tags and updates {@link #allTags} with any new tags found,
-     * and updates the Tag objects in the person to point to those in {@link #allTags}.
+     * Inserts a task to the tasks list.
      *
-     * @throws DuplicateTaskException if an equivalent person already exists.
+     * @throws DuplicateTaskException if an equivalent task already exists.
      */
     public void addTask(int index, TodoTask toAdd) throws DuplicateTaskException{
         if (containsTask(toAdd)) {
@@ -83,16 +72,16 @@ public class TasksList {
     }
 
     /**
-     * Checks if an equivalent person exists in the address book.
+     * Checks if an equivalent task exists in the keyboard warrior.
      */
     public boolean containsTask(TodoTask key) {
         return allTasks.contains(key);
     }
 
     /**
-     * Removes the equivalent person from the address book.
+     * Removes the equivalent task from the address book.
      *
-     * @throws TaskNotFoundException if no such Person could be found.
+     * @throws TaskNotFoundException if no such task could be found.
      */
     public void removeTask(TodoTask toRemove) throws TaskNotFoundException{
         if (!containsTask(toRemove)) {
@@ -122,7 +111,7 @@ public class TasksList {
     }
 
     /**
-     * Clears all persons and tags from the address book.
+     * Clears all tasks from the tasks list.
      */
     public void clear() {
         allTasks.clear();

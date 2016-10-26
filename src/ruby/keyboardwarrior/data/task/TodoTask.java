@@ -2,6 +2,7 @@ package ruby.keyboardwarrior.data.task;
 
 import java.util.Objects;
 
+//@@author A0139820E
 /**
  * Represents a Task in the address book.
  * Guarantees: field values are validated.

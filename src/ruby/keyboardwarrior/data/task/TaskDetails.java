@@ -5,6 +5,7 @@ import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import java.util.Arrays;
 import java.util.List;
 
+//@@author A0139820E
 /**
  * Represents the Task Details in the Keyboard Warrior.
  * Guarantees: immutable; is valid as declared in {@link #isValidDetails(String)}

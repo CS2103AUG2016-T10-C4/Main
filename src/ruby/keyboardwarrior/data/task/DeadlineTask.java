@@ -3,6 +3,7 @@ package ruby.keyboardwarrior.data.task;
 import java.util.Objects;
 import java.util.StringJoiner;
 
+//@@author A0139820E
 /**
  * Represents a Deadline Task in the Keyboard Warrior.
  * Guarantees: field values are validated.
