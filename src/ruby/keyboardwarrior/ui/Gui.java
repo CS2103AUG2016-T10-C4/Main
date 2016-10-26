@@ -30,7 +30,7 @@ public class Gui {
         this.version = version;
     }
 
-    public void start(Stage stage, Stoppable mainApp) throws IOException {
+    public void start(Stage stage, Stoppable mainApp) throws Exception {
         mainWindow = createMainWindow(stage, mainApp);
         mainWindow.displayWelcomeMessage(version, logic.getStorageFilePath());
         stage.getIcons().add(new Image("file:docs/images/keyboardwarrior.jpg"));
