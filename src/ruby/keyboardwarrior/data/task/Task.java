@@ -1,5 +1,6 @@
 package ruby.keyboardwarrior.data.task;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Objects;
 public class Task {
 
     private TaskDetails details;
-    private int taskType; // 0 for Todo, 1 for Deadline, 2 for Event
+    private Integer taskType; // 0 for Todo, 1 for Deadline, 2 for Event
     private Date date;
     private DateTime startTime;
     private DateTime endTime;
