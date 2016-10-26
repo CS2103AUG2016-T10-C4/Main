@@ -58,6 +58,8 @@ public class MainWindow {
             	clearOutputConsole();
             	display(userCommandText);
             	displayAll(result);
+            } else if(result.feedbackToUser.substring(0,22).equals("Invalid command format")){
+            	displayResult(result);
             } else {
             	displayResult(result);
             	displayAll(logic.execute("list"));
@@ -95,12 +97,18 @@ public class MainWindow {
         if(resultTasks.isPresent()) {
             display(resultTasks.get());
         }
-        display(result.feedbackToUser);
+        if(result.feedbackToUser.substring(0,22).equals("Invalid command format")){
+        	display("Invalid command format!");
+        	displayAll(result.feedbackToUser.substring(25));
+        } else {
+        	display(result.feedbackToUser);
+        }
     }
 
-    public void displayWelcomeMessage(String version, String storageFilePath) {
+    public void displayWelcomeMessage(String version, String storageFilePath) throws Exception {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
         display(MESSAGE_WELCOME, version, MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE, storageFileInfo);
+        displayAll(logic.execute("list"));
     }
 
     /**
@@ -120,22 +128,22 @@ public class MainWindow {
     /** Displays the result of a command execution to the user. */
     public void displayAll(CommandResult result) {
     	TasksListView.clear();
-        final Optional<List<TodoTask>> resultTasks = result.getRelevantTasks();
-        if(resultTasks.isPresent()) {
+    	displayAll(result.feedbackToUser);
+    	final Optional<List<TodoTask>> resultTasks = result.getRelevantTasks();
+    	if(resultTasks.isPresent()) {
             displayAll(resultTasks.get());
         }
-        displayAll(result.feedbackToUser);
     }
     
     /**
      * Displays the entire list of tasks
      */
     private void displayAll(List<TodoTask> tasks){
-        TasksListView.clear();
         displayAll(new Formatter().format(tasks));
     }
     
     private void displayAll(String... messages){
+    	TasksListView.clear();
         TasksListView.setText(TasksListView.getText() + new Formatter().format(messages));
     }
 }
