@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Task {
 
     private TaskDetails details;
-    private Integer taskType; // 0 for Todo, 1 for Deadline, 2 for Event
+    private Integer taskType; // 0 for To-do, 1 for Deadline, 2 for Event
     private Date date;
     private DateTime startTime;
     private DateTime endTime;
@@ -38,7 +38,7 @@ public class Task {
         this.startTime = startTime;
         this.endTime = endTime;
     }
-
+    
     public TaskDetails getDetails() {
         return details;
     }
@@ -61,8 +61,8 @@ public class Task {
     
     public boolean equals(Object other) {
         if (other instanceof Task){
-            Task todotask = (Task) other;
-            return this.getDetails().equals(todotask.getDetails());
+            Task task = (Task) other;
+            return this.getDetails().equals(task.getDetails());
         }
         else
             return false;
@@ -78,7 +78,7 @@ public class Task {
     		else
     			return details.toString() + " by " + endTime.toString();	
     	} else {
-    		return startTime.toString() + " to " + endTime.getTime().toString() + " " + details.toString(); 
+    		return details.toString() + " from " + startTime.toString() + " to " + endTime.getTime().toString(); 
     	}
     }
 
