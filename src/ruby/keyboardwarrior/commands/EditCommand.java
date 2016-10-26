@@ -27,7 +27,7 @@ public class EditCommand extends Command {
 
 
     @Override
-    public CommandResult execute() {
+    public CommandResult execute() throws Exception{
         try {
             final TodoTask target = getTargetTask();
             deletedList.push(target);

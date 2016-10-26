@@ -146,8 +146,8 @@ public class Parser {
         	
             final int targetIndex = parseArgsAsDisplayedIndex(index);
             return new EditCommand(targetIndex, new TodoTask(new TaskDetails(editTask)));
-        } catch (ParseException | NumberFormatException e) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        } catch (ParseException | NumberFormatException | StringIndexOutOfBoundsException siobe) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 	}
 

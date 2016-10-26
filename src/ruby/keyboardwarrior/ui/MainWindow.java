@@ -54,11 +54,11 @@ public class MainWindow {
                 exitApp();
                 return;
             }
-            if(userCommandText.substring(0,4).equals("find") || userCommandText.substring(0,4).equals("list")){
+            if(userCommandText.length() > 3 && (userCommandText.substring(0,4).equals("find") || userCommandText.substring(0,4).equals("list"))){
             	clearOutputConsole();
             	display(userCommandText);
             	displayAll(result);
-            } else if(result.feedbackToUser.substring(0,22).equals("Invalid command format")){
+            } else if(result.feedbackToUser.length() > 22 && result.feedbackToUser.substring(0,22).equals("Invalid command format")){
             	displayResult(result);
             } else {
             	displayResult(result);
@@ -97,7 +97,7 @@ public class MainWindow {
         if(resultTasks.isPresent()) {
             display(resultTasks.get());
         }
-        if(result.feedbackToUser.substring(0,22).equals("Invalid command format")){
+        if(result.feedbackToUser.length() > 22 && result.feedbackToUser.substring(0,22).equals("Invalid command format")){
         	display("Invalid command format!");
         	displayAll(result.feedbackToUser.substring(25));
         } else {
@@ -122,6 +122,7 @@ public class MainWindow {
      * Displays the given messages on the output display area, after formatting appropriately.
      */
     private void display(String... messages) {
+    	clearOutputConsole();
         outputConsole.setText(outputConsole.getText() + new Formatter().format(messages));
     }
     
