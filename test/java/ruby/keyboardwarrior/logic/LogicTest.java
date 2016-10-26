@@ -17,7 +17,7 @@ import java.util.*;
 import static junit.framework.TestCase.assertEquals;
 import static ruby.keyboardwarrior.common.Messages.*;
 
-
+//@@author A0139820E
 public class LogicTest {
 
     /**

@@ -16,6 +16,7 @@ import java.util.Optional;
 
 import static ruby.keyboardwarrior.common.Messages.*;
 
+//@@author A0139820E
 /**
  * Main Window of the GUI.
  */

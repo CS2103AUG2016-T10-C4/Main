@@ -1,5 +1,7 @@
 # About Us
 
+<!-- @@LiuYuheng A0139820E -->
+
 We are a team of four Computer Engineering students based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg). 
 
 ## Project Team
