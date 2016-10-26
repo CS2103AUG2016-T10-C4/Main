@@ -39,6 +39,14 @@ public class LogicTest {
     }
 
     @Test
+    public void constructor() {
+        //Constructor is called in the setup() method which executes before every test, no need to call it here again.
+
+        //Confirm the last shown list is empty
+        assertEquals(Collections.emptyList(), logic.getLastShownList());
+    }
+
+    @Test
     public void execute_invalid() throws Exception {
         String invalidCommand = "       ";
         assertCommandBehavior(invalidCommand,

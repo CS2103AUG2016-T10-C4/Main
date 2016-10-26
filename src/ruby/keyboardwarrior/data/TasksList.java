@@ -15,7 +15,7 @@ import java.util.*;
  */
 public class TasksList {
 
-    private static ArrayList<TodoTask> allTasks = new ArrayList<TodoTask>();
+    private ArrayList<TodoTask> allTasks = new ArrayList<TodoTask>();
     
     public static class DuplicateTaskException extends DuplicateDataException {
         protected DuplicateTaskException() {
@@ -117,7 +117,7 @@ public class TasksList {
         allTasks.set(toChangeIndex, editTask);
     }
     
-    public static List<TodoTask> getAllTasks(){
+    public List<TodoTask> getAllTasks(){
         return allTasks;
     }
 
