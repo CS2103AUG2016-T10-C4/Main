@@ -11,15 +11,24 @@ Documentation: ensure quality of various project documents.
 
 -----
 
-### [**Liu Yuheng**](https://github.com/E0003705)
+#### [**Liu Yuheng**](https://github.com/E0003705)
 <img src='images/LiuYuheng.jpg' width="150"><br>
-**Role**:  Group member<br>
-Debugger: responsible for checking for bugs in all codes.<br>
-Tools expert: advance knowledge on tools used and helps with tools related problems.
+
+* Components in charge of: 
+    * [Storage](https://github.com/CS2103AUG2016-T10-C4/Main/blob/master/docs/DeveloperGuide.md#7-storage-component)
+    * [UI](https://github.com/CS2103AUG2016-T10-C4/Main/blob/master/docs/DeveloperGuide.md#4-ui-component)
+* Aspects/Tools in charge of: Github, JavaFX, Scenebuilder
+* Features implemented:
+    * [Display taskslist]
+* Code written:
+* Other major contributions:
+    * Did the initial refactoring from addressbook to task manager
+    * Ensure all test cases able to pass
+    * Keep issue tracker up to date
 
 -----
 
-### [**Eu Jin Marcus Yatim**](https://github.com/a0124453)
+#### [**Eu Jin Marcus Yatim**](https://github.com/a0124453)
 <img src='images/EuJinMarcusYatim.jpg' width="150"><br>
 **Role**: Group member<br>
 Integration: integrate various parts of the software to create a whole.<br>
@@ -27,7 +36,7 @@ Scheduling: in charge of assigning and tracking project tasks.
 
 -----
 
-### [**Raphael Quek**](https://github.com/raphaelquek)
+#### [**Raphael Quek**](https://github.com/raphaelquek)
 **Role**: Group member<br>
 Testing: ensures the testing of the project is done properly and on time.<br>
 Code quality: looks after the code quality, ensures adherence to code standards.
