@@ -274,7 +274,7 @@ Use case resumes from step 3. <br>
 6.	Allows Day, Week, Month and Year views.
 7.	Users can type in various languages such as Spanish or Japanese.
 
-####Cal
+####Any.do Cal
 1.	Supports syncing with other calendar apps such as Google Calendar
 2.	Specializes only in showing your daily agenda with minimal clutter
 3.	Allows Syncing with any-do so that your to-do list is also imported into the calendar.
