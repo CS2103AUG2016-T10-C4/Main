@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 
+//@@author A0139820E
 /**
  * JAXB-friendly adapted address book data holder class.
  */

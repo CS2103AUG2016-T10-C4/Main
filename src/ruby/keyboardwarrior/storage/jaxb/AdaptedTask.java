@@ -4,10 +4,9 @@ import ruby.keyboardwarrior.common.Utils;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.data.task.*;
 
-//import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-//import javax.xml.bind.annotation.XmlValue;
 
+//@@author A0139820E
 /**
  * JAXB-friendly adapted person data holder class.
  */
