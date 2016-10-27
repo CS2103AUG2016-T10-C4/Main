@@ -4,7 +4,10 @@ import ruby.keyboardwarrior.common.Utils;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.data.task.*;
 
+import java.util.Calendar;
+
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlValue;
 
 //@@author A0139820E
 /**
@@ -26,8 +29,8 @@ public class AdaptedTask {
      *
      * @param source future changes to this will not affect the created AdaptedPerson
      */
-    public AdaptedTask(TodoTask source) {
-        taskdetails = source.getDetails().details;
+    public AdaptedTask(Task source) {
+        this.taskdetails = source.toString();
     }
 
     /**
@@ -47,8 +50,8 @@ public class AdaptedTask {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
-    public TodoTask toModelType() throws IllegalValueException {
+    public Task toModelType() throws IllegalValueException {
         final TaskDetails task = new TaskDetails(this.taskdetails);
-        return new TodoTask(task);
+        return new Task(task);
     }
 }

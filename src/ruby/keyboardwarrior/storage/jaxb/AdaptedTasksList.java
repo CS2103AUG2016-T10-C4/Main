@@ -2,7 +2,7 @@ package ruby.keyboardwarrior.storage.jaxb;
 
 import ruby.keyboardwarrior.data.TasksList;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
-import ruby.keyboardwarrior.data.task.TodoTask;
+import ruby.keyboardwarrior.data.task.Task;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -30,7 +30,7 @@ public class AdaptedTasksList {
      */
     public AdaptedTasksList(TasksList source) {
         tasks = new ArrayList<>();
-        for (TodoTask task : source.getAllTasks()) {
+        for (Task task : source.getAllTasks()) {
             tasks.add(new AdaptedTask(task));
         }
     }
@@ -59,7 +59,7 @@ public class AdaptedTasksList {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
     public TasksList toModelType() throws IllegalValueException {
-        final ArrayList<TodoTask> tasksList = new ArrayList<>();
+        final ArrayList<Task> tasksList = new ArrayList<>();
         for (AdaptedTask task : tasks) {
             tasksList.add(task.toModelType());
         }

@@ -2,7 +2,7 @@ package ruby.keyboardwarrior.commands;
 
 import ruby.keyboardwarrior.common.Messages;
 import ruby.keyboardwarrior.data.TasksList.TaskNotFoundException;
-import ruby.keyboardwarrior.data.task.TodoTask;
+import ruby.keyboardwarrior.data.task.Task;
 
 /**
  * Edit an item identified using it's last displayed index from the task manager.
@@ -18,9 +18,9 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edit Item: %1$s";
 
-    private TodoTask editTask;
+    private Task editTask;
     
-    public EditCommand(int targetVisibleIndex, TodoTask editTask) {
+    public EditCommand(int targetVisibleIndex, Task editTask) {
         super(targetVisibleIndex);
         this.editTask = editTask;
     }
@@ -29,7 +29,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute() throws Exception{
         try {
-            final TodoTask target = getTargetTask();
+            final Task target = getTargetTask();
             deletedList.push(target);
             tasksList.setTask(target,editTask);
             return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, target));
