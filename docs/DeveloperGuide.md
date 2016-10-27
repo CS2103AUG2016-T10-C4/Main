@@ -123,6 +123,7 @@ We have two types of tests:
    [here](http://stackoverflow.com/questions/2522897/eclipse-junit-ea-vm-option). <br>
    Delete run configurations created when you ran tests earlier.
 
+<!-- test -->
 <!-- @@author A0139716X -->
 
 ## 9. Future Development	
@@ -136,7 +137,7 @@ More commands can be added on to the current application. This allows for greate
 > Examples:
 > * Search for empty slots.
 > * Add recurring tasks.
-> * Add tags to task. 
+> * Add tags to tasks. 
 
 ### **Integration With Other Scheduler Apps**
 
