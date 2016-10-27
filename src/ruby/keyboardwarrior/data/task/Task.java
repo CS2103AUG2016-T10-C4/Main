@@ -78,7 +78,7 @@ public class Task {
     		else
     			return details.toString() + " by " + endTime.toString();	
     	} else {
-    		return details.toString() + " from " + startTime.toString() + " to " + endTime.getTime().toString(); 
+    		return details.toString() + " from " + startTime.toString() + " to " + endTime.toString(); 
     	}
     }
 

@@ -93,7 +93,7 @@ public class AddCommand extends Command {
 					this.toAdd = new Task(new TaskDetails(details.substring(0,byExist)), new Date(details.substring(byExist+4)));
 			}
 			else if(fromExist != -1){
-				this.toAdd = new Task(new TaskDetails(details.substring(0,fromExist)), new DateTime(details.substring(fromExist+6,fromExist+17)), new DateTime(details.substring(fromExist+18)));
+				this.toAdd = new Task(new TaskDetails(details.substring(0,fromExist)), new DateTime(details.substring(fromExist+6,fromExist+17)), new DateTime(details.substring(fromExist+18, fromExist+29)));
 			}
 			else{
 				this.toAdd = new Task(new TaskDetails(details));
