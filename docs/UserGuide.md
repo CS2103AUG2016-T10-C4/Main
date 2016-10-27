@@ -1,4 +1,4 @@
-//@@author A0124453M
+<!-- @@author A0124453M -->
 
 # User Guide
 
@@ -11,7 +11,7 @@
 
 <br>
 
-//@@author A0139716X
+<!-- @@author A0139716X -->
 
 ## 1. About Our Product
 <br>
@@ -21,7 +21,7 @@ It allows you to schedule, reschedule, update, and delete tasks with just a sing
 
 <br>
 
-//@@author A0124453M
+<!-- @@author A0124453M -->
 
 ## 2. Getting Started
 <br>
@@ -45,7 +45,7 @@ Double-click the file to start the app. The GUI should appear in a few seconds. 
 <br>
 Type the command in the command box and press <kbd>Enter</kbd> to execute it.
 
-//@@author YC
+<!-- @@author YC -->
 
 Some example commands you can try:
 
@@ -59,7 +59,7 @@ Refer to the [Features](#3-features) section below for details of each command.
 
 <br>
 
-//@@author A0139716X
+<!-- @@author A0139716X -->
 
 ## 3. Features
 <br>
@@ -105,7 +105,7 @@ Format: `**help**`
 
 This will load the help window which will show all the available commands that can be used in **KeyboardWarrior**. It will help you learn about the commands if you are a new user or you can refer to a command’s exact function and format when needed.
 
-//@@author YC
+<!-- @@author YC -->
 
 <br>
 Example:
@@ -114,7 +114,7 @@ Example:
 
 > Displays a pop-up menu that gives the command summary. 
 
-//@@author A0124453M
+<!-- @@author A0124453M -->
 
 <br>
 #### 3.1.2. Add a To-do task
@@ -217,7 +217,7 @@ This is suitable for most work-related tasks as they are usually scheduled withi
 > 
 > >     E.g. 2030 represents the time 8:30 p.m.
 
-//@@author YC 
+<!-- @@author YC -->
 
 <br>
 Examples: 
@@ -230,7 +230,7 @@ Examples:
 
 > Creates a new Deadline with the description “Submit Invoice” and a deadline of the coming Wednesday, 5:00 p.m.
 
-//@@author A0139716X
+<!-- @@author A0139716X -->
 
 <br>
 #### 3.1.4. Add Event
@@ -298,7 +298,7 @@ It is important to note that the `KEYWORD` will also be searched in the venue de
 > 
 > The VENUE parameter indicates the word to be searched only in the venues of items on **KeyboardWarrior**. It has to be preceded by the @ symbol.
 
-//@@author YC
+<!-- @@author YC -->
 
 <br>
 Examples: 
@@ -311,7 +311,7 @@ Examples:
 
 > Displays all items that has both the keyword “basketball” found in its description and its venue set as “UTSH 1”.
 
-//@@author A0124453M
+<!-- @@author A0124453M -->
 
 <br>
 #### 3.1.6. Show Calendar
@@ -418,7 +418,7 @@ It is possible to mark multiple tasks as completed in a single command by enteri
 > The INDEX must be a letter followed by an integer, <br>
 > E.g. D2, T2
 
-//@@author A0139716X
+<!-- @@author A0139716X -->
 
 <br>
 Examples: 
@@ -490,7 +490,7 @@ Exit | `**exit**`
 
 <br>
 
-//@@author A0124453M
+<!-- @@author A0124453M -->
 
 ## 5. Frequently Asked Questions (FAQ)
 <br>
@@ -502,7 +502,7 @@ Exit | `**exit**`
 
 <br>       
 
-//@@author A0139716X
+<!-- @@author A0139716X -->
 
 ## 6. Glossary
 <br>
