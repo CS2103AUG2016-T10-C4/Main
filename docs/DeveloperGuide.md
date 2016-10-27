@@ -1,4 +1,4 @@
-//@@author A0124453M
+<!-- @@author A0124453M -->
 
 # Developer Guide 
 
@@ -123,7 +123,7 @@ We have two types of tests:
    [here](http://stackoverflow.com/questions/2522897/eclipse-junit-ea-vm-option). <br>
    Delete run configurations created when you ran tests earlier.
 
-//@@author a0139716X
+<!-- @@author a0139716X -->
 
 ## 9. Future Development	
 
