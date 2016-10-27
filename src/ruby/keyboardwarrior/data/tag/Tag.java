@@ -1,4 +1,4 @@
-package ruby.keyboardwarrior.data.task;
+package ruby.keyboardwarrior.data.tag;
 
 import java.util.Arrays;
 import java.util.List;

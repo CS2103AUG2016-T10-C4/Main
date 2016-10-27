@@ -2,7 +2,7 @@ package ruby.keyboardwarrior.data.task;
 
 import java.util.Objects;
 
-import ruby.keyboardwarrior.data.task.UniqueTagList;
+import ruby.keyboardwarrior.data.tag.UniqueTagList;
 
 /**
  * Represents a Task in the task manager.

@@ -1,4 +1,4 @@
-package ruby.keyboardwarrior.data.task;
+package ruby.keyboardwarrior.data.tag;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
