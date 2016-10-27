@@ -13,8 +13,8 @@ public class Date {
     public static final String EXAMPLE = "130816";
     public static final String MESSAGE_DATE_CONSTRAINTS = "Date must be in the proper format DDMMYY";
     public static final String DATE_VALIDATION_REGEX = "[0-3][0-9][0-1][0-9][0-9][0-9]";
-    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yy");
-    public static final SimpleDateFormat DAY_DATE_FORMAT = new SimpleDateFormat("E dd.MM.yy");
+    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("E \t dd-MMM-yyyy");
+    public static final SimpleDateFormat DAY_DATE_FORMAT = new SimpleDateFormat("E dd-MMM-yyyy");
 
     public final Calendar date;
 
