@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import ruby.keyboardwarrior.commands.ExitCommand;
-import ruby.keyboardwarrior.data.TasksList;
 import ruby.keyboardwarrior.data.task.Task;
 import ruby.keyboardwarrior.logic.Logic;
 import ruby.keyboardwarrior.commands.CommandResult;
