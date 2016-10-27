@@ -45,7 +45,7 @@ Double-click the file to start the app. The GUI should appear in a few seconds. 
 <br>
 Type the command in the command box and press <kbd>Enter</kbd> to execute it.
 
-<!-- @@author YC -->
+<!-- @@author A0144556Y -->
 
 Some example commands you can try:
 
@@ -86,15 +86,15 @@ To understand the following command formats, you can refer to these rules below:
 > 
 > 4) Items with ... after them can have multiple instances.
 > 
->     E.g. Format for marking completed items: **complete** INDEX…
+>     E.g. Format for marking completed items: **complete** INDEXâ€¦
 > 			
-> The `...` means that the command can accept more than one `INDEX` parameter after the command word `complete`. For example, a valid command would be “complete INDEX1 INDEX2 INDEX3”, assuming INDEX1, INDEX2 and INDEX3 follow the proper conventions for `INDEX` parameters.
+> The `...` means that the command can accept more than one `INDEX` parameter after the command word `complete`. For example, a valid command would be â€œcomplete INDEX1 INDEX2 INDEX3â€�, assuming INDEX1, INDEX2 and INDEX3 follow the proper conventions for `INDEX` parameters.
 > 
 > 5) Items within (parentheses) with `|` between them need to have at least one of them used as the parameter.
 > 
 >     E.g. Format for finding items: **find** (KEYWORD | @VENUE)
 > 
-> There needs to be either an input as the `KEYWORD` parameter or the `VENUE` parameter or two inputs for both. Valid commands would be “find KEYWORD”, “find @VENUE” or “find KEYWORD @VENUE”.
+> There needs to be either an input as the `KEYWORD` parameter or the `VENUE` parameter or two inputs for both. Valid commands would be â€œfind KEYWORDâ€�, â€œfind @VENUEâ€� or â€œfind KEYWORD @VENUEâ€�.
 > 
 > 6) The order of the format must be strictly adhered to.
 
@@ -103,9 +103,9 @@ To understand the following command formats, you can refer to these rules below:
 <br>
 Format: `**help**`
 
-This will load the help window which will show all the available commands that can be used in **KeyboardWarrior**. It will help you learn about the commands if you are a new user or you can refer to a command’s exact function and format when needed.
+This will load the help window which will show all the available commands that can be used in **KeyboardWarrior**. It will help you learn about the commands if you are a new user or you can refer to a commandâ€™s exact function and format when needed.
 
-<!-- @@author YC -->
+<!-- @@author A0144556Y -->
 
 <br>
 Example:
@@ -137,7 +137,7 @@ Examples:
 
 `**add** buy chocolate milk`
 
-> Creates a new To-do with the description “Buy Chocolate”.
+> Creates a new To-do with the description â€œBuy Chocolateâ€�.
 
 <br>
 #### 3.1.3. Add a Deadline task
@@ -146,7 +146,7 @@ Format: `**add** TASK by DATE [TIME]`
 
 This adds a Deadline to the schedule in **KeyboardWarrior**. A Deadline is a kind of task that has to be completed by a specific deadline. Hence the date of the deadline should be specified in the command in addition to its description. A specific time here is optional.
 
-This is suitable for most work-related tasks as they are usually scheduled within a certain timeframe to meet clients’ demands, e.g. proposal submissions. 
+This is suitable for most work-related tasks as they are usually scheduled within a certain timeframe to meet clientsâ€™ demands, e.g. proposal submissions. 
 
 <br> 
 > Parameter usage:
@@ -217,18 +217,18 @@ This is suitable for most work-related tasks as they are usually scheduled withi
 > 
 > >     E.g. 2030 represents the time 8:30 p.m.
 
-<!-- @@author YC -->
+<!-- @@author A0144556Y -->
 
 <br>
 Examples: 
 
 `**add** complete keynote presentation by Wednesday`
 
-> Creates a new Deadline with the description “Complete Keynote Presentation” and a deadline of the coming Tuesday.
+> Creates a new Deadline with the description â€œComplete Keynote Presentationâ€� and a deadline of the coming Tuesday.
 
 `**add** submit invoice by 171016 1700`
 
-> Creates a new Deadline with the description “Submit Invoice” and a deadline of the coming Wednesday, 5:00 p.m.
+> Creates a new Deadline with the description â€œSubmit Invoiceâ€� and a deadline of the coming Wednesday, 5:00 p.m.
 
 <!-- @@author A0139716X -->
 
@@ -276,7 +276,7 @@ Examples:
 
 `**add** Fri 1410 to 1600 Group Meeting @I3 MR9`
 
-> Creates a new Event with the time period as Friday, 2:10 p.m. to 4:00 p.m., the description as “Group Meeting” and the venue as “I3 MR9”.
+> Creates a new Event with the time period as Friday, 2:10 p.m. to 4:00 p.m., the description as â€œGroup Meetingâ€� and the venue as â€œI3 MR9â€�.
 
 <br>
 #### 3.1.5. Find item
@@ -285,7 +285,7 @@ Format: `**find** (KEYWORD | @VENUE`
 
 This allows you to find all items in **KeyboardWarrior** that contains the phrase or venue that is indicated.
 
-It is important to note that the `KEYWORD` will also be searched in the venue details of the items. In addition, a combined search is also allowed, hence both parameters can be entered together, where the result returned would have the keyword in the item’s description and the `VENUE` parameter in the item’s venue. 
+It is important to note that the `KEYWORD` will also be searched in the venue details of the items. In addition, a combined search is also allowed, hence both parameters can be entered together, where the result returned would have the keyword in the itemâ€™s description and the `VENUE` parameter in the itemâ€™s venue. 
 
 <br>
 > Parameter usage:
@@ -298,7 +298,7 @@ It is important to note that the `KEYWORD` will also be searched in the venue de
 > 
 > The VENUE parameter indicates the word to be searched only in the venues of items on **KeyboardWarrior**. It has to be preceded by the @ symbol.
 
-<!-- @@author YC -->
+<!-- @@author A0144556Y -->
 
 <br>
 Examples: 
@@ -309,7 +309,7 @@ Examples:
 
 `**find** basketball @UTSH1`
 
-> Displays all items that has both the keyword “basketball” found in its description and its venue set as “UTSH 1”.
+> Displays all items that has both the keyword â€œbasketballâ€� found in its description and its venue set as â€œUTSH 1â€�.
 
 <!-- @@author A0124453M -->
 
