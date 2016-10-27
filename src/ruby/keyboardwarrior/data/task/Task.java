@@ -1,10 +1,11 @@
 package ruby.keyboardwarrior.data.task;
 
-import java.util.Calendar;
 import java.util.Objects;
 
+import ruby.keyboardwarrior.data.task.UniqueTagList;
+
 /**
- * Represents a Task in the address book.
+ * Represents a Task in the task manager.
  * Guarantees: field values are validated.
  */
 public class Task {
@@ -15,28 +16,34 @@ public class Task {
     private DateTime startTime;
     private DateTime endTime;
     
-    public Task(TaskDetails details) {
+    private UniqueTagList tags;
+    
+    public Task(TaskDetails details, UniqueTagList tags) {
     	this.taskType = 0;
         this.details = details;
+        this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
     
-    public Task(TaskDetails details, DateTime dateTime) {
+    public Task(TaskDetails details, DateTime dateTime, UniqueTagList tags) {
     	this.taskType = 1;
         this.details = details;
         this.endTime = dateTime;
+        this.tags = new UniqueTagList(tags);
     }
     
-    public Task(TaskDetails details, Date date) {
+    public Task(TaskDetails details, Date date, UniqueTagList tags) {
     	this.taskType = 1;
         this.details = details;
         this.date = date;
+        this.tags = new UniqueTagList(tags);
     }
     
-    public Task(TaskDetails details, DateTime startTime, DateTime endTime) {
+    public Task(TaskDetails details, DateTime startTime, DateTime endTime, UniqueTagList tags) {
     	this.taskType = 2;
         this.details = details;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.tags = new UniqueTagList(tags);
     }
     
     public TaskDetails getDetails() {
@@ -57,6 +64,17 @@ public class Task {
     
     public int getTaskType(){
     	return taskType;
+    }
+    
+    public UniqueTagList getTags() {
+        return new UniqueTagList(tags);
+    }
+    
+    /**
+     * Replaces this item's tags with the tags in the argument tag list.
+     */
+    public void setTags(UniqueTagList replacement) {
+        tags.setTags(replacement);
     }
     
     public boolean equals(Object other) {
@@ -84,7 +102,7 @@ public class Task {
 
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(details);
+        return Objects.hash(details, taskType, date, startTime, endTime, tags);
     }
 
 }

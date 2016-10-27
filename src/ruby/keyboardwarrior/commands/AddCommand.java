@@ -102,6 +102,7 @@ public class AddCommand extends Command {
 		catch (NumberFormatException | StringIndexOutOfBoundsException siobe){
 			this.toAdd = new Task(new TaskDetails(details));
 		}
+		
     }
 
     public AddCommand(Task toAdd) {
