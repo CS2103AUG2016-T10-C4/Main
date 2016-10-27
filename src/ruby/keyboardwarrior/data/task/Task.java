@@ -1,7 +1,9 @@
 package ruby.keyboardwarrior.data.task;
 
 import java.util.Objects;
+import java.util.Set;
 
+import ruby.keyboardwarrior.data.tag.Tag;
 import ruby.keyboardwarrior.data.tag.UniqueTagList;
 
 /**
@@ -18,10 +20,10 @@ public class Task {
     
     private UniqueTagList tags;
     
-    public Task(TaskDetails details, UniqueTagList tags) {
+    public Task(TaskDetails details, Set<Tag> tagSet) {
     	this.taskType = 0;
         this.details = details;
-        this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        this.tags = new UniqueTagList(tagSet); // protect internal tags from changes in the arg list
     }
     
     public Task(TaskDetails details, DateTime dateTime, UniqueTagList tags) {
