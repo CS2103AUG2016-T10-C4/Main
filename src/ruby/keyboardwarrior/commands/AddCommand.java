@@ -22,10 +22,10 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " do something\n\t"
             + "To add a Deadline: \n\t\t"
             + "Format: add TASK by DATE [TIME] \n\t\t"
-            + "Example: " + COMMAND_WORD + " do something" + DEADLINE_WORD + " 120416 1800\n\t"
+            + "Example: " + COMMAND_WORD + " do something" + DEADLINE_WORD + "120416 1800\n\t"
             + "To add an Event: \n\t\t"
             + "Format: add EVENT from STARTTIME [ENDTIME] \n\t\t"
-            + "Example: " + COMMAND_WORD + " some event " + EVENT_WORD + " 221016 0900 221016 1700\n\t\t";
+            + "Example: " + COMMAND_WORD + " some event" + EVENT_WORD + "221016 0900 221016 1700\n\t\t";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Keyboard Warrior";
