@@ -1,6 +1,5 @@
 package ruby.keyboardwarrior.data.task;
 
-import java.util.Calendar;
 import java.util.Objects;
 
 /**

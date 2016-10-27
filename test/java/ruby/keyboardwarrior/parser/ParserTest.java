@@ -168,17 +168,17 @@ public class ParserTest {
 
     @Test
     public void addCommand_validTaskData_parsedCorrectly() throws IllegalValueException {
-        final TodoTask testTask = generateTestTask();
+        final Task testTask = generateTestTask();
         final String input = convertTaskToAddCommandString(testTask);
         final AddCommand result = parseAndAssertCommandType(input, AddCommand.class);
         assertEquals(result.getTask(), testTask);
     }
 
-    private static TodoTask generateTestTask() throws IllegalValueException {
-        return new TodoTask(new TaskDetails(TaskDetails.EXAMPLE));
+    private static Task generateTestTask() throws IllegalValueException {
+        return new Task(new TaskDetails(TaskDetails.EXAMPLE));
     }
 
-    private static String convertTaskToAddCommandString(TodoTask todoTask) {
+    private static String convertTaskToAddCommandString(Task todoTask) {
         String addCommand = "add " + todoTask.getDetails().details;
         return addCommand;
     }
