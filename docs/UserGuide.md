@@ -45,7 +45,7 @@ Double-click the file to start the app. The GUI should appear in a few seconds. 
 <br>
 Type the command in the command box and press <kbd>Enter</kbd> to execute it.
 
-<!-- @@author A0144556Y -->
+<!-- @@author A0144665Y -->
 
 Some example commands you can try:
 
@@ -105,7 +105,7 @@ Format: `**help**`
 
 This will load the help window which will show all the available commands that can be used in **KeyboardWarrior**. It will help you learn about the commands if you are a new user or you can refer to a commandâ€™s exact function and format when needed.
 
-<!-- @@author A0144556Y -->
+<!-- @@author A0144665Y -->
 
 <br>
 Example:
@@ -217,7 +217,7 @@ This is suitable for most work-related tasks as they are usually scheduled withi
 > 
 > >     E.g. 2030 represents the time 8:30 p.m.
 
-<!-- @@author A0144556Y -->
+<!-- @@author A0144665Y -->
 
 <br>
 Examples: 
@@ -298,7 +298,7 @@ It is important to note that the `KEYWORD` will also be searched in the venue de
 > 
 > The VENUE parameter indicates the word to be searched only in the venues of items on **KeyboardWarrior**. It has to be preceded by the @ symbol.
 
-<!-- @@author A0144556Y -->
+<!-- @@author A0144665Y -->
 
 <br>
 Examples: 
