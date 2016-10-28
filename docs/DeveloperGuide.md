@@ -40,10 +40,14 @@ This guide describes the design and implementation of **KeyboardWarrior**. It wi
 
 3. Copy the file to the folder you want to use as the home folder for your **KeyboardWarrior**.
 
-### 2.2. Launching the Application
+### 2.2 Import existing project into Eclipse
 
-Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
-   <img src='images/GUI 19th Oct.jpg' width="600" height="350"> <br><br>
+1. Fork this repository, and clone the fork to your computer.
+2. Open Eclipse 
+3. Click `File` > `Import`.
+4. Click `General` > `Existing Projects into Workspace` > `Next`.
+5. Click `Browse`, then locate the project's directory.
+6. Click `Finish`.
 
 ## 3. Architecture
 
