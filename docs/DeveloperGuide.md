@@ -8,7 +8,7 @@
 * [2. Setting Up](#2-setting-up)
 * [3. Architecture](#3-architecture)
 * [4. UI Component](#4-ui-component)
-* [5. Backend Component](#5-backend-component)
+* [5. Logic Component](#5-logic-component)
 * [6. Data Component](#6-data-component)
 * [7. Storage Component](#7-storage-component)
 * [8. Testing](#8-testing)
@@ -60,19 +60,42 @@ This guide describes the design and implementation of **KeyboardWarrior**. It wi
 ## 3. Architecture
 
 <img src="images/Architecture.jpg" width="700"> <br>
-> Figure 1: The **_Architecture Diagram_** given above explains the high-level design of the App. 
+> Figure 1
 
-**KeyboardWarrior** is made up of four main components:
+Figure 1 shows the **_Architecture Diagram_** which gives the high-level design of **KeyboardWarrior**. You can refer to the section below to get a quick overview of each component.
 
-1. The **UI** component consists of JavaFX's FXML files which defines the layout that is displayed, and how you can interact with it through the CLI and the Java files that control these FXML files.
-2. The **Backend** component contains all the logic needed to parse your commands and stores the collated data into individual files. etc.
-3. The **Data** component represents the objects involved in the collation of source files such as the authors of the project and code snippets that were written.
-4. The **Test** Driver component tests the UI, Backend and Data components. It utilises JUnit for unit testing.
+`Main` has only one class called [`Main`](../Main/src/ruby/keyboardwarrior/Main.java). It has 2 responsibilities:
+1. At app launch: Initialises the components in the correct sequence, and connect them up with each other.
+2. At shut down: Shuts down the components and invoke cleanup method where necessary.
 
-The user can interact with **KeyboardWarrior** through the Command Line Interface (CLI). The actions initiated by the user are sent as commands by the UI to the Backend and Data component. The Backend component contains the Logic component which parses the command and then runs the corresponding action. The action executed would also go through Storage and into the Collated Files. A response would then be reflected to the user.
+[**`Common`**](#common-classes) represents a couple of classes used by multiple other components. These two classes play important roles at the architecture level.
 
-The sections below give an in depth explanation of each component.
+* `Utils` : This class is used by components to check if there are *Null* entires or if there are *Unique* elements.
+* `LogsCenter` : Used by many classes to write visible messages.
 
+The rest of **KeyboardWarrior** is made up of four main components:
+
+* [**`UI`**](#4-ui-component) : The UI of tha App.
+* [**`Logic`**](#5-logic-component) : The command executor.
+* [**`Data`**](#6-data-component) : Holds the data of the App in-memory.
+* [**`Storage`**](#7-storage-component) : Reads data from, and writes data to, the hard disk.
+
+Each of the four components
+
+* Defines its _API_ in an `interface` with the same name as the Component.
+* Exposes its functionality using a `{Component Name}Manager` class.
+
+For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java`
+interface and exposes its functionality using the `LogicManager.java` class.<br>
+<br>
+<img src="images/Logic.jpg" width="800"><br>
+<br>
+The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the
+command `delete 1`.
+
+<br>
+<img src="images/DeleteTaskSequenceDiagram.jpg" width="800"><br>
+<br>
 
 ## 4. UI Component
 
