@@ -10,8 +10,8 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ruby.keyboardwarrior.ui.MainWindow">
    <children>
       <TextField fx:id="commandInput" layoutX="513.0" layoutY="561.0" onAction="#onCommand" prefHeight="25.0" prefWidth="684.0" promptText="Enter command here" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
-      <TextArea fx:id="outputConsole" editable="false" layoutX="6.0" layoutY="529.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="1190.0" wrapText="true" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="529.0" />
-      <TextArea fx:id="TasksListView" editable="false" layoutX="6.0" layoutY="5.0" prefHeight="519.0" prefWidth="1190.0" wrapText="true" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="5.0">
+      <TextArea fx:id="outputConsole" editable="false" layoutX="6.0" layoutY="523.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="1190.0" wrapText="true" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="523.0" />
+      <TextArea fx:id="TasksListView" editable="false" layoutX="6.0" layoutY="5.0" prefHeight="513.0" prefWidth="1190.0" wrapText="true" AnchorPane.bottomAnchor="82.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="5.0">
          <font>
             <Font size="20.0" />
          </font></TextArea>

@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import ruby.keyboardwarrior.commands.ExitCommand;
+import ruby.keyboardwarrior.commands.HelpCommand;
+import ruby.keyboardwarrior.common.Messages;
 import ruby.keyboardwarrior.data.task.Task;
 import ruby.keyboardwarrior.logic.Logic;
 import ruby.keyboardwarrior.commands.CommandResult;
@@ -49,18 +51,23 @@ public class MainWindow {
     void onCommand(ActionEvent event) {
         try {
             String userCommandText = commandInput.getText();
+            String findCommand = "find";
+            String listCommand = "list";
             CommandResult result = logic.execute(userCommandText);
             if(isExitCommand(result)){
                 exitApp();
                 return;
             }
-            if(userCommandText.length() > 3 && (userCommandText.substring(0,4).equals("find") || userCommandText.substring(0,4).equals("list"))){
+            if(userCommandText.length() > 3 && (findCommand.equalsIgnoreCase(userCommandText.substring(0,4)) || listCommand.equalsIgnoreCase(userCommandText.substring(0,4)))){
             	clearOutputConsole();
             	display(userCommandText);
             	displayAll(result);
             } else if(result.feedbackToUser.length() > 22 && result.feedbackToUser.substring(0,22).equals("Invalid command format")){
             	displayResult(result);
-            } else {
+            } else if (result.feedbackToUser.length() > 23 && result.feedbackToUser.substring(0,24).equals(HelpCommand.TITLE_MESSAGE)) {
+            	display("Invalid Command Format!");
+            	displayAll(result);           
+        	} else {
             	displayResult(result);
             	displayAll(logic.execute("list"));
             }
@@ -108,7 +115,7 @@ public class MainWindow {
 
     public void displayWelcomeMessage(String version, String storageFilePath) throws Exception {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        display(MESSAGE_WELCOME, version, MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE, storageFileInfo);
+        display(MESSAGE_WELCOME + version, storageFileInfo);
         displayAll(logic.execute("list"));
     }
 
