@@ -11,8 +11,9 @@
 * [5. Logic Component](#5-logic-component)
 * [6. Data Component](#6-data-component)
 * [7. Storage Component](#7-storage-component)
-* [8. Testing](#8-testing)
-* [9. Future Development](#9-future-development)
+* [8. Common Classes](#8-common-classes)
+* [9. Testing](#9-testing)
+* [10. Future Development](#10-future-development)
 * [Appendix A: User Stories](#appendix-a-user-stories)
 * [Appendix B: Use Cases](#appendix-b-use-cases)
 * [Appendix C: Non Functional Requirements](#appendix-c-non-functional-requirements)
@@ -33,10 +34,14 @@ This guide describes the design and implementation of **KeyboardWarrior**. It wi
 ### 2.1. Before Using the Application
 
 1. Ensure you have Java version `1.8.0_60` or later installed in your Computer.
+	Download the latest version via this [**`link`**](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
    > Having any Java 8 version is not enough. <br>
    This app will not work with earlier versions of Java 8.
+
+2. Ensure you have Eclipse Integrated Development Environment (IDE).  <br>
+    Download the latest version via this [**`link`**](http://download.eclipse.org/eclipse/downloads/).
    
-2. Download the latest `KeyboardWarrior.jar` from the [releases](../../../releases) tab.
+2. Download the latest `KeyboardWarrior.jar` from the [**`releases`**](../../../releases) tab.
 
 3. Copy the file to the folder you want to use as the home folder for your **KeyboardWarrior**.
 
@@ -64,11 +69,11 @@ This guide describes the design and implementation of **KeyboardWarrior**. It wi
 
 Figure 1 shows the **_Architecture Diagram_** which gives the high-level design of **KeyboardWarrior**. You can refer to the section below to get a quick overview of each component.
 
-`Main` has only one class called [`Main`](../Main/src/ruby/keyboardwarrior/Main.java). It has 2 responsibilities:
+`Main` has only one class called [**`Main`**](../src/ruby/keyboardwarrior/Main.java). It has 2 responsibilities:
 1. At app launch: Initialises the components in the correct sequence, and connect them up with each other.
 2. At shut down: Shuts down the components and invoke cleanup method where necessary.
 
-[**`Common`**](#common-classes) represents a couple of classes used by multiple other components. These two classes play important roles at the architecture level.
+[**`Common`**](#8-common-classes) represents a couple of classes used by multiple other components. These two classes play important roles at the architecture level.
 
 * `Utils` : This class is used by components to check if there are *Null* entires or if there are *Unique* elements.
 * `LogsCenter` : Used by many classes to write visible messages.
@@ -85,31 +90,39 @@ Each of the four components
 * Defines its _API_ in an `interface` with the same name as the Component.
 * Exposes its functionality using a `{Component Name}Manager` class.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java`
+For example, the `Logic` component (see the class diagram given Figure 2) defines its API in the `Logic.java`
 interface and exposes its functionality using the `LogicManager.java` class.<br>
 <br>
 <img src="images/Logic.jpg" width="800"><br>
-<br>
-The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the
+> Figure 2
+
+The _Sequence Diagram_ in Figure 3 below shows how the components interact for the scenario where the user issues the
 command `delete 1`.
 
 <br>
 <img src="images/DeleteTaskSequenceDiagram.jpg" width="800"><br>
-<br>
+> Figure 3
 
 ## 4. UI Component
 
 <img src="images/UI Component.jpg" width="700"> <br>
-> Figure 2: Structure of the `UI` Component.
+> Figure 4: Structure of the `UI` Component.
 
-The UI consists of mainly “MainWindow” and “Gui”, along with other minor parts . The “MainWindow” contains “outputConsole”, “commandInput”, “displayResult” etc. The “Gui” contains the design for the graphic interface the user sees and handles the user’s input and output display. All of these will be handled by the graphic display, text boxes and text displays. 
+**API** : [`GUI.java`](..../src/ruby/keyboardwarrior/ui/GUI.java)
 
-The UI component uses the JavaFX UI framework. The layout of MainWindow is defined in matching “.fxml” files that are located in “keyboardwarrior/ui/ folder”, for example “MainWindow.fxml”.
+The UI consists of a `MainWindow` that is made up of parts `commandInput`, `TaskListView` and `outputConsole`. All these, including the `MainWindow`, is called by the `GUI` class.
 
-The UI component executes user commands using the “Logic” component, making use of “Formatter” when needed and responds to user actions by updating the UI accordingly.
+The UI component uses the JavaFX UI framework. The layout of [`MainWindow`](..../src/ruby/keyboardwarrior/ui/MainWindow.java) is defined in the matching “.fxml” file that is located in `keyboardwarrior/ui/` folder, i.e. [`mainwindow.fxml`](..../src/ruby/keyboardwarrior/ui/mainwindow.fxml).
+
+The `UI` component,
+
+* Executes user commands using the `Logic` component.
+* Binds itself to some data in the `Data` so that the UI can auto-update when data in the `Data` change.
+* Responds to events raised from various parts of the App and updates the UI accordingly.
 
 
-## 5. Backend Component
+
+## 5. Logic Component
 
 <img src="images/Backend Component.jpg" width="700"> <br>
 > Figure 3: Structure of the `Backend` Component.
@@ -136,8 +149,11 @@ It exposes a read only class “ReadOnlyTasks” that can be shown to the users 
 
 The storage component transfers the data from the Data component to a text file using xml format. The data stored in the file is able to be read back and transferred to the Data component. This allows **KeyboardWarrior** to have saving and loading functionalities.
 
+## 8. Common Classes
 
-## 8. Testing
+You can find all classes used by multiple components in the `keyboardwarrior.common` package.
+
+## 9. Testing
 
 **KeyboardWarrior** uses `JUnit` to perform unit tests on the `UI`, `Backend` and `Data` components. Every method is unit tested to ensure everything works as intended.
 
@@ -161,7 +177,7 @@ We have two types of tests:
 <!-- test -->
 <!-- @@author A0139716X -->
 
-## 9. Future Development	
+## 10. Future Development	
 
 These are several additions that can be made to **KeyboardWarrior**	 to further increase its usefulness and usability.
 
