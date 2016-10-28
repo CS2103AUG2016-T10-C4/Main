@@ -2,7 +2,11 @@ package ruby.keyboardwarrior.commands;
 
 import ruby.keyboardwarrior.common.Messages;
 import ruby.keyboardwarrior.data.TasksList.TaskNotFoundException;
+import ruby.keyboardwarrior.data.exception.IllegalValueException;
+import ruby.keyboardwarrior.data.task.Date;
+import ruby.keyboardwarrior.data.task.DateTime;
 import ruby.keyboardwarrior.data.task.Task;
+import ruby.keyboardwarrior.data.task.TaskDetails;
 
 //@@author A0144665Y
 
@@ -12,6 +16,8 @@ import ruby.keyboardwarrior.data.task.Task;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
+    public static final String DEADLINE_WORD = " by ";
+    public static final String EVENT_WORD = " from ";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" 
             + "Edit the item identified by the index number used in the last item listing.\n\t"
@@ -22,9 +28,29 @@ public class EditCommand extends Command {
 
     private Task editTask;
     
-    public EditCommand(int targetVisibleIndex, Task editTask) {
+    public EditCommand(int targetVisibleIndex, String newTask) throws IllegalValueException {
         super(targetVisibleIndex);
-        this.editTask = editTask;
+		try{
+	    	String lowerCaseDetails = newTask.toLowerCase();
+			int byExist = lowerCaseDetails.lastIndexOf(DEADLINE_WORD);
+			int fromExist = lowerCaseDetails.lastIndexOf(EVENT_WORD);
+				
+			if(byExist != -1 && Integer.parseInt(lowerCaseDetails.substring(byExist+4,byExist+10)) > 0){
+				if(newTask.length() > byExist+10)
+					this.editTask = new Task(new TaskDetails(newTask.substring(0,byExist)), new DateTime(newTask.substring(byExist+4)));
+				else
+					this.editTask = new Task(new TaskDetails(newTask.substring(0,byExist)), new Date(newTask.substring(byExist+4)));
+			}
+			else if(fromExist != -1){
+				this.editTask = new Task(new TaskDetails(newTask.substring(0,fromExist)), new DateTime(newTask.substring(fromExist+6,fromExist+17)), new DateTime(newTask.substring(fromExist+18, fromExist+29)));
+			}
+			else{
+				this.editTask = new Task(new TaskDetails(newTask));
+			}
+		}
+		catch (NumberFormatException | StringIndexOutOfBoundsException siobe){
+			this.editTask = new Task(new TaskDetails(newTask));
+		}
     }
 
 

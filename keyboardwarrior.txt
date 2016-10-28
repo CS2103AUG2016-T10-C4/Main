@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<KeyboardWarrior/>
+<KeyboardWarrior>
+    <tasks>
+        <taskdetails>hellp</taskdetails>
+    </tasks>
+    <tasks>
+        <taskdetails>hello
+	 Deadline:	Mon 	 02-May-2016</taskdetails>
+    </tasks>
+    <tasks>
+        <taskdetails>hello
+	 Start time:	Thu 	 08-Sep-2016	09:00
+	 End time:	Thu 	 08-Sep-2016	10:00</taskdetails>
+    </tasks>
+</KeyboardWarrior>
