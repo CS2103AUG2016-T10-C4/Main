@@ -65,7 +65,7 @@ This guide describes the design and implementation of **KeyboardWarrior**. It wi
 ## 3. Architecture
 
 <img src="images/Architecture.jpg" width="700"> <br>
-> Figure 1
+> Figure 1: Architecture Class Diagram
 
 Figure 1 shows the **_Architecture Diagram_** which gives the high-level design of **KeyboardWarrior**. You can refer to the section below to get a quick overview of each component.
 
@@ -94,25 +94,26 @@ For example, the `Logic` component (see the class diagram given Figure 2) define
 interface and exposes its functionality using the `LogicManager.java` class.<br>
 <br>
 <img src="images/Logic.jpg" width="800"><br>
-> Figure 2
+> Figure 2: Logic Component Class Diagram
 
 The _Sequence Diagram_ in Figure 3 below shows how the components interact for the scenario where the user issues the
 command `delete 1`.
 
 <br>
 <img src="images/DeleteTaskSequenceDiagram.jpg" width="800"><br>
-> Figure 3
+> Figure 3: Delete Task Sequence Diagram
+
 
 ## 4. UI Component
 
-<img src="images/UI Component.jpg" width="700"> <br>
-> Figure 4: Structure of the `UI` Component.
+<img src="images/UI.jpg" width="700"> <br>
+> Figure 4: UI Component Class Diagram
 
-**API** : [`GUI.java`](..../src/ruby/keyboardwarrior/ui/GUI.java)
+**API** : [`GUI.java`](../src/ruby/keyboardwarrior/ui/GUI.java)
 
 The UI consists of a `MainWindow` that is made up of parts `commandInput`, `TaskListView` and `outputConsole`. All these, including the `MainWindow`, is called by the `GUI` class.
 
-The UI component uses the JavaFX UI framework. The layout of [`MainWindow`](..../src/ruby/keyboardwarrior/ui/MainWindow.java) is defined in the matching “.fxml” file that is located in `keyboardwarrior/ui/` folder, i.e. [`mainwindow.fxml`](..../src/ruby/keyboardwarrior/ui/mainwindow.fxml).
+The UI component uses the JavaFX UI framework. The layout of [`MainWindow`](../src/ruby/keyboardwarrior/ui/MainWindow.java) is defined in the matching “.fxml” file that is located in `keyboardwarrior/ui/` folder, i.e. [`mainwindow.fxml`](../src/ruby/keyboardwarrior/ui/mainwindow.fxml).
 
 The `UI` component,
 
@@ -121,33 +122,43 @@ The `UI` component,
 * Responds to events raised from various parts of the App and updates the UI accordingly.
 
 
-
 ## 5. Logic Component
 
-<img src="images/Backend Component.jpg" width="700"> <br>
-> Figure 3: Structure of the `Backend` Component.
+<img src="images/Logic.jpg" width="700"> <br>
+> Figure 5:  Logic Component Class Diagram
 
-The backend component contains the “Logic” component and is the main processing unit of the program. It processes commands, data manipulation and data storage. 
+**API** : [`Logic.java`](../src/ruby/keyboardwarrior/logic/Logic.java)
 
-“Logic” uses the “Parser” class to parse the user inputs into “commands” and “arguments”. This will create a “command” object and will be executed with the appropriate “arguments”. The result of the execution will be encapsulated in a “CommandResult” object which is passed back to the UI component. 
+1. `Logic` uses the `Parser` class to parse the user command.
+2. The `Parser` class returns a `Command` object which is executed by the `Logic`.
+3. The command execution can affect the `Data` (e.g. adding a task) and/or raise events.
+4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+
+Given below, in Figure 6, is the *Sequence Diagram* for interactions within the `Logic` component for the `execute("delete 1")` API call. 
+
+<img src="images/LogicDeleteTaskSequenceDiagram.jpg" width="700"> <br>
+> Figure 6: Delete Task Sequence Diagram within Logic Componentm
 
 
 ## 6. Data Component
 
-<img src="images/Data Component.jpg" width="700"> <br>
-> Figure 4: Structure of the `Data` Component.
+<img src="images/Data.jpg" width="700"> <br>
+> Figure 7: Data Component Class Diagram
 
-The data component stores the **KeyboardWarrior** data in a class “TasksList”. This class contains three types of individual tasks.
+**API** : [`Data.java`](../src/ruby/keyboardwarrior/data/TasksList.java)
 
-It exposes a read only class “ReadOnlyTasks” that can be shown to the users and does not allow any write capabilities. 
+The `Data`,
+
+* stores the **KeyboardWarrior** data.
+* does not depend on any of the other three components.
 
 
 ## 7. Storage Component
 
-<img src="images/Storage Component.jpg" width="700"> <br>
-> Figure 4: Structure of the `Storage` Component.
+<img src="images/Storage.jpg" width="700"> <br>
+> Figure 8: Storage Component Class Diagram
 
-The storage component transfers the data from the Data component to a text file using xml format. The data stored in the file is able to be read back and transferred to the Data component. This allows **KeyboardWarrior** to have saving and loading functionalities.
+**API** : [`StorageFile.java`](../src/ruby/keyboardwarrior/storage/StorageFile.java)
 
 ## 8. Common Classes
 
