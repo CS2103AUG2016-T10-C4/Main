@@ -49,6 +49,14 @@ This guide describes the design and implementation of **KeyboardWarrior**. It wi
 5. Click `Browse`, then locate the project's directory.
 6. Click `Finish`.
 
+### 2.3 Troubleshoot
+
+**Problem: Eclipse reports compile errors after new commits are pulled from Git**
+
+* _Reason_: Eclipse fails to recognise new files that appeared due to the Git pull. 
+* _Solution_: you have to refresh the project in Eclipse:<br> 
+  Right click on the project (in Eclipse package explorer), choose `Refresh`. Or press `F5` on your keyboard.
+
 ## 3. Architecture
 
 <img src="images/Architecture.jpg" width="700"> <br>
