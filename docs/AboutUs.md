@@ -5,7 +5,7 @@
 We are a team of four Computer Engineering students based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg). 
 
 ## Project Team
-<img src='images/LowYongCheng.png' width="150"><br>
+<img src='images/LowYongCheng.jpg' width="150"><br>
 #### [**Low Yong Cheng**](https://github.com/yongchenglow)
 **Role**: Team Leader<br>
 Team Leader: responsible for overall project coordination.<br>
