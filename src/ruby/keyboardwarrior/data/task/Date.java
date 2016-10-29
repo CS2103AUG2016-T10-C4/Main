@@ -26,6 +26,16 @@ public class Date {
      * @throws IllegalValueException if given time is invalid.
      * @Deprecated
      */
+    public Date() {
+    	this.date = null;
+    }
+    
+    /**
+     * Validates given Date.
+     *
+     * @throws IllegalValueException if given time is invalid.
+     * @Deprecated
+     */
     public Date(String date) throws IllegalValueException {
         if (!isValidDate(date)) {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);

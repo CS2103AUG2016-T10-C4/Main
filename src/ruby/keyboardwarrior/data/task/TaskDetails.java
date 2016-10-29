@@ -18,6 +18,16 @@ public class TaskDetails {
 
     public final String details;
 
+    
+    /**
+     * Validates given details.
+     *
+     * @throws IllegalValueException if given name string is invalid.
+     */
+    public TaskDetails(){
+    	this.details = null;
+    }
+    
     /**
      * Validates given details.
      *

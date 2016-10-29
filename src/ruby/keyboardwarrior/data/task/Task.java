@@ -41,23 +41,23 @@ public class Task {
     }
     
     public TaskDetails getDetails() {
-        return details;
+        return this.details;
     }
     
     public Date getDate(){
-    	return date;
+    	return this.date;
     }
     
     public DateTime getStartTime(){
-    	return startTime;
+    	return this.startTime;
     }
     
     public DateTime getEndTime(){
-    	return endTime;
+    	return this.endTime;
     }
     
-    public int getTaskType(){
-    	return taskType;
+    public Integer getTaskType(){
+    	return this.taskType;
     }
     
     public boolean equals(Object other) {

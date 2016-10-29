@@ -7,11 +7,14 @@ package ruby.keyboardwarrior.commands;
 public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
+    
+    public static final String TITLE_MESSAGE = "Entire List of Commands:"; 
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" +"Shows program usage instructions.\n\t"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_ALL_USAGES = AddCommand.MESSAGE_USAGE
+    public static final String MESSAGE_ALL_USAGES = TITLE_MESSAGE
+    		+ "\n" + AddCommand.MESSAGE_USAGE
             + "\n" + "\n" + DeleteCommand.MESSAGE_USAGE
             + "\n" + "\n" + ClearCommand.MESSAGE_USAGE
             + "\n" + "\n" + FindCommand.MESSAGE_USAGE

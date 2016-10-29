@@ -107,8 +107,7 @@ public class TasksList {
         allTasks.set(toChangeIndex, editTask);
     }
   
-    public static List<Task> getAllTasks(){
-
+    public ArrayList<Task> getAllTasks(){
         return allTasks;
     }
 

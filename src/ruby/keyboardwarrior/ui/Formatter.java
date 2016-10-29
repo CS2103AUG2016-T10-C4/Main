@@ -22,10 +22,9 @@ public class Formatter {
     public String format(String... messages) {
         StringBuilder sb = new StringBuilder();
         for (String m : messages) {
-            //sb.append(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX) + LS);
         	sb.append(m + "\n");
         }
-        return sb.toString();
+        return sb.toString().substring(0,sb.toString().length()-1);
     }
 
     /** Formats the given list of persons for displaying to the user. */
@@ -42,7 +41,10 @@ public class Formatter {
         final StringBuilder formatted = new StringBuilder();
         int displayIndex = 0 + DISPLAYED_INDEX_OFFSET;
         for (String listItem : listItems) {
-            formatted.append(getIndexedListItem(displayIndex, listItem)).append("\n");
+        	if(displayIndex == listItems.size())
+        		formatted.append(getIndexedListItem(displayIndex, listItem));
+        	else
+        		formatted.append(getIndexedListItem(displayIndex, listItem)).append("\n");
             displayIndex++;
         }
         return formatted.toString();

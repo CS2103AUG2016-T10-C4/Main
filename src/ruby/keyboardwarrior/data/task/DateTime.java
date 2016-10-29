@@ -27,6 +27,16 @@ public class DateTime {
      * @throws IllegalValueException if given date and time is invalid.
      * @Deprecated
      */
+    public DateTime() {
+    	this.dateTime = null;
+    }
+    
+    /**
+     * Validates given Date and Time.
+     *
+     * @throws IllegalValueException if given date and time is invalid.
+     * @Deprecated
+     */
     public DateTime(String dateTime) throws IllegalValueException {
         if (!isValidDate(dateTime)) {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);

@@ -22,7 +22,11 @@ public class Parser {
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
 
     public static final Pattern TASK_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
-            Pattern.compile("(?<taskdetails>[^/]+)");                   
+            Pattern.compile("(?<taskdetails>[^/]+)");
+    
+    public static final String TODO_TYPE = "todo";
+    public static final String DEADLINE_TYPE = "deadline";
+    public static final String EVENT_TYPE = "event";
 
     public static Stack<String> allInputs = new Stack<String>(); 
 
@@ -55,7 +59,7 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
         
-        if(!userInput.equals("list") && !userInput.equals("help"))
+        if(userInput.length() > 3 && userInput.substring(0,4).equals("list") && !userInput.equals("help"))
         	allInputs.push(userInput);
         String commandWord = matcher.group("commandWord");
         String arguments = matcher.group("arguments");
@@ -139,7 +143,7 @@ public class Parser {
         	String editTask = args.substring(args.indexOf(' '));
         	
             final int targetIndex = parseArgsAsDisplayedIndex(index);
-            return new EditCommand(targetIndex, new Task(new TaskDetails(editTask)));
+            return new EditCommand(targetIndex, editTask);
         } catch (ParseException | NumberFormatException | StringIndexOutOfBoundsException siobe) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }

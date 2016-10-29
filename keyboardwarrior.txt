@@ -1,2 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<KeyboardWarrior/>
+<KeyboardWarrior>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>hello</details>
+        </taskDetails>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>do something</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-04-12T18:00:59.136+08:00</dateTime>
+        </endTime>
+    </tasks>
+</KeyboardWarrior>
