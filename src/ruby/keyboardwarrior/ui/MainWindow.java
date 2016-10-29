@@ -59,7 +59,11 @@ public class MainWindow {
                 exitApp();
                 return;
             }
-            if(userCommandText.length() > 3 && (findCommand.equalsIgnoreCase(userCommandText.substring(0,4)) || listCommand.equalsIgnoreCase(userCommandText.substring(0,4)))){
+            
+            if(listCommand.equalsIgnoreCase(userCommandText)){
+            	displayAll(result);
+            	listAll();
+        	}else if(userCommandText.length() > 3 && (findCommand.equalsIgnoreCase(userCommandText.substring(0,4)) || listCommand.equalsIgnoreCase(userCommandText.substring(0,4)))){
             	clearOutputConsole();
             	display(userCommandText);
             	displayAll(result);
@@ -70,7 +74,7 @@ public class MainWindow {
             	displayAll(result);           
         	} else {
             	displayResult(result);
-            	displayAll(logic.execute("list"));
+            	listAll();
             }
             clearCommandInput();
         } catch (Exception e) {
@@ -81,6 +85,12 @@ public class MainWindow {
 
     private void exitApp() throws Exception {
         mainApp.stop();
+    }
+    
+    private void listAll () throws Exception{
+    	displayAll(logic.execute("list todo"));
+    	displayAll(logic.execute("list deadline"));
+    	displayAll(logic.execute("list event"));
     }
 
     /** Returns true of the result given is the result of an exit command */
@@ -116,8 +126,9 @@ public class MainWindow {
 
     public void displayWelcomeMessage(String version, String storageFilePath) throws Exception {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        displayAll(MESSAGE_WELCOME + version, storageFileInfo + "\n"+ "\n");
-        displayAll(logic.execute("list"));
+        displayAll(MESSAGE_WELCOME + version, storageFileInfo + "\n");
+        displayAll(Messages.MESSAGE_TASKS_LISTED_OVERVIEW);
+        listAll();
     }
 
     /**

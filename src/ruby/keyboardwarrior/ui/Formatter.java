@@ -24,7 +24,7 @@ public class Formatter {
         for (String m : messages) {
         	sb.append(m + "\n");
         }
-        return sb.toString().substring(0,sb.toString().length()-1);
+        return sb.toString();
     }
 
     /** Formats the given list of persons for displaying to the user. */
