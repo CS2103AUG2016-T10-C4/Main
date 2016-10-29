@@ -11,7 +11,7 @@ import java.util.List;
 public class Formatter {
 
     /** Format of indexed list item */
-    private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
+    private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d) %2$s";
 
 
     /** Offset required to convert between 1-indexing and 0-indexing.  */
