@@ -33,7 +33,7 @@ public class Gui {
     public void start(Stage stage, Stoppable mainApp) throws Exception {
         mainWindow = createMainWindow(stage, mainApp);
         mainWindow.displayWelcomeMessage(version, logic.getStorageFilePath());
-        stage.getIcons().add(new Image("file:docs/images/keyboardwarrior.jpg"));
+        stage.getIcons().add(new Image("file:docs/images/Ui.png"));
     }
 
     private MainWindow createMainWindow(Stage stage, Stoppable mainApp) throws IOException{

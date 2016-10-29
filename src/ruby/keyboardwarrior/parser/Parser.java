@@ -22,7 +22,11 @@ public class Parser {
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
 
     public static final Pattern TASK_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
-            Pattern.compile("(?<taskdetails>[^/]+)");                   
+            Pattern.compile("(?<taskdetails>[^/]+)");
+    
+    public static final String TODO_TYPE = "todo";
+    public static final String DEADLINE_TYPE = "deadline";
+    public static final String EVENT_TYPE = "event";
 
     public static Stack<String> allInputs = new Stack<String>(); 
 
@@ -55,7 +59,7 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
         
-        if(!userInput.equals("list") && !userInput.equals("help"))
+        if(userInput.length() > 3 && userInput.substring(0,4).equals("list") && !userInput.equals("help"))
         	allInputs.push(userInput);
         String commandWord = matcher.group("commandWord");
         String arguments = matcher.group("arguments");
@@ -77,7 +81,7 @@ public class Parser {
                 return prepareFind(arguments);
 
             case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+                return prepareList(arguments);
 
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
@@ -90,6 +94,17 @@ public class Parser {
                 return new HelpCommand();
         }
     }
+
+	private Command prepareList(String arguments) {
+	    String TODO_TYPE = "todo";
+	    String DEADLINE_TYPE = "deadline";
+	    String EVENT_TYPE = "event";
+	    
+	    if(TODO_TYPE.equalsIgnoreCase(arguments.trim()) || DEADLINE_TYPE.equalsIgnoreCase(arguments.trim()) || EVENT_TYPE.equalsIgnoreCase(arguments.trim()) || arguments == null )
+	    	return new ListCommand(arguments);
+	    else
+	    	return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+	}
 
 	/**
      * Parses arguments in the context of the add person command.

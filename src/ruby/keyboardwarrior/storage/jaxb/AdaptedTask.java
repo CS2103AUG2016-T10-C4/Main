@@ -16,8 +16,20 @@ import javax.xml.bind.annotation.XmlValue;
 public class AdaptedTask {
 
     @XmlElement(required = true)
-    private String taskdetails;
- 
+    private Integer taskType;
+    @XmlElement(required = true)
+    private TaskDetails taskDetails;
+    @XmlElement(required = false)
+    private Date date;
+    @XmlElement(required = false)
+    private DateTime startTime;
+    @XmlElement(required = false)
+    private DateTime endTime;
+    
+    
+    private static final String DEADLINE_WORD = " by ";
+    private static final String EVENT_WORD = " from ";
+    
     /**
      * No-arg constructor for JAXB use.
      */
@@ -30,7 +42,11 @@ public class AdaptedTask {
      * @param source future changes to this will not affect the created AdaptedPerson
      */
     public AdaptedTask(Task source) {
-        this.taskdetails = source.toString();
+    	this.taskDetails = source.getDetails();
+    	this.taskType = source.getTaskType();
+    	this.date = source.getDate();
+    	this.startTime = source.getStartTime();
+    	this.endTime = source.getEndTime();
     }
 
     /**
@@ -42,7 +58,7 @@ public class AdaptedTask {
      * so we check for that.
      */
     public boolean isAnyRequiredFieldMissing() {
-        return Utils.isAnyNull(taskdetails);
+        return Utils.isAnyNull(taskDetails) && Utils.isAnyNull(taskType);
     }
 
     /**
@@ -50,8 +66,16 @@ public class AdaptedTask {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
-    public Task toModelType() throws IllegalValueException {
-        final TaskDetails task = new TaskDetails(this.taskdetails);
-        return new Task(task);
+    public Task toModelType() {
+    	if(this.taskType == 0){
+    		return new Task(this.taskDetails);
+    	} else if(this.taskType == 1){
+    		if(this.date == null)
+    			return new Task(this.taskDetails, this.endTime);
+    		else
+    			return new Task(this.taskDetails, this.date);
+    	} else {
+    		return new Task(this.taskDetails, this.startTime, this.endTime);
+    	}
     }
 }

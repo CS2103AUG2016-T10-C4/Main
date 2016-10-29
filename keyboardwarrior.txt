@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <KeyboardWarrior>
     <tasks>
-        <taskdetails>hellp</taskdetails>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>hello</details>
+        </taskDetails>
     </tasks>
     <tasks>
-        <taskdetails>hello
-	 Deadline:	Mon 	 02-May-2016</taskdetails>
-    </tasks>
-    <tasks>
-        <taskdetails>hello
-	 Start time:	Thu 	 08-Sep-2016	09:00
-	 End time:	Thu 	 08-Sep-2016	10:00</taskdetails>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>do something</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-04-12T18:00:59.136+08:00</dateTime>
+        </endTime>
     </tasks>
 </KeyboardWarrior>
