@@ -31,10 +31,6 @@ public class ListCommand extends Command {
     
     public static final String MESSAGE_LIST_TASK_SUCCESS = "List Item: ";
     
-    public ListCommand(){
-	    execute();
-	}   
-    
     @Override
     public CommandResult execute() {
         ArrayList<Task> allTasks = tasksList.getAllTasks();
