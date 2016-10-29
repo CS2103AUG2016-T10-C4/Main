@@ -31,32 +31,14 @@ public class ListCommand extends Command {
     
     public static final String MESSAGE_LIST_TASK_SUCCESS = "List Item: ";
     
-    public ListCommand(String arg){
-    	if(arg != null){
-    		if(TODO_TYPE.equalsIgnoreCase(arg.trim()))
-	    		execute(0);
-	    	else if(DEADLINE_TYPE.equalsIgnoreCase(arg.trim()))
-	    		execute(1);
-	    	else
-	    		execute(2);
-	    } else {
-	    	execute();
-	    }
+    public ListCommand(){
+	    execute();
 	}   
     
     @Override
     public CommandResult execute() {
         ArrayList<Task> allTasks = tasksList.getAllTasks();
         return new CommandResult(getMessageForTasksListShownSummary(allTasks), allTasks);
-    }
-    
-    public CommandResult execute(Integer type) {
-    	ArrayList<Task> certainTask = new ArrayList<Task>();
-    	for(Task task : tasksList.getAllTasks()) {
-                if(task.getTaskType() == type)
-                	certainTask.add(task);
-        }
-    	return new CommandResult(getMessageForTasksListShownSummary(certainTask), certainTask);
     }
     
     @Override

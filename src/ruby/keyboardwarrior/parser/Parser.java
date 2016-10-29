@@ -81,7 +81,7 @@ public class Parser {
                 return prepareFind(arguments);
 
             case ListCommand.COMMAND_WORD:
-                return prepareList(arguments);
+                return new ListCommand();
 
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
@@ -94,17 +94,6 @@ public class Parser {
                 return new HelpCommand();
         }
     }
-
-	private Command prepareList(String arguments) {
-	    String TODO_TYPE = "todo";
-	    String DEADLINE_TYPE = "deadline";
-	    String EVENT_TYPE = "event";
-	    
-	    if(TODO_TYPE.equalsIgnoreCase(arguments.trim()) || DEADLINE_TYPE.equalsIgnoreCase(arguments.trim()) || EVENT_TYPE.equalsIgnoreCase(arguments.trim()) || arguments == null )
-	    	return new ListCommand(arguments);
-	    else
-	    	return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
-	}
 
 	/**
      * Parses arguments in the context of the add person command.
