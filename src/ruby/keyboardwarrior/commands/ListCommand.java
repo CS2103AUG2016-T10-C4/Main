@@ -37,8 +37,10 @@ public class ListCommand extends Command {
 	    		execute(0);
 	    	else if(DEADLINE_TYPE.equalsIgnoreCase(arg.trim()))
 	    		execute(1);
-	    	else
+	    	else if(EVENT_TYPE.equalsIgnoreCase(arg.trim()))
 	    		execute(2);
+	    	else
+	    		execute(3);
 	    } else {
 	    	execute();
 	    }
@@ -52,11 +54,15 @@ public class ListCommand extends Command {
     
     public CommandResult execute(Integer type) {
     	ArrayList<Task> certainTask = new ArrayList<Task>();
-    	for(Task task : tasksList.getAllTasks()) {
-                if(task.getTaskType() == type)
-                	certainTask.add(task);
+    	if(type != 3){
+	    	for(Task task : tasksList.getAllTasks()) {
+	                if(task.getTaskType() == type)
+	                	certainTask.add(task);
         }
-    	return new CommandResult(getMessageForTasksListShownSummary(certainTask), certainTask);
+	    	return new CommandResult(getMessageForTasksListShownSummary(certainTask), certainTask);
+    	} else {
+    		return new CommandResult(getMessageForTasksListShownSummary(certainTask), certainTask);
+    	}
     }
     
     @Override
