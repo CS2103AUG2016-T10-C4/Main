@@ -50,6 +50,7 @@ public class MainWindow {
     @FXML
     void onCommand(ActionEvent event) {
         try {
+        	TasksListView.clear();
             String userCommandText = commandInput.getText();
             String findCommand = "find";
             String listCommand = "list";
@@ -115,7 +116,7 @@ public class MainWindow {
 
     public void displayWelcomeMessage(String version, String storageFilePath) throws Exception {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        display(MESSAGE_WELCOME + version, storageFileInfo);
+        displayAll(MESSAGE_WELCOME + version, storageFileInfo + "\n"+ "\n");
         displayAll(logic.execute("list"));
     }
 
@@ -136,7 +137,6 @@ public class MainWindow {
     
     /** Displays the result of a command execution to the user. */
     public void displayAll(CommandResult result) {
-    	TasksListView.clear();
     	displayAll(result.feedbackToUser);
     	final Optional<List<Task>> resultTasks = result.getRelevantTasks();
     	if(resultTasks.isPresent()) {
