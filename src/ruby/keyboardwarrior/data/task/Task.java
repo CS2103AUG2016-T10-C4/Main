@@ -16,14 +16,13 @@ public class Task {
     private Integer taskType; // 0 for To-do, 1 for Deadline, 2 for Event
     private Date date;
     private DateTime startTime;
-    private DateTime endTime;
-    
+    private DateTime endTime;   
     private UniqueTagList tags;
     
-    public Task(TaskDetails details, Set<Tag> tagSet) {
+    public Task(TaskDetails details, UniqueTagList tags) {
     	this.taskType = 0;
         this.details = details;
-        this.tags = new UniqueTagList(tagSet); // protect internal tags from changes in the arg list
+        this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
     
     public Task(TaskDetails details, DateTime dateTime, UniqueTagList tags) {
@@ -90,15 +89,23 @@ public class Task {
     
     @Override
     public String toString(){
+    	
+    	//gets string of tags (to be modularized and put into UniqueTagList class)
+    	final StringBuilder builder = new StringBuilder();
+    	for(Tag t : getTags().getInternalList()){
+    		String stringTag = t.toString();
+    		builder.append(stringTag);
+    	}
+    	
     	if(taskType == 0)
-    		return details.toString();
+    		return details.toString() + "\n\t" + builder.toString() + "\n";
     	else if (taskType == 1) {
     		if(endTime == null)
-    			return details.toString() + "\n\t Deadline:\t" + date.toString();
+    			return details.toString() + "\n\t Deadline:\t" + date.toString() + "\n\t" + builder.toString() + "\n";
     		else
-    			return details.toString() + "\n\t Deadline:\t" + endTime.toString();	
+    			return details.toString() + "\n\t Deadline:\t" + endTime.toString() + "\n\t" + builder.toString() + "\n";	
     	} else {
-    		return details.toString() + "\n\t Start time:\t" + startTime.toString() + "\n\t End time:\t" + endTime.toString(); 
+    		return details.toString() + "\n\t Start time:\t" + startTime.toString() + "\n\t End time:\t" + endTime.toString() + "\n\t" + builder.toString() + "\n"; 
     	}
     }
 
