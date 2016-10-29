@@ -33,7 +33,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute() {
         final List<Task> itemsFound = getItemsWithDetailsContainingAnyKeyword(keywords);
-        return new CommandResult(getMessageForTasksListShownSummary(itemsFound), itemsFound);
+        return new CommandResult(getMessageForTasksListShownSummary(itemsFound, getInput(keywords)), itemsFound);
     }
 
     @Override
@@ -70,6 +70,15 @@ public class FindCommand extends Command {
             }
         }
         return matchedItems;
+    }
+    
+    private String getInput(Set<String> keywords){
+        StringBuilder sb = new StringBuilder();
+        Iterator<String> keywordsItr = keywords.iterator();
+        while (keywordsItr.hasNext()) {
+        	sb.append(keywordsItr.next() + " ");
+        }
+        return sb.toString().substring(0,sb.toString().length()-1);
     }
 
 }

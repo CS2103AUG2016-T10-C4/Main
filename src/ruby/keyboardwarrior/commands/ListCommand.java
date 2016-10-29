@@ -59,12 +59,12 @@ public class ListCommand extends Command {
 		                if(task.getTaskType() == this.taskType)
 		                	certainTasks.add(task);
 	        }
-		    	return new CommandResult(getMessageForTasksListShownSummary(certainTasks), certainTasks);
+		    	return new CommandResult(getMessageForTasksListShownSummary(certainTasks,String.valueOf(this.taskType)), certainTasks);
 	    	} else {
 	    		return new CommandResult(MESSAGE_USAGE);
 	    	}
     	} else {
-    		return new CommandResult(getMessageForTasksListShownSummary(allTasks), allTasks);
+    		return new CommandResult(getMessageForTasksListShownSummary(allTasks, String.valueOf(this.taskType)));
     	}
     }
     
