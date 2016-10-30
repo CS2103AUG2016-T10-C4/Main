@@ -16,7 +16,7 @@ import static ruby.keyboardwarrior.common.Messages.MESSAGE_INVALID_COMMAND_FORMA
  */
 public class Parser {
 
-    public static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+    public static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?p{Alpha}<targetIndex>.+)");
 
     public static final Pattern KEYWORDS_ARGS_FORMAT =
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
@@ -122,7 +122,7 @@ public class Parser {
      */
     private Command prepareDelete(String args) {
         try {
-            final int targetIndex = parseArgsAsDisplayedIndex(args);
+            final String targetIndex = parseArgsAsDisplayedIndex(args);
             return new DeleteCommand(targetIndex);
         } catch (ParseException | NumberFormatException e) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
@@ -142,7 +142,7 @@ public class Parser {
         	String index = args.substring(0,args.indexOf(' '));
         	String editTask = args.substring(args.indexOf(' '));
         	
-            final int targetIndex = parseArgsAsDisplayedIndex(index);
+            final String targetIndex = parseArgsAsDisplayedIndex(index);
             return new EditCommand(targetIndex, editTask);
         } catch (ParseException | NumberFormatException | StringIndexOutOfBoundsException siobe) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
@@ -157,12 +157,12 @@ public class Parser {
      * @throws ParseException if no region of the args string could be found for the index
      * @throws NumberFormatException the args string region is not a valid number
      */
-    private int parseArgsAsDisplayedIndex(String args) throws ParseException, NumberFormatException {
+    private String parseArgsAsDisplayedIndex(String args) throws ParseException, NumberFormatException {
         final Matcher matcher = TASK_INDEX_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             throw new ParseException("Could not find index number to parse");
         }
-        return Integer.parseInt(matcher.group("targetIndex"));
+        return matcher.group("targetIndex");
     }
 
 

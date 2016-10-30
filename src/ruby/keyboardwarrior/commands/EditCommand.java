@@ -28,7 +28,7 @@ public class EditCommand extends Command {
 
     private Task editTask;
     
-    public EditCommand(int targetVisibleIndex, String newTask) throws IllegalValueException {
+    public EditCommand(String targetVisibleIndex, String newTask) throws IllegalValueException {
         super(targetVisibleIndex);
 		try{
 	    	String lowerCaseDetails = newTask.toLowerCase();
