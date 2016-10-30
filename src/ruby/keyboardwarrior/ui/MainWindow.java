@@ -65,7 +65,7 @@ public class MainWindow {
             }
             
             if(listCommand.equalsIgnoreCase(userCommandText)){
-            	displayAll(result);
+            	display(result.feedbackToUser);
             	listAll();
         	}else if(userCommandText.length() > 3 && (findCommand.equalsIgnoreCase(userCommandText.substring(0,4)) || listCommand.equalsIgnoreCase(userCommandText.substring(0,4)))){
             	display(userCommandText);
@@ -91,6 +91,7 @@ public class MainWindow {
     }
     
     private void listAll () throws Exception{
+    	displayAll(Messages.MESSAGE_TASKS_LISTED_OVERVIEW);
     	displayAll(logic.execute("list todo"));
     	displayAll(logic.execute("list deadline"));
     	displayAll(logic.execute("list event"));
@@ -109,7 +110,6 @@ public class MainWindow {
     public void displayWelcomeMessage(String version, String storageFilePath) throws Exception {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
         displayAll(MESSAGE_WELCOME + version, storageFileInfo + "\n");
-        displayAll(Messages.MESSAGE_TASKS_LISTED_OVERVIEW);
         listAll();
         display();
     }
