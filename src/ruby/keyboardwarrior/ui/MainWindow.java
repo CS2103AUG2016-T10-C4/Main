@@ -1,10 +1,19 @@
 package ruby.keyboardwarrior.ui;
 
 
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.SequentialTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.util.Duration;
 import ruby.keyboardwarrior.commands.ExitCommand;
 import ruby.keyboardwarrior.commands.HelpCommand;
 import ruby.keyboardwarrior.common.Messages;
@@ -45,6 +54,9 @@ public class MainWindow {
 
     @FXML
     private TextField commandInput;
+    
+    @FXML
+    private Label userAction;
 
 
     @FXML
@@ -55,6 +67,7 @@ public class MainWindow {
             String findCommand = "find";
             String listCommand = "list";
             CommandResult result = logic.execute(userCommandText);
+            userPressEnter();
             if(isExitCommand(result)){
                 exitApp();
                 return;
@@ -164,5 +177,59 @@ public class MainWindow {
     
     private void displayAll(String... messages){
         TasksListView.setText(TasksListView.getText() + new Formatter().format(messages));
+    }
+    
+	public void userPressEnter(){
+		Timeline blinker = createBlinker(userAction);
+        blinker.setOnFinished(event -> userAction.setText("Fading"));
+        FadeTransition fader = createFader(userAction);
+        
+        SequentialTransition blinkThenFade = new SequentialTransition(
+        		userAction,
+                blinker,
+                fader
+        );
+        
+        blinkThenFade.play();
+	}
+	
+    private Timeline createBlinker(Node node) {
+        Timeline blink = new Timeline(
+                new KeyFrame(
+                        Duration.seconds(0),
+                        new KeyValue(
+                                node.opacityProperty(), 
+                                1, 
+                                Interpolator.DISCRETE
+                        )
+                ),
+                new KeyFrame(
+                        Duration.seconds(0.5),
+                        new KeyValue(
+                                node.opacityProperty(), 
+                                0, 
+                                Interpolator.DISCRETE
+                        )
+                ),
+                new KeyFrame(
+                        Duration.seconds(1),
+                        new KeyValue(
+                                node.opacityProperty(), 
+                                1, 
+                                Interpolator.DISCRETE
+                        )
+                )
+        );
+        blink.setCycleCount(3);
+
+        return blink;
+    }
+
+    private FadeTransition createFader(Node node) {
+        FadeTransition fade = new FadeTransition(Duration.seconds(2), node);
+        fade.setFromValue(1);
+        fade.setToValue(0);
+
+        return fade;
     }
 }

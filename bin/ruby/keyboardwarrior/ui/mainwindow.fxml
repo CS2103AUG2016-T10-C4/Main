@@ -2,6 +2,7 @@
 
 <!-- @@author A0139820E -->
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,5 +16,6 @@
          <font>
             <Font size="18.0" />
          </font></TextArea>
+      <Label fx:id="userAction" layoutX="89.0" layoutY="484.0" prefHeight="51.0" prefWidth="567.0" />
    </children>
 </AnchorPane>
