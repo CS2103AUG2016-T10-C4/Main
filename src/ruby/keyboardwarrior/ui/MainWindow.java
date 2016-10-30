@@ -2,11 +2,6 @@ package ruby.keyboardwarrior.ui;
 
 
 import javafx.animation.FadeTransition;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.SequentialTransition;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -45,9 +40,6 @@ public class MainWindow {
     public void setMainApp(Stoppable mainApp){
         this.mainApp = mainApp;
     }
-
-    @FXML
-    private TextArea outputConsole;
     
     @FXML
     private TextArea TasksListView;
@@ -67,7 +59,6 @@ public class MainWindow {
             String findCommand = "find";
             String listCommand = "list";
             CommandResult result = logic.execute(userCommandText);
-            userPressEnter();
             if(isExitCommand(result)){
                 exitApp();
                 return;
@@ -77,16 +68,15 @@ public class MainWindow {
             	displayAll(result);
             	listAll();
         	}else if(userCommandText.length() > 3 && (findCommand.equalsIgnoreCase(userCommandText.substring(0,4)) || listCommand.equalsIgnoreCase(userCommandText.substring(0,4)))){
-            	clearOutputConsole();
             	display(userCommandText);
             	displayAll(result);
             } else if(result.feedbackToUser.length() > 22 && result.feedbackToUser.substring(0,22).equals("Invalid command format")){
-            	displayResult(result);
+            	display(result.feedbackToUser);
             } else if (result.feedbackToUser.length() > 23 && result.feedbackToUser.substring(0,24).equals(HelpCommand.TITLE_MESSAGE)) {
             	display("Invalid Command Format!");
             	displayAll(result);           
         	} else {
-            	displayResult(result);
+        		display(result.feedbackToUser);
             	listAll();
             }
             clearCommandInput();
@@ -116,47 +106,12 @@ public class MainWindow {
         commandInput.setText("");
     }
 
-    /** Clears the output display area */
-    public void clearOutputConsole(){
-        outputConsole.clear();
-    }
-
-    /** Displays the result of a command execution to the user. */
-    public void displayResult(CommandResult result) {
-        clearOutputConsole();
-        TasksListView.clear();
-        final Optional<List<Task>> resultTasks = result.getRelevantTasks();
-        if(resultTasks.isPresent()) {
-            display(resultTasks.get());
-        }
-        if(result.feedbackToUser.length() > 22 && result.feedbackToUser.substring(0,22).equals("Invalid command format")){
-        	display("Invalid command format!");
-        	displayAll(result.feedbackToUser.substring(25));
-        } else {
-        	display(result.feedbackToUser);
-        }
-    }
-
     public void displayWelcomeMessage(String version, String storageFilePath) throws Exception {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
         displayAll(MESSAGE_WELCOME + version, storageFileInfo + "\n");
         displayAll(Messages.MESSAGE_TASKS_LISTED_OVERVIEW);
         listAll();
-    }
-
-    /**
-     * Displays the list of persons in the output display area, formatted as an indexed list.
-     */
-    private void display(List<Task> tasks) {
-        display(new Formatter().format(tasks));
-    }
-
-    /**
-     * Displays the given messages on the output display area, after formatting appropriately.
-     */
-    private void display(String... messages) {
-    	clearOutputConsole();
-        outputConsole.setText(outputConsole.getText() + new Formatter().format(messages));
+        display();
     }
     
     /** Displays the result of a command execution to the user. */
@@ -178,58 +133,23 @@ public class MainWindow {
     private void displayAll(String... messages){
         TasksListView.setText(TasksListView.getText() + new Formatter().format(messages));
     }
-    
-	public void userPressEnter(){
-		Timeline blinker = createBlinker(userAction);
-        blinker.setOnFinished(event -> userAction.setText("Fading"));
-        FadeTransition fader = createFader(userAction);
-        
-        SequentialTransition blinkThenFade = new SequentialTransition(
-        		userAction,
-                blinker,
-                fader
-        );
-        
-        blinkThenFade.play();
+   
+	private void display(String displayToUser){
+		userAction.setText(new Formatter().format(displayToUser));
+        display();
 	}
 	
-    private Timeline createBlinker(Node node) {
-        Timeline blink = new Timeline(
-                new KeyFrame(
-                        Duration.seconds(0),
-                        new KeyValue(
-                                node.opacityProperty(), 
-                                1, 
-                                Interpolator.DISCRETE
-                        )
-                ),
-                new KeyFrame(
-                        Duration.seconds(0.5),
-                        new KeyValue(
-                                node.opacityProperty(), 
-                                0, 
-                                Interpolator.DISCRETE
-                        )
-                ),
-                new KeyFrame(
-                        Duration.seconds(1),
-                        new KeyValue(
-                                node.opacityProperty(), 
-                                1, 
-                                Interpolator.DISCRETE
-                        )
-                )
-        );
-        blink.setCycleCount(3);
-
-        return blink;
-    }
+	private void display(){
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(8), userAction);
+        fadeOut.setFromValue(1.0);
+        fadeOut.setToValue(0.0);
+        fadeOut.play();
+	}
 
     private FadeTransition createFader(Node node) {
-        FadeTransition fade = new FadeTransition(Duration.seconds(2), node);
-        fade.setFromValue(1);
-        fade.setToValue(0);
-
+        FadeTransition fade = new FadeTransition(Duration.seconds(8), node);
+        fade.setFromValue(1.0);
+        fade.setToValue(0.0);
         return fade;
     }
 }
