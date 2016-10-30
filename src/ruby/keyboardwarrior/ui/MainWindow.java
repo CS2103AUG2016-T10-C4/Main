@@ -149,11 +149,11 @@ public class MainWindow {
     			eventTask.add(task);
     	}
     	displayAll(String.format(Messages.MESSAGE_TODO_LIST, todoTask.size()));
-        displayAll(new Formatter().format(todoTask));
+        displayAll(new Formatter().format(todoTask,0));
         displayAll(String.format(Messages.MESSAGE_DEADLINE_LIST, deadlineTask.size()));
-        displayAll(new Formatter().format(deadlineTask));
+        displayAll(new Formatter().format(deadlineTask,1));
         displayAll(String.format(Messages.MESSAGE_EVENT_LIST, eventTask.size()));
-        displayAll(new Formatter().format(eventTask));
+        displayAll(new Formatter().format(eventTask,2));
     }
     
     private void displayAll(String... messages){
