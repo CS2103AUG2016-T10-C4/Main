@@ -4,7 +4,6 @@ package ruby.keyboardwarrior.ui;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -16,6 +15,7 @@ import ruby.keyboardwarrior.data.task.Task;
 import ruby.keyboardwarrior.logic.Logic;
 import ruby.keyboardwarrior.commands.CommandResult;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,20 +64,22 @@ public class MainWindow {
                 return;
             }
             
-            if(listCommand.equalsIgnoreCase(userCommandText)){
-            	display(result.feedbackToUser);
-            	listAll();
-        	}else if(userCommandText.length() > 3 && (findCommand.equalsIgnoreCase(userCommandText.substring(0,4)) || listCommand.equalsIgnoreCase(userCommandText.substring(0,4)))){
+            if(listCommand.equalsIgnoreCase(userCommandText) || userCommandText.length() > 3 && findCommand.equalsIgnoreCase(userCommandText.substring(0,4))){
             	display(userCommandText);
+            	displayAll(result.feedbackToUser);
             	displayAll(result);
+        	}else if(userCommandText.length() > 3 && listCommand.equalsIgnoreCase(userCommandText.substring(0,4))){
+            	display(userCommandText);
+            	displaySpecific(result);
             } else if(result.feedbackToUser.length() > 22 && result.feedbackToUser.substring(0,22).equals("Invalid command format")){
-            	display(result.feedbackToUser);
+            	display(result.feedbackToUser.substring(0,23));
+            	displayAll(result.feedbackToUser.substring(25));
             } else if (result.feedbackToUser.length() > 23 && result.feedbackToUser.substring(0,24).equals(HelpCommand.TITLE_MESSAGE)) {
             	display("Invalid Command Format!");
             	displayAll(result);           
         	} else {
         		display(result.feedbackToUser);
-            	listAll();
+            	displayAll(result);
             }
             clearCommandInput();
         } catch (Exception e) {
@@ -88,13 +90,6 @@ public class MainWindow {
 
     private void exitApp() throws Exception {
         mainApp.stop();
-    }
-    
-    private void listAll () throws Exception{
-    	displayAll(Messages.MESSAGE_TASKS_LISTED_OVERVIEW);
-    	displayAll(logic.execute("list todo"));
-    	displayAll(logic.execute("list deadline"));
-    	displayAll(logic.execute("list event"));
     }
 
     /** Returns true of the result given is the result of an exit command */
@@ -110,24 +105,55 @@ public class MainWindow {
     public void displayWelcomeMessage(String version, String storageFilePath) throws Exception {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
         displayAll(MESSAGE_WELCOME + version, storageFileInfo + "\n");
-        listAll();
+        displayAll(logic.execute("list"));
         display();
     }
     
     /** Displays the result of a command execution to the user. */
     public void displayAll(CommandResult result) {
-    	displayAll(result.feedbackToUser);
     	final Optional<List<Task>> resultTasks = result.getRelevantTasks();
     	if(resultTasks.isPresent()) {
             displayAll(resultTasks.get());
         }
     }
     
+    /** Displays the result of a command execution to the user. */
+    public void displaySpecific(CommandResult result) {
+    	final Optional<List<Task>> resultTasks = result.getRelevantTasks();
+    	if(resultTasks.isPresent()) {
+    		displayAll(result.feedbackToUser);
+            displaySpecific(resultTasks.get());
+        }
+    }
+
+    /**
+     * Displays a specific list of tasks
+     */
+    private void displaySpecific(List<Task> tasks){
+        displayAll(new Formatter().format(tasks));
+    }
+    
     /**
      * Displays the entire list of tasks
      */
     private void displayAll(List<Task> tasks){
-        displayAll(new Formatter().format(tasks));
+    	List<Task> todoTask = new ArrayList<Task>();
+    	List<Task> deadlineTask = new ArrayList<Task>();
+    	List<Task> eventTask = new ArrayList<Task>();
+    	for(Task task: tasks){
+    		if(task.getTaskType() == 0)
+    			todoTask.add(task);
+    		else if (task.getTaskType() == 1)
+    			deadlineTask.add(task);
+    		else
+    			eventTask.add(task);
+    	}
+    	displayAll(String.format(Messages.MESSAGE_TODO_LIST, todoTask.size()));
+        displayAll(new Formatter().format(todoTask));
+        displayAll(String.format(Messages.MESSAGE_DEADLINE_LIST, deadlineTask.size()));
+        displayAll(new Formatter().format(deadlineTask));
+        displayAll(String.format(Messages.MESSAGE_EVENT_LIST, eventTask.size()));
+        displayAll(new Formatter().format(eventTask));
     }
     
     private void displayAll(String... messages){
@@ -145,11 +171,4 @@ public class MainWindow {
         fadeOut.setToValue(0.0);
         fadeOut.play();
 	}
-
-    private FadeTransition createFader(Node node) {
-        FadeTransition fade = new FadeTransition(Duration.seconds(8), node);
-        fade.setFromValue(1.0);
-        fade.setToValue(0.0);
-        return fade;
-    }
 }

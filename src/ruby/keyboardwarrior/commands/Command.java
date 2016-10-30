@@ -45,10 +45,10 @@ public abstract class Command {
     				
     			case 2: return String.format(Messages.MESSAGE_EVENT_LIST, tasksDisplayed.size());
     			
-    			default: return String.format("list");
+    			default: return String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW);
     		}
     	} catch (NumberFormatException | StringIndexOutOfBoundsException siobe) {
-    		return String.format(Messages.MESSAGE_TASK_FOUND + type + "\n", tasksDisplayed.size());
+    		return String.format(Messages.MESSAGE_TASK_FOUND + type, tasksDisplayed.size());
     	}
     }
 

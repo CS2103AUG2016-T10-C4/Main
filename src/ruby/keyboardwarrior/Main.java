@@ -14,7 +14,7 @@ import ruby.keyboardwarrior.ui.Stoppable;
 public class Main extends Application implements Stoppable{
 
     /** Version info of the program. */
-    public static final String VERSION = " - Version 0.5";
+    public static final String VERSION = "Keyboardwarrior - Version 0.5";
 
     private Gui gui;
 

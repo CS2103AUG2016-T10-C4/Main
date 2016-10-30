@@ -64,7 +64,7 @@ public class ListCommand extends Command {
 	    		return new CommandResult(MESSAGE_USAGE);
 	    	}
     	} else {
-    		return new CommandResult(getMessageForTasksListShownSummary(allTasks, String.valueOf(this.taskType)));
+    		return new CommandResult(getMessageForTasksListShownSummary(allTasks, String.valueOf(this.taskType)),allTasks);
     	}
     }
     
