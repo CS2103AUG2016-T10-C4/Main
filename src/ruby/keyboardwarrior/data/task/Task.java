@@ -75,11 +75,11 @@ public class Task {
     		return details.toString();
     	else if (taskType == 1) {
     		if(endTime == null)
-    			return details.toString() + "\n\t Deadline:\t" + date.toString();
+    			return details.toString() + "\t" + date.toString();
     		else
-    			return details.toString() + "\n\t Deadline:\t" + endTime.toString();	
+    			return details.toString() + "\t" + endTime.toString();	
     	} else {
-    		return details.toString() + "\n\t Start time:\t" + startTime.toString() + "\n\t End time:\t" + endTime.toString(); 
+    		return details.toString() + "\t" + startTime.toString() + " to " + endTime.toString(); 
     	}
     }
 

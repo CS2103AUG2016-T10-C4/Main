@@ -15,9 +15,10 @@ public class DateTime {
     public static final String EXAMPLE = "130816 2310";
     public static final String MESSAGE_DATE_CONSTRAINTS = "Date and Time must be in the proper format DDMMYY HHMM";
     public static final String DATE_TIME_VALIDATION_REGEX = "[0-3][0-9][0-1][0-9][0-9][0-9]\\s[0-2][0-9][0-5][0-9]";
-    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("E \t dd-MMM-yyyy");
+    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("E dd-MMM-yyyy ");
     public static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm");
-    public static final SimpleDateFormat DAY_DATE_FORMAT = new SimpleDateFormat("E dd-MMM-yyyy");
+    public static final SimpleDateFormat DAY_DATE_FORMAT = new SimpleDateFormat("E dd-MMM-yyyy ");
+    public static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("E HH:mm dd-MMM-yyyy");
 
     public final Calendar dateTime;
 
@@ -72,7 +73,7 @@ public class DateTime {
     @Override
     public String toString() {
     	java.util.Date properDateTime = dateTime.getTime();
-        return DATE_FORMAT.format(properDateTime) + "\t" +TIME_FORMAT.format(properDateTime);
+        return DATE_TIME_FORMAT.format(properDateTime);
     }
 
     @Override
