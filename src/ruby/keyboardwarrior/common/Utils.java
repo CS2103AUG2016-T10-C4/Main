@@ -34,4 +34,12 @@ public class Utils {
         }
         return true;
     }
+    
+    /**
+     * Throws an assertion error if the collection or any item in it is null.
+     */
+    public static void assertNoNullElements(Collection<?> items) {
+        assert items != null;
+        assert !isAnyNull(items);
+    }
 }

@@ -5,6 +5,8 @@ import ruby.keyboardwarrior.data.TasksList.TaskNotFoundException;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.data.task.Task;
 import ruby.keyboardwarrior.data.task.TaskDetails;
+import ruby.keyboardwarrior.data.tag.Tag;
+import ruby.keyboardwarrior.data.tag.UniqueTagList;
 
 //@@author A0144665Y
 

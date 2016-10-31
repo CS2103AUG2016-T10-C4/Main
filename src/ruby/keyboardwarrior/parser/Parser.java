@@ -22,11 +22,7 @@ public class Parser {
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
 
     public static final Pattern TASK_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
-            Pattern.compile("(?<taskdetails>[^/]+)");
-    
-    public static final String TODO_TYPE = "todo";
-    public static final String DEADLINE_TYPE = "deadline";
-    public static final String EVENT_TYPE = "event";
+            Pattern.compile("(?<mainTaskDetails>[^/]+)");               
 
     public static Stack<String> allInputs = new Stack<String>(); 
 
@@ -108,12 +104,12 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         try {
-            return new AddCommand(matcher.group("taskdetails"));
+            return new AddCommand(matcher.group("mainTaskDetails"));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
     }
-
+    
     /**
      * Parses arguments in the context of the delete person command.
      *
@@ -143,7 +139,9 @@ public class Parser {
         	String editTask = args.substring(args.indexOf(' '));
         	
             final int targetIndex = parseArgsAsDisplayedIndex(index);
-            return new EditCommand(targetIndex, editTask);
+
+            return new EditCommand(targetIndex, new Task(new TaskDetails(editTask), null));
+
         } catch (ParseException | NumberFormatException | StringIndexOutOfBoundsException siobe) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }

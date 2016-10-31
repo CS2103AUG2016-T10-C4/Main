@@ -2,9 +2,12 @@ package ruby.keyboardwarrior.storage.jaxb;
 
 import ruby.keyboardwarrior.common.Utils;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
+import ruby.keyboardwarrior.data.tag.Tag;
 import ruby.keyboardwarrior.data.task.*;
 
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlValue;
@@ -62,20 +65,15 @@ public class AdaptedTask {
     }
 
     /**
-     * Converts this jaxb-friendly adapted person object into the Person object.
+     * Converts this jaxb-friendly adapted task object into the Task object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
-    public Task toModelType() {
-    	if(this.taskType == 0){
-    		return new Task(this.taskDetails);
-    	} else if(this.taskType == 1){
-    		if(this.date == null)
-    			return new Task(this.taskDetails, this.endTime);
-    		else
-    			return new Task(this.taskDetails, this.date);
-    	} else {
-    		return new Task(this.taskDetails, this.startTime, this.endTime);
-    	}
+
+    public Task toModelType() throws IllegalValueException {
+        final TaskDetails task = new TaskDetails(this.taskdetails);
+        final Set<Tag> tagSet = new HashSet<>();
+        return new Task(task, tagSet);
+
     }
 }
