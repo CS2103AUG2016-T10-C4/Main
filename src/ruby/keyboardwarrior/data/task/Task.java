@@ -99,14 +99,16 @@ public class Task {
     		builder.append(stringTag);
     	}
     	
-    	if(taskType == 0)
+    	if(taskType == 0){
     		return details.toString() + "\n\t" + builder.toString() + "\n";
-    	else if (taskType == 1) {
+    	}
+    	else if(taskType == 1){
     		if(endTime == null)
     			return details.toString() + "\n\t Deadline:\t" + date.toString() + "\n\t" + builder.toString() + "\n";
     		else
     			return details.toString() + "\n\t Deadline:\t" + endTime.toString() + "\n\t" + builder.toString() + "\n";	
-    	} else {
+    	}
+    	else{
     		return details.toString() + "\n\t Start time:\t" + startTime.toString() + "\n\t End time:\t" + endTime.toString() + "\n\t" + builder.toString() + "\n"; 
     	}
     }

@@ -1,10 +1,13 @@
 package ruby.keyboardwarrior.ui;
 
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.util.Duration;
 import ruby.keyboardwarrior.commands.ExitCommand;
 import ruby.keyboardwarrior.commands.HelpCommand;
 import ruby.keyboardwarrior.common.Messages;
@@ -12,6 +15,7 @@ import ruby.keyboardwarrior.data.task.Task;
 import ruby.keyboardwarrior.logic.Logic;
 import ruby.keyboardwarrior.commands.CommandResult;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,20 +40,21 @@ public class MainWindow {
     public void setMainApp(Stoppable mainApp){
         this.mainApp = mainApp;
     }
-
-    @FXML
-    private TextArea outputConsole;
     
     @FXML
     private TextArea TasksListView;
 
     @FXML
     private TextField commandInput;
+    
+    @FXML
+    private Label userAction;
 
 
     @FXML
     void onCommand(ActionEvent event) {
         try {
+        	TasksListView.clear();
             String userCommandText = commandInput.getText();
             String findCommand = "find";
             String listCommand = "list";
@@ -58,18 +63,23 @@ public class MainWindow {
                 exitApp();
                 return;
             }
-            if(userCommandText.length() > 3 && (findCommand.equalsIgnoreCase(userCommandText.substring(0,4)) || listCommand.equalsIgnoreCase(userCommandText.substring(0,4)))){
-            	clearOutputConsole();
+            
+            if(listCommand.equalsIgnoreCase(userCommandText) || userCommandText.length() > 3 && findCommand.equalsIgnoreCase(userCommandText.substring(0,4))){
             	display(userCommandText);
+            	displayAll(result.feedbackToUser);
             	displayAll(result);
+        	}else if(userCommandText.length() > 3 && listCommand.equalsIgnoreCase(userCommandText.substring(0,4))){
+            	display(userCommandText);
+            	displaySpecific(result);
             } else if(result.feedbackToUser.length() > 22 && result.feedbackToUser.substring(0,22).equals("Invalid command format")){
-            	displayResult(result);
+            	display(result.feedbackToUser.substring(0,23));
+            	displayAll(result.feedbackToUser.substring(25));
             } else if (result.feedbackToUser.length() > 23 && result.feedbackToUser.substring(0,24).equals(HelpCommand.TITLE_MESSAGE)) {
             	display("Invalid Command Format!");
             	displayAll(result);           
         	} else {
-            	displayResult(result);
-            	displayAll(logic.execute("list"));
+        		display(result.feedbackToUser);
+            	displayAll(result);
             }
             clearCommandInput();
         } catch (Exception e) {
@@ -92,66 +102,73 @@ public class MainWindow {
         commandInput.setText("");
     }
 
-    /** Clears the output display area */
-    public void clearOutputConsole(){
-        outputConsole.clear();
-    }
-
-    /** Displays the result of a command execution to the user. */
-    public void displayResult(CommandResult result) {
-        clearOutputConsole();
-        TasksListView.clear();
-        final Optional<List<Task>> resultTasks = result.getRelevantTasks();
-        if(resultTasks.isPresent()) {
-            display(resultTasks.get());
-        }
-        if(result.feedbackToUser.length() > 22 && result.feedbackToUser.substring(0,22).equals("Invalid command format")){
-        	display("Invalid command format!");
-        	displayAll(result.feedbackToUser.substring(25));
-        } else {
-        	display(result.feedbackToUser);
-        }
-    }
-
     public void displayWelcomeMessage(String version, String storageFilePath) throws Exception {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        display(MESSAGE_WELCOME + version, storageFileInfo);
+        displayAll(MESSAGE_WELCOME + version, storageFileInfo + "\n");
         displayAll(logic.execute("list"));
-    }
-
-    /**
-     * Displays the list of persons in the output display area, formatted as an indexed list.
-     */
-    private void display(List<Task> tasks) {
-        display(new Formatter().format(tasks));
-    }
-
-    /**
-     * Displays the given messages on the output display area, after formatting appropriately.
-     */
-    private void display(String... messages) {
-    	clearOutputConsole();
-        outputConsole.setText(outputConsole.getText() + new Formatter().format(messages));
+        display();
     }
     
     /** Displays the result of a command execution to the user. */
     public void displayAll(CommandResult result) {
-    	TasksListView.clear();
-    	displayAll(result.feedbackToUser);
     	final Optional<List<Task>> resultTasks = result.getRelevantTasks();
     	if(resultTasks.isPresent()) {
             displayAll(resultTasks.get());
         }
     }
     
+    /** Displays the result of a command execution to the user. */
+    public void displaySpecific(CommandResult result) {
+    	final Optional<List<Task>> resultTasks = result.getRelevantTasks();
+    	if(resultTasks.isPresent()) {
+    		displayAll(result.feedbackToUser);
+            displaySpecific(resultTasks.get());
+        }
+    }
+
+    /**
+     * Displays a specific list of tasks
+     */
+    private void displaySpecific(List<Task> tasks){
+        displayAll(new Formatter().format(tasks));
+    }
+    
     /**
      * Displays the entire list of tasks
      */
     private void displayAll(List<Task> tasks){
-        displayAll(new Formatter().format(tasks));
+    	List<Task> todoTask = new ArrayList<Task>();
+    	List<Task> deadlineTask = new ArrayList<Task>();
+    	List<Task> eventTask = new ArrayList<Task>();
+    	for(Task task: tasks){
+    		if(task.getTaskType() == 0)
+    			todoTask.add(task);
+    		else if (task.getTaskType() == 1)
+    			deadlineTask.add(task);
+    		else
+    			eventTask.add(task);
+    	}
+    	displayAll(String.format(Messages.MESSAGE_TODO_LIST, todoTask.size()));
+        displayAll(new Formatter().format(todoTask));
+        displayAll(String.format(Messages.MESSAGE_DEADLINE_LIST, deadlineTask.size()));
+        displayAll(new Formatter().format(deadlineTask));
+        displayAll(String.format(Messages.MESSAGE_EVENT_LIST, eventTask.size()));
+        displayAll(new Formatter().format(eventTask));
     }
     
     private void displayAll(String... messages){
         TasksListView.setText(TasksListView.getText() + new Formatter().format(messages));
     }
+   
+	private void display(String displayToUser){
+		userAction.setText(new Formatter().format(displayToUser));
+        display();
+	}
+	
+	private void display(){
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(8), userAction);
+        fadeOut.setFromValue(1.0);
+        fadeOut.setToValue(0.0);
+        fadeOut.play();
+	}
 }

@@ -2,18 +2,20 @@
 
 <!-- @@author A0139820E -->
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ruby.keyboardwarrior.ui.MainWindow">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #003B46;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ruby.keyboardwarrior.ui.MainWindow">
    <children>
-      <TextField fx:id="commandInput" layoutX="513.0" layoutY="561.0" onAction="#onCommand" prefHeight="25.0" prefWidth="684.0" promptText="Enter command here" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
-      <TextArea fx:id="outputConsole" editable="false" layoutX="6.0" layoutY="523.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="1190.0" wrapText="true" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="523.0" />
-      <TextArea fx:id="TasksListView" editable="false" layoutX="6.0" layoutY="5.0" prefHeight="513.0" prefWidth="1190.0" wrapText="true" AnchorPane.bottomAnchor="82.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="5.0">
+      <TextField fx:id="commandInput" layoutX="22.0" layoutY="548.0" onAction="#onCommand" prefHeight="30.0" prefWidth="1155.0" promptText="Enter command here" style="-fx-background-color: #C4DFE6;" stylesheets="@Theme.css" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="23.0" />
+      <TextArea fx:id="outputConsole" editable="false" layoutX="22.0" layoutY="484.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="1155.0" style="-fx-background-color: white;" wrapText="true" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="484.0" />
+      <TextArea fx:id="TasksListView" editable="false" layoutX="22.0" layoutY="24.0" prefHeight="447.0" prefWidth="1155.0" style="-fx-background-color: white;" wrapText="true" AnchorPane.bottomAnchor="129.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="24.0">
          <font>
-            <Font size="20.0" />
+            <Font size="18.0" />
          </font></TextArea>
+      <Label fx:id="userAction" layoutX="89.0" layoutY="484.0" prefHeight="51.0" prefWidth="567.0" />
    </children>
 </AnchorPane>

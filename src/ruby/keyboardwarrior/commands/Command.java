@@ -35,8 +35,21 @@ public abstract class Command {
      * @param tasksDisplayed used to generate summary
      * @return summary message for persons displayed
      */
-    public static String getMessageForTasksListShownSummary(List<Task> tasksDisplayed) {
-        return String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, tasksDisplayed.size());
+    public static String getMessageForTasksListShownSummary(List<Task> tasksDisplayed, String type) {
+    	try{
+    		Integer taskType = Integer.parseInt(type);
+    		switch(taskType){
+    			case 0: return String.format(Messages.MESSAGE_TODO_LIST, tasksDisplayed.size());
+    				
+    			case 1: return String.format(Messages.MESSAGE_DEADLINE_LIST, tasksDisplayed.size());
+    				
+    			case 2: return String.format(Messages.MESSAGE_EVENT_LIST, tasksDisplayed.size());
+    			
+    			default: return String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW);
+    		}
+    	} catch (NumberFormatException | StringIndexOutOfBoundsException siobe) {
+    		return String.format(Messages.MESSAGE_TASK_FOUND + type, tasksDisplayed.size());
+    	}
     }
 
     /**
