@@ -366,7 +366,7 @@ public class LogicTest {
         helper.addToTasksList(tasksList, fourTasks);
 
         assertCommandBehavior("find KEY",
-                                Command.getMessageForTasksListShownSummary(expectedList),
+                                Command.getMessageForTasksListShownSummary(expectedList, "0"),
                                 expectedAB,
                                 true,
                                 expectedList);
@@ -387,7 +387,7 @@ public class LogicTest {
         helper.addToTasksList(tasksList, fourTasks);
 
         assertCommandBehavior("find KEY",
-                                Command.getMessageForTasksListShownSummary(expectedList),                            
+                                Command.getMessageForTasksListShownSummary(expectedList, "0"),                            
                                 expectedAB,
                                 true,
                                 expectedList);
@@ -407,7 +407,7 @@ public class LogicTest {
         helper.addToTasksList(tasksList, fourTasks);
 
         assertCommandBehavior("find KEY rAnDoM",
-                                Command.getMessageForTasksListShownSummary(expectedList),
+                                Command.getMessageForTasksListShownSummary(expectedList, "0"),
                                 expectedAB,
                                 true,
                                 expectedList);
