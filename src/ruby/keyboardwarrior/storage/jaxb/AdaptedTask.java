@@ -3,6 +3,7 @@ package ruby.keyboardwarrior.storage.jaxb;
 import ruby.keyboardwarrior.common.Utils;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.data.tag.Tag;
+import ruby.keyboardwarrior.data.tag.UniqueTagList;
 import ruby.keyboardwarrior.data.task.*;
 
 import java.util.Calendar;
@@ -28,6 +29,8 @@ public class AdaptedTask {
     private DateTime startTime;
     @XmlElement(required = false)
     private DateTime endTime;
+    @XmlElement(required = false)
+    private UniqueTagList tags;
     
     
     private static final String DEADLINE_WORD = " by ";
@@ -71,9 +74,15 @@ public class AdaptedTask {
      */
 
     public Task toModelType() throws IllegalValueException {
-        final TaskDetails task = new TaskDetails(this.taskdetails);
-        final Set<Tag> tagSet = new HashSet<>();
-        return new Task(task, tagSet);
-
+        if(this.taskType == 0){
+        	return new Task(this.taskDetails, this.tags);
+        } else if(this.taskType == 1){
+        	if(this.date == null)
+        		return new Task(this.taskDetails, this.endTime, this.tags);
+        	else
+        	    return new Task(this.taskDetails, this.date, this.tags);
+        } else {
+        	return new Task(this.taskDetails, this.startTime, this.endTime, this.tags);
+        }
     }
 }
