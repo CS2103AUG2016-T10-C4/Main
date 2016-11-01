@@ -100,16 +100,16 @@ public class Task {
     	}
     	
     	if(taskType == 0){
-    		return details.toString() + "\n\t" + builder.toString() + "\n";
+    		return details.toString() + "\t" + builder.toString();
     	}
     	else if(taskType == 1){
     		if(endTime == null)
-    			return details.toString() + "\n\t Deadline:\t" + date.toString() + "\n\t" + builder.toString() + "\n";
+    			return details.toString() + "by" + date.toString() + "\t" + builder.toString();
     		else
-    			return details.toString() + "\n\t Deadline:\t" + endTime.toString() + "\n\t" + builder.toString() + "\n";	
+    			return details.toString() + "by" + endTime.toString() + "\t" + builder.toString();	
     	}
     	else{
-    		return details.toString() + "\n\t Start time:\t" + startTime.toString() + "\n\t End time:\t" + endTime.toString() + "\n\t" + builder.toString() + "\n"; 
+    		return details.toString() + "from" + startTime.toString() + "to" + endTime.toString() + "\t" + builder.toString(); 
     	}
     }
 

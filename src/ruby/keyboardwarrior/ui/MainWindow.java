@@ -79,7 +79,7 @@ public class MainWindow {
             	displayAll(result);           
         	} else {
         		display(result.feedbackToUser);
-            	displayAll(result);
+            	displayAll(logic.execute("list"));
             }
             clearCommandInput();
         } catch (Exception e) {

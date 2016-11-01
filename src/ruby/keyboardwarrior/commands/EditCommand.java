@@ -1,8 +1,16 @@
 package ruby.keyboardwarrior.commands;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import ruby.keyboardwarrior.common.Messages;
 import ruby.keyboardwarrior.data.TasksList.TaskNotFoundException;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
+import ruby.keyboardwarrior.data.tag.Tag;
+import ruby.keyboardwarrior.data.tag.UniqueTagList;
 import ruby.keyboardwarrior.data.task.Date;
 import ruby.keyboardwarrior.data.task.DateTime;
 import ruby.keyboardwarrior.data.task.Task;
@@ -18,6 +26,7 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
     public static final String DEADLINE_WORD = " by ";
     public static final String EVENT_WORD = " from ";
+    public static final String TAG_WORD = " #";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" 
             + "Edit the item identified by the index number used in the last item listing.\n\t"
@@ -30,27 +39,63 @@ public class EditCommand extends Command {
     
     public EditCommand(int targetVisibleIndex, String newTask) throws IllegalValueException {
         super(targetVisibleIndex);
-		try{
-	    	String lowerCaseDetails = newTask.toLowerCase();
-			int byExist = lowerCaseDetails.lastIndexOf(DEADLINE_WORD);
-			int fromExist = lowerCaseDetails.lastIndexOf(EVENT_WORD);
-				
+        String tagArguments = "";
+    	String lowerCaseDetails = newTask.toLowerCase();
+		int byExist = lowerCaseDetails.lastIndexOf(DEADLINE_WORD);
+		int fromExist = lowerCaseDetails.lastIndexOf(EVENT_WORD);
+		int tagExist = lowerCaseDetails.indexOf(TAG_WORD);
+		
+		if(tagExist != -1){
+			tagArguments = lowerCaseDetails.substring(tagExist);
+		}
+		
+		Set<String> tags = getTagsFromArgs(tagArguments);
+    	final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(new Tag(tagName));
+        }
+         
+		try{				
 			if(byExist != -1 && Integer.parseInt(lowerCaseDetails.substring(byExist+4,byExist+10)) > 0){
-				if(newTask.length() > byExist+10)
-					this.editTask = new Task(new TaskDetails(newTask.substring(0,byExist)), new DateTime(newTask.substring(byExist+4)));
-				else
-					this.editTask = new Task(new TaskDetails(newTask.substring(0,byExist)), new Date(newTask.substring(byExist+4)));
+				if(Integer.parseInt(lowerCaseDetails.substring(byExist+11,byExist+15)) > 0){
+					this.editTask = new Task(new TaskDetails(newTask.substring(0,byExist)), new DateTime(newTask.substring(byExist+4, byExist+15)), new UniqueTagList(tagSet));
+				}
 			}
 			else if(fromExist != -1){
-				this.editTask = new Task(new TaskDetails(newTask.substring(0,fromExist)), new DateTime(newTask.substring(fromExist+6,fromExist+17)), new DateTime(newTask.substring(fromExist+18, fromExist+29)));
+				this.editTask = new Task(new TaskDetails(newTask.substring(0,fromExist)), new DateTime(newTask.substring(fromExist+6,fromExist+17)), new DateTime(newTask.substring(fromExist+18, fromExist+29)), new UniqueTagList(tagSet));
+			}
+			else if(tagExist != -1){
+				this.editTask = new Task(new TaskDetails(newTask.substring(0, tagExist)), new UniqueTagList(tagSet));
 			}
 			else{
-				this.editTask = new Task(new TaskDetails(newTask));
+				this.editTask = new Task(new TaskDetails(newTask), new UniqueTagList(tagSet));
 			}
 		}
-		catch (NumberFormatException | StringIndexOutOfBoundsException siobe){
-			this.editTask = new Task(new TaskDetails(newTask));
+		catch(NumberFormatException | StringIndexOutOfBoundsException siobe){
+			try{
+				if(byExist != -1 && Integer.parseInt(lowerCaseDetails.substring(byExist+4,byExist+10)) > 0){
+					this.editTask = new Task(new TaskDetails(newTask.substring(0,byExist)), new Date(newTask.substring(byExist+4, byExist+10)), new UniqueTagList(tagSet));
+				}
+			}
+			catch(NumberFormatException | StringIndexOutOfBoundsException obe){
+				if(tagExist != -1){
+					this.editTask = new Task(new TaskDetails(newTask.substring(0, tagExist)), new UniqueTagList(tagSet));
+				}
+				else{
+					this.editTask = new Task(new TaskDetails(newTask), new UniqueTagList(tagSet));
+				}
+			}
 		}
+    }
+    
+    private static Set<String> getTagsFromArgs(String tagArguments) throws IllegalValueException {
+        // no tags
+        if (tagArguments.isEmpty()) {
+            return Collections.emptySet();
+        }
+        // replace first delimiter prefix, then split
+        final Collection<String> tagStrings = Arrays.asList(tagArguments.replaceFirst(" #", "").split(" #"));
+        return new HashSet<>(tagStrings);
     }
 
 
