@@ -44,6 +44,12 @@ public class UniqueTagList implements Iterable<Tag> {
         }
         internalList.addAll(initialTags);
     }
+    
+    /**
+     * Signals that an operation targeting a specified Tag in the list would fail because
+     * there is no such matching Tag in the list.
+     */
+    public static class TagNotFoundException extends Exception {}
 
     /**
      * java collections constructor, enforces no null or duplicate elements.
@@ -134,6 +140,18 @@ public class UniqueTagList implements Iterable<Tag> {
                 || (other instanceof UniqueTagList // instanceof handles nulls
                 && this.internalList.equals(
                 ((UniqueTagList) other).internalList));
+    }
+    
+    /**
+     * Removes the equivalent Tag from the list.
+     *
+     * @throws TagNotFoundException if no such Tag could be found in the list.
+     */
+    public void remove(Tag toRemove) throws TagNotFoundException {
+        final boolean TagFoundAndDeleted = internalList.remove(toRemove);
+        if (!TagFoundAndDeleted) {
+            throw new TagNotFoundException();
+        }
     }
 
     @Override

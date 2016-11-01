@@ -2,6 +2,10 @@ package ruby.keyboardwarrior.data;
 
 import ruby.keyboardwarrior.data.exception.DuplicateDataException;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
+import ruby.keyboardwarrior.data.tag.Tag;
+import ruby.keyboardwarrior.data.tag.UniqueTagList;
+import ruby.keyboardwarrior.data.tag.UniqueTagList.DuplicateTagException;
+import ruby.keyboardwarrior.data.tag.UniqueTagList.TagNotFoundException;
 import ruby.keyboardwarrior.data.task.*;
 
 import java.util.*;
@@ -13,7 +17,8 @@ import java.util.*;
 public class TasksList {
 
 
-    private static ArrayList<Task> allTasks = new ArrayList<Task>();
+    private static ArrayList<Task> allTasks;
+    private final UniqueTagList allTags;
     
     public static class DuplicateTaskException extends DuplicateDataException {
         protected DuplicateTaskException() {
@@ -39,13 +44,41 @@ public class TasksList {
      */
     public TasksList() {
         allTasks = new ArrayList<Task>();
+        allTags = new UniqueTagList();
     }
 
     /**
      * Constructs a taskslist with the given data.
      */
-    public TasksList(ArrayList<Task> tasks) {
+    public TasksList(ArrayList<Task> tasks, UniqueTagList tags) {
         this.allTasks = new ArrayList<Task>(tasks);
+        this.allTags = new UniqueTagList(tags);
+        for (Task task : allTasks) {
+            syncTagsWithMasterList(task);
+        }
+    }
+    
+    /**
+     * Ensures that every tag in this person:
+     *  - exists in the master list {@link #allTags}
+     *  - points to a Tag object in the master list
+     */
+    private void syncTagsWithMasterList(Task task) {
+        final UniqueTagList taskTags = task.getTags();
+        allTags.mergeFrom(taskTags);
+
+        // Create map with values = tag object references in the master list
+        final Map<Tag, Tag> masterTagObjects = new HashMap<>();
+        for (Tag tag : allTags) {
+            masterTagObjects.put(tag, tag);
+        }
+
+        // Rebuild the list of person tags using references from the master list
+        final Set<Tag> commonTagReferences = new HashSet<>();
+        for (Tag tag : taskTags) {
+            commonTagReferences.add(masterTagObjects.get(tag));
+        }
+        task.setTags(new UniqueTagList(commonTagReferences));
     }
 
     /**
@@ -110,6 +143,38 @@ public class TasksList {
     public ArrayList<Task> getAllTasks(){
         return allTasks;
     }
+    
+    /**
+     * Adds a tag to the list of tags present in the address book.
+     *
+     * @throws DuplicateTagException if an equivalent tag already exists.
+     */
+    public void addTag(Tag toAdd) throws DuplicateTagException {
+        allTags.add(toAdd);
+    }
+    
+    /**
+     * Checks if an equivalent person exists in the address book.
+     */
+    public boolean containsTag(Tag key) {
+        return allTags.contains(key);
+    }
+    
+    /**
+     * Removes the equivalent Tag from the address book.
+     *
+     * @throws TagNotFoundException if no such Tag could be found.
+     */
+    public void removeTag(Tag toRemove) throws TagNotFoundException {
+        allTags.remove(toRemove);
+    }
+    
+    /**
+     * Defensively copied UniqueTagList of all tags in the address book at the time of the call.
+     */
+    public UniqueTagList getAllTags() {
+        return new UniqueTagList(allTags);
+    }
 
     /**
      * Clears all tasks from the tasks list.
@@ -122,7 +187,8 @@ public class TasksList {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TasksList // instanceof handles nulls
-                && this.allTasks.equals(((TasksList) other).allTasks));
+                && this.allTasks.equals(((TasksList) other).allTasks)
+                && this.allTags.equals(((TasksList) other).allTags));
     }
 
     @Override
