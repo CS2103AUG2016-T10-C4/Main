@@ -6,8 +6,10 @@ import ruby.keyboardwarrior.data.tag.Tag;
 import ruby.keyboardwarrior.data.tag.UniqueTagList;
 import ruby.keyboardwarrior.data.task.*;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -29,8 +31,9 @@ public class AdaptedTask {
     private DateTime startTime;
     @XmlElement(required = false)
     private DateTime endTime;
-    @XmlElement(required = true)
-    private UniqueTagList tags;
+    
+    @XmlElement
+    private List<AdaptedTag> tagged = new ArrayList<>();
     
     
     private static final String DEADLINE_WORD = " by ";
@@ -53,6 +56,10 @@ public class AdaptedTask {
     	this.date = source.getDate();
     	this.startTime = source.getStartTime();
     	this.endTime = source.getEndTime();
+        this.tagged = new ArrayList<>();
+        for (Tag tag : source.getTags()) {
+            this.tagged.add(new AdaptedTag(tag));
+        }
     }
 
     /**
@@ -74,15 +81,22 @@ public class AdaptedTask {
      */
 
     public Task toModelType() throws IllegalValueException {
+        final List<Tag> personTags = new ArrayList<>();
+        for (AdaptedTag tag : tagged) {
+            personTags.add(tag.toModelType());
+        }
+        
+        UniqueTagList tags = new UniqueTagList(personTags);
+        
         if(this.taskType == 0){
-        	return new Task(this.taskDetails, this.tags);
+        	return new Task(this.taskDetails, tags);
         } else if(this.taskType == 1){
         	if(this.date == null)
-        		return new Task(this.taskDetails, this.endTime, this.tags);
+        		return new Task(this.taskDetails, this.endTime, tags);
         	else
-        	    return new Task(this.taskDetails, this.date, this.tags);
+        	    return new Task(this.taskDetails, this.date, tags);
         } else {
-        	return new Task(this.taskDetails, this.startTime, this.endTime, this.tags);
+        	return new Task(this.taskDetails, this.startTime, this.endTime, tags);
         }
     }
 }

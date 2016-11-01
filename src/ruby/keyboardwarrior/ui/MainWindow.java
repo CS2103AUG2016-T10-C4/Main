@@ -64,7 +64,7 @@ public class MainWindow {
                 return;
             }
             
-            if(listCommand.equalsIgnoreCase(userCommandText) || userCommandText.length() > 3 && findCommand.equalsIgnoreCase(userCommandText.substring(0,4))){
+            if(listCommand.equalsIgnoreCase(userCommandText) || (userCommandText.length() > 3 && findCommand.equalsIgnoreCase(userCommandText.substring(0,4)))){
             	display(userCommandText);
             	displayAll(result.feedbackToUser);
             	displayAll(result);
@@ -76,7 +76,7 @@ public class MainWindow {
             	displayAll(result.feedbackToUser.substring(25));
             } else if (result.feedbackToUser.length() > 23 && result.feedbackToUser.substring(0,24).equals(HelpCommand.TITLE_MESSAGE)) {
             	display("Invalid Command Format!");
-            	displayAll(result);           
+            	displayAll(result.feedbackToUser);           
         	} else {
         		display(result.feedbackToUser);
             	displayAll(logic.execute("list"));
@@ -105,6 +105,7 @@ public class MainWindow {
     public void displayWelcomeMessage(String version, String storageFilePath) throws Exception {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
         displayAll(MESSAGE_WELCOME + version, storageFileInfo + "\n");
+        displayAll(MESSAGE_TASKS_LISTED_OVERVIEW);
         displayAll(logic.execute("list"));
         display();
     }
