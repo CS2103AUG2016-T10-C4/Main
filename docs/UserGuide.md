@@ -39,7 +39,7 @@ It allows you to schedule, reschedule, update, and delete tasks with just a sing
 ### 2.2. Launching the Application
 <br>
 Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
-   <img src='images/GUI.jpg' width="600" height="350"> <br><br>
+   <img src='images/GUI.jpg' width="800"> <br><br>
    
 ### 2.3. Entering Commands
 <br>
