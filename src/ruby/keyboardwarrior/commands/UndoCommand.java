@@ -41,7 +41,7 @@ public class UndoCommand extends Command {
     	String task = toUndo.substring(space+1);
     	
     	if(command.equals("add")){
-    		tasksList.removeTask(new Task(new TaskDetails(task)));
+    		tasksList.removeTask(task);
     	}
     	
     	if(command.equals("delete")){

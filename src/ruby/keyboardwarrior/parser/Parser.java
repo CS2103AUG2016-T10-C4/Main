@@ -140,7 +140,7 @@ public class Parser {
         	
             final int targetIndex = parseArgsAsDisplayedIndex(index);
 
-            return new EditCommand(targetIndex, new Task(new TaskDetails(editTask), null));
+            return new EditCommand(targetIndex, editTask);
 
         } catch (ParseException | NumberFormatException | StringIndexOutOfBoundsException siobe) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));

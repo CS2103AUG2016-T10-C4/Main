@@ -107,47 +107,6 @@ public class AddCommand extends Command {
 			}
 		}
 		
-		/*
-    	StringBuilder itemDetails = new StringBuilder();
-     	StringBuilder startTime = new StringBuilder();
-		StringBuilder endTime = new StringBuilder();
-		String deadline;
-		Scanner scanDetails = new Scanner(details);
-		Scanner scanType = new Scanner(details);
-
-        while(scanDetails.hasNext()) {
-        	String check = scanDetails.next();
-        	if(check.startsWith("by")){
-        		break;
-        	}
-        	if(check.startsWith("from")){
-        		break;
-        	}
-        	else{
-        		itemDetails.append(" " + check);
-        	}
-        }
-        scanDetails.close();
-        
-        if(scanType.findInLine("by") != null) {
-        	deadline = scanType.nextLine();
-        	if(deadline.length() > 10){
-        		this.toAdd = new Task(new TaskDetails(itemDetails.toString().trim()), new DateTime(deadline));
-        	}
-        	else{
-        		this.toAdd = new Task(new TaskDetails(itemDetails.toString().trim()), new Date(deadline));
-        	}
-        }
-        else if(scanType.findInLine("from") != null){
-        	startTime.append(scanType.next()).append(" " + scanType.next());
-        	endTime.append(scanType.next()).append(" " + scanType.next());
-        	this.toAdd = new Task(new TaskDetails(itemDetails.toString().trim()), new DateTime(startTime.toString()), new DateTime(endTime.toString()));
-        }
-        else{
-        	this.toAdd = new Task(new TaskDetails(details));
-        }
-        scanType.close();
-        */
     }
 
     public AddCommand(Task toAdd) {
