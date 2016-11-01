@@ -64,7 +64,7 @@ This guide describes the design and implementation of **KeyboardWarrior**. It wi
 
 ## 3. Architecture
 
-<img src="images/Architecture.jpg" width="700"> <br>
+<img src="images/Architecture.jpg" width="800"> <br>
 > Figure 1: Architecture Class Diagram
 
 Figure 1 shows the **_Architecture Diagram_** which gives the high-level design of **KeyboardWarrior**. You can refer to the section below to get a quick overview of each component.
@@ -106,7 +106,7 @@ command `delete 1`.
 
 ## 4. UI Component
 
-<img src="images/UI.jpg" width="700"> <br>
+<img src="images/UI.jpg" width="800"> <br>
 > Figure 4: UI Component Class Diagram
 
 **API** : [`GUI.java`](../src/ruby/keyboardwarrior/ui/GUI.java)
@@ -124,7 +124,7 @@ The `UI` component,
 
 ## 5. Logic Component
 
-<img src="images/Logic.jpg" width="700"> <br>
+<img src="images/Logic.jpg" width="800"> <br>
 > Figure 5:  Logic Component Class Diagram
 
 **API** : [`Logic.java`](../src/ruby/keyboardwarrior/logic/Logic.java)
@@ -142,7 +142,7 @@ Given below, in Figure 6, is the *Sequence Diagram* for interactions within the 
 
 ## 6. Data Component
 
-<img src="images/Data.jpg" width="700"> <br>
+<img src="images/Data.jpg" width="800"> <br>
 > Figure 7: Data Component Class Diagram
 
 **API** : [`Data.java`](../src/ruby/keyboardwarrior/data/TasksList.java)
@@ -155,7 +155,7 @@ The `Data`,
 
 ## 7. Storage Component
 
-<img src="images/Storage.jpg" width="700"> <br>
+<img src="images/Storage.jpg" width="800"> <br>
 > Figure 8: Storage Component Class Diagram
 
 **API** : [`StorageFile.java`](../src/ruby/keyboardwarrior/storage/StorageFile.java)
@@ -166,15 +166,23 @@ You can find all classes used by multiple components in the `keyboardwarrior.com
 
 ## 9. Testing
 
-**KeyboardWarrior** uses `JUnit` to perform unit tests on the `UI`, `Backend` and `Data` components. Every method is unit tested to ensure everything works as intended.
+You can find the tests in the `/src/test/java` folder.
 
-You can find the tests in the `./test/java/ruby/keyboardwarrior` folder.
+**In Eclipse**:
+> If you are not using a recent Eclipse version (i.e. _Neon_ or later), enable assertions in JUnit tests
+  as described [here](http://stackoverflow.com/questions/2522897/eclipse-junit-ea-vm-option).
 
+* To run all tests, right-click on the `src/test/java` folder and choose
+  `Run as` > `JUnit Test`
+* To run a subset of tests, you can right-click on a test package, test class, or a test and choose
+  to run as a JUnit test.
+  
 We have two types of tests:
 
-1. **Logic Tests** - {TODO: Add description}
+1. **Logic Tests** - i.e `ruby.keyboardwarrior.logic.LogicTest`.
   
-2. **Parser Tests** - {TODO: Add description}
+2. **Parser Tests** - i.e `ruby.keyboardwarrior.parser.ParserTest`.
+
   
  
 #### Troubleshooting tests
