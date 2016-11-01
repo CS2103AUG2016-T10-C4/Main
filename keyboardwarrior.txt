@@ -1,15 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<KeyboardWarrior>
-    <tasks>
-        <taskType>0</taskType>
-        <taskDetails>
-            <details>hello</details>
-        </taskDetails>
-    </tasks>
-    <tasks>
-        <taskType>0</taskType>
-        <taskDetails>
-            <details>what is going on</details>
-        </taskDetails>
-    </tasks>
-</KeyboardWarrior>
+<KeyboardWarrior/>

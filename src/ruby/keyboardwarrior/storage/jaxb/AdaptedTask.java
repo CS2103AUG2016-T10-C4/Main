@@ -29,7 +29,7 @@ public class AdaptedTask {
     private DateTime startTime;
     @XmlElement(required = false)
     private DateTime endTime;
-    @XmlElement(required = false)
+    @XmlElement(required = true)
     private UniqueTagList tags;
     
     
