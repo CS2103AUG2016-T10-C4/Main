@@ -66,7 +66,6 @@ public class MainWindow {
             
             if(listCommand.equalsIgnoreCase(userCommandText) || (userCommandText.length() > 3 && findCommand.equalsIgnoreCase(userCommandText.substring(0,4)))){
             	display(userCommandText);
-            	displayAll(result.feedbackToUser);
             	displayAll(result);
         	}else if(userCommandText.length() > 3 && listCommand.equalsIgnoreCase(userCommandText.substring(0,4))){
             	display(userCommandText);
@@ -105,7 +104,6 @@ public class MainWindow {
     public void displayWelcomeMessage(String version, String storageFilePath) throws Exception {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
         displayAll(MESSAGE_WELCOME + version, storageFileInfo + "\n");
-        displayAll(MESSAGE_TASKS_LISTED_OVERVIEW);
         displayAll(logic.execute("list"));
         display();
     }
@@ -121,8 +119,8 @@ public class MainWindow {
     /** Displays the result of a command execution to the user. */
     public void displaySpecific(CommandResult result) {
     	final Optional<List<Task>> resultTasks = result.getRelevantTasks();
-    	if(resultTasks.isPresent()) {
-    		displayAll(result.feedbackToUser);
+    	displayAll(result.feedbackToUser);
+    	if(resultTasks.isPresent()) {	
             displaySpecific(resultTasks.get());
         }
     }
@@ -149,6 +147,7 @@ public class MainWindow {
     		else
     			eventTask.add(task);
     	}
+    	displayAll(MESSAGE_TASKS_LISTED_OVERVIEW);
     	displayAll(String.format(Messages.MESSAGE_TODO_LIST, todoTask.size()));
         displayAll(new Formatter().format(todoTask));
         displayAll(String.format(Messages.MESSAGE_DEADLINE_LIST, deadlineTask.size()));

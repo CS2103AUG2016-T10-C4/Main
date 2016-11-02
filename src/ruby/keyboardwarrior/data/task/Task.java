@@ -104,9 +104,9 @@ public class Task {
     	}
     	else if(taskType == 1){
     		if(endTime == null)
-    			return "By " + date.toString() + "\t" + details.toString() +  builder.toString();
+    			return  details.toString() + " by " + date.toString() + "\t" +  builder.toString();
     		else
-    			return "By " + endTime.toString() + "\t" + details.toString() + builder.toString();	
+    			return  details.toString() +" by " + endTime.toString() + "\t" + builder.toString();	
     	}
     	else{
     		return startTime.toString() + " to " + endTime.toString() + "\t" + details.toString() + "\t" + builder.toString(); 
