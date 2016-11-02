@@ -167,7 +167,7 @@ public class MainWindow {
 	}
 	
 	private void display(){
-        FadeTransition fadeOut = new FadeTransition(Duration.seconds(8), userAction);
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(10), userAction);
         fadeOut.setFromValue(1.0);
         fadeOut.setToValue(0.0);
         fadeOut.play();
