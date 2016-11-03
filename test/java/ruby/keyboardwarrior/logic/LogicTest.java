@@ -420,7 +420,7 @@ public class LogicTest {
 
         Task aTasks() throws Exception {
             TaskDetails taskdetails = new TaskDetails("This is a task");
-            return new Task(taskdetails);
+            return new Task(taskdetails, null);
         }
 
         /**
@@ -431,7 +431,7 @@ public class LogicTest {
          * @param seed used to generate the person data field values
          */
         Task generateTask(int seed) throws Exception {
-            return new Task(new TaskDetails("Task " + seed));
+            return new Task(new TaskDetails("Task " + seed),null);
         }
 
         /** Generates the correct add command based on the task given */
@@ -478,7 +478,7 @@ public class LogicTest {
          */
          Task generateTaskWithDetails(String taskdetails) throws Exception {
             return new Task(
-                    new TaskDetails(taskdetails));
+                    new TaskDetails(taskdetails),null);
          }
     }
 

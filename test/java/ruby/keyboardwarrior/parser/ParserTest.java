@@ -175,7 +175,7 @@ public class ParserTest {
     }
 
     private static Task generateTestTask() throws IllegalValueException {
-        return new Task(new TaskDetails(TaskDetails.EXAMPLE));
+        return new Task(new TaskDetails(TaskDetails.EXAMPLE),null);
     }
 
     private static String convertTaskToAddCommandString(Task todoTask) {
@@ -206,7 +206,7 @@ public class ParserTest {
      * @return the parsed command object
      * @throws IllegalValueException 
      */
-    private <T extends Command> T parseAndAssertCommandType(String input, Class<T> expectedCommandClass){
+	private <T extends Command> T parseAndAssertCommandType(String input, Class<T> expectedCommandClass){
         Command result = null;
         try {
             result = parser.parseCommand(input);
