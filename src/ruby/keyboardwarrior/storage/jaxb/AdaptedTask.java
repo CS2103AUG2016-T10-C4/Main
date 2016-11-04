@@ -36,7 +36,7 @@ public class AdaptedTask {
 
 
     /**
-     * Converts a given Person into this class for JAXB use.
+     * Converts a given Task into this class for JAXB use.
      *
      * @param source future changes to this will not affect the created AdaptedPerson
      */
@@ -67,13 +67,14 @@ public class AdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted Task
      */
     public Task toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+    	// Creates a new list of tags
+        final List<Tag> taskTags = new ArrayList<>();
         for (AdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            taskTags.add(tag.toModelType());
         }
         
-        UniqueTagList tags = new UniqueTagList(personTags);
-        
+        // Creates a task with the unique tag list
+        UniqueTagList tags = new UniqueTagList(taskTags);
         if(this.taskType == 0){
         	return new Task(this.taskDetails, tags);
         } else if(this.taskType == 1){

@@ -5,9 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 //@@author A0144665Y
-
 /**
- * Represents start time for event tasks.
+ * Represents the Date and Time for tasks.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(Integer)}
  */
 public class DateTime {
@@ -52,31 +51,48 @@ public class DateTime {
     }
 
     /**
-     * Returns true if a given integer is a valid date and time.
+     * Returns true if a given integer is a valid Date and Time.
      */
     public static boolean isValidDate(String test) {
         return test.matches(DATE_TIME_VALIDATION_REGEX);
     }
 
+    /**
+     * Get method for Date
+     */
     public String getDate() {
         return DATE_FORMAT.format(dateTime);
     }
     
+    /**
+     * Get method for Time
+     */
     public String getTime() {
         return TIME_FORMAT.format(dateTime);
     }
     
+    /**
+     * Get method for Day and Date
+     */
     public String getDayAndDate() {
         return DAY_DATE_FORMAT.format(dateTime);
     }
     
-    @Override
+    /**
+     * Overrides the toString method for a Date
+     * 
+     * @Override
+     */
     public String toString() {
     	java.util.Date properDateTime = dateTime.getTime();
         return DATE_TIME_FORMAT.format(properDateTime);
     }
 
-    @Override
+    /**
+     * Overrides the hash code method for a Date
+     * 
+     * @Override
+     */
     public int hashCode() {
         return dateTime.hashCode();
     }
