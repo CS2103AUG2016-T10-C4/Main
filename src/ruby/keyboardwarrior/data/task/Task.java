@@ -20,7 +20,7 @@ public class Task {
     private UniqueTagList tags;
     
     /**
-     * Creates a Todo Task with details and tags
+     * Creates a Todo Task with details and tags.
      */
     public Task(TaskDetails details, UniqueTagList tags) {
     	this.taskType = 0;
@@ -29,7 +29,7 @@ public class Task {
     }
     
     /**
-     * Creates a Deadline Task with details, date and tags
+     * Creates a Deadline Task with details, date and tags.
      */
     public Task(TaskDetails details, Date date, UniqueTagList tags) {
     	this.taskType = 1;
@@ -39,7 +39,7 @@ public class Task {
     }
     
     /**
-     * Creates a Deadline Task with details, date, time and tags
+     * Creates a Deadline Task with details, date, time and tags.
      */
     public Task(TaskDetails details, DateTime dateTime, UniqueTagList tags) {
     	this.taskType = 1;
@@ -49,7 +49,7 @@ public class Task {
     }
     
     /**
-     * Creates an Event Task with details, date, start time, end time and tags
+     * Creates an Event Task with details, date, start time, end time and tags.
      */
     public Task(TaskDetails details, DateTime startTime, DateTime endTime, UniqueTagList tags) {
     	this.taskType = 2;
@@ -60,21 +60,21 @@ public class Task {
     }
     
     /**
-     * Get method for details
+     * Get method for details.
      */
     public TaskDetails getDetails() {
         return this.details;
     }
     
     /**
-     * Get method for date
+     * Get method for date.
      */
     public Date getDate(){
     	return this.date;
     }
     
     /**
-     * Get method for start time
+     * Get method for start time.
      */
     public DateTime getStartTime(){
     	return this.startTime;
@@ -88,14 +88,14 @@ public class Task {
     }
     
     /**
-     * Get method for task type
+     * Get method for task type.
      */
     public Integer getTaskType(){
     	return this.taskType;
     }
     
     /**
-     * Get method for tags
+     * Get method for tags.
      */
     public UniqueTagList getTags() {
         return new UniqueTagList(tags);
@@ -109,38 +109,29 @@ public class Task {
     }
     
     /**
-     * Overrides the toString method for a task
-     * 
-     * @Override
+     * Overrides the toString method for a task.
      */
+    @Override
     public String toString(){
-    	//gets string of tags (to be modularized and put into UniqueTagList class)
-    	final StringBuilder builder = new StringBuilder();
-    	for(Tag t : getTags().getInternalList()){
-    		String stringTag = t.toString();
-    		builder.append(stringTag);
-    	}
-    	
     	// Adjust the string build according to the task type
-    	if(taskType == 0){
-    		return details.toString() + "\t" + builder.toString();
+    	if(taskType == 0){ // Todo Task
+    		return details.toString() + "\t" + tags.toString();
     	}
-    	else if(taskType == 1){
+    	else if(taskType == 1){ // Deadline Task
     		if(endTime == null)
-    			return  details.toString() + " by " + date.toString() + "\t" +  builder.toString();
+    			return  details.toString() + " by " + date.toString() + "\t" +  tags.toString(); // Date Only
     		else
-    			return  details.toString() +" by " + endTime.toString() + "\t" + builder.toString();	
+    			return  details.toString() +" by " + endTime.toString() + "\t" + tags.toString(); // Date and Time	
     	}
-    	else{
-    		return startTime.toString() + " to " + endTime.toString() + "\t" + details.toString() + "\t" + builder.toString(); 
+    	else{ // Event Task
+    		return startTime.toString() + " to " + endTime.toString() + "\t" + details.toString() + "\t" + tags.toString(); 
     	}
     }
     
     /**
-     * Overrides the equals method
-     * 
-     * @Override
+     * Overrides the equals method.
      */
+    @Override
     public boolean equals(Object other) {
         if (other instanceof Task){
             Task task = (Task) other;
@@ -151,10 +142,9 @@ public class Task {
     }
     
     /**
-     * Hashes the objects for a better search method
-     * 
-     * @Override
+     * Hashes the objects for a better search method.
      */
+    @Override
     public int hashCode() {
         return Objects.hash(details, taskType, date, startTime, endTime, tags);
     }

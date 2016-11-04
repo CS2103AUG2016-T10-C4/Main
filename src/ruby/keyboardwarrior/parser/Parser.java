@@ -49,7 +49,7 @@ public class Parser {
     	// Checks the input string to see if it matches a particular format
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE);
         }
         
         // Checks to see if item should be saved into the stack
@@ -116,14 +116,14 @@ public class Parser {
         // Checks if the arguments are in the correct format
     	final Matcher matcher = TASK_DATA_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         }
         
         // Attempts to add a new command
         try {
             return new AddCommand(matcher.group("mainTaskDetails"));
         } catch (IllegalValueException ive) {
-            return new IncorrectCommand(ive.getMessage());
+            return new IncorrectCommand(ive.getMessage(), AddCommand.MESSAGE_USAGE);
         }
     }
     
@@ -138,7 +138,7 @@ public class Parser {
             final int targetIndex = parseArgsAsDisplayedIndex(args);
             return new DeleteCommand(targetIndex);
         } catch (ParseException | NumberFormatException e) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
         }
     }
     
@@ -160,7 +160,7 @@ public class Parser {
             return new EditCommand(targetIndex, editTask);
 
         } catch (ParseException | NumberFormatException | StringIndexOutOfBoundsException siobe) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
         }
 	}
 
@@ -191,8 +191,7 @@ public class Parser {
     	// Checks to see if the argument matches the correct format
         final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    FindCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
         }
 
         // keywords delimited by whitespace

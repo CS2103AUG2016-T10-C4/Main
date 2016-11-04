@@ -80,9 +80,8 @@ public class DateTime {
     
     /**
      * Overrides the toString method for a Date
-     * 
-     * @Override
      */
+    @Override
     public String toString() {
     	java.util.Date properDateTime = dateTime.getTime();
         return DATE_TIME_FORMAT.format(properDateTime);
@@ -90,9 +89,8 @@ public class DateTime {
 
     /**
      * Overrides the hash code method for a Date
-     * 
-     * @Override
      */
+    @Override
     public int hashCode() {
         return dateTime.hashCode();
     }

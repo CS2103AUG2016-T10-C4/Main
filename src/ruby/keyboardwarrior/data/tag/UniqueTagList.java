@@ -52,7 +52,7 @@ public class UniqueTagList implements Iterable<Tag> {
         if (!Utils.elementsAreUnique(initialTags)) {
             throw new DuplicateTagException();
         }
-        internalList.addAll(initialTags);
+        this.internalList.addAll(initialTags);
     }
     
     /**
@@ -63,7 +63,7 @@ public class UniqueTagList implements Iterable<Tag> {
         if (!Utils.elementsAreUnique(tags)) {
             throw new DuplicateTagException();
         }
-        internalList.addAll(tags);
+        this.internalList.addAll(tags);
     }
 
     /**
@@ -71,7 +71,7 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public UniqueTagList(Set<Tag> tags) {
     	Utils.assertNoNullElements(tags);
-        internalList.addAll(tags);
+        this.internalList.addAll(tags);
     }
 
     /**
@@ -79,14 +79,14 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public UniqueTagList(UniqueTagList source) {
     	// Insulate internal list from changes in argument
-        internalList.addAll(source.internalList); 
+        this.internalList.addAll(source.internalList); 
     }
 
     /**
      * All Tags in this list as a Set. This set is mutable and change-insulated against the internal list.
      */
     public Set<Tag> toSet() {
-        return new HashSet<>(internalList);
+        return new HashSet<>(this.internalList);
     }
 
     /**
@@ -104,7 +104,7 @@ public class UniqueTagList implements Iterable<Tag> {
         final Set<Tag> alreadyInside = this.toSet();
         for (Tag tag : tags) {
             if (!alreadyInside.contains(tag)) {
-                internalList.add(tag);
+                this.internalList.add(tag);
             }
         }
     }
@@ -114,7 +114,7 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public boolean contains(Tag toCheck) {
         assert toCheck != null;
-        return internalList.contains(toCheck);
+        return this.internalList.contains(toCheck);
     }
 
     /**
@@ -127,7 +127,7 @@ public class UniqueTagList implements Iterable<Tag> {
         if (contains(toAdd)) {
             throw new DuplicateTagException();
         }
-        internalList.add(toAdd);
+        this.internalList.add(toAdd);
     }
     
     /**
@@ -136,7 +136,7 @@ public class UniqueTagList implements Iterable<Tag> {
      * @throws TagNotFoundException if no such Tag could be found in the list.
      */
     public void remove(Tag toRemove) throws TagNotFoundException {
-        final boolean TagFoundAndDeleted = internalList.remove(toRemove);
+        final boolean TagFoundAndDeleted = this.internalList.remove(toRemove);
         if (!TagFoundAndDeleted) {
             throw new TagNotFoundException();
         }
@@ -144,40 +144,48 @@ public class UniqueTagList implements Iterable<Tag> {
 
     /**
      * Returns an iterator for the list of Tags
-     *
-     * @Override
      */
+    @Override
     public Iterator<Tag> iterator() {
-        return internalList.iterator();
+        return this.internalList.iterator();
     }
 
     /**
      * Get method for an internal list of Tags
-     *
-     * @Override
      */
     public ObservableList<Tag> getInternalList() {
-        return internalList;
+        return this.internalList;
+    }
+    
+    /**
+     * Overrides the to String method for the Tag list
+     */
+    @Override
+    public String toString() {
+    	final StringBuilder builder = new StringBuilder();
+    	for(Tag t : this.internalList){
+    		String stringTag = t.toString();
+    		builder.append(stringTag);
+    	}
+    	return builder.toString();
     }
 
     /**
      * Overrides the equals method for the Tag list
-     *
-     * @Override
      */
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueTagList // instanceof handles nulls
+                || (other instanceof UniqueTagList // instance of handles nulls
                 && this.internalList.equals(
                 ((UniqueTagList) other).internalList));
     }
     
     /**
      * Overrides the hash code method for the Tag list
-     *
-     * @Override
      */
+    @Override
     public int hashCode() {
-        return internalList.hashCode();
+        return this.internalList.hashCode();
     }
 }

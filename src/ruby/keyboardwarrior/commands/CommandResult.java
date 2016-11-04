@@ -10,19 +10,8 @@ import ruby.keyboardwarrior.data.task.Task;
  */
 public class CommandResult {
 
-    /**
-     * The feedback message to be shown to the user in the label.
-     */
     public final String feedbackToUser;
-    
-    /**
-     * The message displayed to the user shown in the output window.
-     */
     public final String displayToUser;
-
-    /**
-     * The list of items that was produced by the command
-     */
     private final List<Task> relevantTasks;
 
     /**
@@ -35,7 +24,7 @@ public class CommandResult {
     }
     
     /**
-     * The command result used when the user add, edit, delete and undo.
+     * The command result used when the user add, edit, delete, undo and clear.
      */
     public CommandResult(String feedbackToUser, List<Task> relevantTasks) {
         this.feedbackToUser = feedbackToUser;
@@ -52,7 +41,7 @@ public class CommandResult {
         this.relevantTasks = relevantTasks;
     }
 
-    /**
+	/**
      * Returns list of items relevant to the command command result, if any.
      */
     public Optional<List<Task>> getRelevantTasks() {

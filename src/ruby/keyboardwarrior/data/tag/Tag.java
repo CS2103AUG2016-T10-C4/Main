@@ -46,18 +46,16 @@ public class Tag {
     
     /**
      * Overrides the toString method for tags
-     * 
-     * @Override
      */
+    @Override
     public String toString() {
         return '[' + tagName + ']';
     }
 
     /**
      * Overrides the equals method
-     * 
-     * @Override
      */
+    @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Tag
@@ -66,9 +64,8 @@ public class Tag {
 
     /**
      * Hashes the objects for a better search method
-     * 
-     * @Override
      */
+    @Override
     public int hashCode() {
         return tagName.hashCode();
     }

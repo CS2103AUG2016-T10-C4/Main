@@ -54,18 +54,16 @@ public class TaskDetails {
 
     /**
      * Overrides the toString method for details
-     * 
-     * @Override
      */
+    @Override
     public String toString() {
         return details;
     }
 
     /**
      * Overrides the equals method for details
-     * 
-     * @Override
      */
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskDetails // instanceof handles nulls
@@ -74,9 +72,8 @@ public class TaskDetails {
 
     /**
      * Overrides the hash code for details
-     * 
-     * @Override
      */
+    @Override
     public int hashCode() {
         return details.hashCode();
     }
