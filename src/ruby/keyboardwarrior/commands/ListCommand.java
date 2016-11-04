@@ -51,7 +51,7 @@ public class ListCommand extends Command {
     	} else {
 	        if(this.taskType != 3){ // List a Specific kind of task
 	        	ArrayList<Task> certainTasks = getCertainTask();
-	        	return new CommandResult(feedbackToUser(),getMessage(certainTasks), certainTasks);
+	        	return new CommandResult(feedbackToUser(), certainTasks);
 	        } else { // Invalid Input
 	    		return new CommandResult(MESSAGE_INVALID_COMMAND_FORMAT,MESSAGE_USAGE);
 	    	}

@@ -8,7 +8,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.util.Duration;
 import ruby.keyboardwarrior.commands.ExitCommand;
+import ruby.keyboardwarrior.commands.ListCommand;
 import ruby.keyboardwarrior.common.Messages;
+import ruby.keyboardwarrior.data.TasksList;
 import ruby.keyboardwarrior.data.task.Task;
 import ruby.keyboardwarrior.logic.Logic;
 import ruby.keyboardwarrior.commands.CommandResult;
@@ -74,7 +76,7 @@ public class MainWindow {
         	exitApp();
         }
         
-        displayResult(result);
+        displayResult(result, true);
         clearCommandInput();
     }
 
@@ -112,17 +114,17 @@ public class MainWindow {
     public void displayWelcomeMessage(String version, String storageFilePath) throws Exception {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
         displayMessages(MESSAGE_WELCOME + version, storageFileInfo + "\n");
-        displayResult(logic.execute("list"));
+		displayResult(logic.execute(ListCommand.COMMAND_WORD), false);
         fadingLabel();
     }
     
     /**
      * Displays the result of a command execution to the user.
      */
-    public void displayResult(CommandResult result) {
+    public void displayResult(CommandResult result, boolean withFeedback) {
     	final Optional<List<Task>> resultTasks = result.getRelevantTasks();
     	final String resultString = result.displayToUser;
-    	final String userfeedback = result.feedbackToUser;
+    	final String userFeedback = result.feedbackToUser;
     	if(resultString != "") {	
     		displayMessages(resultString);
         }
@@ -130,7 +132,8 @@ public class MainWindow {
     		List<ArrayList<Task>> sortedTaskList = sortTask(resultTasks.get());
     		displayAllTask(sortedTaskList);
         }
-    	displayFeedback(userfeedback);
+    	if(withFeedback)
+    		displayFeedback(userFeedback);
     }
     
     /**

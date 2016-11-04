@@ -33,7 +33,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX\n\t"
             + "Example: " + COMMAND_WORD + " 1 I am going to change to this";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edit Item: %1$s";
+    public static final String MESSAGE_SUCCESS = "Edit Item: %1$s";
 
     private Task editTask;
     
@@ -115,7 +115,9 @@ public class EditCommand extends Command {
             final Task target = getTargetTask();
             deletedList.push(target);
             tasksList.setTask(target,editTask);
-            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS,target), tasksList.getAllTasks());
+            return new CommandResult(String.format(MESSAGE_SUCCESS, target),
+				            		 getMessageForTasksList(tasksList.getAllTasks(), "4"),
+					 				 tasksList.getAllTasks());
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, MESSAGE_USAGE);
         } catch (TaskNotFoundException pnfe) {

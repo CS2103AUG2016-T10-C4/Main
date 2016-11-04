@@ -7,6 +7,7 @@ import java.util.HashSet;
 //import java.util.Scanner;
 import java.util.Set;
 
+import ruby.keyboardwarrior.common.Messages;
 import ruby.keyboardwarrior.data.TasksList;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.data.task.*;
@@ -130,7 +131,9 @@ public class AddCommand extends Command {
     public CommandResult execute() throws Exception{
         try {
             tasksList.addTask(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), tasksList.getAllTasks());
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
+				            		 getMessageForTasksList(tasksList.getAllTasks(), "4"),
+					 				 tasksList.getAllTasks());
         } catch (TasksList.DuplicateTaskException dpe){
             return new CommandResult(MESSAGE_DUPLICATE_TASK, tasksList.getAllTasks());
         }

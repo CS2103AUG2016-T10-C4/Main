@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import ruby.keyboardwarrior.common.Messages;
 import ruby.keyboardwarrior.data.TasksList.DuplicateTaskException;
 import ruby.keyboardwarrior.data.TasksList.TaskNotFoundException;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
@@ -30,7 +31,7 @@ public class UndoCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + "\n";
 
-    public static final String MESSAGE_UNDO_TASK_SUCCESS = "Undo Item: %1$s";
+    public static final String MESSAGE_SUCCESS = "Undo Item: %1$s";
 
     private String toUndo;
     
@@ -114,8 +115,10 @@ public class UndoCommand extends Command {
         	String index = details.substring(0, whiteSpace);
     		tasksList.setTask(Integer.parseInt(index)-1,deletedList.pop());
     	}
-    	
-        return new CommandResult(String.format(MESSAGE_UNDO_TASK_SUCCESS, toUndo), tasksList.getAllTasks());
+  
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toUndo),
+        						 getMessageForTasksList(tasksList.getAllTasks(), "4"),
+				 				 tasksList.getAllTasks());
     }
     
     /**

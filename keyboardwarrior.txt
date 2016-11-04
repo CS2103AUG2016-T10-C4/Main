@@ -22,19 +22,6 @@
     <tasks>
         <taskType>2</taskType>
         <taskDetails>
-            <details>some event 2</details>
-        </taskDetails>
-        <startTime>
-            <dateTime>2016-10-22T09:00:45.868+08:00</dateTime>
-        </startTime>
-        <endTime>
-            <dateTime>2016-10-22T17:00:45.868+08:00</dateTime>
-        </endTime>
-        <tagged>school</tagged>
-    </tasks>
-    <tasks>
-        <taskType>2</taskType>
-        <taskDetails>
             <details>some event 3</details>
         </taskDetails>
         <startTime>
@@ -44,12 +31,6 @@
             <dateTime>2016-10-22T17:00:51.500+08:00</dateTime>
         </endTime>
         <tagged>school</tagged>
-    </tasks>
-    <tasks>
-        <taskType>0</taskType>
-        <taskDetails>
-            <details>what</details>
-        </taskDetails>
     </tasks>
     <tasks>
         <taskType>2</taskType>
@@ -63,15 +44,6 @@
             <dateTime>2016-10-22T17:00:01.049+08:00</dateTime>
         </endTime>
         <tagged>school</tagged>
-    </tasks>
-    <tasks>
-        <taskType>1</taskType>
-        <taskDetails>
-            <details>finish homework</details>
-        </taskDetails>
-        <date>
-            <date>2019-04-02T19:22:45.013+08:00</date>
-        </date>
     </tasks>
     <tasks>
         <taskType>0</taskType>
@@ -95,12 +67,6 @@
         <taskType>0</taskType>
         <taskDetails>
             <details>waht</details>
-        </taskDetails>
-    </tasks>
-    <tasks>
-        <taskType>0</taskType>
-        <taskDetails>
-            <details>adf</details>
         </taskDetails>
     </tasks>
     <tasks>
@@ -191,6 +157,12 @@
         <taskType>0</taskType>
         <taskDetails>
             <details>lkmksgmfldskmfl</details>
+        </taskDetails>
+    </tasks>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>what the heck</details>
         </taskDetails>
     </tasks>
     <tags>yolo</tags>
