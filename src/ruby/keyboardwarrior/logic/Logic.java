@@ -13,31 +13,44 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Represents the main Logic of the AddressBook.
+ * Represents the main Logic of KeyboardWarrior.
  */
 public class Logic {
-
 
     private StorageFile storage;
     private TasksList tasksList;
 
-    /** The list of person shown to the user most recently.  */
+    /**
+     * The list of task shown to the user most recently.
+     */
     private List<Task> lastShownList = Collections.emptyList();
 
+    /**
+     * Constructor for logic if the storage file exist
+     */
     public Logic() throws Exception{
         setStorage(initializeStorage());
         setTasksList(storage.load());
     }
 
+    /**
+     * Constructor for logic if the store file does not exist
+     */
     Logic(StorageFile storageFile, TasksList tasksList){
         setStorage(storageFile);
         setTasksList(tasksList);
     }
 
+    /**
+     * Set method for the storage file
+     */
     void setStorage(StorageFile storage){
         this.storage = storage;
     }
 
+    /**
+     * Set method for the task list
+     */
     void setTasksList(TasksList tasksList){
         this.tasksList = tasksList;
     }
@@ -50,24 +63,30 @@ public class Logic {
         return new StorageFile();
     }
 
+    /**
+     * Get method for the storage path
+     */
     public String getStorageFilePath() {
         return storage.getPath();
     }
-
+    
     /**
-     * Unmodifiable view of the current last shown list.
+     * Set method for Unmodifiable view of the current last shown list.
+     */
+    protected void setLastShownList(List<Task> newList) {
+        lastShownList = newList;
+    }
+    
+    /**
+     * Get method Unmodifiable view of the current last shown list.
      */
     public List<Task> getLastShownList() {
         return Collections.unmodifiableList(lastShownList);
     }
     
-
-    protected void setLastShownList(List<Task> newList) {
-        lastShownList = newList;
-    }
-
     /**
      * Parses the user command, executes it, and returns the result.
+     * 
      * @throws Exception if there was any problem during command execution.
      */
     public CommandResult execute(String userCommandText) throws Exception {
@@ -93,7 +112,9 @@ public class Logic {
         return result;
     }
 
-    /** Updates the {@link #lastShownList} if the result contains a list of Persons. */
+    /**
+     * Updates the {@link #lastShownList} if the result contains a list of Tasks.
+     */
     private void recordResult(CommandResult result) {
         final Optional<List<Task>> taskList = result.getRelevantTasks();
         if (taskList.isPresent()) {
