@@ -23,13 +23,24 @@ public class HelpCommand extends Command {
             + "\n" + "\n" + HelpCommand.MESSAGE_USAGE
             + "\n" + "\n" + ExitCommand.MESSAGE_USAGE;
 
+    /**
+     * Constructor.
+     */
     public HelpCommand() {}
 
+    /**
+     * Executes the command and returns the result.
+     */
     @Override
     public CommandResult execute() {
-        return new CommandResult(MESSAGE_ALL_USAGES);
+        return new CommandResult(COMMAND_WORD, MESSAGE_ALL_USAGES);
     }
     
+    /**
+     * Method to determine if there are changes to the task.
+     * 
+     * @return true if there are changes
+     */
     @Override
     public boolean isMutating() {
     	return false;

@@ -6,8 +6,6 @@ import ruby.keyboardwarrior.data.task.Task;
 import static ruby.keyboardwarrior.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * Lists all items in the task manager to the user.
@@ -34,41 +32,92 @@ public class ListCommand extends Command {
     
     private Integer taskType;
     
+    /**
+     * Constructor to initialize the Task Type
+     */
     public ListCommand(String arg){
-    	if(arg.length() != 0){
-    		if(TODO_TYPE.equalsIgnoreCase(arg.trim()))
-	    		this.taskType = 0;
-	    	else if(DEADLINE_TYPE.equalsIgnoreCase(arg.trim()))
-	    		this.taskType = 1;
-	    	else if(EVENT_TYPE.equalsIgnoreCase(arg.trim()))
-	    		this.taskType = 2;
-	    	else
-	    		this.taskType = 3;
-	    } else {
-	    	this.taskType = 4;
-	    }
-	}   
+    	this.taskType = determineTaskType(arg);
+	}
     
+    /**
+     * Method to execute the command input
+     * 
+     */
     @Override
     public CommandResult execute() {
-        ArrayList<Task> allTasks = tasksList.getAllTasks();
-        ArrayList<Task> certainTasks = new ArrayList<Task>();
-    	if(this.taskType != 4){
-	        if(this.taskType != 3){
-		    	for(Task task : tasksList.getAllTasks()) {
-		                if(task.getTaskType() == this.taskType)
-		                	certainTasks.add(task);
-	        }
-		    	return new CommandResult(getMessageForTasksListShownSummary(certainTasks,String.valueOf(this.taskType)), certainTasks);
-	    	} else {
-	    		return new CommandResult(MESSAGE_USAGE);
-	    	}
+    	ArrayList<Task> allTasks = tasksList.getAllTasks();
+    	if(this.taskType == 4){ // List all Task
+    		return new CommandResult(COMMAND_WORD,getMessage(allTasks),allTasks);
     	} else {
-    		return new CommandResult(getMessageForTasksListShownSummary(allTasks, String.valueOf(this.taskType)),allTasks);
+	        if(this.taskType != 3){ // List a Specific kind of task
+	        	ArrayList<Task> certainTasks = getCertainTask();
+	        	return new CommandResult(feedbackToUser(),getMessage(certainTasks), certainTasks);
+	        } else { // Invalid Input
+	    		return new CommandResult(MESSAGE_INVALID_COMMAND_FORMAT,MESSAGE_USAGE);
+	    	}
     	}
     }
     
-    @Override
+    /**
+     * Method to get message depending on task Type
+     */
+    private String getMessage(ArrayList<Task> tasks){
+    	return getMessageForTasksList(tasks,String.valueOf(this.taskType));
+    }
+    
+    /**
+     * Method to obtain a list of certain task
+     */
+    private ArrayList<Task> getCertainTask(){
+    	ArrayList<Task> tasks = new ArrayList<Task>();
+    	for(Task task : tasksList.getAllTasks()) {
+                if(task.getTaskType() == this.taskType)
+                	tasks.add(task);
+    	}
+        return tasks; 
+    }
+    
+    /**
+     * Method to determine the Task Type depending on the arguments
+     */
+	private Integer determineTaskType(String arg) {
+		if(arg.length() != 0){
+    		if(TODO_TYPE.equalsIgnoreCase(arg.trim()))
+	    		return 0; // Todo
+	    	else if(DEADLINE_TYPE.equalsIgnoreCase(arg.trim()))
+	    		return 1; // Deadline
+	    	else if(EVENT_TYPE.equalsIgnoreCase(arg.trim()))
+	    		return 2; // Event
+	    	else
+	    		return 3; // Invalid
+	    } else {
+	    	return 4; // List All
+	    }
+	}
+	
+    /**
+     * Method switch the corresponding task type with its feedback command
+     */
+	private String feedbackToUser() {
+		switch(taskType){
+			case 0:
+				return COMMAND_WORD + " " + TODO_TYPE;
+			case 1:
+				return COMMAND_WORD + " " + DEADLINE_TYPE;
+			case 2:
+				return COMMAND_WORD + " " + EVENT_TYPE;
+			case 3: // Fall Through
+			default:
+				return MESSAGE_INVALID_COMMAND_FORMAT;
+		}
+	}
+    
+    /**
+     * Method to determine if there are changes to the task.
+     * 
+     * @return true if there are changes
+     */
+	@Override
     public boolean isMutating() {
     	return false;
     }

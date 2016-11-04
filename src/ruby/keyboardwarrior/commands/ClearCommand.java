@@ -13,13 +13,20 @@ public class ClearCommand extends Command {
 
     public ClearCommand() {}
 
-
+    /**
+     * Executes the command and returns the result.
+     */
     @Override
     public CommandResult execute() {
         tasksList.clear();
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS,tasksList.getAllTasks());
     }
     
+    /**
+     * Method to determine if there are changes to the task.
+     * 
+     * @return true if there are changes
+     */
     @Override
     public boolean isMutating() {
     	return true;

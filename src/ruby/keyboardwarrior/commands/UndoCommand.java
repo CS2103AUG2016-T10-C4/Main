@@ -39,12 +39,13 @@ public class UndoCommand extends Command {
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
-
     public UndoCommand(String toUndo) {
         this.toUndo = toUndo;
     }
 
-
+    /**
+     * Executes the command and returns the result.
+     */
     @Override
     public CommandResult execute() throws IllegalValueException {
 		int space = toUndo.indexOf(' ');
@@ -114,15 +115,14 @@ public class UndoCommand extends Command {
     		tasksList.setTask(Integer.parseInt(index)-1,deletedList.pop());
     	}
     	
-        return new CommandResult(String.format(MESSAGE_UNDO_TASK_SUCCESS, toUndo));
+        return new CommandResult(String.format(MESSAGE_UNDO_TASK_SUCCESS, toUndo), tasksList.getAllTasks());
     }
     
     /**
-     * Convenience constructor using raw values.
+     * Method to extract the tags from the arguments
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
-    
     private static Set<String> getTagsFromArgs(String tagArguments) throws IllegalValueException {
         // no tags
         if (tagArguments.isEmpty()) {
@@ -133,6 +133,11 @@ public class UndoCommand extends Command {
         return new HashSet<>(tagStrings);
     }
     
+    /**
+     * Method to determine if there are changes to the task.
+     * 
+     * @return true if there are changes
+     */
     @Override
     public boolean isMutating() {
     	return false;

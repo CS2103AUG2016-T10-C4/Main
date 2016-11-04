@@ -19,8 +19,11 @@ public class FindCommand extends Command {
 
     private final Set<String> keywords;
 
+    /**
+     * Constructor for a Find Command.
+     */
     public FindCommand(Set<String> keywords) {
-        this.keywords = keywords;
+        this.keywords = toLowerCase(keywords);
     }
 
     /**
@@ -30,48 +33,66 @@ public class FindCommand extends Command {
         return new HashSet<>(keywords);
     }
 
+    /**
+     * Executes the command and returns the result.
+     */
     @Override
     public CommandResult execute() {
         final List<Task> itemsFound = getItemsWithDetailsContainingAnyKeyword(keywords);
-        return new CommandResult(getMessageForTasksListShownSummary(itemsFound, getInput(keywords)), itemsFound);
+        return new CommandResult(getMessageForTasksList(itemsFound, getInput(keywords)), itemsFound);
     }
 
+    /**
+     * Method to determine if there are changes to the task.
+     * 
+     * @return true if there are changes
+     */
     @Override
     public boolean isMutating() {
     	return false;
     }
+    
+    //@@author A0139716X
     /**
      * Retrieve all items in Keyboard Warrior whose details contain some of the specified keywords.
      *
      * @param keywords for searching
      * @return list of items found
      */
-
-    //@@author A0139716X
-
     private List<Task> getItemsWithDetailsContainingAnyKeyword(Set<String> keywords) {
-        final List<Task> matchedItems = new ArrayList<>();
-
-        Set<String> lowerCaseKeywords = new HashSet<String>();
-        Iterator<String> keywordsItr = keywords.iterator();
-        while (keywordsItr.hasNext()){
-            lowerCaseKeywords.add(keywordsItr.next().toLowerCase());	//makes it all lower case so can have non-case-sensitive searching
-        }
-        for (Task Task : tasksList.getAllTasks()) {
-            final Set<String> wordsInName = new HashSet<>(Task.getDetails().getWordsInDetails());
-            Set<String> lowerCaseWordsInName = new HashSet<String>();
-            Iterator<String> nameItr = wordsInName.iterator();
-            while (nameItr.hasNext())
-            {
-                lowerCaseWordsInName.add(nameItr.next().toLowerCase());
-            }
-            if (!Collections.disjoint(lowerCaseWordsInName, lowerCaseKeywords)) {
+        return getMatchedItems();
+    }
+    
+    /**
+     * Method to obtain the matched items that is not case sensitive.
+     */
+    private ArrayList<Task> getMatchedItems(){
+    	final ArrayList<Task> matchedItems = new ArrayList<>();
+    	for (Task Task : tasksList.getAllTasks()) {
+            final Set<String> wordsInTask = new HashSet<>(Task.getDetails().getWordsInDetails());
+            Set<String> lowerCaseWordsInTask = toLowerCase(wordsInTask);
+            if (!Collections.disjoint(lowerCaseWordsInTask, this.keywords)) {
                 matchedItems.add(Task);
             }
         }
-        return matchedItems;
+    	return matchedItems;
     }
     
+    /**
+     * Method to make the keywords lower case for non-case-sensitive searching.
+     */
+    private Set<String> toLowerCase(Set<String> words){
+    	Set<String> lowerCaseKeywords = new HashSet<String>();
+        Iterator<String> keywordsItr = keywords.iterator(); 
+        while (keywordsItr.hasNext()){
+            lowerCaseKeywords.add(keywordsItr.next().toLowerCase());
+        }
+    	return lowerCaseKeywords;
+    }
+    
+    /**
+     * Method to get the user input.
+     */
     private String getInput(Set<String> keywords){
         StringBuilder sb = new StringBuilder();
         Iterator<String> keywordsItr = keywords.iterator();

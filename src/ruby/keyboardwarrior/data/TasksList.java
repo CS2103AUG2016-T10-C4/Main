@@ -199,9 +199,8 @@ public class TasksList {
 
     /**
      * Overrides the equals method for the Task list
-     *
-     * @Override
      */
+    @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof TasksList
@@ -211,9 +210,8 @@ public class TasksList {
 
     /**
      * Overrides the hash code method for the Task list
-     *
-     * @Override
      */
+    @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(this.allTasks);

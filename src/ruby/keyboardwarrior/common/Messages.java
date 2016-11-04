@@ -5,10 +5,10 @@ package ruby.keyboardwarrior.common;
  */
 public class Messages {
 
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!";
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The task index provided is invalid";
-    public static final String MESSAGE_TASK_NOT_IN_TASKSLIST = "The task index provided is invalid";
-    public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "You currently have:";
+    public static final String MESSAGE_TASK_NOT_IN_TASKSLIST = "The task you require is not inside Keyboard Warrior";
+    public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "You currently have: \n%1$s Tasks";
     public static final String MESSAGE_TODO_LIST = "%1$d Todos:";
     public static final String MESSAGE_DEADLINE_LIST = "%1$d Deadlines:";
     public static final String MESSAGE_EVENT_LIST = "%1$d Events:";

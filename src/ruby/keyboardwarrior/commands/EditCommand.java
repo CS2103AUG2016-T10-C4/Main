@@ -37,6 +37,9 @@ public class EditCommand extends Command {
 
     private Task editTask;
     
+    /**
+     * Constructor for a Edit Command
+     */
     public EditCommand(int targetVisibleIndex, String newTask) throws IllegalValueException {
         super(targetVisibleIndex);
         String tagArguments = "";
@@ -88,6 +91,11 @@ public class EditCommand extends Command {
 		}
     }
     
+    /**
+     * Method to extract the tags from the arguments
+     *
+     * @throws IllegalValueException if any of the raw values are invalid
+     */
     private static Set<String> getTagsFromArgs(String tagArguments) throws IllegalValueException {
         // no tags
         if (tagArguments.isEmpty()) {
@@ -98,21 +106,28 @@ public class EditCommand extends Command {
         return new HashSet<>(tagStrings);
     }
 
-
+    /**
+     * Executes the command and returns the result.
+     */
     @Override
     public CommandResult execute() throws Exception{
         try {
             final Task target = getTargetTask();
             deletedList.push(target);
             tasksList.setTask(target,editTask);
-            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, target));
+            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS,target), tasksList.getAllTasks());
         } catch (IndexOutOfBoundsException ie) {
-            return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, MESSAGE_USAGE);
         } catch (TaskNotFoundException pnfe) {
-            return new CommandResult(Messages.MESSAGE_TASK_NOT_IN_TASKSLIST);
+            return new CommandResult(Messages.MESSAGE_TASK_NOT_IN_TASKSLIST, MESSAGE_USAGE);
         }
     }
     
+    /**
+     * Method to determine if there are changes to the task.
+     * 
+     * @return true if there are changes
+     */
     @Override
     public boolean isMutating() {
     	return true;

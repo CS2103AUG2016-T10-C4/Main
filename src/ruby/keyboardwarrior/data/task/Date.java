@@ -70,9 +70,8 @@ public class Date {
     
     /**
      * Overrides the toString method for a Date
-     * 
-     * @Override
      */
+    @Override
     public String toString() {
     	java.util.Date properDate = date.getTime();
     	return DATE_FORMAT.format(properDate);
@@ -80,9 +79,8 @@ public class Date {
 
     /**
      * Overrides the hash code method for a Date
-     * 
-     * @Override
      */
+    @Override
     public int hashCode() {
         return date.hashCode();
     }

@@ -68,9 +68,9 @@ public class AddCommand extends Command {
     public AddCommand(String details) throws IllegalValueException {
     	String tagArguments = "";
     	String lowerCaseDetails = details.toLowerCase();
-		int byExist = lowerCaseDetails.lastIndexOf(DEADLINE_WORD);
-		int fromExist = lowerCaseDetails.lastIndexOf(EVENT_WORD);
-		int tagExist = lowerCaseDetails.indexOf(TAG_WORD);
+		int byExist = lowerCaseDetails.lastIndexOf(DEADLINE_IDENTIFIER);
+		int fromExist = lowerCaseDetails.lastIndexOf(EVENT_IDENTIFIER);
+		int tagExist = lowerCaseDetails.indexOf(TAG_IDENTIFIER);
 		
 		if(tagExist != -1){
 			tagArguments = lowerCaseDetails.substring(tagExist);
@@ -116,24 +116,38 @@ public class AddCommand extends Command {
 		
     }
 
+    /**
+     * Convenience constructor
+     */
     public AddCommand(Task toAdd) {
         this.toAdd = toAdd;
     }
 
+    /**
+     * Executes the command and returns the result.
+     */
     @Override
     public CommandResult execute() throws Exception{
         try {
             tasksList.addTask(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), tasksList.getAllTasks());
         } catch (TasksList.DuplicateTaskException dpe){
-            return new CommandResult(MESSAGE_DUPLICATE_TASK);
+            return new CommandResult(MESSAGE_DUPLICATE_TASK, tasksList.getAllTasks());
         }
     }
     
+    /**
+     * Method to get Task that is to be added
+     */
     public Task getTask(){
         return toAdd;
     }
     
+    /**
+     * Method to determine if there are changes to the task.
+     * 
+     * @return true if there are changes
+     */
     @Override
     public boolean isMutating() {
     	return true;

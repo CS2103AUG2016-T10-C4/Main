@@ -19,25 +19,34 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_ITEM_SUCCESS = "Deleted Item: %1$s";
 
 
+    /**
+     * Constructor for a Delete Command.
+     */
     public DeleteCommand(int targetVisibleIndex) {
         super(targetVisibleIndex);
     }
 
-
+    /**
+     * Executes the command and returns the result.
+     */
     @Override
     public CommandResult execute() throws TaskNotFoundException {
         try {
             final Task target = getTargetTask();
             tasksList.removeTask(target);
             deletedList.push(target);
-            return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, target));
-
+            return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, target), tasksList.getAllTasks());
         } catch (IndexOutOfBoundsException ie) {
-            return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, MESSAGE_USAGE);
         }
     }
     
-    @Override
+    /**
+     * Method to determine if there are changes to the task.
+     * 
+     * @return true if there are changes
+     * @Override
+     */
     public boolean isMutating() {
     	return true;
     }
