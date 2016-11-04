@@ -37,23 +37,38 @@ public class Tag {
         return test.matches(TAG_VALIDATION_REGEX);
     }
     
+    /**
+     * Returns an array list of tags.
+     */
     public List<String> getWordsInTagName() {
         return Arrays.asList(tagName.split("\\s+"));
     }
     
-    @Override
+    /**
+     * Overrides the toString method for tags
+     * 
+     * @Override
+     */
     public String toString() {
         return '[' + tagName + ']';
     }
 
-    @Override
+    /**
+     * Overrides the equals method
+     * 
+     * @Override
+     */
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Tag // instanceof handles nulls
-                && this.tagName.equals(((Tag) other).tagName)); // state check
+        return other == this
+                || (other instanceof Tag
+                && this.tagName.equals(((Tag) other).tagName));
     }
 
-    @Override
+    /**
+     * Hashes the objects for a better search method
+     * 
+     * @Override
+     */
     public int hashCode() {
         return tagName.hashCode();
     }

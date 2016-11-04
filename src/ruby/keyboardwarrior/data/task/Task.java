@@ -109,20 +109,6 @@ public class Task {
     }
     
     /**
-     * Overrides the equals method
-     * 
-     * @Override
-     */
-    public boolean equals(Object other) {
-        if (other instanceof Task){
-            Task task = (Task) other;
-            return this.getDetails().equals(task.getDetails());
-        }
-        else
-            return false;
-    }
-    
-    /**
      * Overrides the toString method for a task
      * 
      * @Override
@@ -151,7 +137,23 @@ public class Task {
     }
     
     /**
+     * Overrides the equals method
+     * 
+     * @Override
+     */
+    public boolean equals(Object other) {
+        if (other instanceof Task){
+            Task task = (Task) other;
+            return this.getDetails().equals(task.getDetails());
+        }
+        else
+            return false;
+    }
+    
+    /**
      * Hashes the objects for a better search method
+     * 
+     * @Override
      */
     public int hashCode() {
         return Objects.hash(details, taskType, date, startTime, endTime, tags);
