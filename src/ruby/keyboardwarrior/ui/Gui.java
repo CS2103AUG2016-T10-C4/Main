@@ -51,11 +51,14 @@ public class Gui {
      * Creates a main window and initializing its logic and titles.
      */
     private MainWindow createMainWindow(Stage stage, Stoppable mainApp) throws IOException{
-        FXMLLoader loader = new FXMLLoader();
+        // Sets stage
+    	FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("ui" + File.separator + "mainwindow.fxml"));
         stage.setTitle(version);
         stage.setScene(new Scene(loader.load(), INITIAL_WINDOW_WIDTH, INITIAL_WINDOW_HEIGHT));
         stage.show();
+        
+        // Create mainWindow
         MainWindow mainWindow = loader.getController();
         mainWindow.setLogic(logic);
         mainWindow.setMainApp(mainApp);

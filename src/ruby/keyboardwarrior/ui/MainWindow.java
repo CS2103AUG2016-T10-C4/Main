@@ -53,25 +53,27 @@ public class MainWindow {
      * The FXML elements of the GUI.
      */
     @FXML
-    private TextArea TasksListView;
+    private TextArea outputWindow;
     @FXML
     private TextField commandInput;
     @FXML
     private Label userAction;
 
     /**
-     * Retrieves the user input when the enter button is pressed. 
+     * Executes the user input when the enter button is pressed. 
      * @throws Exception 
      */
     @FXML
     void onCommand(ActionEvent event) throws Exception {
-        clearTaskList();
+    	clearOutputWindow();
         String userCommandText = commandInput.getText();
         CommandResult result = logic.execute(userCommandText);
+        
+        // Execute if the user inputs exit
         if(isExitCommand(result)){
         	exitApp();
-            return;
         }
+        
         displayResult(result);
         clearCommandInput();
     }
@@ -100,8 +102,8 @@ public class MainWindow {
     /**
      * Clears the task list view.
      */
-    private void clearTaskList() {
-    	TasksListView.clear();
+    private void clearOutputWindow() {
+    	outputWindow.clear();
     }
 
     /**
@@ -177,7 +179,7 @@ public class MainWindow {
      * Displays the messages to the user.
      */
     private void displayMessages(String... messages){
-        TasksListView.setText(TasksListView.getText() + new Formatter().format(messages));
+    	outputWindow.setText(outputWindow.getText() + new Formatter().format(messages));
     }
    
     /**
