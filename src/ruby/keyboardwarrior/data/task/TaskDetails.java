@@ -52,19 +52,31 @@ public class TaskDetails {
         return Arrays.asList(details.split("\\s+"));
     }
 
-    @Override
+    /**
+     * Overrides the toString method for details
+     * 
+     * @Override
+     */
     public String toString() {
         return details;
     }
 
-    @Override
+    /**
+     * Overrides the equals method for details
+     * 
+     * @Override
+     */
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskDetails // instanceof handles nulls
                 && this.details.equals(((TaskDetails) other).details)); // state check
     }
 
-    @Override
+    /**
+     * Overrides the hash code for details
+     * 
+     * @Override
+     */
     public int hashCode() {
         return details.hashCode();
     }

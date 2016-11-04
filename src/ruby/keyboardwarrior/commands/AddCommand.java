@@ -20,44 +20,51 @@ import ruby.keyboardwarrior.data.tag.UniqueTagList;
  */
 public class AddCommand extends Command {
 
+    /**
+     * Command words and identifier.
+     */
     public static final String COMMAND_WORD = "add";
-    public static final String DEADLINE_WORD = " by ";
-    public static final String EVENT_WORD = " from ";
-    public static final String TAG_WORD = " #";
+    public static final String DEADLINE_IDENTIFIER = " by ";
+    public static final String EVENT_IDENTIFIER = " from ";
+    public static final String TAG_IDENTIFIER = " #";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" + "Adds a task to the Keyboard Warrior. "
+    /**
+     * Messages to be displayed to the user.
+     */
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n" + "Adds a task to the Keyboard Warrior."
             + "Only supports task details which can be enter after; the command word seperated by a space. \n\t"
             + "To add a Todo: \n\t\t"
             + "Format: add TASK [#TAG] \n\t\t"
-            + "Example: " + COMMAND_WORD + " do something" + TAG_WORD + "leisure\n\t"
+            + "Example: " + COMMAND_WORD + " do something" + TAG_IDENTIFIER + "leisure\n\t"
             + "To add a Deadline: \n\t\t"
             + "Format: add TASK by DATE [TIME] [#TAG] \n\t\t"
-            + "Example: " + COMMAND_WORD + " do something" + DEADLINE_WORD + "120416 1800\n\t"
+            + "Example: " + COMMAND_WORD + " do something" + DEADLINE_IDENTIFIER + "120416 1800\n\t"
             + "To add an Event: \n\t\t"
             + "Format: add EVENT from STARTTIME [ENDTIME] [#TAG]\n\t\t"
-            + "Example: " + COMMAND_WORD + " some event" + EVENT_WORD + "221016 0900 221016 1700" + TAG_WORD + "school\n\t\t";
-
+            + "Example: " + COMMAND_WORD + " some event" + EVENT_IDENTIFIER + "221016 0900 221016 1700" + TAG_IDENTIFIER + "school\n\t\t";
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Keyboard Warrior";
 
     private Task toAdd;
 
     /**
+     * Obtain Tags from arguments
+     *
+     * @throws IllegalValueException if any of the raw values are invalid
+     */
+    private static Set<String> getTagsFromArgs(String tagArguments) throws IllegalValueException {
+    	if (tagArguments.isEmpty()) {
+            return Collections.emptySet();
+        }
+        final Collection<String> tagStrings = Arrays.asList(tagArguments.replaceFirst(" #", "").split(" #"));
+        return new HashSet<>(tagStrings);
+    }
+    
+    /**
      * Convenience constructor using raw values.
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
-    
-    private static Set<String> getTagsFromArgs(String tagArguments) throws IllegalValueException {
-        // no tags
-        if (tagArguments.isEmpty()) {
-            return Collections.emptySet();
-        }
-        // replace first delimiter prefix, then split
-        final Collection<String> tagStrings = Arrays.asList(tagArguments.replaceFirst(" #", "").split(" #"));
-        return new HashSet<>(tagStrings);
-    }
-
     public AddCommand(String details) throws IllegalValueException {
     	String tagArguments = "";
     	String lowerCaseDetails = details.toLowerCase();
@@ -118,7 +125,7 @@ public class AddCommand extends Command {
         try {
             tasksList.addTask(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        } catch (TasksList.DuplicateTaskException dpe) {
+        } catch (TasksList.DuplicateTaskException dpe){
             return new CommandResult(MESSAGE_DUPLICATE_TASK);
         }
     }

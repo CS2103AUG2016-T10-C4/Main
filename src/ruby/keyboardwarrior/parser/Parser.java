@@ -2,8 +2,6 @@ package ruby.keyboardwarrior.parser;
 
 import ruby.keyboardwarrior.commands.*;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
-import ruby.keyboardwarrior.data.task.Task;
-import ruby.keyboardwarrior.data.task.TaskDetails;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -16,30 +14,28 @@ import static ruby.keyboardwarrior.common.Messages.MESSAGE_INVALID_COMMAND_FORMA
  */
 public class Parser {
 
+	/**
+	 * Formats for the different types of arguments
+	 */
     public static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
-
-    public static final Pattern KEYWORDS_ARGS_FORMAT =
-            Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
-
-    public static final Pattern TASK_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
-            Pattern.compile("(?<mainTaskDetails>[^/]+)");               
-
+    public static final Pattern KEYWORDS_ARGS_FORMAT = Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)");
+    public static final Pattern TASK_DATA_ARGS_FORMAT = Pattern.compile("(?<mainTaskDetails>[^/]+)");               
+    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    
     public static Stack<String> allInputs = new Stack<String>(); 
-
+    
     /**
      * Signals that the user input could not be parsed.
      */
-    public static class ParseException extends Exception {
+	public static class ParseException extends Exception {
         ParseException(String message) {
             super(message);
         }
     }
 
     /**
-     * Used for initial separation of command word and args.
+     * No-argument constructor for JAXB use.
      */
-    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-
     public Parser() {}
 
     /**
@@ -50,41 +46,46 @@ public class Parser {
      * @throws IllegalValueException 
      */
     public Command parseCommand(String userInput) throws IllegalValueException {
+    	// Checks the input string to see if it matches a particular format
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
         
-        if(userInput.length() > 3 && !userInput.substring(0,4).equals("list") && !userInput.equals("help"))
+        // Checks to see if item should be saved into the stack
+        if(shouldInputBeSaved(userInput))
         	allInputs.push(userInput);
+        
         String commandWord = matcher.group("commandWord");
         String arguments = matcher.group("arguments");
+        
+        // Checks the inputed Command Word to see if matches any commands
         switch (commandWord) {
-
-            case AddCommand.COMMAND_WORD:
+            
+        	case AddCommand.COMMAND_WORD:
                 return prepareAdd(arguments);
-
+            
             case DeleteCommand.COMMAND_WORD:
                 return prepareDelete(arguments);
-                
+            
             case EditCommand.COMMAND_WORD:
                 return prepareEdit(arguments);
-                
+            
             case ClearCommand.COMMAND_WORD:
                 return new ClearCommand();
-
+            
             case FindCommand.COMMAND_WORD:
                 return prepareFind(arguments);
-
+            
             case ListCommand.COMMAND_WORD:
                 return new ListCommand(arguments);
-
+            
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
-                
+            
             case UndoCommand.COMMAND_WORD:
             	return prepareUndo();
-
+            
             case HelpCommand.COMMAND_WORD: // Fallthrough
             default:
                 return new HelpCommand();
@@ -92,17 +93,33 @@ public class Parser {
     }
 
 	/**
-     * Parses arguments in the context of the add person command.
-     *
-     * @param args full command args string
+     * Checks if the command entered should be saved for the undo command.
+     * 
+     * @returns true if it is not a list command or help command
+     */
+	private boolean shouldInputBeSaved(String userInput){
+		if(userInput.length() > 3){
+			boolean inputIsListCommand = ListCommand.COMMAND_WORD.equalsIgnoreCase(userInput.substring(0,4));
+			boolean inputIsHelpCommand = HelpCommand.COMMAND_WORD.equalsIgnoreCase(userInput);
+			return !inputIsListCommand && !inputIsHelpCommand;
+		}
+		return false;
+	}
+
+	/**
+     * Parses arguments in the context of the add task command.
+     * 
+     * @param arguments in the string is to be parsed a a string
      * @return the prepared command
      */
     private Command prepareAdd(String args){
-        final Matcher matcher = TASK_DATA_ARGS_FORMAT.matcher(args.trim());
-        // Validate arg string format
+        // Checks if the arguments are in the correct format
+    	final Matcher matcher = TASK_DATA_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
+        
+        // Attempts to add a new command
         try {
             return new AddCommand(matcher.group("mainTaskDetails"));
         } catch (IllegalValueException ive) {
@@ -111,9 +128,9 @@ public class Parser {
     }
     
     /**
-     * Parses arguments in the context of the delete person command.
+     * Parses arguments in the context of the delete task command.
      *
-     * @param args full command args string
+     * @param arguments in the string is to be parsed as an index
      * @return the prepared command
      */
     private Command prepareDelete(String args) {
@@ -128,7 +145,7 @@ public class Parser {
     /**
      * Parses arguments in the context of the edit task command.
      *
-     * @param args full command args string
+     * @param arguments in the string is to be parsed as an index
      * @return the prepared command
      * @throws IllegalValueException 
      */
@@ -150,10 +167,10 @@ public class Parser {
     /**
      * Parses the given arguments string as a single index number.
      *
-     * @param args arguments string to parse as index number
+     * @param arguments in the string is to be parsed as index number
      * @return the parsed index number
-     * @throws ParseException if no region of the args string could be found for the index
-     * @throws NumberFormatException the args string region is not a valid number
+     * @throws ParseException if an index cannot be found in the string
+     * @throws NumberFormatException if an invalid number is not found in the string region
      */
     private int parseArgsAsDisplayedIndex(String args) throws ParseException, NumberFormatException {
         final Matcher matcher = TASK_INDEX_ARGS_FORMAT.matcher(args.trim());
@@ -167,10 +184,11 @@ public class Parser {
     /**
      * Parses arguments in the context of the find person command.
      *
-     * @param args full command args string
+     * @param arguments in the string is to be parsed for a find command
      * @return the prepared command
      */
     private Command prepareFind(String args) {
+    	// Checks to see if the argument matches the correct format
         final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -186,7 +204,6 @@ public class Parser {
     /**
      * Parses arguments in the context of undoing the previous command.
      *
-     * @param args full command args string
      * @return the prepared command
      */
     private Command prepareUndo() {

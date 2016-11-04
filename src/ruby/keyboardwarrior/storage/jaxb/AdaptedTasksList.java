@@ -13,7 +13,7 @@ import java.util.List;
 
 //@@author A0139820E
 /**
- * JAXB-friendly adapted address book data holder class.
+ * JAXB-friendly adapted KeyboardWarrior data holder class.
  */
 @XmlRootElement(name = "KeyboardWarrior")
 public class AdaptedTasksList {
@@ -24,14 +24,14 @@ public class AdaptedTasksList {
     private List<AdaptedTag> tags = new ArrayList<>();
 
     /**
-     * No-arg constructor for JAXB use.
+     * No-argument constructor for JAXB use.
      */
     public AdaptedTasksList() {}
 
     /**
      * Converts a given Keyboard Warrior into this class for JAXB use.
      *
-     * @param source future changes to this will not affect the created AdaptedAddressBook
+     * @param source future changes to this will not affect the created AdaptedTaskList
      */
     public AdaptedTasksList(TasksList source) {
         tasks = new ArrayList<>();
@@ -46,12 +46,9 @@ public class AdaptedTasksList {
 
 
     /**
-     * Returns true if any required field is missing.
-     *
-     * JAXB does not enforce (required = true) without a given XML schema.
-     * Since we do most of our validation using the data class constructors, the only extra logic we need
-     * is to ensure that every xml element in the document is present. JAXB sets missing elements as null,
-     * so we check for that.
+     * Check if any of the required filed is missing.
+     * 
+     * @return true if missing
      */
     public boolean isAnyRequiredFieldMissing() {
         for (AdaptedTask task : tasks) {
@@ -70,7 +67,8 @@ public class AdaptedTasksList {
 
     /**
      * Converts this jaxb-friendly {@code AdaptedTasksList} object into the corresponding(@code TasksList} object.
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person
+     * 
+     * @throws IllegalValueException if there were any data constraints violated in the adapted task
      */
     public TasksList toModelType() throws IllegalValueException {
         final ArrayList<Task> tasksList = new ArrayList<>();

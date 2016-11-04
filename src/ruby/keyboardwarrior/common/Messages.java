@@ -14,7 +14,7 @@ public class Messages {
     public static final String MESSAGE_EVENT_LIST = "%1$d Events:";
     public static final String MESSAGE_TASK_FOUND = "%1$d Tasks found cointaining keywords: ";
     public static final String MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE = "Launch command format: " +
-            "java ruby.keyboardwarrior.Main [STORAGE_FILE_PATH]";
+            													   "java ruby.keyboardwarrior.Main [STORAGE_FILE_PATH]";
     public static final String MESSAGE_WELCOME = "Welcome to ";
     public static final String MESSAGE_USING_STORAGE_FILE = "Using storage file : %1$s";
 }

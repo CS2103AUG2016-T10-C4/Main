@@ -7,7 +7,7 @@ import java.util.Calendar;
 //@@author A0144665Y
 
 /**
- * Represents start time for event tasks.
+ * Represents the date for tasks.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(Integer)}
  */
 public class Date {
@@ -54,21 +54,35 @@ public class Date {
         return test.matches(DATE_VALIDATION_REGEX);
     }
 
+    /**
+     * Get method for Date
+     */
     public String getDate() {
         return DATE_FORMAT.format(date);
     }
     
+    /**
+     * Get method for Day and Date
+     */
     public String getDayAndDate() {
         return DAY_DATE_FORMAT.format(date);
     }
     
-    @Override
+    /**
+     * Overrides the toString method for a Date
+     * 
+     * @Override
+     */
     public String toString() {
     	java.util.Date properDate = date.getTime();
     	return DATE_FORMAT.format(properDate);
     }
 
-    @Override
+    /**
+     * Overrides the hash code method for a Date
+     * 
+     * @Override
+     */
     public int hashCode() {
         return date.hashCode();
     }

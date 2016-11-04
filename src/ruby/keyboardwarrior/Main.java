@@ -13,17 +13,25 @@ import ruby.keyboardwarrior.ui.Stoppable;
  */
 public class Main extends Application implements Stoppable{
 
-    /** Version info of the program. */
+    /**
+     * Name and Version of the program.
+     */
     public static final String VERSION = "Keyboardwarrior - Version 0.5";
 
     private Gui gui;
 
+    /**
+     * Launches the Graphical user interface.
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         gui = new Gui(new Logic(), VERSION);
         gui.start(primaryStage, this);
     }
 
+    /**
+     * Closes the program.
+     */
     @Override
     public void stop() throws Exception {
         super.stop();
@@ -31,6 +39,9 @@ public class Main extends Application implements Stoppable{
         System.exit(0);
     }
 
+    /**
+     * Launches the application.
+     */
     public static void main(String[] args) {
         launch(args);
     }
