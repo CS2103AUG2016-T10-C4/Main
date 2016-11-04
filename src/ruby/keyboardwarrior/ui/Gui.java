@@ -11,31 +11,45 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * The GUI of the App
+ * The GUI of the Application
  */
 public class Gui {
 
-    /** Offset required to convert between 1-indexing and 0-indexing.  */
+    /** 
+     * Offset required to convert between 1-indexing and 0-indexing.
+     */
     public static final int DISPLAYED_INDEX_OFFSET = 1;
 
+    /** 
+     * The initial display size of the launch window.
+     */
     public static final int INITIAL_WINDOW_WIDTH = 1200;
     public static final int INITIAL_WINDOW_HEIGHT = 600;
+    
     private final Logic logic;
-
     private MainWindow mainWindow;
     private String version;
 
+    /** 
+     * Initialize the logic or the "brains" of the program.
+     */
     public Gui(Logic logic, String version) {
         this.logic = logic;
         this.version = version;
     }
 
+    /** 
+     * Display the main window and welcome message of the application to the user.
+     */
     public void start(Stage stage, Stoppable mainApp) throws Exception {
         mainWindow = createMainWindow(stage, mainApp);
         mainWindow.displayWelcomeMessage(version, logic.getStorageFilePath());
-        stage.getIcons().add(new Image("file:docs/images/Ui.png"));
+        stage.getIcons().add(new Image("file:docs/images/Keyboardwarrior.jpg"));
     }
 
+    /** 
+     * Creates a main window and initializing its logic and titles.
+     */
     private MainWindow createMainWindow(Stage stage, Stoppable mainApp) throws IOException{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("ui" + File.separator + "mainwindow.fxml"));

@@ -1,6 +1,5 @@
 package ruby.keyboardwarrior.ui;
 
-
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,7 +8,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.util.Duration;
 import ruby.keyboardwarrior.commands.ExitCommand;
-import ruby.keyboardwarrior.commands.HelpCommand;
 import ruby.keyboardwarrior.common.Messages;
 import ruby.keyboardwarrior.data.task.Task;
 import ruby.keyboardwarrior.logic.Logic;
@@ -30,142 +28,170 @@ public class MainWindow {
     private Logic logic;
     private Stoppable mainApp;
 
+    /**
+     * Empty Constructor for JavaFX.
+     */
     public MainWindow(){
     }
 
+    /**
+     * Set method for Logic.
+     */
     public void setLogic(Logic logic){
         this.logic = logic;
     }
 
+    /**
+     * Set method for the main Application.
+     */
     public void setMainApp(Stoppable mainApp){
         this.mainApp = mainApp;
     }
     
+    
+    /**
+     * The FXML elements of the GUI.
+     */
     @FXML
     private TextArea TasksListView;
-
     @FXML
     private TextField commandInput;
-    
     @FXML
     private Label userAction;
 
-
+    /**
+     * Retrieves the user input when the enter button is pressed. 
+     * @throws Exception 
+     */
     @FXML
-    void onCommand(ActionEvent event) {
-        try {
-        	TasksListView.clear();
-            String userCommandText = commandInput.getText();
-            String findCommand = "find";
-            String listCommand = "list";
-            CommandResult result = logic.execute(userCommandText);
-            if(isExitCommand(result)){
-                exitApp();
-                return;
-            }
-            
-            if(listCommand.equalsIgnoreCase(userCommandText) || (userCommandText.length() > 3 && findCommand.equalsIgnoreCase(userCommandText.substring(0,4)))){
-            	display(userCommandText);
-            	displayAll(result);
-        	}else if(userCommandText.length() > 3 && listCommand.equalsIgnoreCase(userCommandText.substring(0,4))){
-            	display(userCommandText);
-            	displaySpecific(result);
-            } else if(result.feedbackToUser.length() > 22 && result.feedbackToUser.substring(0,22).equals("Invalid command format")){
-            	display(result.feedbackToUser.substring(0,23));
-            	displayAll(result.feedbackToUser.substring(25));
-            } else if (result.feedbackToUser.length() > 23 && result.feedbackToUser.substring(0,24).equals(HelpCommand.TITLE_MESSAGE)) {
-            	display("Invalid Command Format!");
-            	displayAll(result.feedbackToUser);           
-        	} else {
-        		display(result.feedbackToUser);
-            	displayAll(logic.execute("list"));
-            }
-            clearCommandInput();
-        } catch (Exception e) {
-            display(e.getMessage());
-            throw new RuntimeException(e);
+    void onCommand(ActionEvent event) throws Exception {
+        clearTaskList();
+        String userCommandText = commandInput.getText();
+        CommandResult result = logic.execute(userCommandText);
+        if(isExitCommand(result)){
+        	exitApp();
+            return;
         }
+        displayResult(result);
+        clearCommandInput();
     }
 
+    /**
+     * Exits the application.
+     */
     private void exitApp() throws Exception {
         mainApp.stop();
     }
 
-    /** Returns true of the result given is the result of an exit command */
+    /**
+     * Returns true if the result given is of an exit command.
+     */
     private boolean isExitCommand(CommandResult result) {
         return result.feedbackToUser.equals(ExitCommand.MESSAGE_EXIT_ACKNOWEDGEMENT);
     }
 
-    /** Clears the command input box */
+    /**
+     * Clears the command input box.
+     */
     private void clearCommandInput() {
-        commandInput.setText("");
+        commandInput.clear();
+    }
+    
+    /**
+     * Clears the task list view.
+     */
+    private void clearTaskList() {
+    	TasksListView.clear();
     }
 
+    /**
+     * Displays the welcome messages of the application.
+     */
     public void displayWelcomeMessage(String version, String storageFilePath) throws Exception {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        displayAll(MESSAGE_WELCOME + version, storageFileInfo + "\n");
-        displayAll(logic.execute("list"));
-        display();
+        displayMessages(MESSAGE_WELCOME + version, storageFileInfo + "\n");
+        displayResult(logic.execute("list"));
+        fadingLabel();
     }
     
-    /** Displays the result of a command execution to the user. */
-    public void displayAll(CommandResult result) {
+    /**
+     * Displays the result of a command execution to the user.
+     */
+    public void displayResult(CommandResult result) {
     	final Optional<List<Task>> resultTasks = result.getRelevantTasks();
+    	final String resultString = result.displayToUser;
+    	final String userfeedback = result.feedbackToUser;
+    	if(resultString != "") {	
+    		displayMessages(resultString);
+        }
     	if(resultTasks.isPresent()) {
-            displayAll(resultTasks.get());
+    		List<ArrayList<Task>> sortedTaskList = sortTask(resultTasks.get());
+    		displayAllTask(sortedTaskList);
         }
-    }
-    
-    /** Displays the result of a command execution to the user. */
-    public void displaySpecific(CommandResult result) {
-    	final Optional<List<Task>> resultTasks = result.getRelevantTasks();
-    	displayAll(result.feedbackToUser);
-    	if(resultTasks.isPresent()) {	
-            displaySpecific(resultTasks.get());
-        }
-    }
-
-    /**
-     * Displays a specific list of tasks
-     */
-    private void displaySpecific(List<Task> tasks){
-        displayAll(new Formatter().format(tasks));
+    	displayFeedback(userfeedback);
     }
     
     /**
-     * Displays the entire list of tasks
+     * Sorts the entire list of tasks into their specific category.
      */
-    private void displayAll(List<Task> tasks){
-    	List<Task> todoTask = new ArrayList<Task>();
-    	List<Task> deadlineTask = new ArrayList<Task>();
-    	List<Task> eventTask = new ArrayList<Task>();
+    private List<ArrayList<Task>> sortTask(List<Task> tasks){
+    	List<ArrayList<Task>> sortedTask = new ArrayList<ArrayList<Task>>();
+    	sortedTask.add(obtainSpecificTaskList(tasks, 0));
+    	sortedTask.add(obtainSpecificTaskList(tasks, 1));
+    	sortedTask.add(obtainSpecificTaskList(tasks, 2));
+    	return sortedTask;
+    }
+    
+    /**
+     * Obtain a list of one specific task type.
+     */
+    private ArrayList<Task> obtainSpecificTaskList(List<Task> tasks, Integer taskType){
+    	ArrayList<Task> specificTaskList = new ArrayList<Task>();
     	for(Task task: tasks){
-    		if(task.getTaskType() == 0)
-    			todoTask.add(task);
-    		else if (task.getTaskType() == 1)
-    			deadlineTask.add(task);
-    		else
-    			eventTask.add(task);
+    		if(task.getTaskType() == taskType)
+    			specificTaskList.add(task);
     	}
-    	displayAll(MESSAGE_TASKS_LISTED_OVERVIEW);
-    	displayAll(String.format(Messages.MESSAGE_TODO_LIST, todoTask.size()));
-        displayAll(new Formatter().format(todoTask));
-        displayAll(String.format(Messages.MESSAGE_DEADLINE_LIST, deadlineTask.size()));
-        displayAll(new Formatter().format(deadlineTask));
-        displayAll(String.format(Messages.MESSAGE_EVENT_LIST, eventTask.size()));
-        displayAll(new Formatter().format(eventTask));
+    	return specificTaskList;
     }
     
-    private void displayAll(String... messages){
+    /**
+     * Displays all the types of task to the user.
+     */
+    private void displayAllTask(List<ArrayList<Task>> sortedTaskList){
+    	displayTask(sortedTaskList.get(0), Messages.MESSAGE_TODO_LIST);
+    	displayTask(sortedTaskList.get(1), Messages.MESSAGE_DEADLINE_LIST);
+    	displayTask(sortedTaskList.get(2), Messages.MESSAGE_EVENT_LIST);
+    }
+    
+    /**
+     * Displays the task to the user.
+     */
+    private void displayTask(List<Task> tasks, String message){
+    	if(!tasks.isEmpty()){
+    		displayMessages(String.format(message, tasks.size()));
+    	  	displayMessages(new Formatter().format(tasks));
+    	}
+    }
+    
+    /**
+     * Displays the messages to the user.
+     */
+    private void displayMessages(String... messages){
         TasksListView.setText(TasksListView.getText() + new Formatter().format(messages));
     }
    
-	private void display(String displayToUser){
+    /**
+     * Display a fading Label containing the feedback from the application.
+     */
+	private void displayFeedback(String displayToUser){
 		userAction.setText(new Formatter().format(displayToUser));
-        display();
+        fadingLabel();
 	}
 	
-	private void display(){
+    /**
+     * Runs a fading transition for the Label.
+     */
+	private void fadingLabel(){
         FadeTransition fadeOut = new FadeTransition(Duration.seconds(10), userAction);
         fadeOut.setFromValue(1.0);
         fadeOut.setToValue(0.0);
