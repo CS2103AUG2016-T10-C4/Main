@@ -25,18 +25,27 @@ public class CommandResult {
      */
     private final List<Task> relevantTasks;
 
-    public CommandResult(String feedbackToUser) {
+    /**
+     * The command result used for an invalid command, help 
+     */
+    public CommandResult(String feedbackToUser, String displayToUser) {
         this.feedbackToUser = feedbackToUser;
-        this.displayToUser = "";
-        relevantTasks = null;
+        this.displayToUser = displayToUser;
+        this.relevantTasks = null;
     }
-
+    
+    /**
+     * The command result used when the user add, edit, delete and undo.
+     */
     public CommandResult(String feedbackToUser, List<Task> relevantTasks) {
         this.feedbackToUser = feedbackToUser;
         this.displayToUser = "";
         this.relevantTasks = relevantTasks;
     }
     
+    /**
+     * The command result used to list or find items
+     */
     public CommandResult(String feedbackToUser, String displayToUser, List<Task> relevantTasks) {
         this.feedbackToUser = feedbackToUser;
         this.displayToUser = displayToUser;
