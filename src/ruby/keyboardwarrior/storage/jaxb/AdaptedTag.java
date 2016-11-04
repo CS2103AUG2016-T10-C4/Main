@@ -15,7 +15,7 @@ public class AdaptedTag {
     public String tagName;
 
     /**
-     * No-arg constructor for JAXB use.
+     * No-argument constructor for JAXB use.
      */
     public AdaptedTag() {}
 
@@ -29,12 +29,9 @@ public class AdaptedTag {
     }
 
     /**
-     * Returns true if any required field is missing.
-     *
-     * JAXB does not enforce (required = true) without a given XML schema.
-     * Since we do most of our validation using the data class constructors, the only extra logic we need
-     * is to ensure that every xml element in the document is present. JAXB sets missing elements as null,
-     * so we check for that.
+     * Check if any of the required filed is missing.
+     * 
+     * @return true if missing
      */
     public boolean isAnyRequiredFieldMissing() {
         return Utils.isAnyNull(tagName);

@@ -7,17 +7,12 @@ import ruby.keyboardwarrior.data.tag.UniqueTagList;
 import ruby.keyboardwarrior.data.task.*;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlValue;
 
 //@@author A0139820E
 /**
- * JAXB-friendly adapted person data holder class.
+ * JAXB-friendly adapted Task data holder class.
  */
 public class AdaptedTask {
 
@@ -31,16 +26,11 @@ public class AdaptedTask {
     private DateTime startTime;
     @XmlElement(required = false)
     private DateTime endTime;
-    
     @XmlElement
     private List<AdaptedTag> tagged = new ArrayList<>();
     
-    
-    private static final String DEADLINE_WORD = " by ";
-    private static final String EVENT_WORD = " from ";
-    
     /**
-     * No-arg constructor for JAXB use.
+     * No-argument constructor for JAXB use.
      */
     public AdaptedTask() {}
 
@@ -63,12 +53,9 @@ public class AdaptedTask {
     }
 
     /**
-     * Returns true if any required field is missing.
-     *
-     * JAXB does not enforce (required = true) without a given XML schema.
-     * Since we do most of our validation using the data class constructors, the only extra logic we need
-     * is to ensure that every xml element in the document is present. JAXB sets missing elements as null,
-     * so we check for that.
+     * Check if any of the required filed is missing.
+     * 
+     * @return true if missing
      */
     public boolean isAnyRequiredFieldMissing() {
         return Utils.isAnyNull(taskDetails) && Utils.isAnyNull(taskType);
@@ -77,9 +64,8 @@ public class AdaptedTask {
     /**
      * Converts this jaxb-friendly adapted task object into the Task object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Task
      */
-
     public Task toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (AdaptedTag tag : tagged) {

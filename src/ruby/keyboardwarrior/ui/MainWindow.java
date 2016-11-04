@@ -29,7 +29,7 @@ public class MainWindow {
     private Stoppable mainApp;
 
     /**
-     * Empty Constructor for JavaFX.
+     * No-argument constructor for JAXB use.
      */
     public MainWindow(){
     }

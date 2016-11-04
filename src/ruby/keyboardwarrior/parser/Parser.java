@@ -34,7 +34,7 @@ public class Parser {
     }
 
     /**
-     * Empty Constructor for JavaFX
+     * No-argument constructor for JAXB use.
      */
     public Parser() {}
 
