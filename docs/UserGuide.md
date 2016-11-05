@@ -166,7 +166,7 @@ This is suitable for most work-related tasks as they are usually scheduled withi
 > 
 > Acceptable format:
 >  
-> 1) DDMMYY format.
+> DDMMYY format.
 >  
 >      E.g. 160417 represents the date April 16, 2017.
 > 
@@ -287,7 +287,7 @@ This command will show you the entire list of your Todos, Deadlines and Events o
 <br>
 **Format:** **`list todo`**
 
-If you only want to see your Todos on the screen, enter the `list todo` command.
+If you only want to see your Todos on the screen, enter the **`list todo`** command.
 
 **Example:**
 
@@ -298,7 +298,7 @@ If you only want to see your Todos on the screen, enter the `list todo` command.
 <br>
 **Format:** **`list deadline`**
 
-If you only want to see your Deadlines on the screen, enter the `list deadline` command.
+If you only want to see your Deadlines on the screen, enter the **`list deadline`** command.
 
 **Example:**
 
@@ -309,7 +309,7 @@ If you only want to see your Deadlines on the screen, enter the `list deadline` 
 <br>
 **Format:** **`list event`**
 
-If you only want to see your Events on the screen, enter the `list event` command.
+If you only want to see your Events on the screen, enter the **`list event`** command.
 
 **Example:**
 
@@ -361,7 +361,7 @@ This is especially useful if you would like to start on a clean slate and thus d
 <br>
 **Format:** **`undo`**
 
-Each time you enter `undo`, the previous command which you had just entered will undo itself. You can key in `undo` multiple times and it will continue to undo your typed commands in order of occurance. Of course, when you have no more commands to undo, `undo` will not work anymore. 
+Each time you enter **`undo`**, the previous command which you had just entered will undo itself. You can key in **`undo`** multiple times and it will continue to undo your typed commands in order of occurance. Of course, when you have no more commands to undo, **`undo`** will not work anymore. 
 
 This command is especially useful when you find yourself entering in wrong items and wish to take them back.
 
