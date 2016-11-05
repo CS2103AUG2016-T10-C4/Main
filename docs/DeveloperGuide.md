@@ -16,7 +16,7 @@
 * [10. Future Development](#10-future-development)
 * [Appendix A: User Stories](#appendix-a-user-stories)
 * [Appendix B: Use Cases](#appendix-b-use-cases)
-* [Appendix C: Non Functional Requirements](#appendix-c-non-functional-requirements)
+* [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
 * [Appendix D: Glossary](#appendix-d-glossary)
 * [Appendix E : Product Survey](#appendix-e-product-survey)
 
@@ -219,7 +219,7 @@ Data could be secured through encryption so that only users can only access thei
 
 <!-- @@author A0139820E -->
 
-## Appendix A : User Stories
+## Appendix A: User Stories
 
 **Priorities**: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (unlikely to have) - `*`
 
@@ -253,7 +253,7 @@ Priority | As a ... | I want to ... | So that I can...
 
 <!-- @@author A0139820E -->
 
-## Appendix B : Use Cases
+## Appendix B: Use Cases
 
 `Software System:` **KeyboardWarrior** <br>
 `Use case:` UC01 - Adding a calendar task <br>
@@ -303,7 +303,7 @@ Use case resumes from step 3. <br>
 
 <!-- @@author A0139820E -->
 
-## Appendix C : Non Functional Requirements
+## Appendix C: Non-Functional Requirements
 
 * Should work on computers without internet connection.
 * Should be fully CLI capable with keyboard shortcuts for mouse interactions.
@@ -319,19 +319,22 @@ Use case resumes from step 3. <br>
 
 <!-- @@author A0139820E -->
 
-## Appendix D : Glossary
+## Appendix D: Glossary
 
 ##### Mainstream OS
 
 > Windows, Linux, Unix, OS-X
 
-{TODO: Add more terms to Glossary}
+<!-- @@author A0124453M -->
 
-## Appendix E : Product Survey
+## Appendix E: Product Survey
 
-{TODO: Compare pros and cons}
+###Google Calendar
 
-####Google calendar
+Google Calendar is an online calendar tool that helps manage your everyday tasks.
+
+**Advantages**
+
 1.	Users can create multiple calendars for different usages.
 2.	Contains a world clock feature
 3.	Allows for specific location to be added to the events. (In the case of multiple possible locations for a place, e.g. Macdonald's)
@@ -341,14 +344,35 @@ Use case resumes from step 3. <br>
 7.	Allows users to share their calendars with one another.
 8.	Users can sync or import other calendar applications with google calendars to create a master calendar.
 
-####Todo.txt
-1.	A simple app that saves all task into a single "todo.txt" file
-2.	Supports command line inputs (CLI)
-3.	Allows grouping of related tasks into one project
-4.	Allows for priority to be set to tasks and tasks will auto arrange themselves according to their priority
-5.	Able to mark tasks as complete
+**Disadvantages**
 
-####Fantastical 
+1. No to-do functions.
+2. Does not work without an internet connection.
+3. Too many unfamiliar functions and commands makes the tool very bulky and not easy to get started with.
+
+###Todo.txt
+
+Todo.txt is a minimal planner tool with a focused editor that helps to manage tasks with as few keystrokes and taps as possible. 
+
+**Advantages**
+
+1.	A simple app that saves all task into a single "todo.txt" file.
+2.	Supports command line inputs (CLI).
+3.	Allows grouping of related tasks into one project.
+4.	Allows for priority to be set to tasks and tasks will auto arrange themselves according to their priority.
+5.	Able to mark tasks as complete.
+
+**Disadvantages**
+
+1. Multiple forms of interfaces such as using Plain Text Files or the command prompt, while may be handy, makes it less streamlined and complicated for users.
+2. Too many commands, some fairly complicated, that may get tricky to remember.
+
+###Fantastical 2
+
+Fantastical 2 is an award-winning calendar app with features such as natural language parsing, reminders and an aesthetically beautiful week view, among other features.
+
+**Advantages**
+
 1.	Supports syncing with other calendar apps such as Google Calendar.
 2.	When scheduling a group event, allows you to quickly find out if coworkers are available during that duration (provided coworkers are using supported Calendar apps).
 3.	Has a quick access 'mini-window' for your convenience.
@@ -357,7 +381,25 @@ Use case resumes from step 3. <br>
 6.	Allows Day, Week, Month and Year views.
 7.	Users can type in various languages such as Spanish or Japanese.
 
-####Any.do Cal
+**Disadvantages**
+
+1. Has a poor display of simultaneous events in week view.
+2. Lack of time-scale of reminders.
+3. Lack of cross-computer and cross-platform settings sync.
+
+
+###Any.do Cal
+
+Any.do Cal is a mobile device only app with planner functions and an aesthetically beautiful design.
+
+**Advantages**
+
 1.	Supports syncing with other calendar apps such as Google Calendar
 2.	Specializes only in showing your daily agenda with minimal clutter
 3.	Allows Syncing with any-do so that your to-do list is also imported into the calendar.
+
+**Disadvantages**
+
+1. Does not support natural language parsing.
+2. Does not allow marking of to-dos as complete.
+3. A lot of room for improvements and just another companion app which gives little reason for new users to download it. 
