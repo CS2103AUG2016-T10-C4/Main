@@ -5,18 +5,6 @@ addons:
   apt:
     packages:
       - oracle-java8-installer
- ```
-
-## Build Matrix
-
-For Java projects, `env` and `jdk` can be given as arrays
-to construct a build matrix.
-
-## Switching JDKs Within One Job
-
-If your build needs to switch JDKs during a job, you can do so with `jdk_switcher use …`.
-
-```yaml
 script:
   - jdk_switcher use oraclejdk8
   - # do stuff with Java 8
