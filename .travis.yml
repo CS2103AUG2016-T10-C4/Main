@@ -9,6 +9,3 @@ addons:
       - oracle-java8-installer
 
 sudo: required
-
-before_install:
-  - cd java
