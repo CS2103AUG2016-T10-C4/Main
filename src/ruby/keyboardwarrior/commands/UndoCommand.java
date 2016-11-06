@@ -6,9 +6,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import ruby.keyboardwarrior.common.Messages;
-import ruby.keyboardwarrior.data.TasksList.DuplicateTaskException;
-import ruby.keyboardwarrior.data.TasksList.TaskNotFoundException;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.data.task.Date;
 import ruby.keyboardwarrior.data.task.DateTime;

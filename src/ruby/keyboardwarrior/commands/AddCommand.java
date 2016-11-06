@@ -4,10 +4,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-//import java.util.Scanner;
 import java.util.Set;
 
-import ruby.keyboardwarrior.common.Messages;
 import ruby.keyboardwarrior.data.TasksList;
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
 import ruby.keyboardwarrior.data.task.*;

@@ -13,6 +13,7 @@ import java.util.Set;
 import static org.junit.Assert.*;
 import static ruby.keyboardwarrior.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+//@@author A0139820E
 public class ParserTest {
 
     private Parser parser;
@@ -127,27 +128,6 @@ public class ParserTest {
                 parseAndAssertCommandType(input, FindCommand.class);
         assertEquals(keySet, result.getKeywords());
     }
-
-    /**
-     * Test add person command
-     */
-    
-    /*@Test
-    public void addCommand_invalidArgs() {
-        final String[] inputs = {
-                "add",
-                "add ",
-                "add wrong args format",
-                // no phone prefix
-                String.format("add $s $s e/$s a/$s", TaskDetails.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
-                // no email prefix
-                String.format("add $s p/$s $s a/$s", TaskDetails.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
-                // no address prefix
-                String.format("add $s p/$s e/$s $s", TaskDetails.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE)
-        };
-        final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
-        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
-    }*/
 
     @Test
     public void addCommand_invalidTaskDataInArgs() {

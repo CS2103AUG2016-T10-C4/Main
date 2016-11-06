@@ -9,6 +9,7 @@ import java.util.Stack;
 
 import static ruby.keyboardwarrior.ui.Gui.DISPLAYED_INDEX_OFFSET;
 
+//@@author A0139820E
 /**
  * Represents an executable command.
  */

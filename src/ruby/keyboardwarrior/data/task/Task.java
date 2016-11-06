@@ -2,7 +2,6 @@ package ruby.keyboardwarrior.data.task;
 
 import java.util.Objects;
 
-import ruby.keyboardwarrior.data.tag.Tag;
 import ruby.keyboardwarrior.data.tag.UniqueTagList;
 
 //@@author A0144665Y

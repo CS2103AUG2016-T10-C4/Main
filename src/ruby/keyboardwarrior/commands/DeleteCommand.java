@@ -1,11 +1,10 @@
 package ruby.keyboardwarrior.commands;
 
-import java.util.List;
-
 import ruby.keyboardwarrior.common.Messages;
 import ruby.keyboardwarrior.data.TasksList.TaskNotFoundException;
 import ruby.keyboardwarrior.data.task.Task;
 
+//@author A0139716X
 /**
  * Deletes a item identified using it's last displayed index from the task manager.
  */

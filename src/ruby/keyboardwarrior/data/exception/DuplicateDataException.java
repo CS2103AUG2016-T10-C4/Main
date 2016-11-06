@@ -1,5 +1,6 @@
 package ruby.keyboardwarrior.data.exception;
 
+//@@author A0124453M
 /**
  * Signals an error caused by duplicate data where there should be none.
  */

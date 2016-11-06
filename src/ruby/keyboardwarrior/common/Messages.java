@@ -1,5 +1,6 @@
 package ruby.keyboardwarrior.common;
 
+//@@author A0124453M
 /**
  * Container for user visible messages.
  */

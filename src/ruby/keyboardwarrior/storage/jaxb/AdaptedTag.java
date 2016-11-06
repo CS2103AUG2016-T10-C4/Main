@@ -6,6 +6,7 @@ import ruby.keyboardwarrior.data.tag.Tag;
 
 import javax.xml.bind.annotation.XmlValue;
 
+//@@author A0144665Y
 /**
  * JAXB-friendly adapted tag data holder class.
  */

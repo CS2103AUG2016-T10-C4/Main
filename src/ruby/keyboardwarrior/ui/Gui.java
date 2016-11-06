@@ -10,6 +10,7 @@ import ruby.keyboardwarrior.Main;
 import java.io.File;
 import java.io.IOException;
 
+//@@author A0139820E
 /**
  * The GUI of the Application
  */

@@ -48,13 +48,6 @@ public class LogicTest {
         assertEquals(Collections.emptyList(), logic.getLastShownList());
     }
 
-    @Test
-    public void execute_invalid() throws Exception {
-        String invalidCommand = "       ";
-        assertCommandBehavior(invalidCommand,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-    }
-
     /**
      * Executes the command and confirms that the result message is correct.
      * Both the 'tasks list' and the 'last shown list' are expected to be empty.
@@ -91,8 +84,16 @@ public class LogicTest {
         assertEquals(expectedTasksList, tasksList);
         assertEquals(lastShownList, logic.getLastShownList());
     }
-
-
+//@@author A0139820E
+    
+//@@author A0124453M
+    @Test
+    public void execute_invalid() throws Exception {
+        String invalidCommand = "       ";
+        assertCommandBehavior(invalidCommand,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+    }
+    
     @Test
     public void execute_unknownCommandWord() throws Exception {
         String unknownCommand = "uicfhmowqewca";
@@ -118,23 +119,8 @@ public class LogicTest {
 
         assertCommandBehavior("clear", ClearCommand.MESSAGE_SUCCESS, TasksList.empty(), false, Collections.emptyList());
     }
-
-    @Test
-    public void execute_add_successful() throws Exception {
-        // setup expectations
-        TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.aTasks();
-        TasksList expectedTL = new TasksList();
-        expectedTL.addTask(toBeAdded);
-
-        // execute command and verify result
-        assertCommandBehavior(helper.generateAddCommand(toBeAdded),
-                              String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
-                              expectedTL,
-                              false,
-                              Collections.emptyList());
-    }
-
+    
+    
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command
      * targeting a single task in the last shown list, using visible index.
@@ -154,7 +140,27 @@ public class LogicTest {
         assertCommandBehavior(commandWord + " 3", expectedMessage, TasksList.empty(), false, lastShownList);
 
     }
+//@@author A0124453M
+    
+//@@author A0144665Y
+    @Test
+    public void execute_add_successful() throws Exception {
+        // setup expectations
+        TestDataHelper helper = new TestDataHelper();
+        Task toBeAdded = helper.aTasks();
+        TasksList expectedTL = new TasksList();
+        expectedTL.addTask(toBeAdded);
 
+        // execute command and verify result
+        assertCommandBehavior(helper.generateAddCommand(toBeAdded),
+                              String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
+                              expectedTL,
+                              false,
+                              Collections.emptyList());
+    }
+//@@author A0144665Y
+
+//@@author A0139716X
     @Test
     public void execute_delete_invalidArgsFormat() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
@@ -279,7 +285,9 @@ public class LogicTest {
                                 true,
                                 expectedList);
     }
-
+//@@author A0139716X
+   
+//@@author A0139820E
     /**
      * A utility class to generate test data.
      */

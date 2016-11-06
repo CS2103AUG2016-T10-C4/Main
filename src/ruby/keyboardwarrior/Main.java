@@ -8,6 +8,7 @@ import ruby.keyboardwarrior.logic.Logic;
 import ruby.keyboardwarrior.ui.Gui;
 import ruby.keyboardwarrior.ui.Stoppable;
 
+//@@author A0124453M
 /**
  * Main entry point to the application.
  */

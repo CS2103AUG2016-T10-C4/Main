@@ -4,6 +4,7 @@ import ruby.keyboardwarrior.data.task.Task;
 
 import java.util.*;
 
+//@@author A0139716X
 /**
  * Finds and lists all tasks in Keyboard Warrior whose details contains any of the argument keywords.
  * Keyword matching is not case sensitive.
@@ -53,7 +54,6 @@ public class FindCommand extends Command {
     	return false;
     }
     
-    //@@author A0139716X
     /**
      * Retrieve all items in Keyboard Warrior whose details contain some of the specified keywords.
      *

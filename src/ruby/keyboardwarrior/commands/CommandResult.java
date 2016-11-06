@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import ruby.keyboardwarrior.data.task.Task;
 
+//@@author A0139820E
 /**
  * Represents the result of a command execution.
  */

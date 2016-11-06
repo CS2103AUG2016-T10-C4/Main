@@ -1,5 +1,6 @@
 package ruby.keyboardwarrior.commands;
 
+//@@author A0124453M
 /**
  * Clears all the items in the Keyboard Warrior.
  */

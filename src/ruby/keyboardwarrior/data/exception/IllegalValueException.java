@@ -1,5 +1,6 @@
 package ruby.keyboardwarrior.data.exception;
 
+//@@author A0124453M
 /**
  * Signals that some given data does not fulfill some constraints.
  */

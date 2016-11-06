@@ -10,7 +10,6 @@ import javafx.util.Duration;
 import ruby.keyboardwarrior.commands.ExitCommand;
 import ruby.keyboardwarrior.commands.ListCommand;
 import ruby.keyboardwarrior.common.Messages;
-import ruby.keyboardwarrior.data.TasksList;
 import ruby.keyboardwarrior.data.task.Task;
 import ruby.keyboardwarrior.logic.Logic;
 import ruby.keyboardwarrior.commands.CommandResult;
@@ -21,7 +20,7 @@ import java.util.Optional;
 
 import static ruby.keyboardwarrior.common.Messages.*;
 
-//@@author A0139820E
+//@@author A0144665Y
 /**
  * Main Window of the GUI.
  */

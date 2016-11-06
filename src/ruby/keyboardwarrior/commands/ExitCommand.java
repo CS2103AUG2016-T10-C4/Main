@@ -1,5 +1,6 @@
 package ruby.keyboardwarrior.commands;
 
+//@@author A0124453M
 /**
  * Terminates the program.
  */
