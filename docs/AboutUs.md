@@ -21,8 +21,8 @@ Documentation: ensure quality of various project documents.
     * [UI](https://github.com/CS2103AUG2016-T10-C4/Main/blob/master/docs/DeveloperGuide.md#4-ui-component)
 * Aspects/Tools in charge of: Github, JavaFX, Scenebuilder
 * Features implemented:
-    * [Display taskslist]
-* Code written:
+    * [List Tasks](https://github.com/CS2103AUG2016-T10-C4/Main/blob/master/docs/UserGuide.md#316-listing-what-you-want-to-do)
+* Code written:[[functional code](collated/main/A0139820E.md)][[test code](collated/test/A0139820E.md)][[docs](collated/docs/A0139820E.md)]
 * Other major contributions:
     * Did the initial refactoring from addressbook to task manager
     * Ensure all test cases able to pass
