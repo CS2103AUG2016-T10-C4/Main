@@ -230,11 +230,11 @@ public class LogicTest {
 
         List<Task> fourTasks = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
         TasksList expectedTL = helper.generateTasksList(fourTasks);
-        List<Task> expectedList = helper.generateTaskList(p1, p2);
+        List<Task> expectedList = helper.generateTaskList(pTarget1, pTarget2);
         helper.addToTasksList(tasksList, fourTasks);
 
         assertCommandBehavior("find KEY",
-                                Command.getMessageForTasksList(expectedList, "0"),
+                                Command.getMessageForTasksList(expectedList, "key"),
                                 expectedTL,
                                 true,
                                 expectedList);
@@ -254,7 +254,7 @@ public class LogicTest {
         helper.addToTasksList(tasksList, fourTasks);
 
         assertCommandBehavior("find KEY",
-                                Command.getMessageForTasksList(expectedList, "0"),                            
+                                Command.getMessageForTasksList(expectedList, "key"),                            
                                 expectedTL,
                                 true,
                                 expectedList);
@@ -274,7 +274,7 @@ public class LogicTest {
         helper.addToTasksList(tasksList, fourTasks);
 
         assertCommandBehavior("find KEY rAnDoM",
-                                Command.getMessageForTasksList(expectedList, "0"),
+                                Command.getMessageForTasksList(expectedList, "random key"),
                                 expectedTL,
                                 true,
                                 expectedList);
