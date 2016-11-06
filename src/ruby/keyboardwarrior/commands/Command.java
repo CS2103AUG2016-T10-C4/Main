@@ -50,7 +50,7 @@ public abstract class Command {
      * Constructs a feedback message to summarize an operation that displayed a listing of tasks.
      *
      * @param tasksDisplayed used to generate summary
-     * @return summary message for persons displayed
+     * @return summary message for tasks displayed
      */
     public static String getMessageForTasksList(List<Task> tasksDisplayed, String type) {
     	try{

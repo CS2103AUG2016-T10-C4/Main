@@ -22,6 +22,15 @@ public class Task {
     /**
      * Creates a Todo Task with details and tags.
      */
+    public Task(TaskDetails details) {
+        this.taskType = 0;
+        this.details = details;
+        this.tags = null;
+    }
+    
+    /**
+     * Creates a Todo Task with details and tags.
+     */
     public Task(TaskDetails details, UniqueTagList tags) {
     	this.taskType = 0;
         this.details = details;
@@ -115,7 +124,10 @@ public class Task {
     public String toString(){
     	// Adjust the string build according to the task type
     	if(taskType == 0){ // Todo Task
-    		return details.toString() + "\t" + tags.toString();
+    	    if (tags != null)
+    	        return details.toString() + "\t" + tags.toString();
+    	    else
+    	        return details.toString();
     	}
     	else if(taskType == 1){ // Deadline Task
     		if(endTime == null)
