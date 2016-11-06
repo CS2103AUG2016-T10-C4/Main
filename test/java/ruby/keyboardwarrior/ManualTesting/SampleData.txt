@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyboardWarrior>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>Shower</details>
+        </taskDetails>
+    </tasks>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>Check mailbox</details>
+        </taskDetails>
+        <tagged>misc</tagged>
+    </tasks>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>Watch EE3204 CSMA Webcast</details>
+        </taskDetails>
+        <tagged>ee3204</tagged>
+    </tasks>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>Read CS2103T L3 notes</details>
+        </taskDetails>
+        <tagged>cs2103t</tagged>
+    </tasks>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>Print Eclipse Shortcuts</details>
+        </taskDetails>
+        <tagged>misc</tagged>
+    </tasks>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>Print SSA notes</details>
+        </taskDetails>
+        <tagged>misc</tagged>
+    </tasks>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>Print EE3204 notes</details>
+        </taskDetails>
+        <tagged>misc</tagged>
+    </tasks>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>Try out Bugis restaurant</details>
+        </taskDetails>
+    </tasks>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>Watch EE2024 L6 Webcast</details>
+        </taskDetails>
+        <tagged>ee2024</tagged>
+    </tasks>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>Torrent Train to Busan</details>
+        </taskDetails>
+    </tasks>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>Don’t die yet</details>
+        </taskDetails>
+    </tasks>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>Soundproof room</details>
+        </taskDetails>
+        <tagged>misc</tagged>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>Do CS2103T L4 pre-tutorial tasks</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-08-28T12:00:22.553+08:00</dateTime>
+        </endTime>
+        <tagged>cs2103t</tagged>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>Do EE2024 Tutorial 3</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-08-30T12:00:27.757+08:00</dateTime>
+        </endTime>
+        <tagged>ee2024</tagged>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>Buy Spikes</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-09-10T23:59:33.172+08:00</dateTime>
+        </endTime>
+        <tagged>track</tagged>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>Finish CS2101 User guide</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-09-15T12:00:36.639+08:00</dateTime>
+        </endTime>
+        <tagged>cs2101</tagged>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>Study for EE3204 quiz</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-09-19T23:59:41.859+08:00</dateTime>
+        </endTime>
+        <tagged>ee3204</tagged>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>Finish CS2101 Dev guide</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-09-26T12:00:46.127+08:00</dateTime>
+        </endTime>
+        <tagged>cs2101</tagged>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>Do EE2025 Tutorial 5</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-10-01T12:00:50.455+08:00</dateTime>
+        </endTime>
+        <tagged>ee2024</tagged>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>Do CS2103T L7 pre-tutorial tasks</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-10-10T09:00:54.732+08:00</dateTime>
+        </endTime>
+        <tagged>cs2103t</tagged>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>Do SSA Assignment 2</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-11-06T23:59:58.632+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>Submit CS2101 project manual</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-11-07T23:59:02.280+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>Submit CS2103T product</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-11-07T23:59:06.200+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>Do CS2101 evaluation</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-11-09T23:59:11.557+08:00</dateTime>
+        </endTime>
+        <tagged>cs2101</tagged>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>EE2024 Assignment 2 report due</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-11-12T23:59:15.463+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>EE2024 Survey</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-11-13T23:59:19.304+08:00</dateTime>
+        </endTime>
+        <tagged>ee2024</tagged>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>CS2103T Project retrospective</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-11-14T23:59:23.030+08:00</dateTime>
+        </endTime>
+        <tagged>cs2103t</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>Track and Field training</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-09-01T18:00:33.902+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-09-01T21:00:33.902+08:00</dateTime>
+        </endTime>
+        <tagged>track</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>SSA tutorial</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-09-09T12:00:37.960+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-09-09T14:00:37.960+08:00</dateTime>
+        </endTime>
+        <tagged>ssa</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>EE3204 quiz</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-09-20T13:00:41.937+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-09-20T14:00:41.937+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>Track and Field trails</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-09-25T18:00:45.649+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-09-25T21:00:45.649+08:00</dateTime>
+        </endTime>
+        <tagged>track</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>EE2024 Lab assignment 1</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-10-09T09:00:49.910+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-10-09T12:00:49.911+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>Track and Field competition</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-10-15T13:00:54.031+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-10-16T18:00:54.031+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>ECE club meeting</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-10-18T17:00:58.041+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-10-18T19:00:58.041+08:00</dateTime>
+        </endTime>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>CS2103T V0.5rc demo</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-11-03T09:00:01.288+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-11-03T10:00:01.289+08:00</dateTime>
+        </endTime>
+        <tagged>cs2103t</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>CS2101 OP2</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-11-03T12:00:04.918+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-11-03T14:00:04.918+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>EE3204 lab demo</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-11-03T17:00:09.039+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-11-03T18:00:09.040+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>EE2024 Lab assignment 2</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-11-07T09:00:12.619+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-11-07T12:00:12.619+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>CS2101 Critical Reflection test</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-11-07T12:00:18.424+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-11-07T14:00:18.424+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>CS2103T Product demo</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-11-10T10:00:23.008+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-11-10T11:00:23.008+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>CS2101 Oral discussion</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-11-10T12:00:27.447+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-11-10T14:00:27.447+08:00</dateTime>
+        </endTime>
+        <tagged>cs2101</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>SSA Finals</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-11-23T13:00:31+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-11-23T15:00:31+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>EE2024 Finals</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-11-26T09:00:34.865+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-11-26T11:00:34.865+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>CS2103T Finals</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-11-26T13:00:39.267+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-11-26T15:00:39.267+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>Bath the dog</details>
+        </taskDetails>
+        <tagged>misc</tagged>
+    </tasks>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>Jiayou for finals!</details>
+        </taskDetails>
+    </tasks>
+    <tasks>
+        <taskType>1</taskType>
+        <taskDetails>
+            <details>Complete all revision</details>
+        </taskDetails>
+        <endTime>
+            <dateTime>2016-11-22T23:59:24.826+08:00</dateTime>
+        </endTime>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>EE3204 Finals</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-11-29T09:00:09.419+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-11-29T11:00:09.419+08:00</dateTime>
+        </endTime>
+        <tagged>impt</tagged>
+    </tasks>
+    <tasks>
+        <taskType>2</taskType>
+        <taskDetails>
+            <details>CELEBRATION</details>
+        </taskDetails>
+        <startTime>
+            <dateTime>2016-11-29T11:00:19.165+08:00</dateTime>
+        </startTime>
+        <endTime>
+            <dateTime>2016-11-29T23:59:19.165+08:00</dateTime>
+        </endTime>
+    </tasks>
+    <tasks>
+        <taskType>0</taskType>
+        <taskDetails>
+            <details>Don't fall ill</details>
+        </taskDetails>
+    </tasks>
+</KeyboardWarrior>
