@@ -52,7 +52,7 @@ Some example commands you can try:
 
    * **`help`** : Opens the help window.
    * **`add`**` Do CS2103 Tutorial` : 
-     Adds a To-do task `Do CS2103 Tutorial` to KeyboardWarrior.
+     Adds a Todo task `Do CS2103 Tutorial` to KeyboardWarrior.
    * **`delete`** `1` : Deletes the 1st task shown.
    * **`exit`** : Exits the app.
    
@@ -117,7 +117,7 @@ At any time, **KeyboardWarrior** also allows you to view the specific instructio
 <!-- @@author A0124453M -->
 
 <br>
-### 3.1.2. Add a To-do Task
+### 3.1.2. Add a Todo Task
 <br>
 **Format:** **`add`** `TODO [#tag]`
 
@@ -130,7 +130,7 @@ It is useful for things that you might want to do in the near future but do not 
  
 `TODO`
 
-> The `TODO` parameter should be the name or a short description of the To-do to be created.	
+> The `TODO` parameter should be the name or a short description of the Todo to be created.	
 
 <br>
 **Examples:**
@@ -240,7 +240,7 @@ This is suitable for things you might have to attend at a particular time with s
 
 **`add`** `Basketball practice from 051016 1800 051016 2100 #basketball`
 
-> Creates a new Event 'Group meeting at I3 MR9' with the time period as 5 October 2016, 6:00 p.m. to 9:00 p.m. Also adds a #basketball tag to it.
+> Creates a new Event 'Basketball practice' with the time period as 5 October 2016, 6:00 p.m. to 9:00 p.m. Also adds a #basketball tag to it.
 
 <br>
 ### 3.1.5. Find an Item
