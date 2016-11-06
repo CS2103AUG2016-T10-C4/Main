@@ -84,7 +84,7 @@ public class FindCommand extends Command {
      */
     private Set<String> toLowerCase(Set<String> words){
     	Set<String> lowerCaseKeywords = new HashSet<String>();
-        Iterator<String> keywordsItr = keywords.iterator(); 
+        Iterator<String> keywordsItr = words.iterator(); 
         while (keywordsItr.hasNext()){
             lowerCaseKeywords.add(keywordsItr.next().toLowerCase());
         }
