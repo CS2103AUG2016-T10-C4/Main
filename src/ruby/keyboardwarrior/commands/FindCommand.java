@@ -17,12 +17,13 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n\t"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final Set<String> keywords;
+    private Set<String> keywords;
 
     /**
      * Constructor for a Find Command.
      */
     public FindCommand(Set<String> keywords) {
+        this.keywords = keywords;
         this.keywords = toLowerCase(keywords);
     }
 

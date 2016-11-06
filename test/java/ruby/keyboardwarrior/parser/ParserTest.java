@@ -175,7 +175,7 @@ public class ParserTest {
     }
 
     private static Task generateTestTask() throws IllegalValueException {
-        return new Task(new TaskDetails(TaskDetails.EXAMPLE),null);
+        return new Task(new TaskDetails(TaskDetails.EXAMPLE));
     }
 
     private static String convertTaskToAddCommandString(Task todoTask) {

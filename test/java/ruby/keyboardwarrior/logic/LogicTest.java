@@ -9,6 +9,8 @@ import ruby.keyboardwarrior.commands.CommandResult;
 import ruby.keyboardwarrior.commands.*;
 import ruby.keyboardwarrior.common.Messages;
 import ruby.keyboardwarrior.data.TasksList;
+import ruby.keyboardwarrior.data.tag.Tag;
+import ruby.keyboardwarrior.data.tag.UniqueTagList;
 import ruby.keyboardwarrior.data.task.*;
 import ruby.keyboardwarrior.storage.StorageFile;
 
@@ -55,7 +57,7 @@ public class LogicTest {
 
     /**
      * Executes the command and confirms that the result message is correct.
-     * Both the 'address book' and the 'last shown list' are expected to be empty.
+     * Both the 'tasks list' and the 'last shown list' are expected to be empty.
      * @see #assertCommandBehavior(String, String, TasksList, boolean, List)
      */
     private void assertCommandBehavior(String inputCommand, String expectedMessage) throws Exception {
@@ -65,9 +67,9 @@ public class LogicTest {
     /**
      * Executes the command and confirms that the result message is correct and
      * also confirms that the following three parts of the Logic object's state are as expected:<br>
-     *      - the internal address book data are same as those in the {@code expectedAddressBook} <br>
-     *      - the internal 'last shown list' matches the {@code expectedLastList} <br>
-     *      - the storage file content matches data in {@code expectedAddressBook} <br>
+     *      - the internal address book data are same as those in the {@code expectedTasksList} <br>
+     *      - the internal 'last shown list' matches the {@code lastShownList} <br>
+     *      - the storage file content matches data in {@code expectedTasksList} <br>
      */
     private void assertCommandBehavior(String inputCommand,
                                       String expectedMessage,
@@ -88,7 +90,6 @@ public class LogicTest {
         //Confirm the state of data is as expected
         assertEquals(expectedTasksList, tasksList);
         assertEquals(lastShownList, logic.getLastShownList());
-//        assertEquals(tasksList, saveFile.load());
     }
 
 
@@ -111,71 +112,39 @@ public class LogicTest {
     @Test
     public void execute_clear() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        tasksList.addTask(helper.generateTask(1));
-        tasksList.addTask(helper.generateTask(2));
-        tasksList.addTask(helper.generateTask(3));
+        tasksList.addTask(helper.generateTask("1"));
+        tasksList.addTask(helper.generateTask("2"));
+        tasksList.addTask(helper.generateTask("3"));
 
         assertCommandBehavior("clear", ClearCommand.MESSAGE_SUCCESS, TasksList.empty(), false, Collections.emptyList());
     }
-
-/*    @Test
-    public void execute_add_invalidArgsFormat() throws Exception {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
-        assertCommandBehavior(
-                "add wrong args wrong args", expectedMessage);
-        assertCommandBehavior(
-                "add Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address", expectedMessage);
-        assertCommandBehavior(
-                "add Valid Name p/12345 valid@email.butNoPrefix a/valid, address", expectedMessage);
-        assertCommandBehavior(
-                "add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address", expectedMessage);
-    }*/
-
-/*    @Test
-    public void execute_add_invalidTaskData() throws Exception {
-        assertCommandBehavior(
-                "add []\\[;] p/12345 e/valid@e.mail a/valid, address", TaskDetails.MESSAGE_DETAILS_CONSTRAINTS);
-    }*/
 
     @Test
     public void execute_add_successful() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
         Task toBeAdded = helper.aTasks();
-        TasksList expectedAB = new TasksList();
-        expectedAB.addTask(toBeAdded);
+        TasksList expectedTL = new TasksList();
+        expectedTL.addTask(toBeAdded);
 
         // execute command and verify result
         assertCommandBehavior(helper.generateAddCommand(toBeAdded),
                               String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
-                              expectedAB,
+                              expectedTL,
                               false,
                               Collections.emptyList());
-
     }
-
-    /*@Test
-    public void execute_view_invalidArgsFormat() throws Exception {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE);
-        assertCommandBehavior("view ", expectedMessage);
-        assertCommandBehavior("view arg not number", expectedMessage);
-    }*/
-
-    /*@Test
-    public void execute_view_invalidIndex() throws Exception {
-        assertInvalidIndexBehaviorForCommand("view");
-    }*/
 
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command
-     * targeting a single person in the last shown list, using visible index.
-     * @param commandWord to test assuming it targets a single person in the last shown list based on visible index.
+     * targeting a single task in the last shown list, using visible index.
+     * @param commandWord to test assuming it targets a single task in the last shown list based on visible index.
      */
     private void assertInvalidIndexBehaviorForCommand(String commandWord) throws Exception {
         String expectedMessage = Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
         TestDataHelper helper = new TestDataHelper();
-        Task p1 = helper.generateTask(1);
-        Task p2 = helper.generateTask(2);
+        Task p1 = helper.generateTask("1");
+        Task p2 = helper.generateTask("2");
         List<Task> lastShownList = helper.generateTaskList(p1, p2);
 
         logic.setLastShownList(lastShownList);
@@ -185,107 +154,6 @@ public class LogicTest {
         assertCommandBehavior(commandWord + " 3", expectedMessage, TasksList.empty(), false, lastShownList);
 
     }
-
-    /*@Test
-    public void execute_view_onlyShowsNonPrivate() throws Exception {
-
-        TestDataHelper helper = new TestDataHelper();
-        Task p1 = helper.generateTask(1);
-        Task p2 = helper.generateTask(2);
-        List<Task> lastShownList = helper.generateTaskList(p1, p2);
-        TasksList expectedAB = helper.generateTasksList(lastShownList);
-        helper.addToTasksList(tasksList, lastShownList);
-
-        logic.setLastShownList(lastShownList);
-
-        assertCommandBehavior("view 1",
-                              String.format(ViewCommand.MESSAGE_VIEW_TASK_DETAILS, p1.toString()),
-                              expectedAB,
-                              false,
-                              lastShownList);
-
-        assertCommandBehavior("view 2",
-                              String.format(ViewCommand.MESSAGE_VIEW_TASK_DETAILS, p2.toString()),
-                              expectedAB,
-                              false,
-                              lastShownList);
-    }*/
-
-    /*@Test
-    public void execute_tryToViewMissingTask_errorMessage() throws Exception {
-        TestDataHelper helper = new TestDataHelper();
-        Task p1 = helper.generateTask(1);
-        Task p2 = helper.generateTask(2);
-        List<Task> lastShownList = helper.generateTaskList(p1, p2);
-
-        TasksList expectedAB = new TasksList();
-        expectedAB.addTask(p2);
-
-        tasksList.addTask(p2);
-        logic.setLastShownList(lastShownList);
-
-        assertCommandBehavior("view 1",
-                              Messages.MESSAGE_TASK_NOT_IN_TASKSLIST,
-                              expectedAB,
-                              false,
-                              lastShownList);
-    }*/
-
-    /*@Test
-    public void execute_viewAll_invalidArgsFormat() throws Exception {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewAllCommand.MESSAGE_USAGE);
-        assertCommandBehavior("viewall ", expectedMessage);
-        assertCommandBehavior("viewall arg not number", expectedMessage);
-    }*/
-
-    /*@Test
-    public void execute_viewAll_invalidIndex() throws Exception {
-        assertInvalidIndexBehaviorForCommand("viewall");
-    }*/
-
-    /*@Test
-    public void execute_viewAll() throws Exception {
-        TestDataHelper helper = new TestDataHelper();
-        Task p1 = helper.generateTask(1);
-        Task p2 = helper.generateTask(2);
-        List<Task> lastShownList = helper.generateTaskList(p1, p2);
-        TasksList expectedAB = helper.generateTasksList(lastShownList);
-        helper.addToTasksList(tasksList, lastShownList);
-
-        logic.setLastShownList(lastShownList);
-
-        assertCommandBehavior("viewall 1",
-                            String.format(ViewCommand.MESSAGE_VIEW_TASK_DETAILS, p1.toString()),
-                            expectedAB,
-                            false,
-                            lastShownList);
-
-        assertCommandBehavior("viewall 2",
-                            String.format(ViewCommand.MESSAGE_VIEW_TASK_DETAILS, p2.toString()),
-                            expectedAB,
-                            false,
-                            lastShownList);
-    }*/
-
-    /*@Test
-    public void execute_tryToViewAllTaskMissingInTasksList_errorMessage() throws Exception {
-        TestDataHelper helper = new TestDataHelper();
-        Task p1 = helper.generateTask(1);
-        Task p2 = helper.generateTask(2);
-        List<Task> lastShownList = helper.generateTaskList(p1, p2);
-
-        TasksList expectedAB = new TasksList();
-        expectedAB.addTask(p1);
-
-        tasksList.addTask(p1);
-        logic.setLastShownList(lastShownList);
-
-        assertCommandBehavior("viewall 2",
-                                Messages.MESSAGE_TASK_NOT_IN_TASKSLIST,
-                                expectedAB,
-                                false,
-                                lastShownList);
-    }*/
 
     @Test
     public void execute_delete_invalidArgsFormat() throws Exception {
@@ -302,22 +170,22 @@ public class LogicTest {
     @Test
     public void execute_delete_removesCorrectTask() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Task p1 = helper.generateTask(1);
-        Task p2 = helper.generateTask(2);
-        Task p3 = helper.generateTask(3);
+        Task p1 = helper.generateTask("1");
+        Task p2 = helper.generateTask("2");
+        Task p3 = helper.generateTask("3");
 
         List<Task> threeTasks = helper.generateTaskList(p1, p2, p3);
 
-        TasksList expectedAB = helper.generateTasksList(threeTasks);
-        expectedAB.removeTask(p2);
+        TasksList expectedTL = helper.generateTasksList(threeTasks);
+        expectedTL.removeTask(p2);
 
 
         helper.addToTasksList(tasksList, threeTasks);
         logic.setLastShownList(threeTasks);
 
         assertCommandBehavior("delete 2",
-                String.format(DeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, p2),
-                                expectedAB,
+                String.format(DeleteCommand.MESSAGE_SUCCESS, p2),
+                                expectedTL,
                                 false,
                                 threeTasks);
     }
@@ -326,22 +194,22 @@ public class LogicTest {
     public void execute_delete_missingInTasksList() throws Exception {
 
         TestDataHelper helper = new TestDataHelper();
-        Task p1 = helper.generateTask(1);
-        Task p2 = helper.generateTask(2);
-        Task p3 = helper.generateTask(3);
+        Task p1 = helper.generateTask("1");
+        Task p2 = helper.generateTask("2");
+        Task p3 = helper.generateTask("3");
 
         List<Task> threeTasks = helper.generateTaskList(p1, p2, p3);
 
-        TasksList expectedAB = helper.generateTasksList(threeTasks);
-        expectedAB.removeTask(p2);
+        TasksList expectedTL = helper.generateTasksList(threeTasks);
+        expectedTL.removeTask(p2);
 
         helper.addToTasksList(tasksList, threeTasks);
         tasksList.removeTask(p2);
         logic.setLastShownList(threeTasks);
 
         assertCommandBehavior("delete 4",
-                                Messages.MESSAGE_TASK_NOT_IN_TASKSLIST,
-                                expectedAB,
+                                Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX,
+                                expectedTL,
                                 false,
                                 threeTasks);
     }
@@ -361,18 +229,17 @@ public class LogicTest {
         Task p2 = helper.generateTaskWithDetails("KEYKEYKEY sduauo");
 
         List<Task> fourTasks = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
-        TasksList expectedAB = helper.generateTasksList(fourTasks);
-        List<Task> expectedList = helper.generateTaskList(pTarget1, pTarget2);
+        TasksList expectedTL = helper.generateTasksList(fourTasks);
+        List<Task> expectedList = helper.generateTaskList(p1, p2);
         helper.addToTasksList(tasksList, fourTasks);
 
         assertCommandBehavior("find KEY",
-                                Command.getMessageForTasksListShownSummary(expectedList, "0"),
-                                expectedAB,
+                                Command.getMessageForTasksList(expectedList, "0"),
+                                expectedTL,
                                 true,
                                 expectedList);
     }
 
-    // Might need to re-look this test
     @Test
     public void execute_find_isNonCaseSensitive() throws Exception {
         TestDataHelper helper = new TestDataHelper();
@@ -382,13 +249,13 @@ public class LogicTest {
         Task p2 = helper.generateTaskWithDetails("KEy sduauo");
 
         List<Task> fourTasks = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
-        TasksList expectedAB = helper.generateTasksList(fourTasks);
+        TasksList expectedTL = helper.generateTasksList(fourTasks);
         List<Task> expectedList = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
         helper.addToTasksList(tasksList, fourTasks);
 
         assertCommandBehavior("find KEY",
-                                Command.getMessageForTasksListShownSummary(expectedList, "0"),                            
-                                expectedAB,
+                                Command.getMessageForTasksList(expectedList, "0"),                            
+                                expectedTL,
                                 true,
                                 expectedList);
     }
@@ -402,13 +269,13 @@ public class LogicTest {
         Task p2 = helper.generateTaskWithDetails("KEy sduauo");
 
         List<Task> fourTasks = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
-        TasksList expectedAB = helper.generateTasksList(fourTasks);
+        TasksList expectedTL = helper.generateTasksList(fourTasks);
         List<Task> expectedList = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
         helper.addToTasksList(tasksList, fourTasks);
 
         assertCommandBehavior("find KEY rAnDoM",
-                                Command.getMessageForTasksListShownSummary(expectedList, "0"),
-                                expectedAB,
+                                Command.getMessageForTasksList(expectedList, "0"),
+                                expectedTL,
                                 true,
                                 expectedList);
     }
@@ -420,7 +287,7 @@ public class LogicTest {
 
         Task aTasks() throws Exception {
             TaskDetails taskdetails = new TaskDetails("This is a task");
-            return new Task(taskdetails, null);
+            return new Task(taskdetails);
         }
 
         /**
@@ -430,8 +297,8 @@ public class LogicTest {
          *
          * @param seed used to generate the person data field values
          */
-        Task generateTask(int seed) throws Exception {
-            return new Task(new TaskDetails("Task " + seed),null);
+        Task generateTask(String seed) throws Exception {
+            return new Task(new TaskDetails("Task " + seed), new UniqueTagList(new Tag(seed)));
         }
 
         /** Generates the correct add command based on the task given */
@@ -478,7 +345,7 @@ public class LogicTest {
          */
          Task generateTaskWithDetails(String taskdetails) throws Exception {
             return new Task(
-                    new TaskDetails(taskdetails),null);
+                    new TaskDetails(taskdetails));
          }
     }
 
