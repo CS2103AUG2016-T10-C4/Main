@@ -67,14 +67,14 @@ Refer to the [Features](#3-features) section below for details of each command.
 To understand the following command formats, you can refer to these rules below:
 
 <br>
-1) Words that are **bold** are *commands*.
+1) Words that are **bold** and 'highlighted' are *commands*.
 
 > E.g. Format for adding Deadline: **`add`** `DEADLINE by DATE TIME`
 > 
 > The word **`add`** here is the command that determines the action to be done.
 
 <br>
-2) Words in UPPERCASE are the *parameters*.
+2) Words in UPPERCASE and 'highlighted' are the *parameters*.
      
 > E.g. Format for adding Deadline: **`add`** `DEADLINE by DATE TIME`
 > 
