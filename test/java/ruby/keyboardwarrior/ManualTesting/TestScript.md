@@ -21,7 +21,7 @@
 
 ###Add Deadline with only date###
 1. **Input**: add a deadline by 081116
-2. **Output**: "17) a deadline task by Tue 08-Nov-2016" will appear at the bottom of Deadlines, number of Deadlines will be updated to 17
+2. **Output**: "17) a deadline by Tue 08-Nov-2016" will appear at the bottom of Deadlines, number of Deadlines will be updated to 17
 
 ###Add Deadline with date and time###
 1. **Input**: add another deadline by 081116 2359
@@ -31,11 +31,19 @@
 1. **Input**: add an event from 081116 2359 091116 1200
 2. **Output**: "20) Tue 23:59 08-Nov-2016 to Wed 12:00 09-Nov-2016	an event" will appear at the bottom of Events, number of Events will be updated to 20
 
-###Add with tag###
+###Add Todo with tag###
 1. **Input**: add task with tag #atag
 2. **Output**: "17) task with tag	[atag]" will appear at the bottom of Todos, number of Todos will be updated to 17
 
-###Add with multiple tags###
+###Add Deadline with tag###
+1. **Input**: add a deadline with tag by 081116 #atag
+2. **Output**: "19) a deadline with tag by Tue 08-Nov-2016 [atag]" will appear at the bottom of Deadlines, number of Deadlines will be updated to 19
+
+###Add Event with tag###
+1. **Input**: add an event with tag from 081116 2359 091116 1200 #atag
+2. **Output**: "21) Tue 23:59 08-Nov-2016 to Wed 12:00 09-Nov-2016	an event with tag [atag]" will appear at the bottom of Events, number of Events will be updated to 21
+
+###Add item with multiple tags###
 1. **Input**: add task with multiple tags #atag #btag #ctag
 2. **Output**: "18) task with multiple tags	[atag][btag][ctag]" will appear at the bottom of Todos, number of Todos will be updated to 18
 
