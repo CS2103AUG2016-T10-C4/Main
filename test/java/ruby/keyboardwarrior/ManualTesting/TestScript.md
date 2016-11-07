@@ -35,6 +35,10 @@
 1. **Input**: add task with tag #atag
 2. **Output**: "17) task with tag	[atag]" will appear at the bottom of Todos, number of Todos will be updated to 17
 
+###Add with multiple tags###
+1. **Input**: add task with multiple tags #atag #btag #ctag
+2. **Output**: "18) task with multiple tags	[atag][btag][ctag]" will appear at the bottom of Todos, number of Todos will be updated to 18
+
 ###List Todos###
 1. **Input**: list todo
 2. **Output**: only the Todos list will be shown
@@ -53,7 +57,7 @@
 
 ###Find by multiple keyword###
 1. **Input**: find a an
-2. **Output**: an addition of 1 Event (Tue 23:59 08-Nov-2016 to Wed 12:00 09-Nov-2016	an event) will be shown
+2. **Output**: in addition to the 1 Todo and 1 Deadline listed, 1 Event (Tue 23:59 08-Nov-2016 to Wed 12:00 09-Nov-2016	an event) will also be shown
 
 ###Find not case sensitive###
 1. **Input**: find A aN
@@ -68,7 +72,7 @@
 2. **Input**: add new todo2
 3. **Input**: add new todo3
 4. **Input**: add new todo4
-5. **Display**: 4 new tasks under Todos, number of Todos will be updated to 4
+5. **Output**: 4 new tasks under Todos, number of Todos will be updated to 4
 
 ###Delete###
 1. **Input**: delete 2
