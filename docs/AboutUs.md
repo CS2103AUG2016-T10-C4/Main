@@ -13,7 +13,7 @@
    * [Commands](https://github.com/CS2103AUG2016-T10-C4/Main/blob/master/docs/DeveloperGuide.md#5-logic-component)
 * Aspects/Tools in charge of: Code Integration 
 * Features implemented:   
-   * [Edit tasks]
+   * [Edit tasks](https://github.com/CS2103AUG2016-T10-C4/Main/blob/master/docs/UserGuide.md#317-editing-items)
    * [Undo tasks](https://github.com/CS2103AUG2016-T10-C4/Main/blob/master/docs/UserGuide.md#319-undoing-your-previous-commands)
    * [Add tasks](https://github.com/CS2103AUG2016-T10-C4/Main/blob/master/docs/UserGuide.md#312-add-a-todo-task)
 * Code written: [[functional code](https://github.com/CS2103AUG2016-T10-C4/Main/blob/master/collated/main/A0144665Y.md)][[test code](https://github.com/CS2103AUG2016-T10-C4/Main/blob/master/collated/test/A0144665Y.md)][[docs](https://github.com/CS2103AUG2016-T10-C4/Main/blob/master/collated/docs/A0144665Y.md)]
