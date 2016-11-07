@@ -84,7 +84,7 @@ To understand the following command formats, you can refer to these rules below:
 3) The order of the format must be strictly adhered to.
 
 <br>
-4) You can include *tags* in any of the tasks which you wish to add by using the `#` symbol before the tag name. These tags can help you classify or identify unique tasks in your **KeyboardWarrior**. Tags are optional and are indicated in square brackets, i.e. [ ].
+4) You can include `TAGS` in any of the tasks which you wish to add by using the `#` symbol before the tag name. These tags can help you classify or identify unique tasks in your **KeyboardWarrior**. Tags are optional and are indicated in square brackets, i.e. [ ].
 
 <br>
 ### 3.1.1. Viewing Help 
