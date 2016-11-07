@@ -322,7 +322,35 @@ If you only want to see your Events on the screen, enter the **`list event`** co
 > Lists out all your Events.
 
 <br>
-### 3.1.7. Deleting Items
+### 3.1.7 Editing Items
+<br>
+**Format:** **`edit`** `INDEX EDITS`
+
+This command will edit the item of the specified index from **KeyboardWarrior**.
+
+When you find that a certain task (be it a Todo, Deadline or Event) needs to be updated with new information, for example, a certain Event timing has been pushed forward, you can use the Edit function to update your task on **KeyboardWarrior**.
+
+The specific list for Todos/ Deadlines/ Events (as according to *3.1.6 Listing What You Want To Do*) must be displayed before using this command.
+
+**Parameter Usage:**
+ 
+`INDEX`
+
+> The `INDEX` refers to the index number corresponding to the listed item shown on **KeyboardWarrior**.
+
+`EDITS`
+
+> Re-enter your task with the new details added.
+
+<br>
+**Examples:**
+
+**`edit`** `1 Buy new shoes`
+
+> The task with index number 1 has been changed to 'Buy new shoes'.
+
+<br>
+### 3.1.8. Deleting Items
 <br>
 **Format:** **`delete`** `INDEX`
 
@@ -339,14 +367,14 @@ The specific list for Todos/ Deadlines/ Events (as according to *3.1.6 Listing W
 > The `INDEX` refers to the index number corresponding to the listed item shown on **KeyboardWarrior**.
 
 <br>
-**Example**: 
+**Example:** 
 
 **`delete`** `4` 
 
 > The task with index number 4 is removed from the list. 
 
 <br>
-### 3.1.8. Clearing Everything
+### 3.1.9. Clearing Everything
 <br>
 **Format:** **`clear`**
 
@@ -361,7 +389,7 @@ This is especially useful if you would like to start on a clean slate and thus d
 > The entire list of Todos, Deadlines and Events is removed from **KeyboardWarrior**.
 
 <br>
-### 3.1.9. Undoing your Previous Commands
+### 3.1.10. Undoing your Previous Commands
 <br>
 **Format:** **`undo`**
 
@@ -375,7 +403,7 @@ This command is especially useful when you find yourself entering in wrong items
 
 > Undos the previous command which you had just entered.
 
-### 3.1.10. Exiting the Program 
+### 3.1.11. Exiting the Program 
 <br>
 **Format:** **`exit`**  
 
@@ -403,6 +431,7 @@ List (all)| **`list`**
 List (Todo) | **`list todo`**
 List (Deadline) | **`list deadline`**
 List (Event) | **`list event`**
+Edit | **`edit`** `INDEX EDITS`
 Delete | **`delete`** `INDEX`
 Clear | **`clear`**
 Undo | **`undo`**
