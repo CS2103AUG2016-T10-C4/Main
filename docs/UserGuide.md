@@ -204,7 +204,7 @@ This is suitable for most work-related tasks as they are usually scheduled withi
 <br>
 ### 3.1.4. Add an Event
 <br>
-**Format:** **`add`** `EVENT from STARTDATE STARTTIME ENDDATE ENDTIME [#tag]`
+**Format:** **`add`** `EVENT from STARTDATE STARTTIME ENDDATE ENDTIME [#TAG]`
 
 This adds an Event to the schedule in **KeyboardWarrior**. An Event is an activity that occurs between a set of specific date and time.  
 
