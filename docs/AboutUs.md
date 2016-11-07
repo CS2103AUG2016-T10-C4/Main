@@ -40,6 +40,7 @@ Scheduling: in charge of assigning and tracking project tasks.
 
 #### [**Raphael Quek**](https://github.com/raphaelquek)
 **Role**: Group member<br>
+<img src='images/RaphaelQuekHaoChong.jpg' width="150"><br>
 Testing: ensures the testing of the project is done properly and on time.<br>
 Code quality: looks after the code quality, ensures adherence to code standards.
 
