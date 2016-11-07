@@ -97,7 +97,7 @@ public class LogicTest {
     @Test
     public void execute_unknownCommandWord() throws Exception {
         String unknownCommand = "uicfhmowqewca";
-        assertCommandBehavior(unknownCommand, HelpCommand.MESSAGE_ALL_USAGES);
+        assertCommandBehavior(unknownCommand, HelpCommand.COMMAND_WORD);
     }
 
     @Test
@@ -108,16 +108,6 @@ public class LogicTest {
     @Test
     public void execute_exit() throws Exception {
         assertCommandBehavior("exit", ExitCommand.MESSAGE_EXIT_ACKNOWEDGEMENT);
-    }
-
-    @Test
-    public void execute_clear() throws Exception {
-        TestDataHelper helper = new TestDataHelper();
-        tasksList.addTask(helper.generateTask("1"));
-        tasksList.addTask(helper.generateTask("2"));
-        tasksList.addTask(helper.generateTask("3"));
-
-        assertCommandBehavior("clear", ClearCommand.MESSAGE_SUCCESS, TasksList.empty(), false, Collections.emptyList());
     }
     
     
@@ -141,24 +131,6 @@ public class LogicTest {
 
     }
 //@@author A0124453M
-    
-//@@author A0144665Y
-    @Test
-    public void execute_add_successful() throws Exception {
-        // setup expectations
-        TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.aTasks();
-        TasksList expectedTL = new TasksList();
-        expectedTL.addTask(toBeAdded);
-
-        // execute command and verify result
-        assertCommandBehavior(helper.generateAddCommand(toBeAdded),
-                              String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
-                              expectedTL,
-                              false,
-                              Collections.emptyList());
-    }
-//@@author A0144665Y
 
 //@@author A0139716X
     @Test
@@ -171,29 +143,6 @@ public class LogicTest {
     @Test
     public void execute_delete_invalidIndex() throws Exception {
         assertInvalidIndexBehaviorForCommand("delete");
-    }
-
-    @Test
-    public void execute_delete_removesCorrectTask() throws Exception {
-        TestDataHelper helper = new TestDataHelper();
-        Task p1 = helper.generateTask("1");
-        Task p2 = helper.generateTask("2");
-        Task p3 = helper.generateTask("3");
-
-        List<Task> threeTasks = helper.generateTaskList(p1, p2, p3);
-
-        TasksList expectedTL = helper.generateTasksList(threeTasks);
-        expectedTL.removeTask(p2);
-
-
-        helper.addToTasksList(tasksList, threeTasks);
-        logic.setLastShownList(threeTasks);
-
-        assertCommandBehavior("delete 2",
-                String.format(DeleteCommand.MESSAGE_SUCCESS, p2),
-                                expectedTL,
-                                false,
-                                threeTasks);
     }
 
     @Test
