@@ -109,6 +109,14 @@
 5. **Input**: undo
 6. **Output**: Todo that was just delete ("new todo1") will be added back to the list of Todos, number of Todos will be updated to 2
 
+###Undo edit###
+1. **Input**: list todo
+2. **Output**: the Todos list of 2 items will be shown
+3. **Input**: edit 1 changed todo1
+4. **Output**: Todo of index 1 on the displayed list ("new todo1") will be changed to "changed todo1", number of Todos remain at 2
+5. **Input**: undo
+6. **Output**: Todo of index 1 on the displayed list ("changed todo1") will be changed back to "new todo1", number of Todos remain at 2
+
 ###Exit###
 1. **Input**: Exit
 2. **Output**: program closes
