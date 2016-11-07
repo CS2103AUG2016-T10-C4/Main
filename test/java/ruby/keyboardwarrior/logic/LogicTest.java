@@ -19,7 +19,7 @@ import java.util.*;
 import static junit.framework.TestCase.assertEquals;
 import static ruby.keyboardwarrior.common.Messages.*;
 
-//@@author A0139820E
+//@@author A0144665Y
 public class LogicTest {
 
     /**
@@ -84,7 +84,7 @@ public class LogicTest {
         assertEquals(expectedTasksList, tasksList);
         assertEquals(lastShownList, logic.getLastShownList());
     }
-//@@author A0139820E
+//@@author A0144665Y
     
 //@@author A0124453M
     @Test
@@ -102,7 +102,7 @@ public class LogicTest {
 
     @Test
     public void execute_help() throws Exception {
-        assertCommandBehavior("help", HelpCommand.MESSAGE_ALL_USAGES);
+        assertCommandBehavior("help", HelpCommand.COMMAND_WORD);
     }
 
     @Test
