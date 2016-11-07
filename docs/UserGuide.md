@@ -119,7 +119,7 @@ At any time, **KeyboardWarrior** also allows you to view the specific instructio
 <br>
 ### 3.1.2. Add a Todo Task
 <br>
-**Format:** **`add`** `TODO [#tag]`
+**Format:** **`add`** `TODO [#TAG]`
 
 This adds a Todo to the schedule in **KeyboardWarrior**. A Todo is a kind of task that needs to be done by no specific deadline. It only contains a description of the task. 
 
@@ -147,7 +147,7 @@ It is useful for things that you might want to do in the near future but do not 
 <br>
 ### 3.1.3. Add a Deadline
 <br>
-**Format:** **`add`** `DEADLINE by DATE [TIME] [#tag]`
+**Format:** **`add`** `DEADLINE by DATE [TIME] [#TAG]`
 
 This adds a Deadline to the schedule in **KeyboardWarrior**. A Deadline is a kind of task that has to be completed by a specific deadline. Hence the date and time of the deadline should be specified in the command in addition to its description. 
 
@@ -395,9 +395,9 @@ There is no need to save manually.
 Command | Format  
 -------- | :-------- 
 Help | **`help`**
-Add (Todo)| **`add`** `TODO [#tag]`
-Add (Deadline)| **`add`** `DEADLINE by DATE [TIME] [#tag]`
-Add (Event) | **`add`** `EVENT from STARTDATE STARTTIME ENDDATE ENDTIME [#tag]`
+Add (Todo)| **`add`** `TODO [#TAG]`
+Add (Deadline)| **`add`** `DEADLINE by DATE [TIME] [#TAG]`
+Add (Event) | **`add`** `EVENT from STARTDATE STARTTIME ENDDATE ENDTIME [#TAG]`
 Find | **`find`** `KEYWORD`
 List (all)| **`list`**
 List (Todo) | **`list todo`**
