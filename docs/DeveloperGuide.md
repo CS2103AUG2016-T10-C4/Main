@@ -213,7 +213,7 @@ More commands can be added on to the current application. This allows for greate
 
 ### **Integration With Other Scheduler Apps**
 
-**KeyboardWarrior** currently does not integrate with any other scheduler apps (e.g. `Google Calender`). This added functionality would be useful to attract current users of the other scheduler apps. We could do this by syncing the data across apps so the user can benefit from using their previous apps with ours. 
+**KeyboardWarrior** currently does not integrate with any other scheduler apps (e.g. `Google Calender`). This added functionality would be useful to attract current users of the other scheduler apps. Data could be synced across apps so the user can benefit from using their previous apps with **KeyboardWarrior**.
 
 <!-- @@author A0139820E -->
 
