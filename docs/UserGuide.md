@@ -67,14 +67,14 @@ Refer to the [Features](#3-features) section below for details of each command.
 To understand the following command formats, you can refer to these rules below:
 
 <br>
-1) Words that are **bold** are *commands*.
+1) Words that are **bold** and `highlighted` are *commands*.
 
 > E.g. Format for adding Deadline: **`add`** `DEADLINE by DATE TIME`
 > 
 > The word **`add`** here is the command that determines the action to be done.
 
 <br>
-2) Words in UPPERCASE are the *parameters*.
+2) Words in UPPERCASE and `highlighted` are the *parameters*.
      
 > E.g. Format for adding Deadline: **`add`** `DEADLINE by DATE TIME`
 > 
@@ -84,7 +84,7 @@ To understand the following command formats, you can refer to these rules below:
 3) The order of the format must be strictly adhered to.
 
 <br>
-4) You can include *tags* in any of the tasks which you wish to add by using the `#` key. These tags can help you classify or identify unique tasks in your **KeyboardWarrior**. Tags are optional and are indicated in square brackets, i.e. [ ].
+4) You can include `TAGS` in any of the tasks which you wish to add by using the `#` symbol before the tag name. These tags can help you classify or identify unique tasks in your **KeyboardWarrior**. Tags are optional and are indicated in square brackets, i.e. [ ].
 
 <br>
 ### 3.1.1. Viewing Help 
@@ -119,7 +119,7 @@ At any time, **KeyboardWarrior** also allows you to view the specific instructio
 <br>
 ### 3.1.2. Add a Todo Task
 <br>
-**Format:** **`add`** `TODO [#tag]`
+**Format:** **`add`** `TODO [#TAG]`
 
 This adds a Todo to the schedule in **KeyboardWarrior**. A Todo is a kind of task that needs to be done by no specific deadline. It only contains a description of the task. 
 
@@ -139,15 +139,15 @@ It is useful for things that you might want to do in the near future but do not 
 
 > Creates a new Todo with the description 'Buy chocolate milk'.
 
-**`add`** `Read "Art of War" #leisure`
+**`add`** `Read "Art of War" #Leisure`
 
-> Creates a new Todo with the description 'Read "Art of War"' and attach a #leisure tag to it.
+> Creates a new Todo with the description 'Read "Art of War"' and attaches the tag "Leisure" to it.
 
 
 <br>
 ### 3.1.3. Add a Deadline
 <br>
-**Format:** **`add`** `DEADLINE by DATE TIME [#tag]`
+**Format:** **`add`** `DEADLINE by DATE [TIME] [#TAG]`
 
 This adds a Deadline to the schedule in **KeyboardWarrior**. A Deadline is a kind of task that has to be completed by a specific deadline. Hence the date and time of the deadline should be specified in the command in addition to its description. 
 
@@ -185,22 +185,26 @@ This is suitable for most work-related tasks as they are usually scheduled withi
 <!-- @@author A0144665Y -->
 
 <br>
-**Examples:** 
+**Examples:**
+
+**`add`** `Pay school fees by 171016`
+
+> Creates a new Deadline with the description 'Pay school fees' and a deadline on 17 October 2016 with no time specified.
 
 **`add`** `Submit invoice by 171016 1700`
 
 > Creates a new Deadline with the description 'Submit Invoice' and a deadline on 17 October 2016, 5:00 p.m.
 
-**`add`** `Complete tutorial by 171016 1800 #homework`
+**`add`** `Complete tutorial by 171016 1800 #Homework`
 
-> Creates a new Deadline with the description 'Complete tutorial' and a deadline on 17 October 2016, 6:00 p.m. Also adds a #homework tag to it.
+> Creates a new Deadline with the description 'Complete tutorial' and a deadline on 17 October 2016, 6:00 p.m. Also adds the tag "Homework" to it.
 
 <!-- @@author A0139716X -->
 
 <br>
 ### 3.1.4. Add an Event
 <br>
-**Format:** **`add`** `EVENT from STARTDATE STARTTIME ENDDATE ENDTIME [#tag]`
+**Format:** **`add`** `EVENT from STARTDATE STARTTIME ENDDATE ENDTIME [#TAG]`
 
 This adds an Event to the schedule in **KeyboardWarrior**. An Event is an activity that occurs between a set of specific date and time.  
 
@@ -238,9 +242,9 @@ This is suitable for things you might have to attend at a particular time with s
 
 > Creates a new Event 'Group meeting at I3 MR9' with the time period as 5 October 2016, 2:10 p.m. to 4:00 p.m. 
 
-**`add`** `Basketball practice from 051016 1800 051016 2100 #basketball`
+**`add`** `Basketball practice from 051016 1800 051016 2100 #Basketball`
 
-> Creates a new Event 'Basketball practice' with the time period as 5 October 2016, 6:00 p.m. to 9:00 p.m. Also adds a #basketball tag to it.
+> Creates a new Event 'Basketball practice' with the time period as 5 October 2016, 6:00 p.m. to 9:00 p.m. Also adds the tag "Basketball" to it.
 
 <br>
 ### 3.1.5. Find an Item
@@ -318,7 +322,35 @@ If you only want to see your Events on the screen, enter the **`list event`** co
 > Lists out all your Events.
 
 <br>
-### 3.1.7. Deleting Items
+### 3.1.7 Editing Items
+<br>
+**Format:** **`edit`** `INDEX EDITS`
+
+This command will edit the item of the specified index from **KeyboardWarrior**.
+
+When you find that a certain task (be it a Todo, Deadline or Event) needs to be updated with new information, for example, a certain Event timing has been pushed forward, you can use the Edit function to update your task on **KeyboardWarrior**.
+
+The specific list for Todos/ Deadlines/ Events (as according to *3.1.6 Listing What You Want To Do*) must be displayed before using this command.
+
+**Parameter Usage:**
+ 
+`INDEX`
+
+> The `INDEX` refers to the index number corresponding to the listed item shown on **KeyboardWarrior**.
+
+`EDITS`
+
+> Re-enter your task with the new details added.
+
+<br>
+**Examples:**
+
+**`edit`** `1 Buy new shoes`
+
+> The task with index number 1 has been changed to 'Buy new shoes'.
+
+<br>
+### 3.1.8. Deleting Items
 <br>
 **Format:** **`delete`** `INDEX`
 
@@ -335,14 +367,16 @@ The specific list for Todos/ Deadlines/ Events (as according to *3.1.6 Listing W
 > The `INDEX` refers to the index number corresponding to the listed item shown on **KeyboardWarrior**.
 
 <br>
-**Example**: 
+**Example:** 
 
 **`delete`** `4` 
 
 > The task with index number 4 is removed from the list. 
 
+**Warning: These two things can be done without any task displayed on screen. This is not recommended for users the prevent unwanted results. It is always good practice to use to `list` command after an invalid command before using `delete`, `delete` or `delete`.**
+
 <br>
-### 3.1.8. Clearing Everything
+### 3.1.9. Clearing Everything
 <br>
 **Format:** **`clear`**
 
@@ -357,7 +391,7 @@ This is especially useful if you would like to start on a clean slate and thus d
 > The entire list of Todos, Deadlines and Events is removed from **KeyboardWarrior**.
 
 <br>
-### 3.1.9. Undoing your Previous Commands
+### 3.1.10. Undoing your Previous Commands
 <br>
 **Format:** **`undo`**
 
@@ -365,13 +399,15 @@ Each time you enter **`undo`**, the previous command which you had just entered 
 
 This command is especially useful when you find yourself entering in wrong items and wish to take them back.
 
-**Example:**
+Undo only works for **`add`**, **`delete`** and **`edit`** commands. **`list`** and **`find`** commands will not be undone. The specific **`list`** for Todos/ Deadlines/ Events (as according to 3.1.6 Listing What You Want To Do) must be displayed before using this command.
 
+**Example:**
+The user **`add`**` Research on Iphone 7`, in order to **`undo`**, the user must **`list`**` todo` and then followed by entering the **`undo`** command as shown below.
 **`undo`**
 
-> Undos the previous command which you had just entered.
+> Undos the adding on Research on Iphone 7 to the **KeyboardWarrior**.
 
-### 3.1.10. Exiting the Program 
+### 3.1.11. Exiting the Program 
 <br>
 **Format:** **`exit`**  
 
@@ -391,14 +427,15 @@ There is no need to save manually.
 Command | Format  
 -------- | :-------- 
 Help | **`help`**
-Add (Todo)| **`add`** `TODO [#tag]`
-Add (Deadline)| **`add`** `DEADLINE by DATE TIME [#tag]`
-Add (Event) | **`add`** `EVENT from STARTDATE STARTTIME ENDDATE ENDTIME [#tag]`
+Add (Todo)| **`add`** `TODO [#TAG]`
+Add (Deadline)| **`add`** `DEADLINE by DATE [TIME] [#TAG]`
+Add (Event) | **`add`** `EVENT from STARTDATE STARTTIME ENDDATE ENDTIME [#TAG]`
 Find | **`find`** `KEYWORD`
 List (all)| **`list`**
 List (Todo) | **`list todo`**
 List (Deadline) | **`list deadline`**
 List (Event) | **`list event`**
+Edit | **`edit`** `INDEX EDITS`
 Delete | **`delete`** `INDEX`
 Clear | **`clear`**
 Undo | **`undo`**

@@ -11,7 +11,7 @@
 * [About Us](docs/AboutUs.md)
 * [Contact Us](docs/ContactUs.md)
 
-#### Acknnowledgements
+#### Acknowledgements
 * The original code for this project is created by SE-EDU initiative at https://github.com/se-edu/.
 
 #### Licence : [MIT](LICENSE)

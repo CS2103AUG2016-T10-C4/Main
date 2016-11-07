@@ -200,22 +200,30 @@ We have two types of tests:
 
 These are several additions that can be made to **KeyboardWarrior**	 to further increase its usefulness and usability.
 
+### **Increase user Friendliness**
+
+> * Improve the Graphical User Interface to look more impressive
+> * Improve the functionality of the edit, delete and undo command so that the user no longers needs to list before doing things
+> * Allow more flexible Date inputs such as 0301 or 3 Jan with no date
+> * Edit command allowing users to edit or change certain parameters instead of the entire task
+> * Delete command allowed multiple deletes
+> * Find command has to ability to find a specified Date and Time
+> * List command allows the user to list Tags
+
 ### **More Commands**
 
 More commands can be added on to the current application. This allows for greater functionality to suit various users.
 
 > Examples:
+> * Redo command
+> * Mark items as complete
+> * Sort by date
 > * Search for empty slots.
-> * Add recurring tasks.
-> * Add tags to tasks. 
+> * Add recurring tasks. 
 
 ### **Integration With Other Scheduler Apps**
 
-**KeyboardWarrior** currently does not integrate with any other scheduler apps (e.g. `Google Calender`). This added functionality would be useful to attract current users of the other scheduler apps.
-
-### **Secure Data**
-
-Data could be secured through encryption so that only users can only access their own data to ensure privacy.
+**KeyboardWarrior** currently does not integrate with any other scheduler apps (e.g. `Google Calender`). This added functionality would be useful to attract current users of the other scheduler apps. Data could be synced across apps so the user can benefit from using their previous apps with **KeyboardWarrior**.
 
 <!-- @@author A0139820E -->
 
