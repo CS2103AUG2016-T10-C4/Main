@@ -373,6 +373,8 @@ The specific list for Todos/ Deadlines/ Events (as according to *3.1.6 Listing W
 
 > The task with index number 4 is removed from the list. 
 
+**Warning: These two things can be done without any task displayed on screen. This is not recommended for users the prevent unwanted results. It is always good practice to use to `list` command after an invalid command before using `delete`, `delete` or `delete`.**
+
 <br>
 ### 3.1.9. Clearing Everything
 <br>
