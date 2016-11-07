@@ -61,11 +61,11 @@
 
 ###Find by single keyword###
 1. **Input**: find a
-2. **Output**: 1 Todo (a todo) and 1 Deadline (a deadline task by Tue 08-Nov-2016) will be shown
+2. **Output**: 1 Todo ("a todo") and 1 Deadline ("a deadline task by Tue 08-Nov-2016") will be shown
 
 ###Find by multiple keyword###
 1. **Input**: find a an
-2. **Output**: in addition to the 1 Todo and 1 Deadline listed, 1 Event (Tue 23:59 08-Nov-2016 to Wed 12:00 09-Nov-2016	an event) will also be shown
+2. **Output**: in addition to the 1 Todo and 1 Deadline listed, 1 Event ("Tue 23:59 08-Nov-2016 to Wed 12:00 09-Nov-2016	an event") will also be shown
 
 ###Find not case sensitive###
 1. **Input**: find A aN
@@ -80,9 +80,35 @@
 2. **Input**: add new todo2
 3. **Input**: add new todo3
 4. **Input**: add new todo4
-5. **Output**: 4 new tasks under Todos, number of Todos will be updated to 4
+5. **Output**: 4 new items under Todos, number of Todos will be updated to 4
 
 ###Delete###
-1. **Input**: delete 2
-2. **Input**: delete 3
-3. **Output**: items of index 2 and 3 on the displayed list (todo2 and todo3) are removed, number of Todos will be updated to 2
+1. **Input**: list todo
+2. **Output**: the Todos list of 4 items will be shown
+3. **Input**: delete 2
+4. **Input**: delete 3
+5. **Output**: Todo of index 2 and 3 on the displayed list ("new todo2" and "new todo3") will be removed, number of Todos will be updated to 2
+
+###Edit###
+1. **Input**: list todo
+2. **Output**: the Todos list of 2 items will be shown
+3. **Input**: edit 2 changed todo4
+4. **Output**: Todo of index 2 on the displayed list ("new todo4") will be changed to "changed todo4", number of Todos remain at 2
+
+###Undo add###
+1. **Input**: add deadline1 by 081116
+2. **Output**: "1) deadline1 by Tue 08-Nov-2016" will appear at the bottom of Deadlines, number of Deadlines will be updated to 1
+3. **Input**: undo
+4. **Output**: Deadline that was just added ("deadline 1 by Tue 08-Nov-2016") will be removed, number of Deadlines will be updated to 0
+
+###Undo delete##
+1. **Input**: list todo
+2. **Output**: the Todos list of 2 items will be shown
+3. **Input**: delete 1
+4. **Output**: Todo of index 1 on the displayed list ("new todo1") will be removed, number of Todos will be updated to 1
+5. **Input**: undo
+6. **Output**: Todo that was just delete ("new todo1") will be added back to the list of Todos, number of Todos will be updated to 2
+
+###Exit###
+1. **Input**: Exit
+2. **Output**: program closes
