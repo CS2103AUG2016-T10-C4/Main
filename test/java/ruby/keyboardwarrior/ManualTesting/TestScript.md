@@ -82,7 +82,7 @@
 4. **Input**: add new todo4
 5. **Input**: add new deadline1 by 081116 2359
 6. **Input**: add new event1 from 081116 2359 091116 1200
-7. **Output**: 4 new items under Todos will be added("1) new todo1", "2) new todo2", "3) new todo3", "4) new todo4"), number of Todos will be updated to 4, 1 new item under Deadlines will be added ("1) deadline1 by Tue 23:59 08-Nov-2016"), number of Deadlines will be updated to 1, 1 new item under Events will be added ("1) Tue 23:59 08-Nov-2016 to Wed 12:00 09-Nov-2016	event1"), number of Events will be updated to 1
+7. **Output**: 4 new items under Todos will be added("1) new todo1", "2) new todo2", "3) new todo3", "4) new todo4"), number of Todos will be updated to 4, 1 new item under Deadlines will be added ("1) new deadline1 by Tue 23:59 08-Nov-2016"), number of Deadlines will be updated to 1, 1 new item under Events will be added ("1) Tue 23:59 08-Nov-2016 to Wed 12:00 09-Nov-2016	new event1"), number of Events will be updated to 1
 
 ###Delete###
 1. **Input**: list todo
@@ -99,15 +99,15 @@
 
 ###Edit Deadline###
 1. **Input**: list deadline
-2. **Output**: the Deadline list of 1 items will be shown
-3. **Input**: edit 2 changed todo4
-4. **Output**: Todo of index 2 on the displayed list ("new todo4") will be changed to "changed todo4", number of Todos remain at 2
+2. **Output**: the Deadline list of 1 item will be shown
+3. **Input**: edit 1 changed deadline1 by 091116 2200
+4. **Output**: Deadline of index 1 on the displayed list ("new deadline1 by Tue 23:59 08-Nov-2016") will be changed to "changed deadline1 by Wed 22:00 09-Nov-2016", number of Deadlines remain at 1
 
 ###Edit Event###
-1. **Input**: list todo
-2. **Output**: the Event list of 1 items will be shown
-3. **Input**: edit 2 changed todo4
-4. **Output**: Todo of index 2 on the displayed list ("new todo4") will be changed to "changed todo4", number of Todos remain at 2
+1. **Input**: list event
+2. **Output**: the Event list of 1 item will be shown
+3. **Input**: edit 1 changed event1
+4. **Output**: Event of index 1 on the displayed list ("new todo4") will be changed to "changed todo4", number of Todos remain at 2
 
 ###Undo add###
 1. **Input**: add deadline1 by 081116
