@@ -1,7 +1,7 @@
 #**Test Script**
 
-**Display**: text area showing the task list or help
-**Input**: text field at the bottom of the GUI for entering command
+**Display**: text area showing the task list or help <br>
+**Input**: text field at the bottom of the GUI for entering command <br>
 **Output**: text area just above the input, that shows input feed back, will automatically fade out after awhile
 
 ###Loading Sample Data###
