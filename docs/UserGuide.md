@@ -397,11 +397,13 @@ Each time you enter **`undo`**, the previous command which you had just entered 
 
 This command is especially useful when you find yourself entering in wrong items and wish to take them back.
 
-**Example:**
+Undo only works for **`add`**, **`delete`** and **`edit`** commands. **`list`** and **`find`** commands will not be undone. The specific **`list`** for Todos/ Deadlines/ Events (as according to 3.1.6 Listing What You Want To Do) must be displayed before using this command.
 
+**Example:**
+The user **`add`**` Research on Iphone 7`, in order to **`undo`**, the user must **`list`**` todo` and then followed by entering the **`undo`** command as shown below.
 **`undo`**
 
-> Undos the previous command which you had just entered.
+> Undos the adding on Research on Iphone 7 to the **KeyboardWarrior**.
 
 ### 3.1.11. Exiting the Program 
 <br>
