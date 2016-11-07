@@ -106,8 +106,8 @@
 ###Edit Event###
 1. **Input**: list event
 2. **Output**: the Event list of 1 item will be shown
-3. **Input**: edit 1 changed event1
-4. **Output**: Event of index 1 on the displayed list ("new todo4") will be changed to "changed todo4", number of Todos remain at 2
+3. **Input**: edit 1 changed event1 from 081116 2200 091116 1300
+4. **Output**: Event of index 1 on the displayed list ("Tue 23:59 08-Nov-2016 to Wed 12:00 09-Nov-2016 new event1") will be changed to "Tue 22:00 08-Nov-2016 to Wed 13:00 09-Nov-2016 changed event1", number of Events remain at 1
 
 ###Undo add###
 1. **Input**: add deadline1 by 081116
