@@ -206,8 +206,7 @@ More commands can be added on to the current application. This allows for greate
 
 > Examples:
 > * Search for empty slots.
-> * Add recurring tasks.
-> * Add tags to tasks. 
+> * Add recurring tasks. 
 
 ### **Integration With Other Scheduler Apps**
 
