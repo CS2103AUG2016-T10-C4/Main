@@ -84,7 +84,7 @@ To understand the following command formats, you can refer to these rules below:
 3) The order of the format must be strictly adhered to.
 
 <br>
-4) You can include *tags* in any of the tasks which you wish to add by using the `#` key. These tags can help you classify or identify unique tasks in your **KeyboardWarrior**. Tags are optional and are indicated in square brackets, i.e. [ ].
+4) You can include *tags* in any of the tasks which you wish to add by using the `#` symbol before the tag name. These tags can help you classify or identify unique tasks in your **KeyboardWarrior**. Tags are optional and are indicated in square brackets, i.e. [ ].
 
 <br>
 ### 3.1.1. Viewing Help 
@@ -139,15 +139,15 @@ It is useful for things that you might want to do in the near future but do not 
 
 > Creates a new Todo with the description 'Buy chocolate milk'.
 
-**`add`** `Read "Art of War" #leisure`
+**`add`** `Read "Art of War" #Leisure`
 
-> Creates a new Todo with the description 'Read "Art of War"' and attach a #leisure tag to it.
+> Creates a new Todo with the description 'Read "Art of War"' and attaches the tag "Leisure" to it.
 
 
 <br>
 ### 3.1.3. Add a Deadline
 <br>
-**Format:** **`add`** `DEADLINE by DATE TIME [#tag]`
+**Format:** **`add`** `DEADLINE by DATE [TIME] [#tag]`
 
 This adds a Deadline to the schedule in **KeyboardWarrior**. A Deadline is a kind of task that has to be completed by a specific deadline. Hence the date and time of the deadline should be specified in the command in addition to its description. 
 
@@ -185,15 +185,19 @@ This is suitable for most work-related tasks as they are usually scheduled withi
 <!-- @@author A0144665Y -->
 
 <br>
-**Examples:** 
+**Examples:**
+
+**`add`** `Pay school fees by 171016`
+
+> Creates a new Deadline with the description 'Pay school fees' and a deadline on 17 October 2016 with no time specified.
 
 **`add`** `Submit invoice by 171016 1700`
 
 > Creates a new Deadline with the description 'Submit Invoice' and a deadline on 17 October 2016, 5:00 p.m.
 
-**`add`** `Complete tutorial by 171016 1800 #homework`
+**`add`** `Complete tutorial by 171016 1800 #Homework`
 
-> Creates a new Deadline with the description 'Complete tutorial' and a deadline on 17 October 2016, 6:00 p.m. Also adds a #homework tag to it.
+> Creates a new Deadline with the description 'Complete tutorial' and a deadline on 17 October 2016, 6:00 p.m. Also adds the tag "Homework" to it.
 
 <!-- @@author A0139716X -->
 
@@ -240,7 +244,7 @@ This is suitable for things you might have to attend at a particular time with s
 
 **`add`** `Basketball practice from 051016 1800 051016 2100 #basketball`
 
-> Creates a new Event 'Basketball practice' with the time period as 5 October 2016, 6:00 p.m. to 9:00 p.m. Also adds a #basketball tag to it.
+> Creates a new Event 'Basketball practice' with the time period as 5 October 2016, 6:00 p.m. to 9:00 p.m. Also adds the tag "basketball" to it.
 
 <br>
 ### 3.1.5. Find an Item
@@ -392,7 +396,7 @@ Command | Format
 -------- | :-------- 
 Help | **`help`**
 Add (Todo)| **`add`** `TODO [#tag]`
-Add (Deadline)| **`add`** `DEADLINE by DATE TIME [#tag]`
+Add (Deadline)| **`add`** `DEADLINE by DATE [TIME] [#tag]`
 Add (Event) | **`add`** `EVENT from STARTDATE STARTTIME ENDDATE ENDTIME [#tag]`
 Find | **`find`** `KEYWORD`
 List (all)| **`list`**
