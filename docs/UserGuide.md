@@ -242,9 +242,9 @@ This is suitable for things you might have to attend at a particular time with s
 
 > Creates a new Event 'Group meeting at I3 MR9' with the time period as 5 October 2016, 2:10 p.m. to 4:00 p.m. 
 
-**`add`** `Basketball practice from 051016 1800 051016 2100 #basketball`
+**`add`** `Basketball practice from 051016 1800 051016 2100 #Basketball`
 
-> Creates a new Event 'Basketball practice' with the time period as 5 October 2016, 6:00 p.m. to 9:00 p.m. Also adds the tag "basketball" to it.
+> Creates a new Event 'Basketball practice' with the time period as 5 October 2016, 6:00 p.m. to 9:00 p.m. Also adds the tag "Basketball" to it.
 
 <br>
 ### 3.1.5. Find an Item
