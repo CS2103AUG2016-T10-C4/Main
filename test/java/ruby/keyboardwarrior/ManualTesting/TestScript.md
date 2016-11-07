@@ -1,8 +1,8 @@
 #**Test Script**
 
-**Display**: text area showing the task list or help <br>
+**Output**: text area showing the task list or help <br>
 **Input**: text field at the bottom of the GUI for entering command <br>
-**Output**: text area just above the input, that shows input feed back, will automatically fade out after awhile
+**Feedback**: text area just above the input, that shows input feed back, will automatically fade out after awhile
 
 ###Loading Sample Data###
 1. Copy the "SampleData.txt" file to the root folder of keyboard warrior
