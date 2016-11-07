@@ -205,16 +205,15 @@ These are several additions that can be made to **KeyboardWarrior**	 to further 
 More commands can be added on to the current application. This allows for greater functionality to suit various users.
 
 > Examples:
+> * Redo command
+> * Mark items as complete
+> * Sort by date
 > * Search for empty slots.
 > * Add recurring tasks. 
 
 ### **Integration With Other Scheduler Apps**
 
-**KeyboardWarrior** currently does not integrate with any other scheduler apps (e.g. `Google Calender`). This added functionality would be useful to attract current users of the other scheduler apps.
-
-### **Secure Data**
-
-Data could be secured through encryption so that only users can only access their own data to ensure privacy.
+**KeyboardWarrior** currently does not integrate with any other scheduler apps (e.g. `Google Calender`). This added functionality would be useful to attract current users of the other scheduler apps. We could do this by syncing the data across apps so the user can benefit from using their previous apps with ours. 
 
 <!-- @@author A0139820E -->
 
