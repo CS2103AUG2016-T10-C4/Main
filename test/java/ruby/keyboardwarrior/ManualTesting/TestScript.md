@@ -36,12 +36,12 @@
 2. **Output**: "17) task with tag	[atag]" will appear at the bottom of Todos, number of Todos will be updated to 17
 
 ###Add Deadline with tag###
-1. **Input**: add a deadline with tag by 081116 #atag
-2. **Output**: "19) a deadline with tag by Tue 08-Nov-2016 [atag]" will appear at the bottom of Deadlines, number of Deadlines will be updated to 19
+1. **Input**: add deadline with tag by 081116 #atag
+2. **Output**: "19) deadline with tag by Tue 08-Nov-2016 [atag]" will appear at the bottom of Deadlines, number of Deadlines will be updated to 19
 
 ###Add Event with tag###
-1. **Input**: add an event with tag from 081116 2359 091116 1200 #atag
-2. **Output**: "21) Tue 23:59 08-Nov-2016 to Wed 12:00 09-Nov-2016	an event with tag [atag]" will appear at the bottom of Events, number of Events will be updated to 21
+1. **Input**: add event with tag from 081116 2359 091116 1200 #atag
+2. **Output**: "21) Tue 23:59 08-Nov-2016 to Wed 12:00 09-Nov-2016	event with tag [atag]" will appear at the bottom of Events, number of Events will be updated to 21
 
 ###Add item with multiple tags###
 1. **Input**: add task with multiple tags #atag #btag #ctag
@@ -49,15 +49,15 @@
 
 ###List Todos###
 1. **Input**: list todo
-2. **Output**: only the Todos list will be shown
+2. **Output**: only the Todo list will be shown
 
 ###List Deadlines###
 1. **Input**: list deadline
-2. **Output**: only the Deadlines list will be shown
+2. **Output**: only the Deadline list will be shown
 
 ###List Events###
 1. **Input**: list event
-2. **Output**: only the Events list will be shown
+2. **Output**: only the Event list will be shown
 
 ###Find by single keyword###
 1. **Input**: find a
@@ -80,18 +80,32 @@
 2. **Input**: add new todo2
 3. **Input**: add new todo3
 4. **Input**: add new todo4
-5. **Output**: 4 new items under Todos, number of Todos will be updated to 4
+5. **Input**: add new deadline1 by 081116 2359
+6. **Input**: add new event1 from 081116 2359 091116 1200
+7. **Output**: 4 new items under Todos will be added("1) new todo1", "2) new todo2", "3) new todo3", "4) new todo4"), number of Todos will be updated to 4, 1 new item under Deadlines will be added ("1) deadline1 by Tue 23:59 08-Nov-2016"), number of Deadlines will be updated to 1, 1 new item under Events will be added ("1) Tue 23:59 08-Nov-2016 to Wed 12:00 09-Nov-2016	event1"), number of Events will be updated to 1
 
 ###Delete###
 1. **Input**: list todo
-2. **Output**: the Todos list of 4 items will be shown
+2. **Output**: the Todo list of 4 items will be shown
 3. **Input**: delete 2
 4. **Input**: delete 3
 5. **Output**: Todo of index 2 and 3 on the displayed list ("new todo2" and "new todo3") will be removed, number of Todos will be updated to 2
 
-###Edit###
+###Edit Todo###
 1. **Input**: list todo
-2. **Output**: the Todos list of 2 items will be shown
+2. **Output**: the Todo list of 2 items will be shown
+3. **Input**: edit 2 changed todo4
+4. **Output**: Todo of index 2 on the displayed list ("new todo4") will be changed to "changed todo4", number of Todos remain at 2
+
+###Edit Deadline###
+1. **Input**: list deadline
+2. **Output**: the Deadline list of 1 items will be shown
+3. **Input**: edit 2 changed todo4
+4. **Output**: Todo of index 2 on the displayed list ("new todo4") will be changed to "changed todo4", number of Todos remain at 2
+
+###Edit Event###
+1. **Input**: list todo
+2. **Output**: the Event list of 1 items will be shown
 3. **Input**: edit 2 changed todo4
 4. **Output**: Todo of index 2 on the displayed list ("new todo4") will be changed to "changed todo4", number of Todos remain at 2
 
@@ -103,7 +117,7 @@
 
 ###Undo delete##
 1. **Input**: list todo
-2. **Output**: the Todos list of 2 items will be shown
+2. **Output**: the Todo list of 2 items will be shown
 3. **Input**: delete 1
 4. **Output**: Todo of index 1 on the displayed list ("new todo1") will be removed, number of Todos will be updated to 1
 5. **Input**: undo
@@ -111,7 +125,7 @@
 
 ###Undo edit###
 1. **Input**: list todo
-2. **Output**: the Todos list of 2 items will be shown
+2. **Output**: the Todo list of 2 items will be shown
 3. **Input**: edit 1 changed todo1
 4. **Output**: Todo of index 1 on the displayed list ("new todo1") will be changed to "changed todo1", number of Todos remain at 2
 5. **Input**: undo
