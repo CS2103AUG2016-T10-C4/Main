@@ -5,7 +5,7 @@ import java.util.List;
 
 import ruby.keyboardwarrior.data.exception.IllegalValueException;
 
-//@author A0139716X
+//@@author A0139716X
 /**
  * Represents a Tag in the KeywordWarrior.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
