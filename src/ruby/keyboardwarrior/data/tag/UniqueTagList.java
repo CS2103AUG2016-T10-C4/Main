@@ -7,7 +7,7 @@ import ruby.keyboardwarrior.data.exception.DuplicateDataException;
 
 import java.util.*;
 
-//@author A0139716X
+//@@author A0139716X
 /**
  * A list of tags that enforces no nulls and uniqueness between its elements.
  *
