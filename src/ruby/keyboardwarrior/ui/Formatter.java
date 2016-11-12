@@ -5,7 +5,7 @@ import ruby.keyboardwarrior.data.task.Task;
 import java.util.ArrayList;
 import java.util.List;
 
-//@author A0139716X
+//@@author A0139716X
 /**
  * Used for formatting text for display. e.g. for adding text decorations.
  */
